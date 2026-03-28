@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palate by BlackOak — Restaurant Marketing That Actually Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:    #121212;
+      --black-2:  #1a1a1a;
+      --black-3:  #222222;
+      --white:    #ffffff;
+      --muted:    rgba(255,255,255,0.5);
+      --muted-2:  rgba(255,255,255,0.2);
+      --red:      #f04543;
+      --red-dark: #d03533;
+      --red-dim:  rgba(240,69,67,0.1);
+      --sans:     "Plus Jakarta Sans", sans-serif;
+      --serif:    "Instrument Serif", Georgia, serif;
+      --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+      --border:   rgba(255,255,255,0.08);
+      --r:        10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--black); color:var(--white); font-family:var(--sans);
+      font-weight:400; line-height:1.6; overflow-x:hidden; cursor:none; }
+
+    /* CURSOR */
+    #cd { width:7px; height:7px; background:var(--red); border-radius:50%;
+      position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+      transform:translate(-50%,-50%); transition:transform 0.08s var(--ease); }
+    #cr { width:30px; height:30px; border:1.5px solid rgba(240,69,67,0.45);
+      border-radius:50%; position:fixed; top:0; left:0; pointer-events:none;
+      z-index:9998; transform:translate(-50%,-50%); transition:all 0.15s var(--ease); }
+    body:has(a:hover) #cr, body:has(button:hover) #cr {
+      transform:translate(-50%,-50%) scale(2.2); border-color:var(--red); background:var(--red-dim); }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.4rem 4rem; transition:all 0.4s var(--ease); }
+    nav.scrolled { background:rgba(18,18,18,0.97); backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border); padding:1rem 4rem; }
+    .nav-logo { text-decoration:none; }
+    .nav-wordmark { font-size:1.4rem; font-weight:800; color:var(--white);
+      letter-spacing:-0.03em; line-height:1; }
+    .nav-wordmark span { color:var(--red); }
+    .nav-sub { font-size:0.58rem; font-weight:500; color:var(--muted);
+      letter-spacing:0.14em; text-transform:uppercase; margin-top:1px; }
+    .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted); text-decoration:none; transition:color 0.2s; font-weight:500; }
+    .nav-links a:hover { color:var(--white); }
+
+    /* PILL BUTTON — Framer style */
+    .pill { display:inline-flex; align-items:center;
+      border:1.5px solid rgba(255,255,255,0.15); border-radius:100px;
+      text-decoration:none; transition:border-color 0.2s, transform 0.2s;
+      overflow:hidden; }
+    .pill:hover { border-color:var(--red); transform:translateY(-1px); }
+    .pill .pt { padding:0.55rem 1.2rem; font-size:0.76rem; font-weight:700;
+      color:var(--white); letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
+    .pill .pa { width:34px; height:34px; background:var(--red); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.85rem; flex-shrink:0; transition:background 0.2s, transform 0.2s; }
+    .pill:hover .pa { background:var(--red-dark); transform:rotate(45deg); }
+    .pill-lg .pt { padding:0.75rem 1.5rem; font-size:0.82rem; }
+    .pill-lg .pa { width:42px; height:42px; font-size:1rem; }
+    .pill-outline { border-color:rgba(255,255,255,0.1); }
+    .pill-outline .pt { color:rgba(255,255,255,0.7); }
+    .pill-white { border-color:rgba(255,255,255,0.4); }
+    .pill-white .pt { color:var(--white); }
+    .pill-white .pa { background:var(--white); color:var(--red); }
+    .pill-white:hover { border-color:var(--white); }
+    .pill-white:hover .pa { background:rgba(255,255,255,0.9); }
+
+    /* HERO */
+    #hero { min-height:100vh; display:flex; flex-direction:column;
+      justify-content:center; align-items:center; text-align:center;
+      padding:8rem 4rem 6rem; position:relative; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; z-index:0;
+      background:radial-gradient(ellipse 85% 75% at 50% 35%, rgba(240,69,67,0.09) 0%, transparent 65%), var(--black); }
+    .hero-grid { position:absolute; inset:0; z-index:0;
+      background-image:linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size:80px 80px;
+      mask-image:radial-gradient(ellipse 90% 80% at 50% 50%, black 15%, transparent 100%); }
+    .hero-content { position:relative; z-index:2; max-width:900px; }
+    .hero-badge { display:inline-flex; align-items:center; gap:0.5rem;
+      border:1px solid rgba(240,69,67,0.3); border-radius:100px; background:rgba(240,69,67,0.06);
+      padding:0.35rem 1rem 0.35rem 0.7rem; font-size:0.68rem; letter-spacing:0.16em;
+      text-transform:uppercase; color:var(--red); font-weight:700; margin-bottom:2.2rem; }
+    .hero-badge-dot { width:6px; height:6px; background:var(--red);
+      border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    h1 { font-size:clamp(3.8rem, 8.5vw, 7rem); font-weight:800;
+      line-height:0.95; letter-spacing:-0.04em; margin-bottom:1.8rem; }
+    h1 em { font-family:var(--serif); font-style:italic; font-weight:400; color:var(--red); }
+    .hero-sub { font-size:1.12rem; color:var(--muted); max-width:500px;
+      line-height:1.75; margin:0 auto 3rem; font-weight:300; }
+    .hero-sub strong { color:rgba(255,255,255,0.85); font-weight:600; }
+    .hero-actions { display:flex; align-items:center; justify-content:center;
+      gap:1rem; flex-wrap:wrap; }
+    .hero-stats { display:flex; justify-content:center; gap:5rem;
+      margin-top:5rem; padding-top:2.5rem; border-top:1px solid var(--border);
+      position:relative; z-index:2; }
+    .hstat .num { font-size:2.4rem; font-weight:800; letter-spacing:-0.04em; line-height:1; }
+    .hstat .num span { color:var(--red); }
+    .hstat .lbl { font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase;
+      color:var(--muted); font-weight:500; margin-top:0.35rem; }
+
+    /* SERVICE TICKER (replaces client names) */
+    .ticker-wrap { overflow:hidden; border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border); padding:0.9rem 0; background:var(--black-2); }
+    .ticker { display:flex; gap:3rem; animation:tick 30s linear infinite; width:max-content; }
+    .ti { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--muted); font-weight:600; white-space:nowrap;
+      display:flex; align-items:center; gap:1rem; }
+    .ti::before { content:"●"; color:var(--red); font-size:0.35rem; }
+    @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* CLIENTS STRIP */
+    #clients { padding:3.5rem 4rem; background:var(--black);
+      border-bottom:1px solid var(--border); }
+    .clients-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--muted-2); font-weight:600; text-align:center; margin-bottom:2.5rem; }
+    .clients-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      row-gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .client-logo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      opacity: 0.4;
+      transition: opacity 0.3s;
+    }
+    .client-logo-box:hover { opacity: 0.9; }
+    .client-logo-img {
+      display: block;
+      width: auto;
+      height: 48px;
+      max-width: 130px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .client-logo-name { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted); font-weight:600; white-space:nowrap; }
+    /* Text fallback when no image */
+    .client-logo-text { font-size:0.7rem; font-weight:800; letter-spacing:0.06em;
+      color:var(--white); text-align:center; line-height:1.3;
+      text-transform:uppercase; }
+
+    /* SECTIONS */
+    section { padding:7rem 4rem; }
+    .s-tag { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:1rem;
+      display:flex; align-items:center; gap:0.6rem; }
+    .s-tag::before { content:""; width:16px; height:1.5px; background:var(--red); }
+    h2 { font-size:clamp(2rem, 4vw, 3.2rem); font-weight:800;
+      letter-spacing:-0.03em; line-height:1.08; }
+    h2 em { font-family:var(--serif); font-style:italic; font-weight:400; color:var(--red); }
+
+    /* PROBLEM */
+    #problem { background:var(--black-2);
+      display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+    .prob-list { list-style:none; margin-top:2.5rem; display:flex;
+      flex-direction:column; gap:1.2rem; }
+    .prob-list li { display:flex; align-items:flex-start; gap:0.9rem;
+      font-size:0.97rem; color:rgba(255,255,255,0.68); line-height:1.55; }
+    .prob-list li::before { content:"✗"; color:var(--red); font-size:0.85rem;
+      font-weight:700; flex-shrink:0; margin-top:0.15rem; }
+    .sol-box { background:var(--black-3); border:1px solid var(--border);
+      border-radius:var(--r); padding:2.5rem; }
+    .sol-box h3 { font-size:1.3rem; font-weight:800; letter-spacing:-0.02em;
+      margin-bottom:1.5rem; line-height:1.2; }
+    .sol-box h3 span { color:var(--red); }
+    .sol-list { list-style:none; display:flex; flex-direction:column; gap:1rem; }
+    .sol-list li { display:flex; align-items:flex-start; gap:0.8rem;
+      font-size:0.92rem; color:rgba(255,255,255,0.75); line-height:1.5; }
+    .sol-list li::before { content:"✓"; color:var(--red); font-weight:700; flex-shrink:0; }
+
+    /* RESULTS */
+    #results { background:var(--black); }
+    .res-top { display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:3rem; }
+    .res-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+      background:var(--border); border:1px solid var(--border);
+      border-radius:var(--r); overflow:hidden; }
+    .rc { background:var(--black-2); padding:2.5rem; transition:background 0.3s; }
+    .rc:hover { background:var(--black-3); }
+    .rc-client { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:1.2rem; }
+    .rc-num { font-size:3.2rem; font-weight:800; letter-spacing:-0.04em;
+      line-height:1; color:var(--white); margin-bottom:0.45rem; }
+    .rc-num span { color:var(--red); }
+    .rc-desc { font-size:0.88rem; color:var(--muted); line-height:1.5; margin-bottom:1.2rem; }
+    .rc-tag { font-size:0.63rem; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted-2); font-weight:600; }
+
+    /* PACKAGES */
+    #packages { background:var(--black-2); }
+    .pkg-intro { display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:1rem; gap:2rem; }
+    .pkg-note { font-size:0.85rem; color:var(--muted); max-width:360px;
+      line-height:1.6; margin-top:0.5rem; }
+    .pkg-grid { display:grid; grid-template-columns:repeat(3,1fr);
+      gap:1.5rem; margin-top:2.5rem; }
+    .pkg { border:1px solid var(--border); border-radius:var(--r);
+      padding:2.5rem; background:var(--black); position:relative;
+      transition:border-color 0.3s, transform 0.3s;
+      display:flex; flex-direction:column; }
+    .pkg:hover { border-color:rgba(240,69,67,0.3); transform:translateY(-5px); }
+    .pkg.hot { border-color:var(--red);
+      background:linear-gradient(160deg, rgba(240,69,67,0.07), var(--black)); }
+    .pkg-badge { position:absolute; top:-1px; right:1.5rem;
+      background:var(--red); color:var(--white); font-size:0.6rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      padding:0.25rem 0.75rem; border-radius:0 0 5px 5px; }
+    .pkg-tier { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:0.7rem; }
+    .pkg-price { font-size:2.8rem; font-weight:800; letter-spacing:-0.04em;
+      line-height:1; margin-bottom:0.3rem; }
+    .pkg-price small { font-size:1rem; font-weight:400; color:var(--muted); }
+    .pkg-tagline { font-size:0.84rem; color:var(--muted); margin-bottom:0.6rem; }
+    .pkg-ideal { font-size:0.76rem; color:rgba(255,255,255,0.45); margin-bottom:1.8rem;
+      padding-bottom:1.8rem; border-bottom:1px solid var(--border);
+      font-style:italic; }
+    .pkg-sh { font-size:0.63rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin:1.2rem 0 0.7rem; }
+    .pkg-sh:first-of-type { margin-top:0; }
+    .pkg-ul { list-style:none; display:flex; flex-direction:column;
+      gap:0.6rem; flex:1; }
+    .pkg-ul li { font-size:0.84rem; color:rgba(255,255,255,0.72);
+      display:flex; align-items:flex-start; gap:0.6rem; line-height:1.4; }
+    .pkg-ul li::before { content:"→"; color:var(--red); font-weight:700;
+      flex-shrink:0; margin-top:0.05rem; }
+    .pkg-ul li.x { text-decoration:line-through; color:rgba(255,255,255,0.25); }
+    .pkg-ul li.x::before { color:rgba(255,255,255,0.2); }
+    .pkg-cta { display:block; text-align:center; padding:0.9rem;
+      border-radius:100px; font-size:0.76rem; font-weight:700;
+      letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;
+      transition:all 0.2s; margin-top:2rem; }
+    .pkg.hot .pkg-cta { background:var(--red); color:var(--white); }
+    .pkg.hot .pkg-cta:hover { background:var(--red-dark); box-shadow:0 8px 24px rgba(240,69,67,0.35); }
+    .pkg:not(.hot) .pkg-cta { border:1.5px solid var(--border); color:var(--white); }
+    .pkg:not(.hot) .pkg-cta:hover { border-color:var(--red); color:var(--red); }
+
+    /* SERVICES */
+    #services { background:var(--black); }
+    .svc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+      background:var(--border); margin-top:3rem;
+      border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+    .svc { background:var(--black-2); padding:2.5rem; transition:background 0.3s; }
+    .svc:hover { background:var(--black-3); }
+    .svc-n { font-size:0.63rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:1rem; }
+    .svc h3 { font-size:1.1rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.6rem; }
+    .svc p { font-size:0.88rem; color:var(--muted); line-height:1.7; }
+
+    /* TEAM */
+    #team { background:var(--black-2); }
+    .team-grid { display:grid; grid-template-columns:repeat(5,1fr);
+      gap:1.5rem; margin-top:3rem; }
+    .tc { display:flex; flex-direction:column; }
+    .tc-photo { aspect-ratio:3/4; background:var(--black-3);
+      border:1px solid var(--border); border-radius:var(--r);
+      overflow:hidden; margin-bottom:1rem; display:flex;
+      align-items:center; justify-content:center; flex-direction:column;
+      gap:0.5rem; }
+    .tc-photo img { width:100%; height:100%; object-fit:cover;
+      filter:grayscale(100%); transition:filter 0.4s; }
+    .tc-photo:hover img { filter:grayscale(0%); }
+    .tc-placeholder { color:var(--muted-2); font-size:0.65rem; letter-spacing:0.1em;
+      text-transform:uppercase; text-align:center; padding:1rem; line-height:1.6; }
+    .tc-placeholder .icon { font-size:1.8rem; opacity:0.2; display:block; margin-bottom:0.4rem; }
+    .tc-name { font-size:0.95rem; font-weight:700; margin-bottom:0.15rem; }
+    .tc-role { font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+      color:var(--red); font-weight:600; }
+    .tc-bio { font-size:0.78rem; color:var(--muted); line-height:1.55; margin-top:0.5rem; }
+
+    /* TESTIMONIALS */
+    #testimonials { background:var(--black); }
+    .test-top { display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:3rem; }
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .test-card { background:var(--black-2); border:1px solid var(--border);
+      border-radius:var(--r); padding:2.2rem; transition:border-color 0.3s; }
+    .test-card:hover { border-color:rgba(240,69,67,0.25); }
+    .test-stars { color:var(--red); font-size:0.7rem; letter-spacing:0.15em;
+      margin-bottom:1.2rem; }
+    .test-q { font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.8);
+      margin-bottom:1.5rem; font-style:italic; }
+    .test-q::before { content:'"'; color:var(--red); font-size:1.5rem;
+      font-family:var(--serif); line-height:0; vertical-align:-0.4rem;
+      margin-right:0.2rem; }
+    .test-author { font-size:0.82rem; font-weight:700; }
+    .test-loc { font-size:0.7rem; color:var(--red); margin-top:0.2rem;
+      letter-spacing:0.06em; }
+
+    /* PROCESS */
+    #process { background:var(--black-2); }
+    .proc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+      background:var(--border); margin-top:3rem;
+      border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+    .ps { background:var(--black-2); padding:2.2rem; transition:background 0.3s; }
+    .ps:hover { background:var(--black-3); }
+    .ps-n { font-size:2rem; font-weight:800; color:rgba(240,69,67,0.18);
+      letter-spacing:-0.04em; line-height:1; margin-bottom:0.8rem; }
+    .ps h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; }
+    .ps p { font-size:0.84rem; color:var(--muted); line-height:1.65; }
+
+    /* ABOUT */
+    #about { background:var(--black); display:grid;
+      grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+    .about-img { background:var(--black-2); border:1px solid var(--border);
+      border-radius:var(--r); aspect-ratio:4/5; display:flex;
+      align-items:center; justify-content:center; flex-direction:column;
+      gap:0.5rem; color:var(--muted-2); font-size:0.72rem;
+      letter-spacing:0.1em; text-transform:uppercase; }
+    .about-img span { font-size:2rem; opacity:0.15; }
+    .about-text p { font-size:1rem; color:rgba(255,255,255,0.7);
+      line-height:1.85; margin-bottom:1.2rem; }
+    .about-text p strong { color:var(--white); font-weight:600; }
+    .about-creds { display:flex; gap:2.5rem; margin-top:2rem;
+      padding-top:2rem; border-top:1px solid var(--border); }
+    .acred .num { font-size:1.9rem; font-weight:800; letter-spacing:-0.03em; }
+    .acred .num span { color:var(--red); }
+    .acred .lbl { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted); margin-top:0.2rem; }
+
+    /* CTA */
+    #cta { background:var(--red); padding:5.5rem 4rem; text-align:center; }
+    #cta h2 { font-size:clamp(2.2rem,5vw,3.8rem); font-weight:800;
+      letter-spacing:-0.03em; color:var(--white); margin-bottom:1rem; }
+    #cta .cta-sub { font-size:1.1rem; color:rgba(255,255,255,0.82);
+      margin-bottom:2.5rem; max-width:480px; margin-left:auto; margin-right:auto; }
+
+    /* FOOTER */
+    footer { background:#0d0d0d; padding:2.5rem 4rem;
+      display:flex; align-items:center; justify-content:space-between;
+      border-top:1px solid var(--border); }
+    .fl .wm { font-size:1.1rem; font-weight:800; letter-spacing:-0.02em; }
+    .fl .wm span { color:var(--red); }
+    .fl .fs { font-size:0.6rem; color:var(--muted); letter-spacing:0.12em;
+      text-transform:uppercase; margin-top:1px; }
+    .flinks { display:flex; gap:2rem; list-style:none; }
+    .flinks a { font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .flinks a:hover { color:var(--white); }
+    footer small { font-size:0.68rem; color:var(--muted-2); }
+
+    /* REVEAL */
+    .rv { opacity:0; transform:translateY(22px);
+      transition:opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+    .rv.on { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+    .d4{transition-delay:.32s} .d5{transition-delay:.4s}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      nav{padding:1.2rem 1.5rem} nav.scrolled{padding:0.9rem 1.5rem}
+      .nav-links{display:none}
+      section{padding:5rem 1.5rem} #hero{padding:7rem 1.5rem 5rem}
+      h1{font-size:clamp(3rem,10vw,4.5rem)}
+      .hero-stats{gap:2rem; flex-wrap:wrap}
+      #problem,#about{grid-template-columns:1fr; gap:3rem}
+      .res-grid,.proc-grid,.test-grid{grid-template-columns:1fr}
+      .pkg-grid{grid-template-columns:1fr}
+      .svc-grid{grid-template-columns:1fr}
+      .team-grid{grid-template-columns:repeat(2,1fr)}
+      #clients{padding:2.5rem 1.5rem}
+      .clients-row{gap:2rem}
+      footer{flex-direction:column;gap:1.5rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+<div id="cd"></div>
+<div id="cr"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-wordmark"><span>palate</span></div>
+    <div class="nav-sub">by BlackOak</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#results">Results</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill">
+    <span class="pt">Let's grow together</span>
+    <span class="pa">→</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Restaurant Marketing · South Texas
+    </div>
+    <h1>SERVE UP<br><em>SUCCESS.</em></h1>
+    <p class="hero-sub">
+      Most restaurant marketing looks the same. Gets ignored the same. Gets the same zero results.<br><br>
+      <strong>Palate is different.</strong> Full-service marketing built exclusively for restaurants — by people who've actually run one.
+    </p>
+    <div class="hero-actions">
+      <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill pill-lg">
+        <span class="pt">Book a Discovery Call</span>
+        <span class="pa">→</span>
+      </a>
+      <a href="#results" class="pill pill-lg pill-outline">
+        <span class="pt">See Our Results</span>
+        <span class="pa">↓</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats rv">
+    <div class="hstat">
+      <div class="num">9<span>+</span></div>
+      <div class="lbl">Active Clients</div>
+    </div>
+    <div class="hstat">
+      <div class="num">300<span>K</span></div>
+      <div class="lbl">Avg Monthly Reach</div>
+    </div>
+    <div class="hstat">
+      <div class="num">3<span>+</span></div>
+      <div class="lbl">Years in Market</div>
+    </div>
+    <div class="hstat">
+      <div class="num">100<span>%</span></div>
+      <div class="lbl">Restaurant Focused</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ti">Social Media Marketing</span>
+    <span class="ti">Content Strategy</span>
+    <span class="ti">Ad Management</span>
+    <span class="ti">Photography &amp; Video</span>
+    <span class="ti">Brand Identity</span>
+    <span class="ti">Market Research</span>
+    <span class="ti">Content Production</span>
+    <span class="ti">Distribution</span>
+    <span class="ti">SEO</span>
+    <span class="ti">Web Design</span>
+    <span class="ti">Event Marketing</span>
+    <span class="ti">Email Campaigns</span>
+    <span class="ti">Community Management</span>
+    <span class="ti">Content Research</span>
+    <span class="ti">Social Media Marketing</span>
+    <span class="ti">Content Strategy</span>
+    <span class="ti">Ad Management</span>
+    <span class="ti">Photography &amp; Video</span>
+    <span class="ti">Brand Identity</span>
+    <span class="ti">Market Research</span>
+    <span class="ti">Content Production</span>
+    <span class="ti">Distribution</span>
+    <span class="ti">SEO</span>
+    <span class="ti">Web Design</span>
+    <span class="ti">Event Marketing</span>
+    <span class="ti">Email Campaigns</span>
+    <span class="ti">Community Management</span>
+    <span class="ti">Content Research</span>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div id="clients">
+  <p class="clients-label">Restaurants That Trust Us.</p>
+  <div class="clients-row">
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/howling-rabbit.png" alt="Howling Rabbit Beerworks" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/el-taco.png" alt="El Taco Mañanero" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/luma.png" alt="LUMA Cocktail Lounge" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/kiss-fly.png" alt="Kiss &amp; Fly" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/the-fifth.png" alt="The Fifth Cocktail Lounge" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/the-quarter.png" alt="The Quarter" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/university-draft.png" alt="University Draft House" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/santa-fe.png" alt="Santa Fe Steakhouse" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/smokin-moon.png" alt="Smokin Moon BBQ" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/the-wings.png" alt="The Wings Stadium" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/deloreans.png" alt="Deloreans" /></div>
+    <div class="client-logo-box"><img class="client-logo-img" src="logos/santa-ana.png" alt="Santa Ana Nutrition" /></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="rv">
+    <div class="s-tag">The Real Problem</div>
+    <h2>Your food is great.<br>Your marketing<br><em>isn't working.</em></h2>
+    <ul class="prob-list">
+      <li>You're posting consistently and still not seeing more covers or sales</li>
+      <li>You've hired agencies that don't understand kitchens, margins, or rush hours</li>
+      <li>Your content looks generic — identical to every other restaurant on the feed</li>
+      <li>You're spending time briefing a team that still gets it wrong</li>
+      <li>You've been sold on vanity metrics — followers and likes that don't fill tables</li>
+    </ul>
+  </div>
+  <div class="sol-box rv d2">
+    <h3>This is exactly why we built <span>Palate.</span></h3>
+    <ul class="sol-list">
+      <li>Our founder ran restaurants before running agencies — we speak your language fluently</li>
+      <li>We work exclusively with restaurants. No context-switching, no learning curves</li>
+      <li>Full-service execution: strategy, content, photo, video, ads, and community</li>
+      <li>You stay in the loop without babysitting the process</li>
+      <li>We measure what matters — reach, visits, and revenue — not vanity</li>
+    </ul>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="res-top rv">
+    <div>
+      <div class="s-tag">Proven Results</div>
+      <h2>Real numbers.<br><em>Real restaurants.</em></h2>
+    </div>
+    <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill">
+      <span class="pt">Get these results</span>
+      <span class="pa">→</span>
+    </a>
+  </div>
+  <div class="res-grid">
+    <div class="rc rv">
+      <div class="rc-client">Smokin' Moon BBQ &amp; Beer Garden</div>
+      <div class="rc-num">135<span>K</span></div>
+      <div class="rc-desc">Facebook reach — up 69.8% in just 78 days</div>
+      <div class="rc-tag">Facebook · Organic Growth</div>
+    </div>
+    <div class="rc rv d1">
+      <div class="rc-client">Smokin' Moon BBQ &amp; Beer Garden</div>
+      <div class="rc-num">104<span>%</span></div>
+      <div class="rc-desc">Instagram reach growth — 37.4K reached in 78 days</div>
+      <div class="rc-tag">Instagram · Organic Growth</div>
+    </div>
+    <div class="rc rv d2">
+      <div class="rc-client">Smokin' Moon BBQ &amp; Beer Garden</div>
+      <div class="rc-num">414<span>K</span></div>
+      <div class="rc-desc">Paid impressions — up 213.9% in 78 days</div>
+      <div class="rc-tag">Meta Ads · Paid Media</div>
+    </div>
+    <div class="rc rv">
+      <div class="rc-client">McAllen Country Club</div>
+      <div class="rc-num">+82<span>%</span></div>
+      <div class="rc-desc">Event content reach growth across member dining and programming</div>
+      <div class="rc-tag">Event Marketing · Strategy</div>
+    </div>
+    <div class="rc rv d1">
+      <div class="rc-client">Taco Mañanero</div>
+      <div class="rc-num">+47<span>%</span></div>
+      <div class="rc-desc">Profile visits after brand refresh and content system build-out</div>
+      <div class="rc-tag">Brand · Photography · Social</div>
+    </div>
+    <div class="rc rv d2">
+      <div class="rc-client">Across All Clients</div>
+      <div class="rc-num">100<span>%</span></div>
+      <div class="rc-desc">Client retention rate. No restaurant has ever left Palate voluntarily.</div>
+      <div class="rc-tag">All Accounts · All Years</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="pkg-intro rv">
+    <div>
+      <div class="s-tag">Pricing</div>
+      <h2>Three tiers.<br><em>No surprises.</em></h2>
+      <p class="pkg-note">We believe in full transparency. You know exactly what you're getting and what you're paying before we ever get on a call.</p>
+    </div>
+  </div>
+  <div class="pkg-grid">
+
+    <div class="pkg rv">
+      <div class="pkg-tier">Starter</div>
+      <div class="pkg-price">$1,500 <small>/mo</small></div>
+      <div class="pkg-tagline">Social media foundation</div>
+      <div class="pkg-ideal">Best for: restaurants new to professional marketing</div>
+      <div class="pkg-sh">Social Media</div>
+      <ul class="pkg-ul">
+        <li>Done-For-You social management</li>
+        <li>1–2 platforms (IG + FB)</li>
+        <li>Up to 15 posts/month</li>
+        <li>Caption copywriting</li>
+        <li>Monthly content calendar</li>
+        <li class="x">Media Day</li>
+        <li class="x">Ad Management</li>
+        <li class="x">Community Management</li>
+      </ul>
+      <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pkg-cta">Get Started</a>
+    </div>
+
+    <div class="pkg hot rv d1">
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-tier">Gold</div>
+      <div class="pkg-price">$2,500 <small>/mo</small></div>
+      <div class="pkg-tagline">Full social + monthly media day</div>
+      <div class="pkg-ideal">Best for: established restaurants ready to grow</div>
+      <div class="pkg-sh">Social Media</div>
+      <ul class="pkg-ul">
+        <li>Done-For-You social management</li>
+        <li>Brand identity included</li>
+        <li>2–3 platforms (IG, FB, TikTok)</li>
+        <li>Up to 25 posts/month</li>
+        <li class="x">Ad Management (up to $2,500/mo)</li>
+        <li class="x">Community Management</li>
+      </ul>
+      <div class="pkg-sh">Media</div>
+      <ul class="pkg-ul">
+        <li>1 Content Day/month</li>
+        <li>Professional photo + Reels</li>
+        <li class="x">Long-form video editing</li>
+      </ul>
+      <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pkg-cta">Start with Gold</a>
+    </div>
+
+    <div class="pkg rv d2">
+      <div class="pkg-tier">Platinum</div>
+      <div class="pkg-price">$3,200 <small>/mo</small></div>
+      <div class="pkg-tagline">Full-service domination</div>
+      <div class="pkg-ideal">Best for: restaurants serious about market leadership</div>
+      <div class="pkg-sh">Everything in Gold, plus:</div>
+      <ul class="pkg-ul">
+        <li>Ad Management (up to $2,500/mo)</li>
+        <li>Community Management</li>
+        <li>Stories &amp; Comments moderation</li>
+        <li>TikTok Reels (4/month)</li>
+      </ul>
+      <div class="pkg-sh">Media</div>
+      <ul class="pkg-ul">
+        <li>2 Content Days/month</li>
+        <li>Long-form video editing</li>
+        <li>Event marketing coverage</li>
+        <li>Email campaign (1/month)</li>
+        <li>Bi-weekly strategy calls</li>
+      </ul>
+      <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pkg-cta">Start with Platinum</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="rv">
+    <div class="s-tag">What We Do</div>
+    <h2>Every service your restaurant<br>needs. <em>Nothing you don't.</em></h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc rv">
+      <div class="svc-n">01 — Social Media Management</div>
+      <h3>Content that actually converts</h3>
+      <p>Daily management, caption writing, scheduling, and community engagement. We run your social like it's our restaurant, not a checkbox.</p>
+    </div>
+    <div class="svc rv d1">
+      <div class="svc-n">02 — Photography &amp; Video Production</div>
+      <h3>Visuals worth showing up for</h3>
+      <p>Monthly media days with professional food photography and short-form video. We capture the feeling, not just the food.</p>
+    </div>
+    <div class="svc rv">
+      <div class="svc-n">03 — Paid Media &amp; Ad Management</div>
+      <h3>Reach beyond your following</h3>
+      <p>Meta ads managed by people who know how to target hungry diners in your market — not generic audiences that never walk in your door.</p>
+    </div>
+    <div class="svc rv d1">
+      <div class="svc-n">04 — Content Strategy &amp; Research</div>
+      <h3>A plan built around your restaurant</h3>
+      <p>Monthly content calendars built on market research, competitor analysis, and your business goals. Every post has a reason to exist.</p>
+    </div>
+    <div class="svc rv">
+      <div class="svc-n">05 — Event Marketing &amp; Distribution</div>
+      <h3>Pack every table, every event</h3>
+      <p>Pre, during, and post content systems for every event. We build the anticipation before, capture the moment during, and extend the buzz after.</p>
+    </div>
+    <div class="svc rv d1">
+      <div class="svc-n">06 — Brand Identity &amp; Web Design</div>
+      <h3>Look like a restaurant people drive across town for</h3>
+      <p>Logo, color system, typography, and website — all built to make your brand as good as your food. Because first impressions happen online first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="rv">
+    <div class="s-tag">The Team</div>
+    <h2>The people behind<br>your <em>growth.</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="tc rv">
+      <div class="tc-photo">
+        <div class="tc-placeholder">
+          <span class="icon">👤</span>Photo coming
+        </div>
+      </div>
+      <div class="tc-name">Luis Alonso Robles</div>
+      <div class="tc-role">Founder &amp; Operator</div>
+      <div class="tc-bio">Former restaurant operator turned agency founder. Luis built Palate because he lived the exact problem every operator faces.</div>
+    </div>
+    <div class="tc rv d1">
+      <div class="tc-photo">
+        <div class="tc-placeholder">
+          <span class="icon">👤</span>Photo coming
+        </div>
+      </div>
+      <div class="tc-name">Linda</div>
+      <div class="tc-role">Social Media Manager</div>
+      <div class="tc-bio">Manages content calendars and drives creative concepts across all client social platforms.</div>
+    </div>
+    <div class="tc rv d2">
+      <div class="tc-photo">
+        <div class="tc-placeholder">
+          <span class="icon">👤</span>Photo coming
+        </div>
+      </div>
+      <div class="tc-name">Santi</div>
+      <div class="tc-role">Graphic Designer</div>
+      <div class="tc-bio">Creates visual identities, graphics, and branded assets that make clients stand out on every feed.</div>
+    </div>
+    <div class="tc rv d3">
+      <div class="tc-photo">
+        <div class="tc-placeholder">
+          <span class="icon">👤</span>Photo coming
+        </div>
+      </div>
+      <div class="tc-name">Mariana</div>
+      <div class="tc-role">Video Editor</div>
+      <div class="tc-bio">Produces and edits short-form video content and Reels that capture atmosphere and drive engagement.</div>
+    </div>
+    <div class="tc rv d4">
+      <div class="tc-photo">
+        <div class="tc-placeholder">
+          <span class="icon">👤</span>Photo coming
+        </div>
+      </div>
+      <div class="tc-name">Juan</div>
+      <div class="tc-role">Video Editor</div>
+      <div class="tc-bio">Specializes in long-form video, event coverage, and cinematic restaurant content.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-top rv">
+    <div>
+      <div class="s-tag">Trusted by Professionals</div>
+      <h2>What our clients<br><em>actually say.</em></h2>
+    </div>
+  </div>
+  <div class="test-grid">
+    <div class="test-card rv">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">They understand the restaurant business in a way no other agency we've worked with ever has. It shows in every piece of content.</p>
+      <div class="test-author">Howling Rabbit Beerworks</div>
+      <div class="test-loc">Rio Grande Valley, TX</div>
+    </div>
+    <div class="test-card rv d1">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">The content makes our food look incredible. We've had people come in specifically because they saw our Instagram. That's real ROI.</p>
+      <div class="test-author">Taco Mañanero</div>
+      <div class="test-loc">McAllen, TX</div>
+    </div>
+    <div class="test-card rv d2">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">Luis and the team are incredibly responsive. They feel less like vendors and more like an extension of our own team.</p>
+      <div class="test-author">McAllen Country Club</div>
+      <div class="test-loc">McAllen, TX</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="rv">
+    <div class="s-tag">How It Works</div>
+    <h2>From signed to posting<br>in <em>two weeks.</em></h2>
+  </div>
+  <div class="proc-grid">
+    <div class="ps rv">
+      <div class="ps-n">01</div>
+      <h3>Discovery Call</h3>
+      <p>30 minutes to understand your restaurant, your goals, and what winning looks like for you. No fluff, no pitch deck.</p>
+    </div>
+    <div class="ps rv d1">
+      <div class="ps-n">02</div>
+      <h3>Onboarding</h3>
+      <p>One onboarding doc. Brand assets, menu, event calendar. That's all we need. We handle the rest.</p>
+    </div>
+    <div class="ps rv d2">
+      <div class="ps-n">03</div>
+      <h3>Strategy Build</h3>
+      <p>We build your first content calendar based on your restaurant, your market, and your goals. Specific to you, not a template.</p>
+    </div>
+    <div class="ps rv">
+      <div class="ps-n">04</div>
+      <h3>Media Day</h3>
+      <p>Our team comes in and shoots everything — food, atmosphere, team, events. You get a full content library ready to go.</p>
+    </div>
+    <div class="ps rv d1">
+      <div class="ps-n">05</div>
+      <h3>We Go Live</h3>
+      <p>Content starts publishing. We manage everything — captions, scheduling, engagement, and your community.</p>
+    </div>
+    <div class="ps rv d2">
+      <div class="ps-n">06</div>
+      <h3>Monthly Reviews</h3>
+      <p>Every month we review the numbers, adjust the strategy, and plan the next cycle. You always know exactly what's working.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img rv">
+    <span>📷</span>
+    Photo: Luis + Team
+  </div>
+  <div class="rv d1">
+    <div class="s-tag">About Palate</div>
+    <h2>Built by someone who's<br><em>been in your kitchen.</em></h2>
+    <div class="about-text" style="margin-top:1.5rem">
+      <p><strong>Luis Alonso Robles</strong> didn't start in marketing. He started in restaurants — learning the hard way what it takes to run a kitchen, manage a floor, survive a rush, and still hit margins.</p>
+      <p>That experience made him a different kind of agency founder. When he built Palate, he wasn't building for restaurant owners in theory. He was building for them because he was one.</p>
+      <p>Today, Palate is the only marketing agency in South Texas built exclusively for restaurants — with a team of creatives, strategists, and operators who've made it their whole focus.</p>
+      <p><strong>No generalists. No account managers who've never stepped foot in a kitchen. Just people who get it.</strong></p>
+    </div>
+    <div class="about-creds">
+      <div class="acred">
+        <div class="num">9<span>+</span></div>
+        <div class="lbl">Active Clients</div>
+      </div>
+      <div class="acred">
+        <div class="num">3<span>+</span></div>
+        <div class="lbl">Years in Market</div>
+      </div>
+      <div class="acred">
+        <div class="num">100<span>%</span></div>
+        <div class="lbl">Restaurant Focused</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>Ready to fill more tables?</h2>
+  <p class="cta-sub">Book a free 30-minute call. We'll show you exactly what we'd do for your restaurant — no pressure, no pitch deck.</p>
+  <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill pill-lg pill-white">
+    <span class="pt">Book Your Free Call</span>
+    <span class="pa">→</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <div class="wm"><span>palate</span></div>
+    <div class="fs">by BlackOak · South Texas</div>
+  </div>
+  <ul class="flinks">
+    <li><a href="#results">Results</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://www.instagram.com/blackoakagencyco" target="_blank">Instagram</a></li>
+    <li><a href="https://www.linkedin.com/company/blackoakagency" target="_blank">LinkedIn</a></li>
+  </ul>
+  <small>© 2026 Palate by BlackOak</small>
+</footer>
+
+<script>
+  const cd = document.getElementById("cd"), cr = document.getElementById("cr");
+  document.addEventListener("mousemove", e => {
+    cd.style.cssText = `left:${e.clientX}px;top:${e.clientY}px`;
+    cr.style.cssText = `left:${e.clientX}px;top:${e.clientY}px`;
+  });
+  const nav = document.getElementById("nav");
+  window.addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 60));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); obs.unobserve(e.target); }});
+  }, {threshold:0.07});
+  document.querySelectorAll(".rv").forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
