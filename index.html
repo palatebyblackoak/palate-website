@@ -418,23 +418,6 @@
     .cs-stat-num span { color:var(--red); }
     .cs-stat-lbl { font-size:0.88rem; font-weight:600; margin-top:0.5rem; }
     .cs-stat-sub { font-size:0.7rem; color:var(--muted); margin-top:0.2rem; }
-    .cs-chart-section { background:var(--black-3); border:1px solid var(--border);
-      border-radius:var(--r); padding:2.5rem; margin-bottom:3rem; }
-    .cs-chart-title { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
-      color:var(--muted); font-weight:600; margin-bottom:2rem; }
-    .cs-chart-bars { display:flex; align-items:flex-end; gap:0.6rem; height:160px; border-bottom:1px solid var(--border); }
-    .cs-bar-item { flex:1; background:rgba(240,69,67,0.2); border-radius:3px 3px 0 0; height:var(--bh); transition:background 0.3s; }
-    .cs-bar-item:hover { background:rgba(240,69,67,0.4); }
-    .cs-bar-high { background:rgba(240,69,67,0.45); }
-    .cs-bar-peak { background:var(--red); }
-    .cs-bar-peak:hover { background:var(--red-dark); }
-    .cs-chart-labels { display:flex; gap:0.6rem; margin-top:0.6rem; }
-    .cs-chart-labels span { flex:1; text-align:center; font-size:0.6rem; letter-spacing:0.05em;
-      text-transform:uppercase; color:var(--muted); font-weight:600; }
-    .cs-lbl-peak { color:var(--red) !important; }
-    .cs-chart-note { font-size:0.76rem; color:var(--red); margin-top:1.2rem;
-      padding-top:1.2rem; border-top:1px solid var(--border); font-weight:600; }
-    .cs-two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
     .cs-box { background:var(--black-3); border:1px solid var(--border); border-radius:var(--r); padding:2.5rem; }
     .cs-box-label { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
       color:var(--red); font-weight:700; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
@@ -488,6 +471,14 @@
     .vsl-embed video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .vsl-embed-placeholder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; }
     .vsl-caption { font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:1.8rem; }
+
+    /* PILLAR CARDS */
+    .pillar-card:hover { border-color:rgba(240,69,67,0.4) !important; }
+    @media(max-width:600px){
+      .pillar-card { grid-template-columns:1fr !important; gap:1rem !important; padding:1.6rem 1.4rem !important; }
+      .pillar-card > div:first-child { flex-direction:row !important; align-items:center !important; gap:0.6rem !important; min-width:0 !important; }
+      .pillar-card > div:first-child span:last-child { font-size:1.6rem !important; }
+    }
 
     /* CONTACT CTA */
     #cta { padding-bottom:6rem; }
@@ -627,7 +618,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     </div>
     <h1>How to grow your restaurant online —<br><em>without spending another hour on your phone.</em></h1>
     <p class="hero-sub">
-      We handle <strong>social media management, paid ads, SMS, DM automation, and monthly media days</strong> — end-to-end — for independent full-service restaurants. You focus on the floor. We grow the brand and fill the tables.
+      Five pillars under one roof — <strong>social media management, paid advertising, tracking, monthly media days, and web development</strong> — built for independent full-service restaurants. You focus on the floor. We grow the brand and fill the tables.
     </p>
     <div class="hero-actions">
       <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill pill-lg">
@@ -685,10 +676,10 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <div class="rv" style="max-width:920px;margin:0 auto;">
     <div class="s-tag">Why this actually works</div>
     <h2>Most agencies sell <em>posts.</em><br>We fill <em>tables.</em></h2>
-    <p style="font-size:1.18rem;line-height:1.7;color:rgba(255,255,255,0.78);max-width:760px;font-weight:300;margin-top:2rem;">Boosting posts gets you likes. Posting content gets you followers. Neither fills a Tuesday. We run a complete multi-channel marketing system — social media, paid ads, SMS, DM automation, and on-site media production — built specifically for independent restaurants. Every channel is measured against one outcome: more customers walking through your door.</p>
+    <p style="font-size:1.18rem;line-height:1.7;color:rgba(255,255,255,0.78);max-width:760px;font-weight:300;margin-top:2rem;">Boosting posts gets you likes. Posting content gets you followers. Neither fills a Tuesday. We run five pillars — social media management, paid advertising, tracking, monthly media days, and web development — built specifically for independent restaurants. Every channel is measured against one outcome: more customers walking through your door.</p>
     <ul style="list-style:none;margin-top:2.6rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2.6rem;">
       <li style="display:flex;align-items:flex-start;gap:0.9rem;font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.55;"><span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>One niche. Independent full-service restaurants only. Zero context-switching, zero learning curves.</li>
-      <li style="display:flex;align-items:flex-start;gap:0.9rem;font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.55;"><span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>One agency, every channel. Social, paid, SMS, automation, media production — all under one roof. No piecing together five vendors.</li>
+      <li style="display:flex;align-items:flex-start;gap:0.9rem;font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.55;"><span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>One agency, every pillar. Social, paid, tracking, media days, and web — all under one roof. No piecing together five vendors.</li>
       <li style="display:flex;align-items:flex-start;gap:0.9rem;font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.55;"><span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>Store-visit attribution. We show you exactly who walked in because of which ad.</li>
       <li style="display:flex;align-items:flex-start;gap:0.9rem;font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.55;"><span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>You focus on running the restaurant. We handle every marketing channel that fills the seats.</li>
     </ul>
@@ -1182,37 +1173,68 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
   <div class="s-tag">How we work</div>
   <h2 class="offer-headline">The Restaurant<br><em class="offer-em">Growth System.</em></h2>
-  <p class="offer-sub">One offer. Done for you. Built around your slowest days. We run the Meta + Google + SMS system, we track every dollar to actual store visits, and we hit 200 new customers a month — or we work free until we do.</p>
+  <p class="offer-sub">Five pillars. One agency. Every channel a restaurant needs to grow online and fill the tables — built, run, and measured end-to-end.</p>
 
-  <div class="offer-cards rv">
+  <div class="pillar-grid rv" style="display:flex;flex-direction:column;gap:1rem;max-width:920px;margin:3.5rem auto 0;">
 
-    <div class="offer-card">
-      <div class="offer-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <div class="pillar-card" style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:14px;padding:2rem 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;transition:border-color 0.25s;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:64px;padding-top:0.2rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:700;">Pillar</span>
+        <span style="font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em;">01</span>
       </div>
-      <div class="offer-card-title">Fill your slowest days</div>
-      <p class="offer-card-body">We build weekday campaigns around your offers — happy hour, themed nights, lunch specials — designed to drive traffic when you need it most. Not just reach. Real customers who show up.</p>
+      <div>
+        <h3 style="font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.6rem;">Social Media Management</h3>
+        <p style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.65;">Full ownership of your social presence on Instagram and Meta. Content calendar built around your seasonal pushes, captions written in your voice, scheduling, story rotation, and active community engagement — plus DM automation and SMS sequences that turn every conversation into a chance to book a table.</p>
+      </div>
     </div>
 
-    <div class="offer-card">
-      <div class="offer-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <div class="pillar-card" style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:14px;padding:2rem 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;transition:border-color 0.25s;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:64px;padding-top:0.2rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:700;">Pillar</span>
+        <span style="font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em;">02</span>
       </div>
-      <div class="offer-card-title">See exactly who walked in</div>
-      <p class="offer-card-body">We use Meta and Google store visit tracking so you can see how many people saw your ad and physically walked through your door. Not impressions. Not clicks. Actual foot traffic reported every month.</p>
+      <div>
+        <h3 style="font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.6rem;">Paid Advertising</h3>
+        <p style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.65;">Meta and Google ad campaigns built to drive real foot traffic, not vanity metrics. Daily optimization, weekly creative refresh, ad assets produced from your own photo and video, and audiences engineered around your market. Every dollar tied to a measurable outcome.</p>
+      </div>
     </div>
 
-    <div class="offer-card">
-      <div class="offer-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    <div class="pillar-card" style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:14px;padding:2rem 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;transition:border-color 0.25s;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:64px;padding-top:0.2rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:700;">Pillar</span>
+        <span style="font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em;">03</span>
       </div>
-      <div class="offer-card-title">Done for you — fully remote</div>
-      <p class="offer-card-body">Send us your existing photos and videos. We build the creative, run the campaigns, manage the SMS, run the DM automation, optimize every week, and report every month. You run the restaurant. We fill it.</p>
+      <div>
+        <h3 style="font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.6rem;">Tracking &amp; Attribution</h3>
+        <p style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.65;">Full Meta Pixel, Google Tag, and GA4 setup done for you. Store-visit attribution dashboard with weekly reporting so you see exactly who walked through the door because of which ad. Monthly strategy call to review the numbers and plan what&rsquo;s next.</p>
+      </div>
+    </div>
+
+    <div class="pillar-card" style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:14px;padding:2rem 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;transition:border-color 0.25s;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:64px;padding-top:0.2rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:700;">Pillar</span>
+        <span style="font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em;">04</span>
+      </div>
+      <div>
+        <h3 style="font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.6rem;">Media Days</h3>
+        <p style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.65;">Monthly on-site production at your venue. Professional food photography, short-form video, and B-roll captured by our team — built into a growing creative library that fuels both organic content and paid ads. No more scrambling for content. No more phone shots that don&rsquo;t convert.</p>
+      </div>
+    </div>
+
+    <div class="pillar-card" style="background:#1c1c1c;border:1px solid #2a2a2a;border-radius:14px;padding:2rem 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;transition:border-color 0.25s;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;min-width:64px;padding-top:0.2rem;">
+        <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:700;">Pillar</span>
+        <span style="font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-0.04em;">05</span>
+      </div>
+      <div>
+        <h3 style="font-size:1.35rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.6rem;">Web Development</h3>
+        <p style="font-size:0.98rem;color:rgba(255,255,255,0.75);line-height:1.65;">Your restaurant&rsquo;s website — designed, built, and maintained by us. Menu, reservations, online-ordering integrations, mobile-first layout, brand-consistent design built to convert. We treat your site like the front door it actually is.</p>
+      </div>
     </div>
 
   </div>
 
-  <hr class="offer-divider">
+  <hr class="offer-divider" style="margin-top:4rem;">
 
   <div class="offer-steps-label">From yes to results in 8 days</div>
   <div class="offer-steps rv">
@@ -1244,65 +1266,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 
   <div class="offer-cta rv">
-    <div class="s-tag" style="justify-content:center;">What you get</div>
-    <h3 class="offer-cta-h" style="margin-top:0.6rem;">One system.<br>Built around <em>your restaurant.</em></h3>
-    <p class="offer-cta-p">Every restaurant is different. We walk through your numbers, your slow days, and a custom plan on the growth call — no canned pitch, no surprises.</p>
+    <div class="s-tag" style="justify-content:center;">Ready to start?</div>
+    <h3 class="offer-cta-h" style="margin-top:0.6rem;">All five pillars.<br>Built around <em>your restaurant.</em></h3>
+    <p class="offer-cta-p">Every restaurant is different. We walk through your numbers, your slow days, and a custom plan on the growth call — no canned pitch, no surprises. Your first seven days are zero-charge while we build the system. You don&rsquo;t pay anything until campaigns launch on day eight.</p>
 
-    <div style="margin:3.4rem auto 0;max-width:760px;text-align:left;">
-      <div style="font-size:0.7rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2rem;text-align:center;">Every month, here&rsquo;s what we run for you</div>
-      <ul style="list-style:none;padding:0;margin:0;">
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Meta + Google ad management, optimized daily, built to drive in-store visits — not vanity metrics.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Full social media management — content calendar, captions, scheduling, story rotation, and community engagement across Instagram and Meta.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Monthly on-site media day — professional food photography, short-form video, and B-roll captured at your venue, built into a growing creative library.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Ad creative produced from your media — every asset built to convert, not just look good.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>SMS campaign sequences for events, slow days, and reactivation — written, scheduled, and managed for you.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>DM automation flows for Instagram and Meta — every DM becomes a chance to book a table.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Store-visit attribution dashboard with weekly reporting — see exactly who walked in because of which ad.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span>Monthly strategy call with your account lead — what worked, what we&rsquo;re scaling, what&rsquo;s next.</span>
-        </li>
-      </ul>
-
-      <div style="font-size:0.7rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);font-weight:700;margin:3rem 0 1.4rem;text-align:center;">Plus three bonuses, included</div>
-      <ul style="list-style:none;padding:0;margin:0;">
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span><strong style="color:var(--red);font-weight:700;">Bonus 1.</strong> Full Meta Pixel, Google Tag, and GA4 setup done by us — so we measure everything from day one.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span><strong style="color:var(--red);font-weight:700;">Bonus 2.</strong> Creative library audit — what&rsquo;s working in your current content, what to cut, and what to make more of.</span>
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:1.02rem;color:var(--white);font-weight:400;line-height:1.5;">
-          <span style="color:var(--red);font-weight:700;flex-shrink:0;">✓</span>
-          <span><strong style="color:var(--red);font-weight:700;">Bonus 3.</strong> Zero-charge build week — we build the entire system in your first 7 days. You don&rsquo;t pay anything until campaigns launch on day 8.</span>
-        </li>
-      </ul>
-    </div>
-
-    <div style="background:transparent;border-top:1px solid var(--red);border-bottom:1px solid var(--red);padding:2rem 1.8rem;margin:3.6rem auto 2.4rem;max-width:760px;text-align:center;">
+    <div style="background:transparent;border-top:1px solid var(--red);border-bottom:1px solid var(--red);padding:2rem 1.8rem;margin:3rem auto 2.4rem;max-width:760px;text-align:center;">
       <div style="font-size:0.7rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:0.8rem;">The Restaurant Revenue Guarantee</div>
       <p style="color:var(--white);font-size:1.05rem;line-height:1.6;margin:0;font-weight:400;">200 store visits per month from month two — or we keep working until we hit it.</p>
     </div>
@@ -1373,7 +1341,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2>One obsession.<br><em>Restaurants.</em></h2>
     <div class="about-text" style="margin-top:1.5rem">
       <p>Palate is a restaurant marketing agency. We work exclusively with <strong>independent, full-service restaurants</strong> — and we run every channel that fills the seats.</p>
-      <p>Social media management. Paid ads on Meta and Google. SMS sequences. DM automation. Monthly on-site media production. All under one roof, all measured against one outcome — customers walking through your door.</p>
+      <p>Five pillars, all under one roof. Social media management. Paid advertising on Meta and Google. Tracking and attribution that ties every dollar to a store visit. Monthly on-site media days. And web development built for restaurants. Every channel measured against one outcome — customers walking through your door.</p>
       <p>The owner runs the restaurant. We run the marketing. <strong>One niche. One complete system. Real results.</strong></p>
     </div>
     <div class="about-creds">
@@ -1388,32 +1356,6 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <div class="acred">
         <div class="num">100<span>%</span></div>
         <div class="lbl">Done-For-You Delivery</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ / OBJECTIONS -->
-<section id="faq" style="background:var(--black-2);">
-  <div class="rv" style="max-width:920px;margin:0 auto;">
-    <div class="s-tag">But what about</div>
-    <h2>The four things every restaurant owner asks before they <em>say yes.</em></h2>
-    <div style="margin-top:4rem;display:flex;flex-direction:column;">
-      <div style="border-top:1px solid var(--border);padding:2.4rem 0;">
-        <p style="font-size:1.22rem;color:var(--white);font-weight:600;margin-bottom:1rem;letter-spacing:-0.012em;line-height:1.45;">"I have tried restaurant ads before and they did not bring customers in."</p>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.02rem;line-height:1.75;margin:0;max-width:780px;font-weight:300;">Most ads restaurants run are built for likes, not foot traffic. We do not run brand awareness or engagement campaigns. Every campaign is built around store-visit conversion and tracked through Meta and Google attribution. If 200 tracked visits do not happen in month two, we keep working for free until they do.</p>
-      </div>
-      <div style="border-top:1px solid var(--border);padding:2.4rem 0;">
-        <p style="font-size:1.22rem;color:var(--white);font-weight:600;margin-bottom:1rem;letter-spacing:-0.012em;line-height:1.45;">"What is this going to cost me?"</p>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.02rem;line-height:1.75;margin:0;max-width:780px;font-weight:300;">We walk through pricing on the growth call, once we know your numbers, your slow days, and what realistic upside looks like. What we can tell you up front: at a $58 average ticket, 200 store visits is $11,600 in additional monthly revenue — and we don&rsquo;t charge a dollar until campaigns actually launch on day 8.</p>
-      </div>
-      <div style="border-top:1px solid var(--border);padding:2.4rem 0;">
-        <p style="font-size:1.22rem;color:var(--white);font-weight:600;margin-bottom:1rem;letter-spacing:-0.012em;line-height:1.45;">"I do not have professional photos or video of my restaurant."</p>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.02rem;line-height:1.75;margin:0;max-width:780px;font-weight:300;">You do not need them. We work with whatever you have — phone photos, kitchen videos, plating clips, customer-shot content. Our creative team turns existing assets into ads that perform. We build around what is real.</p>
-      </div>
-      <div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.4rem 0;">
-        <p style="font-size:1.22rem;color:var(--white);font-weight:600;margin-bottom:1rem;letter-spacing:-0.012em;line-height:1.45;">"What if it does not work in my city or with my cuisine?"</p>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.02rem;line-height:1.75;margin:0;max-width:780px;font-weight:300;">We work exclusively with full-service independent restaurants in Texas — Mexican, BBQ, cocktail lounges, beer gardens, country club dining. The system works because every channel is built around restaurant economics, not generic small-business marketing. If your situation is not a fit, we tell you on the growth call and do not take your money.</p>
       </div>
     </div>
   </div>
