@@ -167,8 +167,16 @@
     }
     .client-logo-box:hover .client-logo-img { filter: grayscale(0%); }
     .client-logo-featured { width:440px; height:200px; }
-    @media(max-width:960px) { .client-logo-featured { width:200px; height:100px; } }
-    @media(max-width:600px) { .client-logo-featured { width:170px; height:80px; } }
+    @media(max-width:960px) {
+      .client-logo-featured { width:200px; height:100px; }
+      #clients .clients-row .client-logo-box:nth-child(2),
+      #clients .clients-row .client-logo-box:nth-child(4) { max-width:180px; height:90px; }
+    }
+    @media(max-width:600px) {
+      .client-logo-featured { width:170px; height:80px; }
+      #clients .clients-row .client-logo-box:nth-child(2),
+      #clients .clients-row .client-logo-box:nth-child(4) { max-width:155px; height:75px; }
+    }
     .client-logo-name { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase;
       color:var(--muted); font-weight:600; white-space:nowrap; }
     /* Text fallback when no image */
