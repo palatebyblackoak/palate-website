@@ -168,12 +168,12 @@
     .client-logo-box:hover .client-logo-img { filter: grayscale(0%); }
     .client-logo-featured { width:440px; height:200px; }
     @media(max-width:960px) {
-      .client-logo-featured { width:200px; height:100px; }
+      .client-logo-featured { grid-column:1 / -1; width:340px; height:170px; justify-self:center; margin-top:1rem; }
       #clients .clients-row .client-logo-box:nth-child(2),
       #clients .clients-row .client-logo-box:nth-child(4) { max-width:180px; height:90px; }
     }
     @media(max-width:600px) {
-      .client-logo-featured { width:170px; height:80px; }
+      .client-logo-featured { grid-column:1 / -1; width:280px; height:140px; justify-self:center; margin-top:0.75rem; }
       #clients .clients-row .client-logo-box:nth-child(2),
       #clients .clients-row .client-logo-box:nth-child(4) { max-width:155px; height:75px; }
     }
