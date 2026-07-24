@@ -571,7 +571,7 @@
       display:none; gap:0.6rem; align-items:stretch;
       transform:translateY(100%); transition:transform 0.35s var(--ease); }
     .mcta.on { transform:translateY(0); }
-    @media(max-width:960px){ .mcta { display:flex; } body { padding-bottom:72px; } }
+    @media(max-width:960px){ .mcta { display:flex; } body { padding-bottom:calc(84px + env(safe-area-inset-bottom)); } }
     .mcta a { flex:1; display:flex; flex-direction:column; align-items:center;
       justify-content:center; gap:0.2rem; padding:0.55rem 0.5rem;
       text-decoration:none; border-radius:10px; }
@@ -595,6 +595,11 @@
     .flinks a { font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
       color:var(--muted); text-decoration:none; transition:color 0.2s; }
     .flinks a:hover { color:var(--white); }
+    .social-icons { display:flex; gap:1rem; align-items:center; }
+    .social-icons a { color:var(--muted); display:flex; align-items:center;
+      justify-content:center; padding:0.4rem; transition:color 0.2s; }
+    .social-icons a:hover { color:var(--red); }
+    .social-icons svg { display:block; }
     footer small { font-size:0.68rem; color:var(--muted-2); }
 
     /* REVEAL */
@@ -610,6 +615,8 @@
       .nav-links{display:none}
       section{padding:6rem 1.5rem} #hero{padding:7rem 1.5rem 5rem}
       h1{font-size:clamp(3rem,10vw,4.5rem)}
+      .hero-badge{padding:0.32rem 0.9rem 0.32rem 0.7rem; font-size:0.62rem;}
+      .hero-sub{max-width:100%; font-size:1.05rem;}
       #stats{padding:4.5rem 1.5rem}
       .stats-inner{flex-direction:column; gap:3rem; align-items:center}
       .stats-divider{display:none}
@@ -629,6 +636,49 @@
       footer{flex-direction:column;gap:1.5rem;text-align:center}
       .pill-lg .pa{flex-shrink:0;}
       .vsl-inner{text-align:center;}
+      #closing{padding:5rem 1.5rem;}
+      .closing-p{font-size:1.05rem;}
+      .closing-p.final{font-size:1.2rem;}
+      .plan-card{padding:2rem 1.5rem 1.75rem;}
+    }
+    @media(max-width:600px){
+      nav{padding:1rem 1.15rem} nav.scrolled{padding:0.75rem 1.15rem}
+      .nav-wordmark{font-size:1.2rem}
+      .pill .pt{padding:0.5rem 0.9rem; font-size:0.68rem; letter-spacing:0.04em}
+      .pill .pa{width:30px; height:30px; font-size:0.78rem}
+      section{padding:4.5rem 1.25rem}
+      #hero{padding:6rem 1.25rem 4rem; min-height:auto;}
+      h1{font-size:clamp(2.3rem,9vw,3.2rem); letter-spacing:-0.03em; line-height:1;}
+      .hero-badge{margin-bottom:1.6rem;}
+      .hero-sub{font-size:0.98rem; line-height:1.7; margin-bottom:2.2rem;}
+      .hero-actions{gap:1.2rem;}
+      .hero-link{font-size:0.9rem;}
+      #stats{padding:3.5rem 1.25rem}
+      .stats-inner{gap:2.4rem;}
+      .hstat .num{font-size:2.4rem;}
+      .hstat .lbl{font-size:0.72rem;}
+      h2{font-size:clamp(2rem,7vw,2.6rem);}
+      .offer-headline{font-size:clamp(1.9rem,7vw,2.4rem); margin-bottom:1rem;}
+      .plan-sub{font-size:0.95rem;}
+      .plan-card{padding:1.8rem 1.4rem 1.5rem; border-radius:14px;}
+      .plan-price{font-size:2rem;}
+      .plan-features li{font-size:0.9rem;}
+      .plan-badge{font-size:0.55rem; padding:0.35rem 0.8rem;}
+      .vp-grid > div h3{font-size:1.3rem;}
+      .team-grid{grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto;}
+      .addon-card{padding:1.25rem;}
+      #closing{padding:4rem 1.25rem;}
+      .closing-p{font-size:1rem; line-height:1.65;}
+      .closing-p.final{font-size:1.1rem; margin-top:2rem;}
+      .closing-btn{padding:1rem 1.8rem; font-size:0.9rem;}
+      footer{padding:2rem 1.25rem; gap:1.25rem;}
+      .flinks{gap:1.25rem; flex-wrap:wrap; justify-content:center;}
+      #clients{padding:2.5rem 1.25rem;}
+      .clients-label{font-size:0.7rem; letter-spacing:0.15em; line-height:1.7;}
+      .clients-row{grid-template-columns:repeat(2,1fr); gap:1.5rem; row-gap:2rem;}
+      .client-logo-box{max-width:110px; height:60px;}
+      .cs-tab{font-size:0.72rem !important; padding:0.55rem 1rem !important;}
+      .test-card{padding:1.6rem 1.4rem;}
     }
   </style>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAH5AAAAAQAAAfkAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACCgAwAEAAAAAQAAACAAAAAAk0888gAAAAlwSFlzAABNqgAATaoBW5R6ZQAAApxJREFUWAntV8trE0EYn29md5NsJQ9ELEjx6Fm8VYT0kXrrxZO9eLBY8GC9CJ40KOhFBOlJPPk42IM3qZgmsRcpKvgv6EFRAprm1ZjNPPzGNrIscdtJw9ZDB8LO8GV+v9/32pmFjdyUciglDIBEOYRSxJOSWJocJw8VUW+jFAAETiP3gqU9F1K8OVxaW45SwI+prMcYW6CalFLqREnu5/wjIGpyP9+BgH2PgOXPx07zSjY76jrWeWzbXxkuH9UZO4ltNKuAHMO2+sKJeJl6XX6/E47fbiQg5jjH4wzuc6WadZudwBZedG17Cw9fLJtcXa/OTN/JFIp5P0nY3CwFQsgm5wQA3ARji5KQd7VO51rd867WeLdIAewRSm9u5Cbnw0j9NjMB2ztjALQtxataozWRLpbvpVZLD1LjZ85iah7rF5sicKOazab9RP+aGwvQJwamQIIgt8fW19s9YMjnpVJwq8lFK07pGNj2qZ4t7GkuAD3UNdCxrM9B4Ear9Q3PlIo+XwDkaNDeb20sQGGx4SaXcX4kCBhPJnXYM1xhdShZDdr7rc0FIEqMUQudvBIEdJS4PMJYui3kT2arj0F7v7VRG/YAOkIS7IKLtZnpBBD5XGFZEEVn0ZtLugixS5YOrax97/0/7GksQBchBrjZ5uJDyrHniFJz+nLBMCQcLxgNLp4mLftuGKnfNqgAgn7O17vdcQvgnARylHL1lRP5IrlaWkaRGJTdDWMB27BUOVKkV8rPcK1/Aw/jIvzLJNHvIYzBBQyBXEOYCWCMuozpfS4MKQJGNYAXx8qmFE+wxjwaow2tZK/DSECiUPiEhBf2Surfb5YC/84hzQ8E/B8RkFJ6Q0rprmF6nNbWQcImqrnJSD/P9Mep5ob9/jz/DZPB74LnISY+AAAAAElFTkSuQmCC">
@@ -1275,9 +1325,22 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <li><a href="#case-study">Results</a></li>
     <li><a href="#packages">Work With Us</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="mailto:info@blackoakagency.co">info@blackoakagency.co</a></li>
-    <li><a href="https://www.instagram.com/blackoakagencyco" target="_blank">Instagram</a></li>
   </ul>
+  <div class="social-icons">
+    <a href="https://www.instagram.com/blackoakagencyco" target="_blank" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+    <a href="mailto:info@blackoakagency.co" aria-label="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </a>
+  </div>
   <small>© 2026 Palate by BlackOak</small>
 </footer>
 
