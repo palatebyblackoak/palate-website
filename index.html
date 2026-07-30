@@ -37,12 +37,8 @@
       padding:1.4rem 4rem; transition:all 0.4s var(--ease); }
     nav.scrolled { background:rgba(18,18,18,0.97); backdrop-filter:blur(24px);
       border-bottom:1px solid var(--border); padding:1rem 4rem; }
-    .nav-logo { text-decoration:none; }
-    .nav-wordmark { font-size:1.4rem; font-weight:800; color:var(--white);
-      letter-spacing:-0.03em; line-height:1; }
-    .nav-wordmark span { color:var(--red); }
-    .nav-sub { font-size:0.58rem; font-weight:500; color:var(--muted);
-      letter-spacing:0.14em; text-transform:uppercase; margin-top:1px; }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo-img { height:28px; width:auto; display:block; }
     .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
     .nav-links a { font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase;
       color:var(--muted); text-decoration:none; transition:color 0.2s; font-weight:500; }
@@ -653,7 +649,7 @@
     }
     @media(max-width:600px){
       nav{padding:1rem 1.25rem} nav.scrolled{padding:0.75rem 1.25rem}
-      .nav-wordmark{font-size:1.3rem}
+      .nav-logo-img{height:24px}
       .pill .pt{padding:0.65rem 1rem; font-size:0.72rem; letter-spacing:0.04em}
       .pill .pa{width:34px; height:34px; font-size:0.85rem}
       section{padding:5.5rem 1.5rem}
@@ -716,8 +712,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <div class="nav-wordmark"><span>palate</span></div>
-    <div class="nav-sub">by BlackOak</div>
+    <img class="nav-logo-img" src="media/palate-logo.png" alt="Palate by BlackOak">
   </a>
   <ul class="nav-links">
     <li><a href="#media">Our Work</a></li>
