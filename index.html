@@ -566,23 +566,23 @@
 
     /* MOBILE STICKY CONTACT BAR */
     .mcta { position:fixed; bottom:0; left:0; right:0; z-index:90;
-      background:rgba(18,18,18,0.97); backdrop-filter:blur(18px);
-      border-top:1px solid var(--border);
-      padding:0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
-      display:none; gap:0.6rem; align-items:stretch;
+      background:rgba(10,10,10,0.82); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding:0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+      display:none; gap:0.65rem; align-items:stretch;
       transform:translateY(100%); transition:transform 0.35s var(--ease); }
     .mcta.on { transform:translateY(0); }
-    @media(max-width:960px){ .mcta { display:flex; } body { padding-bottom:calc(84px + env(safe-area-inset-bottom)); } }
+    @media(max-width:960px){ .mcta { display:flex; } body { padding-bottom:calc(96px + env(safe-area-inset-bottom)); } }
     .mcta a { flex:1; display:flex; flex-direction:column; align-items:center;
-      justify-content:center; gap:0.2rem; padding:0.55rem 0.5rem;
-      text-decoration:none; border-radius:10px; }
-    .mcta-primary { background:var(--red); color:var(--white); flex:1.4; }
-    .mcta-primary:active { background:var(--red-dark); }
+      justify-content:center; gap:0.15rem; padding:0.7rem 0.5rem; min-height:48px;
+      text-decoration:none; border-radius:12px; }
+    .mcta-primary { background:var(--white); color:#000; flex:1.4; }
+    .mcta-primary:active { background:rgba(255,255,255,0.85); }
     .mcta-secondary { background:transparent; color:var(--white);
-      border:1px solid rgba(255,255,255,0.25); }
-    .mcta-label { font-size:0.62rem; letter-spacing:0.12em;
-      text-transform:uppercase; opacity:0.75; font-weight:600; }
-    .mcta-action { font-size:0.86rem; font-weight:700; letter-spacing:-0.01em; }
+      border:1px solid rgba(255,255,255,0.22); }
+    .mcta-label { font-size:0.6rem; letter-spacing:0.14em;
+      text-transform:uppercase; opacity:0.6; font-weight:600; }
+    .mcta-action { font-size:0.9rem; font-weight:600; letter-spacing:-0.01em; }
 
     /* FOOTER */
     footer { background:#0d0d0d; padding:2.5rem 4rem;
@@ -640,41 +640,45 @@
       #closing{padding:5rem 1.5rem;}
       .closing-p{font-size:1.05rem;}
       .closing-p.final{font-size:1.2rem;}
-      .plan-card{padding:2rem 1.5rem 1.75rem;}
+      .plan-card{padding:2rem 1.75rem 1.75rem; border-color:transparent;}
+      .plan-card.popular{border-color:var(--red);}
+      .addon-card{border-color:transparent;}
     }
     @media(max-width:600px){
-      nav{padding:1rem 1.15rem} nav.scrolled{padding:0.75rem 1.15rem}
-      .nav-wordmark{font-size:1.2rem}
-      .pill .pt{padding:0.5rem 0.9rem; font-size:0.68rem; letter-spacing:0.04em}
-      .pill .pa{width:30px; height:30px; font-size:0.78rem}
-      section{padding:4.5rem 1.25rem}
-      #hero{padding:6rem 1.25rem 4rem; min-height:auto;}
-      h1{font-size:clamp(2.3rem,9vw,3.2rem); letter-spacing:-0.03em; line-height:1;}
+      nav{padding:1rem 1.25rem} nav.scrolled{padding:0.75rem 1.25rem}
+      .nav-wordmark{font-size:1.3rem}
+      .pill .pt{padding:0.65rem 1rem; font-size:0.72rem; letter-spacing:0.04em}
+      .pill .pa{width:34px; height:34px; font-size:0.85rem}
+      section{padding:5.5rem 1.5rem}
+      #hero{padding:7rem 1.5rem 4.5rem; min-height:auto;}
+      h1{font-size:clamp(2.4rem,9.5vw,3.3rem); letter-spacing:-0.035em; line-height:1.03;}
       .hero-badge{margin-bottom:1.6rem;}
-      .hero-sub{font-size:0.98rem; line-height:1.7; margin-bottom:2.2rem;}
-      .hero-actions{gap:1.2rem;}
-      .hero-link{font-size:0.9rem;}
-      #stats{padding:3.5rem 1.25rem}
-      .stats-inner{gap:2.4rem;}
-      .hstat .num{font-size:2.4rem;}
-      .hstat .lbl{font-size:0.72rem;}
-      h2{font-size:clamp(2rem,7vw,2.6rem);}
-      .offer-headline{font-size:clamp(1.9rem,7vw,2.4rem); margin-bottom:1rem;}
-      .plan-sub{font-size:0.95rem;}
-      .plan-card{padding:1.8rem 1.4rem 1.5rem; border-radius:14px;}
+      .hero-sub{font-size:1.05rem; line-height:1.65; margin-bottom:2.4rem;}
+      .hero-actions{gap:1.4rem;}
+      .hero-link{font-size:0.95rem;}
+      #stats{padding:4rem 1.5rem}
+      .stats-inner{gap:2.8rem;}
+      .hstat .num{font-size:2.6rem;}
+      .hstat .lbl{font-size:0.74rem;}
+      h2{font-size:clamp(2.1rem,7.5vw,2.7rem); line-height:1.08;}
+      .offer-headline{font-size:clamp(2rem,7.5vw,2.5rem); margin-bottom:1rem;}
+      .plan-sub{font-size:1rem; line-height:1.6;}
+      .plan-card{padding:2rem 1.6rem 1.75rem; border-radius:16px; border-color:transparent;}
+      .plan-card.popular{border-color:var(--red);}
       .plan-price{font-size:2rem;}
-      .plan-features li{font-size:0.9rem;}
+      .plan-features li{font-size:0.95rem;}
       .plan-badge{font-size:0.55rem; padding:0.35rem 0.8rem;}
-      .vp-grid > div h3{font-size:1.3rem;}
+      .vp-grid > div h3{font-size:1.35rem;}
       .team-grid{grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto;}
-      .addon-card{padding:1.25rem;}
-      #closing{padding:4rem 1.25rem;}
-      .closing-p{font-size:1rem; line-height:1.65;}
-      .closing-p.final{font-size:1.1rem; margin-top:2rem;}
-      .closing-btn{padding:1rem 1.8rem; font-size:0.9rem;}
+      .addon-card{padding:1.75rem 1.5rem; border-color:transparent;}
+      .addon-icon{width:32px; height:32px; margin-bottom:1.2rem;}
+      #closing{padding:4.5rem 1.5rem;}
+      .closing-p{font-size:1.05rem; line-height:1.6;}
+      .closing-p.final{font-size:1.15rem; margin-top:2rem;}
+      .closing-btn{padding:1.05rem 1.9rem; font-size:0.95rem;}
       footer{padding:2rem 1.25rem; gap:1.25rem;}
       .flinks{gap:1.25rem; flex-wrap:wrap; justify-content:center;}
-      #clients{padding:2.5rem 1.25rem;}
+      #clients{padding:3rem 1.5rem;}
       .clients-label{font-size:0.7rem; letter-spacing:0.15em; line-height:1.7;}
       .clients-row{grid-template-columns:repeat(2,1fr); gap:1.5rem 1rem; justify-items:center; align-items:center;}
       .client-logo-box{width:100%; max-width:115px; height:65px;}
