@@ -270,11 +270,10 @@
       margin-top:1.4rem; }
     .plan-grid { display:grid; grid-template-columns:repeat(3,1fr);
       gap:1.5rem; max-width:1120px; margin:4rem auto 0; align-items:stretch; }
-    .plan-card { background:#1c1c1c; border:1px solid #2a2a2a;
+    .plan-card { background:#1c1c1c; border:1px solid transparent;
       border-radius:16px; padding:2.4rem 2rem 2rem;
       display:flex; flex-direction:column; gap:1.25rem;
       position:relative; transition:border-color 0.25s, transform 0.25s; }
-    .plan-card:hover { border-color:rgba(240,69,67,0.35); }
     .plan-card.popular { border-color:var(--red); background:#1e1616;
       box-shadow:0 20px 60px -20px rgba(240,69,67,0.35); }
     .plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%);
@@ -346,7 +345,7 @@
       padding-bottom:0.75rem; border-bottom:1px solid var(--border); }
     .addon-section-label:first-of-type { margin-top:0; }
     .addon-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-bottom:0.5rem; }
-    .addon-card { background:var(--black-3); border:1px solid var(--border);
+    .addon-card { background:var(--black-3); border:1px solid transparent;
       border-radius:var(--r); padding:1.5rem; }
     .addon-icon { color:rgba(255,255,255,0.85); margin-bottom:1.5rem; display:block; }
     .addon-name { font-size:0.95rem; font-weight:700; margin-bottom:0.6rem; }
