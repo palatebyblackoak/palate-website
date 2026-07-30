@@ -35,14 +35,21 @@
     nav { position:fixed; top:0; left:0; right:0; z-index:100;
       display:flex; align-items:center; justify-content:space-between;
       padding:1.4rem 4rem; transition:all 0.4s var(--ease); }
-    nav.scrolled { background:rgba(18,18,18,0.97); backdrop-filter:blur(24px);
-      border-bottom:1px solid var(--border); padding:1rem 4rem; }
+    nav.scrolled { background:rgba(18,18,18,0.9); backdrop-filter:blur(24px);
+      border-bottom:1px solid rgba(255,255,255,0.06); padding:0.75rem 4rem; }
     .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-logo-img { height:28px; width:auto; display:block; }
+    .nav-logo-img { height:28px; width:auto; display:block; transition:height 0.4s var(--ease); }
+    nav.scrolled .nav-logo-img { height:22px; }
     .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
-    .nav-links a { font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase;
-      color:var(--muted); text-decoration:none; transition:color 0.2s; font-weight:500; }
+    .nav-links a { font-size:0.82rem; letter-spacing:-0.005em;
+      color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.2s; font-weight:500; }
     .nav-links a:hover { color:var(--white); }
+    .nav-btn { display:inline-flex; align-items:center;
+      padding:0.6rem 1.2rem; background:var(--white); color:#000;
+      border-radius:100px; font-size:0.85rem; font-weight:600;
+      text-decoration:none; letter-spacing:-0.005em;
+      transition:transform 0.25s var(--ease), background 0.25s; }
+    .nav-btn:hover { transform:translateY(-1px); background:rgba(255,255,255,0.9); }
 
     /* PILL BUTTON — Framer style */
     .pill { display:inline-flex; align-items:center;
@@ -694,16 +701,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <img class="nav-logo-img" src="media/palate-logo.png" alt="Palate by BlackOak">
   </a>
   <ul class="nav-links">
-    <li><a href="#media">Our Work</a></li>
-    <li><a href="#case-study">Results</a></li>
-    <li><a href="#packages">Work With Us</a></li>
-    <li><a href="#team">Team</a></li>
+    <li><a href="#case-study">Work</a></li>
+    <li><a href="#packages">Packages</a></li>
     <li><a href="#about">About</a></li>
   </ul>
-  <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pill">
-    <span class="pt">Book a strategy call</span>
-    <span class="pa">→</span>
-  </a>
+  <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="nav-btn">Talk to us</a>
 </nav>
 
 <!-- HERO -->
