@@ -140,9 +140,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 3.5rem;
+      gap: 2.5rem 3rem;
       flex-wrap: wrap;
-      row-gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -152,28 +151,22 @@
       justify-content: center;
       opacity: 0.7;
       transition: opacity 0.3s;
-      width: 180px;
-      height: 80px;
+      width: 160px;
+      height: 55px;
       flex-shrink: 0;
     }
     .client-logo-box:hover { opacity: 1; }
     .client-logo-img {
       display: block;
-      width: 100%;
-      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
       filter: grayscale(100%);
       transition: filter 0.3s;
       object-fit: contain;
     }
     .client-logo-box:hover .client-logo-img { filter: grayscale(0%); }
-    @media(max-width:960px) {
-      #clients .clients-row .client-logo-box:nth-child(2),
-      #clients .clients-row .client-logo-box:nth-child(4) { max-width:180px; height:90px; }
-    }
-    @media(max-width:600px) {
-      #clients .clients-row .client-logo-box:nth-child(2),
-      #clients .clients-row .client-logo-box:nth-child(4) { max-width:155px; height:75px; }
-    }
     .client-logo-name { font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase;
       color:var(--muted); font-weight:600; white-space:nowrap; }
     /* Text fallback when no image */
@@ -639,8 +632,8 @@
       .team-grid{grid-template-columns:repeat(2,1fr)}
       #clients{padding:3rem 1.5rem}
       .clients-label{font-size:0.75rem; margin-bottom:2rem}
-      .clients-row{display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; row-gap:2.5rem; justify-items:center}
-      .client-logo-box{max-width:130px}
+      .clients-row{display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem 1.5rem; justify-items:center; align-items:center}
+      .client-logo-box{width:100%; max-width:150px; height:55px}
       footer{flex-direction:column;gap:1.5rem;text-align:center}
       .pill-lg .pa{flex-shrink:0;}
       .vsl-inner{text-align:center;}
@@ -683,8 +676,8 @@
       .flinks{gap:1.25rem; flex-wrap:wrap; justify-content:center;}
       #clients{padding:2.5rem 1.25rem;}
       .clients-label{font-size:0.7rem; letter-spacing:0.15em; line-height:1.7;}
-      .clients-row{grid-template-columns:repeat(2,1fr); gap:1.5rem 1rem; row-gap:1.75rem; justify-items:center; align-items:center;}
-      .client-logo-box{max-width:110px; height:60px;}
+      .clients-row{grid-template-columns:repeat(2,1fr); gap:1.25rem 1rem; justify-items:center; align-items:center;}
+      .client-logo-box{width:100%; max-width:120px; height:48px;}
       .cs-tab{font-size:0.72rem !important; padding:0.55rem 1rem !important;}
       .test-card{padding:1.6rem 1.4rem;}
     }
