@@ -490,84 +490,137 @@
     #cta .cta-fine { margin-top:1.2rem; font-size:0.78rem; color:rgba(255,255,255,0.5);
       letter-spacing:0.08em; text-transform:uppercase; }
 
-    /* MEDIA */
-    #media { background:var(--black-2); }
-    .media-row { margin-bottom:4rem; }
-    .media-row:last-child { margin-bottom:0; }
-    .media-row-label { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase;
-      color:var(--red); font-weight:700; margin-bottom:1.4rem; }
-    .media-scroll { display:flex; gap:1rem; overflow-x:auto; padding-bottom:0.5rem;
-      scrollbar-width:none; -ms-overflow-style:none; }
-    .media-scroll::-webkit-scrollbar { display:none; }
-    .media-card { flex-shrink:0; background:var(--black-3); border:1px solid var(--border);
-      border-radius:var(--r); overflow:hidden; position:relative;
-      transition:border-color 0.25s, transform 0.25s; }
-    .media-card:hover { border-color:rgba(240,69,67,0.4); transform:translateY(-3px); }
-    .media-card.portrait { width:220px; aspect-ratio:4/5; }
-    .media-card.reel { width:180px; aspect-ratio:9/16; }
-    .media-placeholder { position:absolute; inset:0; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; gap:0.6rem; color:rgba(255,255,255,0.15); }
-    .media-placeholder svg { opacity:0.4; }
-    .media-placeholder span { font-size:0.65rem; letter-spacing:0.12em;
-      text-transform:uppercase; }
-    .media-card img, .media-card video { width:100%; height:100%; object-fit:cover;
-      display:block; position:absolute; inset:0; }
+    /* MEDIA — editorial portfolio */
+    #media { background:var(--black); padding-left:0; padding-right:0;
+      padding-top:9rem; padding-bottom:9rem; overflow:hidden; }
+    .mv-intro { max-width:1240px; margin:0 auto 4.5rem; padding:0 4rem; }
+    .mv-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; margin-bottom:1.4rem;
+      display:flex; align-items:center; gap:0.8rem; }
+    .mv-eye::before { content:''; width:22px; height:1px; background:var(--red); }
+    #media h2 { font-size:clamp(2.4rem, 5vw, 4rem); font-weight:800;
+      letter-spacing:-0.035em; line-height:1.02; }
+    #media h2 em { font-style:normal; font-weight:300; color:rgba(255,255,255,0.62); }
 
-    /* CASE STUDY */
-    #case-study { background:var(--black); }
-    .cs-top { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-bottom:4rem; }
-    .cs-desc { font-size:1rem; color:var(--muted); line-height:1.8; padding-top:0.5rem; }
-    .cs-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-      background:var(--border); border:1px solid var(--border); border-radius:var(--r);
-      overflow:hidden; margin-bottom:3.5rem; }
-    .cs-stat { background:var(--black); padding:2.5rem; transition:background 0.3s; }
-    .cs-stat:hover { background:var(--black-3); }
-    .cs-stat-num { font-size:2.8rem; font-weight:800; letter-spacing:-0.04em; line-height:1; }
-    .cs-stat-num span { color:var(--red); }
-    .cs-stat-lbl { font-size:0.88rem; font-weight:600; margin-top:0.5rem; }
-    .cs-stat-sub { font-size:0.7rem; color:var(--muted); margin-top:0.2rem; }
-    .cs-box { background:var(--black-3); border:1px solid var(--border); border-radius:var(--r); padding:2.5rem; }
-    .cs-box-label { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
-      color:var(--red); font-weight:700; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
-    .cs-row { display:flex; justify-content:space-between; align-items:center;
-      padding:0.65rem 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.84rem; }
-    .cs-row:last-child { border-bottom:none; }
-    .cs-row span { color:var(--muted); }
-    .cs-row strong { color:var(--white); font-weight:700; }
-    .cs-row-hi { margin:0.2rem -0.5rem; padding:0.65rem 0.5rem; border-radius:4px; background:rgba(240,69,67,0.07); border-bottom:none !important; }
-    .cs-row-hi strong { color:var(--red); }
-    @media(max-width:900px) { .cs-top { grid-template-columns:1fr; gap:2rem; } .cs-stats { grid-template-columns:repeat(2,1fr); } .cs-two-col { grid-template-columns:1fr; } }
+    .mv-hero { position:relative; width:100%; margin:0 0 5rem;
+      aspect-ratio:21/9; overflow:hidden; background:var(--black-2); }
+    .mv-hero img, .mv-hero video { position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; display:block; transition:transform 1.6s var(--ease); }
+    .mv-hero:hover img, .mv-hero:hover video { transform:scale(1.02); }
+    .mv-hero::after { content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%);
+      pointer-events:none; }
+    .mv-hero .mv-cap { position:absolute; bottom:2rem; left:2.5rem; z-index:2;
+      font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase;
+      color:rgba(255,255,255,0.92); font-weight:700; margin:0; }
+    .mv-hero .mv-cap::before { content:''; display:inline-block; width:22px; height:1px;
+      background:var(--red); vertical-align:middle; margin-right:0.75rem; }
 
-    .cs-anon { font-size:0.7rem; color:var(--muted); margin-top:0.75rem; letter-spacing:0.03em; opacity:0.6; }
+    .mv-masonry { max-width:1240px; margin:0 auto; padding:0 4rem;
+      column-count:3; column-gap:1.75rem; }
+    .mv-item { break-inside:avoid; margin:0 0 1.75rem; position:relative;
+      overflow:hidden; background:var(--black-2); display:block; }
+    .mv-item img, .mv-item video { display:block; width:100%; height:auto;
+      transition:transform 0.9s var(--ease); }
+    .mv-item.mv-reel { aspect-ratio:9/16; }
+    .mv-item.mv-reel video { position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; }
+    .mv-item::after { content:''; position:absolute; bottom:0; left:0; right:0; height:38%;
+      background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+      opacity:0; transition:opacity 0.4s var(--ease); pointer-events:none; }
+    .mv-item .mv-cap { position:absolute; bottom:1rem; left:1.2rem; z-index:2;
+      font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:rgba(255,255,255,0.55); font-weight:700; margin:0;
+      transition:color 0.35s var(--ease), transform 0.35s var(--ease);
+      pointer-events:none; text-shadow:0 1px 6px rgba(0,0,0,0.5); }
+    .mv-item:hover img, .mv-item:hover video { transform:scale(1.04); }
+    .mv-item:hover::after { opacity:1; }
+    .mv-item:hover .mv-cap { color:rgba(255,255,255,0.98); transform:translateY(-2px); }
 
-    /* CASE STUDY 4 — PLATFORM TABS */
-    .cs-tabs { display:inline-flex; border:1px solid var(--border); border-radius:100px;
-      overflow:hidden; margin-bottom:3rem; }
-    .cs-tab { padding:0.6rem 1.6rem; font-size:0.72rem; font-weight:700;
-      letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
-      background:transparent; border:none; cursor:pointer; transition:all 0.25s var(--ease);
-      font-family:var(--sans); }
-    .cs-tab.active { background:var(--red); color:var(--white); }
-    .cs-tab:hover:not(.active) { color:var(--white); background:rgba(255,255,255,0.04); }
-    .cs-platform { display:none; }
-    .cs-platform.active { display:block; }
-    .cs-metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:2rem; }
-    .cs-metric { background:var(--black-3); border:1px solid var(--border); border-radius:var(--r);
-      padding:2rem; position:relative; overflow:hidden; transition:transform 0.25s var(--ease), border-color 0.25s; }
-    .cs-metric:hover { transform:translateY(-3px); border-color:rgba(240,69,67,0.3); }
-    .cs-metric-val { font-size:2.6rem; font-weight:800; letter-spacing:-0.04em; line-height:1; }
-    .cs-metric-val span { color:var(--red); }
-    .cs-metric-name { font-size:0.8rem; font-weight:600; margin-top:0.4rem; }
-    .cs-metric-growth { display:inline-block; font-size:0.68rem; font-weight:700; color:#2ecc71;
-      background:rgba(46,204,113,0.1); padding:0.2rem 0.6rem; border-radius:100px; margin-top:0.6rem; }
-    .cs-metric-bar { position:absolute; bottom:0; left:0; right:0; height:3px;
-      background:linear-gradient(90deg, var(--red), rgba(240,69,67,0.2)); transform:scaleX(0);
-      transform-origin:left; transition:transform 0.8s var(--ease); }
-    .cs-metric:hover .cs-metric-bar { transform:scaleX(1); }
-    @media(max-width:900px) { .cs-metric-grid { grid-template-columns:1fr 1fr; }
-      .cs-metric-grid>:last-child { grid-column:1/-1; } }
-    @media(max-width:600px) { .cs-metric-grid { grid-template-columns:1fr; }
-      .cs-metric-grid>:last-child { grid-column:auto; } }
+    @media(max-width:960px){
+      #media { padding-top:6rem; padding-bottom:6rem; }
+      .mv-intro { padding:0 1.5rem; margin-bottom:3rem; }
+      .mv-hero { aspect-ratio:16/10; margin-bottom:3rem; }
+      .mv-hero .mv-cap { bottom:1.2rem; left:1.4rem; font-size:0.64rem; letter-spacing:0.2em; }
+      .mv-masonry { padding:0 1.5rem; column-count:2; column-gap:1rem; }
+      .mv-item { margin-bottom:1rem; }
+    }
+    @media(max-width:520px){
+      .mv-hero { aspect-ratio:4/5; }
+      .mv-masonry { column-count:1; }
+    }
+
+    /* CASE STUDY — editorial */
+    [id^="case-study"] { padding-top:10rem; padding-bottom:10rem; }
+    .cse { max-width:1240px; margin:0 auto; }
+    .cse-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; margin-bottom:2rem;
+      display:flex; align-items:center; gap:0.9rem; }
+    .cse-eye::before { content:''; width:22px; height:1px; background:var(--red); flex-shrink:0; }
+    .cse-eye .sep { opacity:0.4; }
+    .cse-title { font-size:clamp(2.4rem, 5vw, 4rem); font-weight:800;
+      letter-spacing:-0.035em; line-height:1.04; margin:0 0 1.4rem; }
+    .cse-title em { font-style:normal; font-weight:300; color:rgba(255,255,255,0.72); }
+    .cse-lede { font-size:1.05rem; color:rgba(255,255,255,0.7); line-height:1.75;
+      max-width:560px; margin:0 0 5rem; font-weight:400; }
+
+    .cse-hero { display:grid; grid-template-columns:1fr; gap:0;
+      padding:2.5rem 0 3.5rem;
+      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      margin-bottom:3.5rem; }
+    .cse-hero.twin { grid-template-columns:1fr 1fr; gap:2rem; }
+    .cse-hero-item { padding:0.5rem 0; }
+    .cse-plat { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:1.75rem; }
+    .cse-num { display:flex; align-items:baseline; gap:0.05em;
+      font-size:clamp(4.5rem, 13vw, 11rem); font-weight:800; letter-spacing:-0.055em;
+      line-height:0.9; color:var(--white); font-variant-numeric:tabular-nums;
+      white-space:nowrap; }
+    .cse-num-suffix { font-size:0.42em; color:rgba(255,255,255,0.65); font-weight:600;
+      letter-spacing:-0.02em; margin-left:0.02em; }
+    .cse-num-prefix { color:rgba(255,255,255,0.75); font-weight:600; margin-right:0.02em; }
+    .cse-num-lbl { margin-top:1.6rem; font-size:0.72rem; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--white); font-weight:700; }
+    .cse-num-sub { margin-top:0.55rem; font-size:0.7rem; letter-spacing:0.14em;
+      text-transform:uppercase; color:var(--muted); font-weight:500; }
+
+    .cse-strip { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+      gap:2.5rem 2rem; padding-top:0.5rem; }
+    .cse-strip-item { display:flex; flex-direction:column; gap:0.45rem;
+      position:relative; padding-top:1rem; }
+    .cse-strip-item::before { content:''; position:absolute; top:0; left:0;
+      width:22px; height:1px; background:var(--red); opacity:0.55; }
+    .cse-strip-plat { font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase;
+      color:var(--red); font-weight:700; margin-bottom:0.15rem; }
+    .cse-strip-val { font-size:1.85rem; font-weight:800; letter-spacing:-0.025em;
+      line-height:1; color:var(--white); font-variant-numeric:tabular-nums;
+      display:inline-flex; align-items:baseline; gap:0.04em; }
+    .cse-strip-val span { font-size:0.62em; color:rgba(255,255,255,0.65);
+      font-weight:600; letter-spacing:-0.01em; }
+    .cse-strip-lbl { font-size:0.86rem; color:rgba(255,255,255,0.82);
+      font-weight:600; letter-spacing:-0.005em; }
+    .cse-strip-note { font-size:0.68rem; letter-spacing:0.06em;
+      color:var(--muted); font-weight:500; }
+
+    .cse-num.is-ready { opacity:1; }
+    @media(max-width:900px){
+      [id^="case-study"] { padding-top:6rem; padding-bottom:6rem; }
+      .cse-lede { margin-bottom:3.5rem; }
+      .cse-hero { padding:2rem 0 2.5rem; }
+      .cse-hero.twin { grid-template-columns:1fr; gap:0; }
+      .cse-hero.twin .cse-hero-item + .cse-hero-item {
+        border-top:1px solid var(--border); padding-top:2.5rem; margin-top:0.5rem; }
+      .cse-strip { grid-template-columns:repeat(2, 1fr); gap:2rem 1.5rem; }
+    }
+    @media(max-width:520px){
+      .cse-num { font-size:clamp(4rem, 22vw, 6rem); letter-spacing:-0.04em; }
+      .cse-num-lbl { margin-top:1.2rem; font-size:0.66rem; }
+      .cse-strip { grid-template-columns:1fr; gap:1.75rem; }
+      .cse-strip-val { font-size:1.7rem; }
+    }
+    @media(prefers-reduced-motion: reduce){
+      .cse-num .cse-n { animation:none !important; }
+    }
 
     /* VSL SECTION */
     #vsl { background:var(--black); text-align:center; }
@@ -701,7 +754,6 @@
       .clients-label{font-size:0.7rem; letter-spacing:0.15em; line-height:1.7;}
       .clients-row{grid-template-columns:repeat(2,1fr); gap:1.5rem 1rem; justify-items:center; align-items:center;}
       .client-logo-box{width:100%; max-width:115px; height:65px;}
-      .cs-tab{font-size:0.72rem !important; padding:0.55rem 1rem !important;}
     }
   </style>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAH5AAAAAQAAAfkAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACCgAwAEAAAAAQAAACAAAAAAk0888gAAAAlwSFlzAABNqgAATaoBW5R6ZQAAApxJREFUWAntV8trE0EYn29md5NsJQ9ELEjx6Fm8VYT0kXrrxZO9eLBY8GC9CJ40KOhFBOlJPPk42IM3qZgmsRcpKvgv6EFRAprm1ZjNPPzGNrIscdtJw9ZDB8LO8GV+v9/32pmFjdyUciglDIBEOYRSxJOSWJocJw8VUW+jFAAETiP3gqU9F1K8OVxaW45SwI+prMcYW6CalFLqREnu5/wjIGpyP9+BgH2PgOXPx07zSjY76jrWeWzbXxkuH9UZO4ltNKuAHMO2+sKJeJl6XX6/E47fbiQg5jjH4wzuc6WadZudwBZedG17Cw9fLJtcXa/OTN/JFIp5P0nY3CwFQsgm5wQA3ARji5KQd7VO51rd867WeLdIAewRSm9u5Cbnw0j9NjMB2ztjALQtxataozWRLpbvpVZLD1LjZ85iah7rF5sicKOazab9RP+aGwvQJwamQIIgt8fW19s9YMjnpVJwq8lFK07pGNj2qZ4t7GkuAD3UNdCxrM9B4Ear9Q3PlIo+XwDkaNDeb20sQGGx4SaXcX4kCBhPJnXYM1xhdShZDdr7rc0FIEqMUQudvBIEdJS4PMJYui3kT2arj0F7v7VRG/YAOkIS7IKLtZnpBBD5XGFZEEVn0ZtLugixS5YOrax97/0/7GksQBchBrjZ5uJDyrHniFJz+nLBMCQcLxgNLp4mLftuGKnfNqgAgn7O17vdcQvgnARylHL1lRP5IrlaWkaRGJTdDWMB27BUOVKkV8rPcK1/Aw/jIvzLJNHvIYzBBQyBXEOYCWCMuozpfS4MKQJGNYAXx8qmFE+wxjwaow2tZK/DSECiUPiEhBf2Surfb5YC/84hzQ8E/B8RkFJ6Q0rprmF6nNbWQcImqrnJSD/P9Mep5ob9/jz/DZPB74LnISY+AAAAAElFTkSuQmCC">
@@ -848,146 +900,122 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- MEDIA -->
 <section id="media">
-  <div class="rv">
-    <h2>Content we've created<br>for <em>real restaurants.</em></h2>
+  <div class="mv-intro rv">
+    <div class="mv-eye">Selected Work</div>
+    <h2>Recent projects,<br><em>real restaurants.</em></h2>
   </div>
 
-  <!-- PHOTOS -->
-  <div class="media-row rv">
-    <div class="media-row-label">Photography</div>
-    <div class="media-scroll">
-      <div class="media-card portrait"><img src="media/photo-8.jpg" alt="Howling Rabbits Beer and Tacos"></div>
-      <div class="media-card portrait"><img src="media/photo-1.png" alt="El Taco Mañanero Lochecitos"></div>
-      <div class="media-card portrait"><img src="media/photo-11.jpg" alt="Smokin Moon BBQ Spread"></div>
-      <div class="media-card portrait"><img src="media/photo-7.jpg" alt="Howling Rabbits BBQ Chicken Pizza"></div>
-      <div class="media-card portrait"><img src="media/photo-3.png" alt="The Wings Stadium Ribs"></div>
-      <div class="media-card portrait"><img src="media/photo-10.jpg" alt="Howling Rabbits Cocktail"></div>
-      <div class="media-card portrait"><img src="media/photo-4.png" alt="Santa Fe Pot Pie"></div>
-      <div class="media-card portrait"><img src="media/photo-9.jpg" alt="Howling Rabbits Bartender"></div>
-      <div class="media-card portrait"><img src="media/photo-2.png" alt="El Taco Mañanero Quesabirria"></div>
-      <div class="media-card portrait"><img src="media/photo-13.jpg" alt="Smokin Moon Tacos"></div>
-      <div class="media-card portrait"><img src="media/photo-5.png" alt="Santa Fe Seafood Pasta"></div>
-      <div class="media-card portrait"><img src="media/photo-6.png" alt="The Wings Stadium Nachos"></div>
-      <div class="media-card portrait"><img src="media/photo-12.jpg" alt="Howling Rabbits Beer and Tacos"></div>
-    </div>
-  </div>
+  <figure class="mv-hero rv">
+    <img src="media/photo-11.jpg" alt="Smokin' Moon BBQ Spread" loading="lazy">
+    <figcaption class="mv-cap">Smokin' Moon</figcaption>
+  </figure>
 
-  <!-- GRAPHICS -->
-  <div class="media-row rv">
-    <div class="media-row-label">Graphics</div>
-    <div class="media-scroll">
-      <div class="media-card portrait"><img src="media/graphic-1.png" alt="SF Beef Filet"></div>
-      <div class="media-card portrait"><img src="media/graphic-8.jpg" alt="LUMA Cupid's Love"></div>
-      <div class="media-card portrait"><img src="media/graphic-12.png" alt="El Taco Mañanero Botana"></div>
-      <div class="media-card portrait"><img src="media/graphic-2.png" alt="SF Chapala Sandia"></div>
-      <div class="media-card portrait"><img src="media/graphic-16.png" alt="LUMA Chicharrón de Ribeye"></div>
-      <div class="media-card portrait"><img src="media/graphic-15.png" alt="LUMA La Mundanza"></div>
-      <div class="media-card portrait"><img src="media/graphic-7.png" alt="SF Wagyu Strip"></div>
-      <div class="media-card portrait"><img src="media/graphic-11.png" alt="LUMA Long Ireland Ice Tea"></div>
-      <div class="media-card portrait"><img src="media/graphic-6.png" alt="SF Seafood"></div>
-      <div class="media-card portrait"><img src="media/graphic-3.png" alt="SF Tonala Sour"></div>
-      <div class="media-card portrait"><img src="media/graphic-10.png" alt="LUMA Chipotle Shrimp Tostadas"></div>
-      <div class="media-card portrait"><img src="media/graphic-9.png" alt="LUMA Lumachella Yummy"></div>
-      <div class="media-card portrait"><img src="media/graphic-14.png" alt="SF Flan de Elote"></div>
-      <div class="media-card portrait"><img src="media/graphic-4.png" alt="SF Coctel de Olla"></div>
-      <div class="media-card portrait"><img src="media/graphic-19.png" alt="LUMA Champagne Papi"></div>
-      <div class="media-card portrait"><img src="media/graphic-13.png" alt="SF La Valentina Martini"></div>
-      <div class="media-card portrait"><img src="media/graphic-5.png" alt="SF Zopapan Siesta"></div>
-      <div class="media-card portrait"><img src="media/graphic-17.png" alt="LUMA Bad Bunny Brunch"></div>
-      <div class="media-card portrait"><img src="media/graphic-18.png" alt="LUMA Brunch Is Here"></div>
-    </div>
-  </div>
-
-  <!-- REELS -->
-  <div class="media-row rv">
-    <div class="media-row-label">Reels</div>
-    <div class="media-scroll">
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-4.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-8.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-2.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-10.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-3.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-9.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-1.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-5.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-11.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-6.mp4" type="video/mp4"></video></div>
-      <div class="media-card reel"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/reel-7.mp4" type="video/mp4"></video></div>
-    </div>
+  <div class="mv-masonry rv">
+    <figure class="mv-item">
+      <img src="media/photo-8.jpg" alt="Howling Rabbits Beer and Tacos" loading="lazy">
+      <figcaption class="mv-cap">Howling Rabbits</figcaption>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/graphic-8.jpg" alt="LUMA Cupid's Love" loading="lazy">
+      <figcaption class="mv-cap">LUMA</figcaption>
+    </figure>
+    <figure class="mv-item mv-reel">
+      <video autoplay muted loop playsinline preload="metadata"><source src="media/reel-4.mp4" type="video/mp4"></video>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/graphic-1.png" alt="Santa Fe Beef Filet" loading="lazy">
+      <figcaption class="mv-cap">Santa Fe</figcaption>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/photo-9.jpg" alt="Howling Rabbits Bartender" loading="lazy">
+      <figcaption class="mv-cap">Howling Rabbits</figcaption>
+    </figure>
+    <figure class="mv-item mv-reel">
+      <video autoplay muted loop playsinline preload="metadata"><source src="media/reel-8.mp4" type="video/mp4"></video>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/graphic-15.png" alt="LUMA La Mundanza" loading="lazy">
+      <figcaption class="mv-cap">LUMA</figcaption>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/photo-4.png" alt="Santa Fe Pot Pie" loading="lazy">
+      <figcaption class="mv-cap">Santa Fe</figcaption>
+    </figure>
+    <figure class="mv-item mv-reel">
+      <video autoplay muted loop playsinline preload="metadata"><source src="media/reel-2.mp4" type="video/mp4"></video>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/graphic-17.png" alt="LUMA Bad Bunny Brunch" loading="lazy">
+      <figcaption class="mv-cap">LUMA</figcaption>
+    </figure>
+    <figure class="mv-item">
+      <img src="media/photo-3.png" alt="The Wings Stadium Ribs" loading="lazy">
+      <figcaption class="mv-cap">The Wings Stadium</figcaption>
+    </figure>
+    <figure class="mv-item mv-reel">
+      <video autoplay muted loop playsinline preload="metadata"><source src="media/reel-10.mp4" type="video/mp4"></video>
+    </figure>
   </div>
 </section>
 
 <!-- CASE STUDY: EL TACO MAÑANERO -->
 <section id="case-study">
-  <div class="cs-top rv">
-    <div>
-      <div class="s-tag">Case Study No. 01</div>
-      <h2>El Taco<br><em>Mañanero</em></h2>
-    </div>
-    <p class="cs-desc">December 2025. One month of full-service social media across Facebook and Instagram. Toggle between platforms.</p>
-  </div>
+  <div class="cse">
+    <div class="cse-eye rv"><span>Case No. 01</span><span class="sep">·</span><span>December 2025</span></div>
+    <h2 class="cse-title rv">El Taco<br><em>Mañanero</em></h2>
+    <p class="cse-lede rv">One month of full-service social media across Facebook and Instagram. From zero brand momentum to eight-figure impressions.</p>
 
-  <div class="cs-tabs rv">
-    <button class="cs-tab active" onclick="switchPlatform('fb')">Facebook</button>
-    <button class="cs-tab" onclick="switchPlatform('ig')">Instagram</button>
-  </div>
-
-  <!-- FACEBOOK -->
-  <div class="cs-platform active" id="cs-fb">
-    <div class="cs-metric-grid">
-      <div class="cs-metric rv">
-        <div class="cs-metric-val">7.9<span>M</span></div>
-        <div class="cs-metric-name">Views</div>
-        <div class="cs-metric-growth">+17.1K%</div>
-        <div class="cs-metric-bar"></div>
+    <div class="cse-hero twin rv">
+      <div class="cse-hero-item">
+        <div class="cse-plat">Facebook</div>
+        <div class="cse-num"><span class="cse-n" data-target="7.9" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">+17,100% growth</div>
       </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">6.0<span>M</span></div>
-        <div class="cs-metric-name">Viewers</div>
-        <div class="cs-metric-growth">+56.1K%</div>
-        <div class="cs-metric-bar"></div>
-      </div>
-      <div class="cs-metric rv d2">
-        <div class="cs-metric-val">48.9<span>K</span></div>
-        <div class="cs-metric-name">Profile Visits</div>
-        <div class="cs-metric-growth">+990%</div>
-        <div class="cs-metric-bar"></div>
-      </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">6.2<span>K</span></div>
-        <div class="cs-metric-name">New Followers</div>
-        <div class="cs-metric-growth">+14.2K%</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-hero-item">
+        <div class="cse-plat">Instagram</div>
+        <div class="cse-num"><span class="cse-n" data-target="1.1" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">+3,700% growth</div>
       </div>
     </div>
-  </div>
 
-  <!-- INSTAGRAM -->
-  <div class="cs-platform" id="cs-ig">
-    <div class="cs-metric-grid">
-      <div class="cs-metric rv">
-        <div class="cs-metric-val">1.1<span>M</span></div>
-        <div class="cs-metric-name">Views</div>
-        <div class="cs-metric-growth">+3.7K%</div>
-        <div class="cs-metric-bar"></div>
+    <div class="cse-strip rv">
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">6.0<span>M</span></div>
+        <div class="cse-strip-lbl">Viewers</div>
+        <div class="cse-strip-note">+56,100%</div>
       </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">871.8<span>K</span></div>
-        <div class="cs-metric-name">Reach</div>
-        <div class="cs-metric-growth">+43.2K%</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">48.9<span>K</span></div>
+        <div class="cse-strip-lbl">Profile Visits</div>
+        <div class="cse-strip-note">+990%</div>
       </div>
-      <div class="cs-metric rv d2">
-        <div class="cs-metric-val">2.5<span>K</span></div>
-        <div class="cs-metric-name">Profile Visits</div>
-        <div class="cs-metric-growth">+484.4%</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">6.2<span>K</span></div>
+        <div class="cse-strip-lbl">New Followers</div>
+        <div class="cse-strip-note">+14,200%</div>
       </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">286</div>
-        <div class="cs-metric-name">New Followers</div>
-        <div class="cs-metric-growth">+766.7%</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">871.8<span>K</span></div>
+        <div class="cse-strip-lbl">Reach</div>
+        <div class="cse-strip-note">+43,200%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">2.5<span>K</span></div>
+        <div class="cse-strip-lbl">Profile Visits</div>
+        <div class="cse-strip-note">+484.4%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">286</div>
+        <div class="cse-strip-lbl">New Followers</div>
+        <div class="cse-strip-note">+766.7%</div>
       </div>
     </div>
   </div>
@@ -995,101 +1023,86 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- CASE STUDY: HOWLING RABBITS -->
 <section id="case-study-2" style="background:var(--black-2);">
-  <div class="cs-top rv">
-    <div>
-      <div class="s-tag">Case Study No. 02</div>
-      <h2>Howling Rabbits<br><em>Beerworks</em></h2>
-    </div>
-    <p class="cs-desc">One influencer collab with Freddsters. Four posts. Zero ad spend.</p>
-  </div>
+  <div class="cse">
+    <div class="cse-eye rv"><span>Case No. 02</span><span class="sep">·</span><span>Influencer Collab</span></div>
+    <h2 class="cse-title rv">Howling Rabbits<br><em>Beerworks</em></h2>
+    <p class="cse-lede rv">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
 
-  <div class="cs-metric-grid">
-    <div class="cs-metric rv">
-      <div class="cs-metric-val">200<span>K+</span></div>
-      <div class="cs-metric-name">Total Views</div>
-      <div class="cs-metric-growth">1 Collab · 4 Posts</div>
-      <div class="cs-metric-bar"></div>
+    <div class="cse-hero rv">
+      <div class="cse-hero-item">
+        <div class="cse-plat">Total Reach</div>
+        <div class="cse-num"><span class="cse-n" data-target="200" data-decimals="0">0</span><span class="cse-num-suffix">K+</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">1 collab · 4 posts · organic</div>
+      </div>
     </div>
-    <div class="cs-metric rv d1">
-      <div class="cs-metric-val">20<span>x</span></div>
-      <div class="cs-metric-name">More Engagement</div>
-      <div class="cs-metric-growth">vs. Standard Posts</div>
-      <div class="cs-metric-bar"></div>
-    </div>
-    <div class="cs-metric rv d2">
-      <div class="cs-metric-val">60<span>%+</span></div>
-      <div class="cs-metric-name">New Audience</div>
-      <div class="cs-metric-growth">Never Seen Brand</div>
-      <div class="cs-metric-bar"></div>
-    </div>
-    <div class="cs-metric rv">
-      <div class="cs-metric-val">50.5<span>K</span></div>
-      <div class="cs-metric-name">Reach — Top Post</div>
-      <div class="cs-metric-growth">Organic · No Paid</div>
-      <div class="cs-metric-bar"></div>
+
+    <div class="cse-strip rv">
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">20<span>×</span></div>
+        <div class="cse-strip-lbl">More Engagement</div>
+        <div class="cse-strip-note">vs. standard posts</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">60<span>%+</span></div>
+        <div class="cse-strip-lbl">New Audience</div>
+        <div class="cse-strip-note">Never seen brand before</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">50.5<span>K</span></div>
+        <div class="cse-strip-lbl">Reach — Top Post</div>
+        <div class="cse-strip-note">Organic · no paid</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CASE STUDY: LUMA -->
 <section id="case-study-3">
-  <div class="cs-top rv">
-    <div>
-      <div class="s-tag">Case Study No. 03</div>
-      <h2>LUMA<br><em>Cocktail Lounge</em></h2>
-    </div>
-    <p class="cs-desc">Full marketing system from opening day — May 2025 through March 2026. Toggle between paid and organic.</p>
-  </div>
+  <div class="cse">
+    <div class="cse-eye rv"><span>Case No. 03</span><span class="sep">·</span><span>May 2025 — March 2026</span></div>
+    <h2 class="cse-title rv">LUMA<br><em>Cocktail Lounge</em></h2>
+    <p class="cse-lede rv">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window — shown side by side.</p>
 
-  <div class="cs-tabs rv">
-    <button class="cs-tab active" onclick="switchPlatform('luma-paid','luma')">Paid Ads</button>
-    <button class="cs-tab" onclick="switchPlatform('luma-organic','luma')">Organic</button>
-  </div>
-
-  <!-- PAID ADS -->
-  <div class="cs-platform active" id="cs-luma-paid">
-    <div class="cs-metric-grid">
-      <div class="cs-metric rv">
-        <div class="cs-metric-val">379<span>K+</span></div>
-        <div class="cs-metric-name">Unique People Reached</div>
-        <div class="cs-metric-growth">Paid Ads</div>
-        <div class="cs-metric-bar"></div>
+    <div class="cse-hero twin rv">
+      <div class="cse-hero-item">
+        <div class="cse-plat">Paid Ads</div>
+        <div class="cse-num"><span class="cse-n" data-target="1.7" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
+        <div class="cse-num-lbl">Total Impressions</div>
+        <div class="cse-num-sub">May '25 – Mar '26</div>
       </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">1.7<span>M</span></div>
-        <div class="cs-metric-name">Total Impressions</div>
-        <div class="cs-metric-growth">May '25 – Mar '26</div>
-        <div class="cs-metric-bar"></div>
-      </div>
-      <div class="cs-metric rv d2">
-        <div class="cs-metric-val">10<span> mo</span></div>
-        <div class="cs-metric-name">Campaign Duration</div>
-        <div class="cs-metric-growth">Full Management</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-hero-item">
+        <div class="cse-plat">Organic</div>
+        <div class="cse-num"><span class="cse-n" data-target="824" data-decimals="0">0</span><span class="cse-num-suffix">K</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">+46.4% growth</div>
       </div>
     </div>
-  </div>
 
-  <!-- ORGANIC -->
-  <div class="cs-platform" id="cs-luma-organic">
-    <div class="cs-metric-grid">
-      <div class="cs-metric rv">
-        <div class="cs-metric-val">824<span>K</span></div>
-        <div class="cs-metric-name">Organic Views</div>
-        <div class="cs-metric-growth">+46.4% Growth</div>
-        <div class="cs-metric-bar"></div>
+    <div class="cse-strip rv">
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Paid</div>
+        <div class="cse-strip-val">379<span>K+</span></div>
+        <div class="cse-strip-lbl">Unique People Reached</div>
+        <div class="cse-strip-note">Across FB + IG</div>
       </div>
-      <div class="cs-metric rv d1">
-        <div class="cs-metric-val">7.2<span>K</span></div>
-        <div class="cs-metric-name">Followers Built</div>
-        <div class="cs-metric-growth">4.6K IG + 2.6K FB</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Paid</div>
+        <div class="cse-strip-val">10<span>&nbsp;mo</span></div>
+        <div class="cse-strip-lbl">Campaign Duration</div>
+        <div class="cse-strip-note">Full management</div>
       </div>
-      <div class="cs-metric rv d2">
-        <div class="cs-metric-val">90<span> days</span></div>
-        <div class="cs-metric-name">Organic Window</div>
-        <div class="cs-metric-growth">Content Only</div>
-        <div class="cs-metric-bar"></div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Organic</div>
+        <div class="cse-strip-val">7.2<span>K</span></div>
+        <div class="cse-strip-lbl">Followers Built</div>
+        <div class="cse-strip-note">4.6K IG · 2.6K FB</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Organic</div>
+        <div class="cse-strip-val">90<span>&nbsp;days</span></div>
+        <div class="cse-strip-lbl">Content Window</div>
+        <div class="cse-strip-note">Content only</div>
       </div>
     </div>
   </div>
@@ -1097,38 +1110,36 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- CASE STUDY: SMOKIN' MOON -->
 <section id="case-study-4" style="background:var(--black-2);">
-  <div class="cs-top rv">
-    <div>
-      <div class="s-tag">Case Study No. 04</div>
-      <h2>Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
-    </div>
-    <p class="cs-desc">Build a following fast, without blowing the budget. $500 in ad spend, 30 days.</p>
-  </div>
+  <div class="cse">
+    <div class="cse-eye rv"><span>Case No. 04</span><span class="sep">·</span><span>Efficient Growth</span></div>
+    <h2 class="cse-title rv">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
+    <p class="cse-lede rv">Build a following fast without blowing the budget. Five hundred dollars, thirty days, a dime per follower.</p>
 
-  <div class="cs-metric-grid">
-    <div class="cs-metric rv">
-      <div class="cs-metric-val">5,100<span>+</span></div>
-      <div class="cs-metric-name">New Followers</div>
-      <div class="cs-metric-growth">30 Days</div>
-      <div class="cs-metric-bar"></div>
+    <div class="cse-hero rv">
+      <div class="cse-hero-item">
+        <div class="cse-plat">Paid Campaign</div>
+        <div class="cse-num"><span class="cse-n" data-target="5100" data-decimals="0" data-comma="1">0</span><span class="cse-num-suffix">+</span></div>
+        <div class="cse-num-lbl">New Followers</div>
+        <div class="cse-num-sub">30 days · $500 budget · $0.10 per follower</div>
+      </div>
     </div>
-    <div class="cs-metric rv d1">
-      <div class="cs-metric-val">$500</div>
-      <div class="cs-metric-name">Total Ad Budget</div>
-      <div class="cs-metric-growth">Full Campaign</div>
-      <div class="cs-metric-bar"></div>
-    </div>
-    <div class="cs-metric rv d2">
-      <div class="cs-metric-val">$0.10</div>
-      <div class="cs-metric-name">Cost Per Follower</div>
-      <div class="cs-metric-growth">Paid Campaign</div>
-      <div class="cs-metric-bar"></div>
-    </div>
-    <div class="cs-metric rv">
-      <div class="cs-metric-val">30<span> days</span></div>
-      <div class="cs-metric-name">Campaign Duration</div>
-      <div class="cs-metric-growth">Zero to Results</div>
-      <div class="cs-metric-bar"></div>
+
+    <div class="cse-strip rv">
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">$500</div>
+        <div class="cse-strip-lbl">Total Ad Budget</div>
+        <div class="cse-strip-note">Full campaign</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">$0.10</div>
+        <div class="cse-strip-lbl">Cost Per Follower</div>
+        <div class="cse-strip-note">Blended paid CPA</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-val">30<span>&nbsp;days</span></div>
+        <div class="cse-strip-lbl">Campaign Duration</div>
+        <div class="cse-strip-note">Zero to results</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1419,14 +1430,38 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     }, 4800);
   }
 
-  function switchPlatform(p, group) {
-    const section = group ? event.target.closest('section') : document.getElementById('case-study');
-    section.querySelectorAll('.cs-tab').forEach(t => t.classList.remove('active'));
-    section.querySelectorAll('.cs-platform').forEach(t => t.classList.remove('active'));
-    document.getElementById('cs-' + p).classList.add('active');
-    event.target.classList.add('active');
-    document.getElementById('cs-' + p).querySelectorAll('.rv').forEach(el => { el.classList.remove('on'); obs.observe(el); });
-  }
+  /* CASE STUDY — animated counters */
+  (function(){
+    const nums = document.querySelectorAll('.cse-n');
+    if (!nums.length) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function format(v, decimals, comma) {
+      if (comma) return Math.round(v).toLocaleString('en-US');
+      return decimals ? v.toFixed(decimals) : String(Math.round(v));
+    }
+    function animate(el) {
+      const target = parseFloat(el.dataset.target) || 0;
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const comma = el.dataset.comma === '1';
+      if (reduce) { el.textContent = format(target, decimals, comma); return; }
+      const start = performance.now();
+      const dur = 1400;
+      (function tick(t){
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = format(target * eased, decimals, comma);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = format(target, decimals, comma);
+      })(start);
+    }
+    const numObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animate(e.target); numObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    nums.forEach(n => numObs.observe(n));
+  })();
 
   /* TESTIMONIALS — editorial crossfade */
   (function(){
