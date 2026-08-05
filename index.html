@@ -558,6 +558,7 @@
       .mv-masonry { padding:0 1.5rem; column-count:2; column-gap:1rem; }
       .mv-item { margin-bottom:1rem; }
     }
+    .mv-item.mv-mobile-only { display:none; }
     @media(max-width:520px){
       .mv-hero { aspect-ratio:4/5; }
       .mv-hero .mv-cap { bottom:1rem; left:1rem; font-size:0.58rem; }
@@ -565,6 +566,7 @@
       .mv-item { margin-bottom:0.65rem; }
       .mv-item .mv-cap { font-size:0.54rem; letter-spacing:0.18em;
         bottom:0.55rem; left:0.7rem; }
+      .mv-item.mv-mobile-only { display:block; }
     }
 
     /* CASE STUDY — editorial */
@@ -944,6 +946,14 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </figure>
 
   <div class="mv-masonry rv">
+    <figure class="mv-item mv-mobile-only">
+      <img src="media/photo-1.png" alt="El Taco Mañanero Lochecitos" loading="lazy">
+      <figcaption class="mv-cap">El Taco Mañanero</figcaption>
+    </figure>
+    <figure class="mv-item mv-mobile-only">
+      <img src="media/graphic-11.png" alt="LUMA Long Ireland Ice Tea" loading="lazy">
+      <figcaption class="mv-cap">LUMA</figcaption>
+    </figure>
     <figure class="mv-item">
       <img src="media/photo-8.jpg" alt="Howling Rabbits Beer and Tacos" loading="lazy">
       <figcaption class="mv-cap">Howling Rabbits</figcaption>
