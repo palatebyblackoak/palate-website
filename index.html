@@ -537,10 +537,16 @@
       font-size:clamp(1.2rem, 2.2vw, 1.55rem); color:var(--white);
       line-height:1.4; letter-spacing:-0.005em; margin:0; }
 
+    @media(max-width:960px){
+      .abt-media { max-height:62vh; }
+      .abt-media img { object-position:center; }
+    }
     @media(max-width:520px){
+      .abt-media { aspect-ratio:4/5; max-height:56vh; }
       .abt-lede { font-size:0.98rem; margin-bottom:2.25rem; }
       .abt-pillar { gap:1rem; padding:0.95rem 0; }
       .abt-pillar-t { font-size:0.94rem; }
+      .abt-closer { font-size:clamp(1.05rem, 4.4vw, 1.3rem); line-height:1.45; }
     }
 
     /* CTA */
@@ -688,8 +694,9 @@
         line-height:0.95; flex-wrap:wrap; white-space:normal; }
       .cse-num-suffix { font-size:0.4em; }
       .cse-num-lbl { margin-top:1.1rem; font-size:0.66rem; }
-      .cse-strip { grid-template-columns:1fr; gap:1.75rem; }
-      .cse-strip-val { font-size:1.65rem; }
+      .cse-strip { grid-template-columns:repeat(2, 1fr); gap:1.75rem 1rem; }
+      .cse-strip-val { font-size:1.5rem; }
+      .cse-strip-lbl { font-size:0.82rem; }
       .cse-title { font-size:clamp(2rem, 8vw, 2.6rem); }
       .cse-lede { font-size:0.98rem; line-height:1.65; margin-bottom:3rem; }
     }
@@ -808,8 +815,10 @@
       .hero-actions{gap:1.4rem;}
       .hero-link{font-size:0.95rem;}
       #manifesto{padding-top:5rem; padding-bottom:5rem}
-      .mnf-strip{flex-direction:column; gap:1.75rem; align-items:flex-start}
-      .mnf-stat-n{font-size:1.4rem}
+      .mnf-strip{gap:1.4rem 1.75rem; margin-top:3rem; padding-top:1.75rem}
+      .mnf-stat{flex:0 0 auto}
+      .mnf-stat-n{font-size:1.3rem}
+      .mnf-stat-l{font-size:0.6rem; letter-spacing:0.18em}
       h2{font-size:clamp(2.1rem,7.5vw,2.7rem); line-height:1.08;}
       .offer-headline{font-size:clamp(2rem,7.5vw,2.5rem); margin-bottom:1rem;}
       .plan-sub{font-size:1rem; line-height:1.6;}
