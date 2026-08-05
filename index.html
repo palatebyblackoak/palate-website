@@ -391,81 +391,61 @@
       color:var(--red); font-weight:600; }
     .tc-bio { font-size:0.78rem; color:var(--muted); line-height:1.55; margin-top:0.5rem; }
 
-    /* TESTIMONIALS */
-    #testimonials { background:var(--black); overflow:hidden; }
-    .test-top { display:flex; align-items:flex-end; justify-content:space-between;
-      gap:2rem; margin-bottom:2.5rem; flex-wrap:wrap; }
-    .test-nav { display:flex; align-items:center; gap:0.9rem; }
-    .test-arrow { width:44px; height:44px; border-radius:50%;
-      border:1px solid var(--border); background:var(--black-2); color:var(--white);
-      font-size:1.35rem; cursor:pointer; display:flex; align-items:center;
-      justify-content:center; line-height:1; font-family:var(--sans);
-      transition:background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s; }
-    .test-arrow:hover:not(:disabled) { background:var(--red); border-color:var(--red); }
-    .test-arrow:disabled { opacity:0.3; cursor:not-allowed; }
-    .test-counter { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; font-variant-numeric:tabular-nums;
-      min-width:3.5rem; text-align:center; }
-    .test-counter .tc-cur { color:var(--white); }
+    /* TESTIMONIALS — editorial */
+    #testimonials { background:var(--black); padding-top:11rem; padding-bottom:10rem; }
+    .tst-wrap { max-width:960px; margin:0 auto; text-align:center; position:relative; }
+    .tst-title { font-size:clamp(1.25rem, 2.4vw, 1.6rem); font-weight:500;
+      letter-spacing:-0.015em; color:rgba(255,255,255,0.55);
+      margin:0 0 6rem; text-align:center; line-height:1.3; }
+    .tst-stage { position:relative; min-height:22rem;
+      display:flex; align-items:center; justify-content:center; }
+    .tst-slide { position:absolute; inset:0; opacity:0;
+      transform:translateY(10px); pointer-events:none;
+      transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:3rem; padding:0 1rem; }
+    .tst-slide.is-active { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .tst-quote { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:clamp(1.75rem, 4vw, 2.9rem); line-height:1.28; letter-spacing:-0.012em;
+      color:var(--white); max-width:820px; margin:0 auto; text-wrap:balance; }
+    .tst-quote::before { content:'\201C'; color:var(--red); margin-right:0.04em; }
+    .tst-quote::after  { content:'\201D'; color:var(--red); margin-left:0.04em; }
+    .tst-attr { display:flex; flex-direction:column; align-items:center; gap:0.9rem; }
+    .tst-rule { width:42px; height:1px; background:var(--red); display:block; }
+    .tst-name { font-size:0.7rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--white); font-weight:700; }
+    .tst-loc  { font-size:0.66rem; letter-spacing:0.24em; text-transform:uppercase;
+      color:var(--muted); font-weight:500; }
 
-    .test-track { position:relative; margin:0 -4rem;
-      -webkit-mask-image:linear-gradient(90deg, transparent 0, black 4rem, black calc(100% - 4rem), transparent 100%);
-              mask-image:linear-gradient(90deg, transparent 0, black 4rem, black calc(100% - 4rem), transparent 100%); }
-    .test-scroll { display:flex; gap:1.25rem; overflow-x:auto;
-      scroll-snap-type:x mandatory; padding:0.75rem 4rem 1.5rem;
-      scrollbar-width:none; -ms-overflow-style:none; scroll-behavior:smooth; }
-    .test-scroll::-webkit-scrollbar { display:none; }
+    .tst-controls { position:relative; margin-top:4.5rem;
+      display:flex; align-items:center; justify-content:center; gap:2rem; }
+    .tst-btn { background:none; border:none; padding:0.5rem 0.75rem; cursor:pointer;
+      color:rgba(255,255,255,0.35); font-family:var(--sans); font-size:1.4rem;
+      line-height:1; opacity:0; transition:color 0.2s, opacity 0.4s var(--ease); }
+    #testimonials:hover .tst-btn,
+    #testimonials:focus-within .tst-btn { opacity:1; }
+    .tst-btn:hover { color:var(--white); }
+    .tst-progress { position:relative; width:180px; height:1px;
+      background:rgba(255,255,255,0.09); overflow:hidden; }
+    .tst-fill { position:absolute; top:0; left:0; bottom:0; width:0;
+      background:var(--red); }
+    .tst-fill.is-running { animation:tstFill var(--tst-dur, 9000ms) linear forwards; }
+    @keyframes tstFill { from { width:0; } to { width:100%; } }
 
-    .test-card { flex:0 0 clamp(300px, 30vw, 380px); scroll-snap-align:start;
-      background:var(--black-2); border:1px solid var(--border);
-      border-radius:14px; padding:2rem; display:flex; flex-direction:column;
-      transition:border-color 0.35s var(--ease), transform 0.35s var(--ease),
-        background 0.35s var(--ease), box-shadow 0.35s var(--ease); }
-    .test-card:hover { border-color:rgba(240,69,67,0.4); transform:translateY(-4px);
-      background:#1e1818; box-shadow:0 20px 40px -20px rgba(0,0,0,0.6); }
-    .test-card.is-active { border-color:rgba(240,69,67,0.35); }
-
-    .test-head { display:flex; align-items:center; gap:0.85rem; margin-bottom:1.2rem; }
-    .test-avatar { width:44px; height:44px; border-radius:50%;
-      background:linear-gradient(135deg, var(--red), #b0302f);
-      color:var(--white); font-weight:800; font-size:0.88rem; letter-spacing:0.04em;
-      display:flex; align-items:center; justify-content:center; flex-shrink:0;
-      box-shadow:0 4px 14px -4px rgba(240,69,67,0.5); }
-    .test-head-meta { display:flex; flex-direction:column; min-width:0; }
-    .test-head .test-author { font-size:0.9rem; font-weight:700; letter-spacing:-0.005em; }
-    .test-head .test-loc { font-size:0.7rem; color:var(--red); font-weight:600;
-      letter-spacing:0.03em; margin-top:0.15rem; }
-
-    .test-stars { color:var(--red); font-size:0.72rem; letter-spacing:0.2em;
-      margin-bottom:0.9rem; }
-    .test-q { font-size:0.92rem; line-height:1.7; color:rgba(255,255,255,0.78);
-      margin:0; font-style:italic;
-      display:-webkit-box; -webkit-line-clamp:7; -webkit-box-orient:vertical;
-      overflow:hidden; transition:-webkit-line-clamp 0.3s; }
-    .test-q::before { content:'"'; color:var(--red); font-size:1.5rem;
-      font-family:var(--serif); line-height:0; vertical-align:-0.35rem;
-      margin-right:0.15rem; }
-    .test-card.is-open .test-q { -webkit-line-clamp:unset; }
-
-    .test-expand { align-self:flex-start; margin-top:0.9rem;
-      background:none; border:none; padding:0; color:var(--red);
-      font-size:0.72rem; font-weight:700; letter-spacing:0.08em;
-      text-transform:uppercase; cursor:pointer; font-family:var(--sans);
-      display:inline-flex; align-items:center; gap:0.4rem;
-      transition:color 0.2s; }
-    .test-expand:hover { color:var(--white); }
-    .test-expand::after { content:'↓'; font-size:0.8rem;
-      transition:transform 0.25s var(--ease); display:inline-block; }
-    .test-card.is-open .test-expand::after { transform:rotate(180deg); }
-    .test-expand.hidden { display:none; }
-
-    .test-dots { display:flex; justify-content:center; align-items:center;
-      gap:0.5rem; margin-top:1.5rem; }
-    .test-dot { width:6px; height:6px; border-radius:50%;
-      background:rgba(255,255,255,0.16); border:none; cursor:pointer; padding:0;
-      transition:background 0.25s var(--ease), width 0.35s var(--ease); }
-    .test-dot:hover { background:rgba(255,255,255,0.4); }
-    .test-dot.is-active { background:var(--red); width:22px; border-radius:100px; }
+    @media(max-width:700px){
+      #testimonials { padding-top:6rem; padding-bottom:6rem; }
+      .tst-title { margin-bottom:3.5rem; }
+      .tst-quote { font-size:clamp(1.35rem, 5.6vw, 1.85rem); line-height:1.32; }
+      .tst-stage { min-height:26rem; }
+      .tst-slide { gap:2.2rem; padding:0 0.25rem; }
+      .tst-btn { opacity:1; }
+      .tst-progress { width:120px; }
+      .tst-controls { margin-top:3rem; gap:1.25rem; }
+    }
+    @media(prefers-reduced-motion: reduce){
+      .tst-slide { transition:opacity 0.2s linear; transform:none !important; }
+      .tst-fill.is-running { animation:none; width:100%; }
+    }
 
     /* PROCESS */
     #process { background:var(--black-2); }
@@ -665,12 +645,6 @@
       #problem,#about{grid-template-columns:1fr; gap:3rem}
       .roi-grid{grid-template-columns:1fr !important}
       .res-grid,.proc-grid{grid-template-columns:1fr}
-      .test-track{margin:0 -1.5rem}
-      .test-scroll{padding:0.75rem 1.5rem 1.25rem; gap:1rem}
-      .test-card{flex-basis:78vw; max-width:360px}
-      .test-top{align-items:flex-start; margin-bottom:2rem}
-      .test-nav{align-self:flex-start}
-      .test-track{-webkit-mask-image:linear-gradient(90deg, transparent 0, black 1.5rem, black calc(100% - 1.5rem), transparent 100%); mask-image:linear-gradient(90deg, transparent 0, black 1.5rem, black calc(100% - 1.5rem), transparent 100%)}
       .offer-cards{grid-template-columns:1fr}
       .offer-steps{grid-template-columns:1fr}
       .offer-cta{padding:2rem 1.25rem}
@@ -728,11 +702,6 @@
       .clients-row{grid-template-columns:repeat(2,1fr); gap:1.5rem 1rem; justify-items:center; align-items:center;}
       .client-logo-box{width:100%; max-width:115px; height:65px;}
       .cs-tab{font-size:0.72rem !important; padding:0.55rem 1rem !important;}
-      .test-card{flex-basis:82vw; padding:1.75rem 1.5rem; border-radius:12px;}
-      .test-arrow{width:40px; height:40px; font-size:1.25rem;}
-      .test-avatar{width:40px; height:40px; font-size:0.82rem;}
-      .test-head .test-author{font-size:0.88rem;}
-      .test-q{font-size:0.95rem; line-height:1.65; -webkit-line-clamp:6;}
     }
   </style>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAH5AAAAAQAAAfkAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACCgAwAEAAAAAQAAACAAAAAAk0888gAAAAlwSFlzAABNqgAATaoBW5R6ZQAAApxJREFUWAntV8trE0EYn29md5NsJQ9ELEjx6Fm8VYT0kXrrxZO9eLBY8GC9CJ40KOhFBOlJPPk42IM3qZgmsRcpKvgv6EFRAprm1ZjNPPzGNrIscdtJw9ZDB8LO8GV+v9/32pmFjdyUciglDIBEOYRSxJOSWJocJw8VUW+jFAAETiP3gqU9F1K8OVxaW45SwI+prMcYW6CalFLqREnu5/wjIGpyP9+BgH2PgOXPx07zSjY76jrWeWzbXxkuH9UZO4ltNKuAHMO2+sKJeJl6XX6/E47fbiQg5jjH4wzuc6WadZudwBZedG17Cw9fLJtcXa/OTN/JFIp5P0nY3CwFQsgm5wQA3ARji5KQd7VO51rd867WeLdIAewRSm9u5Cbnw0j9NjMB2ztjALQtxataozWRLpbvpVZLD1LjZ85iah7rF5sicKOazab9RP+aGwvQJwamQIIgt8fW19s9YMjnpVJwq8lFK07pGNj2qZ4t7GkuAD3UNdCxrM9B4Ear9Q3PlIo+XwDkaNDeb20sQGGx4SaXcX4kCBhPJnXYM1xhdShZDdr7rc0FIEqMUQudvBIEdJS4PMJYui3kT2arj0F7v7VRG/YAOkIS7IKLtZnpBBD5XGFZEEVn0ZtLugixS5YOrax97/0/7GksQBchBrjZ5uJDyrHniFJz+nLBMCQcLxgNLp4mLftuGKnfNqgAgn7O17vdcQvgnARylHL1lRP5IrlaWkaRGJTdDWMB27BUOVKkV8rPcK1/Aw/jIvzLJNHvIYzBBQyBXEOYCWCMuozpfS4MKQJGNYAXx8qmFE+wxjwaow2tZK/DSECiUPiEhBf2Surfb5YC/84hzQ8E/B8RkFJ6Q0rprmF6nNbWQcImqrnJSD/P9Mep5ob9/jz/DZPB74LnISY+AAAAAElFTkSuQmCC">
@@ -1166,73 +1135,47 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="test-top rv">
-    <div>
-      <h2>What our clients<br><em>actually say.</em></h2>
+  <div class="tst-wrap rv">
+    <h2 class="tst-title">What our clients say.</h2>
+    <div class="tst-stage" role="region" aria-live="polite" aria-label="Client testimonials" id="tstStage">
+      <blockquote class="tst-slide is-active">
+        <p class="tst-quote">Their expertise significantly boosted our brand visibility and customer engagement. If you're looking for a marketing agency that delivers real impact, look no further.</p>
+        <footer class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Steven Schwoerer</span>
+          <span class="tst-loc">Howling Rabbits Beerworks</span>
+        </footer>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">In our first month at LUMA, we gained over 2,000 followers across Facebook and Instagram. Their influencer program helped us reach 250,000 local accounts. The momentum is unreal.</p>
+        <footer class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Luis Salinas</span>
+          <span class="tst-loc">LUMA Cocktail Lounge</span>
+        </footer>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">They played a pivotal role in the success of our meal prep venture — helping us establish our brand and propelling our growth beyond expectations.</p>
+        <footer class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Jorge Santana</span>
+          <span class="tst-loc">Santana Nutrition</span>
+        </footer>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">Creative, innovative, and detail-obsessed. They've made a real difference for Smokin' Moon.</p>
+        <footer class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Joseph Salinas</span>
+          <span class="tst-loc">Smokin' Moon Barbecue &amp; Beer Garden</span>
+        </footer>
+      </blockquote>
     </div>
-    <div class="test-nav" aria-label="Testimonial navigation">
-      <button class="test-arrow prev" type="button" aria-label="Previous testimonial">‹</button>
-      <span class="test-counter" aria-hidden="true"><span class="tc-cur">1</span> / <span class="tc-tot">4</span></span>
-      <button class="test-arrow next" type="button" aria-label="Next testimonial">›</button>
+    <div class="tst-controls">
+      <button class="tst-btn tst-prev" type="button" aria-label="Previous testimonial">‹</button>
+      <div class="tst-progress" aria-hidden="true"><div class="tst-fill"></div></div>
+      <button class="tst-btn tst-next" type="button" aria-label="Next testimonial">›</button>
     </div>
-  </div>
-  <div class="test-track rv">
-    <div class="test-scroll" id="testScroll" role="list">
-      <article class="test-card is-active" role="listitem">
-        <div class="test-head">
-          <div class="test-avatar" aria-hidden="true">HR</div>
-          <div class="test-head-meta">
-            <div class="test-author">Steven Schwoerer</div>
-            <div class="test-loc">Howling Rabbits Beerworks</div>
-          </div>
-        </div>
-        <div class="test-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="test-q">Partnering with Black Oak has been an absolute game-changer for our business. Their strategic approach to digital marketing is unparalleled, and they've consistently delivered outstanding results. From designing captivating campaigns to optimizing our online presence, their expertise has significantly boosted our brand visibility and customer engagement. The team at Black Oak is not only highly skilled but also incredibly responsive and dedicated. It's been a pleasure working with them, and we're excited to continue leveraging their innovative solutions to drive our business forward. If you're looking for a marketing agency that delivers real impact, look no further than Black Oak Media!</p>
-        <button class="test-expand" type="button" aria-expanded="false"><span>Read more</span></button>
-      </article>
-      <article class="test-card" role="listitem">
-        <div class="test-head">
-          <div class="test-avatar" aria-hidden="true">LU</div>
-          <div class="test-head-meta">
-            <div class="test-author">Luis Salinas</div>
-            <div class="test-loc">LUMA Cocktail Lounge</div>
-          </div>
-        </div>
-        <div class="test-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="test-q">Partnering with Palate by BlackOak has been a game changer for our launch at LUMA. In just our first month, we gained over 2,000 followers on both Facebook and Instagram. Their team delivered stunning branding across our menus, website, and social media—creating a cohesive and elevated brand presence both online and in-person. On top of that, their influencer program helped us reach over 250,000 local accounts. The momentum they've created for us is unreal.</p>
-        <button class="test-expand" type="button" aria-expanded="false"><span>Read more</span></button>
-      </article>
-      <article class="test-card" role="listitem">
-        <div class="test-head">
-          <div class="test-avatar" aria-hidden="true">SN</div>
-          <div class="test-head-meta">
-            <div class="test-author">Jorge Santana</div>
-            <div class="test-loc">Santana Nutrition</div>
-          </div>
-        </div>
-        <div class="test-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="test-q">Black Oak Agency played a pivotal role in the success of our emerging meal prep venture, impressing us with their unwavering commitment to quality, professionalism, enthusiasm, and creativity. Their marketing expertise not only helped us establish our brand but also propelled our growth beyond expectations. We are immensely grateful for their invaluable contributions and highly recommend their services to anyone seeking exceptional marketing solutions.</p>
-        <button class="test-expand" type="button" aria-expanded="false"><span>Read more</span></button>
-      </article>
-      <article class="test-card" role="listitem">
-        <div class="test-head">
-          <div class="test-avatar" aria-hidden="true">SM</div>
-          <div class="test-head-meta">
-            <div class="test-author">Joseph Salinas</div>
-            <div class="test-loc">Smokin' Moon Barbecue &amp; Beer Garden</div>
-          </div>
-        </div>
-        <div class="test-stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <p class="test-q">I love working with Luis Robles and BlackOak, they are creative and innovative in their craft. Very professional and have attention to detail. They have made a difference for Smokin' Moon.</p>
-        <button class="test-expand" type="button" aria-expanded="false"><span>Read more</span></button>
-      </article>
-    </div>
-  </div>
-  <div class="test-dots" role="tablist" aria-label="Testimonial pagination">
-    <button class="test-dot is-active" type="button" data-idx="0" aria-label="Testimonial 1"></button>
-    <button class="test-dot" type="button" data-idx="1" aria-label="Testimonial 2"></button>
-    <button class="test-dot" type="button" data-idx="2" aria-label="Testimonial 3"></button>
-    <button class="test-dot" type="button" data-idx="3" aria-label="Testimonial 4"></button>
   </div>
 </section>
 
@@ -1485,84 +1428,66 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     document.getElementById('cs-' + p).querySelectorAll('.rv').forEach(el => { el.classList.remove('on'); obs.observe(el); });
   }
 
-  /* TESTIMONIALS CAROUSEL */
+  /* TESTIMONIALS — editorial crossfade */
   (function(){
-    const scroller = document.getElementById('testScroll');
-    if (!scroller) return;
-    const cards = Array.from(scroller.querySelectorAll('.test-card'));
-    const dots = Array.from(document.querySelectorAll('#testimonials .test-dot'));
-    const prev = document.querySelector('#testimonials .test-arrow.prev');
-    const next = document.querySelector('#testimonials .test-arrow.next');
-    const cur = document.querySelector('#testimonials .tc-cur');
-    const tot = document.querySelector('#testimonials .tc-tot');
-    if (tot) tot.textContent = cards.length;
+    const section = document.getElementById('testimonials');
+    const stage = document.getElementById('tstStage');
+    if (!section || !stage) return;
+    const slides = Array.from(stage.querySelectorAll('.tst-slide'));
+    const prev = section.querySelector('.tst-prev');
+    const next = section.querySelector('.tst-next');
+    const fill = section.querySelector('.tst-fill');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DUR = 9000;
 
-    let activeIdx = 0;
-    function setActive(i) {
-      activeIdx = Math.max(0, Math.min(cards.length - 1, i));
-      cards.forEach((c, k) => c.classList.toggle('is-active', k === activeIdx));
-      dots.forEach((d, k) => d.classList.toggle('is-active', k === activeIdx));
-      if (cur) cur.textContent = activeIdx + 1;
-      if (prev) prev.disabled = activeIdx === 0;
-      if (next) next.disabled = activeIdx === cards.length - 1;
-    }
-    function scrollToIdx(i) {
-      const clamped = Math.max(0, Math.min(cards.length - 1, i));
-      const card = cards[clamped];
-      const left = card.offsetLeft - scroller.offsetLeft;
-      scroller.scrollTo({ left, behavior: 'smooth' });
-      setActive(clamped);
-    }
+    let i = 0;
+    let timer = null;
+    let inView = false;
+    let hovering = false;
 
-    const io = new IntersectionObserver((entries) => {
-      let best = null;
-      entries.forEach(e => {
-        if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
-      });
-      if (best && best.intersectionRatio >= 0.55) {
-        setActive(cards.indexOf(best.target));
+    function show(n) {
+      i = ((n % slides.length) + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      restart();
+    }
+    function restart() {
+      clearTimeout(timer);
+      if (fill) {
+        fill.classList.remove('is-running');
+        void fill.offsetWidth;
       }
-    }, { root: scroller, threshold: [0.55, 0.75, 0.95] });
-    cards.forEach(c => io.observe(c));
+      if (reduce || !inView || hovering) return;
+      if (fill) {
+        fill.style.setProperty('--tst-dur', DUR + 'ms');
+        fill.classList.add('is-running');
+      }
+      timer = setTimeout(() => show(i + 1), DUR);
+    }
+    function pause() {
+      clearTimeout(timer);
+      if (fill) fill.classList.remove('is-running');
+    }
 
-    if (prev) prev.addEventListener('click', () => scrollToIdx(activeIdx - 1));
-    if (next) next.addEventListener('click', () => scrollToIdx(activeIdx + 1));
-    dots.forEach((d, i) => d.addEventListener('click', () => scrollToIdx(i)));
+    if (prev) prev.addEventListener('click', () => show(i - 1));
+    if (next) next.addEventListener('click', () => show(i + 1));
 
-    // Read more / show less
-    cards.forEach(card => {
-      const q = card.querySelector('.test-q');
-      const btn = card.querySelector('.test-expand');
-      if (!q || !btn) return;
-      const label = btn.querySelector('span');
-      requestAnimationFrame(() => {
-        if (q.scrollHeight <= q.clientHeight + 2) btn.classList.add('hidden');
-      });
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = card.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', String(open));
-        if (label) label.textContent = open ? 'Show less' : 'Read more';
-      });
-    });
+    section.addEventListener('mouseenter', () => { hovering = true; pause(); });
+    section.addEventListener('mouseleave', () => { hovering = false; restart(); });
+    section.addEventListener('focusin', () => { hovering = true; pause(); });
+    section.addEventListener('focusout', () => { hovering = false; restart(); });
 
-    // Keyboard nav when scroller is focused
-    scroller.setAttribute('tabindex', '0');
-    scroller.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { e.preventDefault(); scrollToIdx(activeIdx + 1); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToIdx(activeIdx - 1); }
-    });
+    const io = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      if (inView) restart(); else pause();
+    }, { threshold: 0.4 });
+    io.observe(section);
 
-    setActive(0);
-    // Recompute clamped state after fonts/layout settle
-    window.addEventListener('load', () => {
-      cards.forEach(card => {
-        const q = card.querySelector('.test-q');
-        const btn = card.querySelector('.test-expand');
-        if (!q || !btn) return;
-        if (q.scrollHeight > q.clientHeight + 2) btn.classList.remove('hidden');
-        else btn.classList.add('hidden');
-      });
+    document.addEventListener('keydown', (e) => {
+      const rect = section.getBoundingClientRect();
+      const visible = rect.top < innerHeight * 0.75 && rect.bottom > innerHeight * 0.25;
+      if (!visible) return;
+      if (e.key === 'ArrowRight') { show(i + 1); }
+      if (e.key === 'ArrowLeft')  { show(i - 1); }
     });
   })();
 </script>
