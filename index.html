@@ -374,19 +374,22 @@
     .faq-a { font-size:0.84rem; color:var(--muted); line-height:1.7;
       margin:0 0 1.3rem; padding-right:2rem; }
 
-    /* ADD-ONS */
+    /* ADD-ONS — editorial */
     #addons { background:var(--black-2); }
-    .addon-section-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; margin:3rem 0 1.5rem;
-      padding-bottom:0.75rem; border-bottom:1px solid var(--border); }
-    .addon-section-label:first-of-type { margin-top:0; }
-    .addon-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-bottom:0.5rem; }
-    .addon-card { background:var(--black-3); border:1px solid transparent;
-      border-radius:var(--r); padding:1.5rem; }
-    .addon-icon { color:rgba(255,255,255,0.85); margin-bottom:1.5rem; display:block; }
-    .addon-name { font-size:0.95rem; font-weight:700; margin-bottom:0.6rem; }
-    .addon-desc { font-size:0.8rem; color:var(--muted); line-height:1.6; }
-    @media(max-width:768px) { .addon-grid { grid-template-columns:1fr; } }
+    .pkg-addon { display:grid; grid-template-columns:1fr 1.55fr; gap:4rem;
+      align-items:baseline; padding:2rem 0;
+      border-top:1px solid var(--border); }
+    .pkg-addon:last-of-type { border-bottom:1px solid var(--border); }
+    .pkg-addon-name { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:clamp(1.4rem, 2.7vw, 1.85rem); color:var(--white); margin:0;
+      letter-spacing:-0.012em; line-height:1.2; }
+    .pkg-addon-desc { font-size:1rem; color:rgba(255,255,255,0.72);
+      line-height:1.7; margin:0; max-width:520px; }
+    @media(max-width:820px){
+      .pkg-addon { grid-template-columns:1fr; gap:0.75rem; padding:1.75rem 0; }
+      .pkg-addon-name { font-size:clamp(1.3rem, 5vw, 1.55rem); }
+      .pkg-addon-desc { font-size:0.96rem; }
+    }
 
     /* SERVICES */
     #services { background:var(--black); }
@@ -763,7 +766,6 @@
       #closing{padding:5rem 1.5rem;}
       .closing-p{font-size:1.05rem;}
       .closing-p.final{font-size:1.2rem;}
-      .addon-card{border-color:transparent;}
     }
     @media(max-width:600px){
       nav{padding:1rem 1.25rem} nav.scrolled{padding:0.75rem 1.25rem}
@@ -784,8 +786,6 @@
       .offer-headline{font-size:clamp(2rem,7.5vw,2.5rem); margin-bottom:1rem;}
       .plan-sub{font-size:1rem; line-height:1.6;}
       .team-grid{grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto;}
-      .addon-card{padding:1.75rem 1.5rem; border-color:transparent;}
-      .addon-icon{width:32px; height:32px; margin-bottom:1.2rem;}
       #closing{padding:4.5rem 1.5rem;}
       .closing-p{font-size:1.05rem; line-height:1.6;}
       .closing-p.final{font-size:1.15rem; margin-top:2rem;}
@@ -1292,36 +1292,24 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- ADD-ONS -->
 <section id="addons">
-  <div class="plan-intro rv">
-    <h2 class="offer-headline">À la carte<br><em class="offer-em">add-ons.</em></h2>
-    <p class="plan-sub">Add to any tier, or run as one-offs.</p>
-  </div>
+  <div class="pkg">
+    <div class="pkg-intro rv">
+      <div class="pkg-eye">À la carte</div>
+      <h2 class="pkg-title">Add-ons.</h2>
+      <p class="pkg-lede">Add to any tier, or run as one-offs.</p>
+    </div>
 
-  <div class="addon-grid rv" style="max-width:900px;margin:3.5rem auto 0;">
-    <div class="addon-card">
-      <svg class="addon-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-        <circle cx="12" cy="13" r="4"></circle>
-      </svg>
-      <div class="addon-name">Extra production day</div>
-      <div class="addon-desc">One more day of photo and video on-site.</div>
+    <div class="pkg-addon rv">
+      <p class="pkg-addon-name">Extra production day.</p>
+      <p class="pkg-addon-desc">One more day of photo and video on-site.</p>
     </div>
-    <div class="addon-card">
-      <svg class="addon-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="23 7 16 12 23 17 23 7"></polygon>
-        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-      </svg>
-      <div class="addon-name">Event coverage</div>
-      <div class="addon-desc">Photo and video, live from your event.</div>
+    <div class="pkg-addon rv">
+      <p class="pkg-addon-name">Event coverage.</p>
+      <p class="pkg-addon-desc">Photo and video, live from your event.</p>
     </div>
-    <div class="addon-card">
-      <svg class="addon-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-        <line x1="8" y1="21" x2="16" y2="21"></line>
-        <line x1="12" y1="17" x2="12" y2="21"></line>
-      </svg>
-      <div class="addon-name">Website design</div>
-      <div class="addon-desc">A website. Menu, reservations, mobile.</div>
+    <div class="pkg-addon rv">
+      <p class="pkg-addon-name">Website design.</p>
+      <p class="pkg-addon-desc">A website. Menu, reservations, mobile.</p>
     </div>
   </div>
 </section>
