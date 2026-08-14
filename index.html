@@ -128,11 +128,26 @@
     #manifesto { background:var(--black); padding-top:10rem; padding-bottom:10rem;
       border-bottom:1px solid var(--border); }
     .mnf { max-width:960px; margin:0 auto; }
+    .mnf-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; margin-bottom:3.5rem;
+      display:flex; align-items:center; gap:0.9rem; }
+    .mnf-eye::before { content:''; width:22px; height:1px; background:var(--red); }
     .mnf-line { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:clamp(1.9rem, 4.4vw, 3.2rem); line-height:1.28; letter-spacing:-0.012em;
       color:var(--white); margin:0 0 2.2rem; max-width:840px; text-wrap:balance; }
+    .mnf-line em { font-style:normal; color:var(--white); }
     .mnf-line.dim { color:rgba(255,255,255,0.62); }
-    .mnf-line.closer { color:var(--white); margin-top:5.5rem; }
+    .mnf-line.closer { color:var(--white); }
+    .mnf-strip { display:flex; align-items:baseline; gap:3.5rem;
+      margin-top:5rem; padding-top:2.5rem; border-top:1px solid var(--border);
+      flex-wrap:wrap; }
+    .mnf-stat { display:flex; flex-direction:column; gap:0.35rem; }
+    .mnf-stat-n { font-size:1.55rem; font-weight:800; letter-spacing:-0.025em;
+      color:var(--white); font-variant-numeric:tabular-nums; line-height:1;
+      font-family:var(--sans); font-style:normal; }
+    .mnf-stat-n span { color:var(--red); }
+    .mnf-stat-l { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--muted); font-weight:600; }
 
     /* SERVICE TICKER (replaces client names) */
     .ticker-wrap { overflow:hidden; border-top:1px solid var(--border);
@@ -768,8 +783,9 @@
       h1{font-size:clamp(3rem,10vw,4.5rem)}
       .hero-sub{max-width:100%; font-size:1.05rem;}
       #manifesto{padding-top:6rem; padding-bottom:6rem}
+      .mnf-eye{margin-bottom:2.5rem}
       .mnf-line{font-size:clamp(1.55rem, 5.5vw, 2.2rem); line-height:1.32; margin-bottom:1.75rem}
-      .mnf-line.closer{margin-top:4rem}
+      .mnf-strip{gap:2.5rem; margin-top:3.5rem; padding-top:2rem}
       #problem,#about{grid-template-columns:1fr; gap:3rem}
       .roi-grid{grid-template-columns:1fr !important}
       .res-grid,.proc-grid{grid-template-columns:1fr}
@@ -799,7 +815,10 @@
       .hero-actions{gap:1.4rem;}
       .hero-link{font-size:0.95rem;}
       #manifesto{padding-top:5rem; padding-bottom:5rem}
-      .mnf-line.closer{margin-top:3rem}
+      .mnf-strip{gap:1.4rem 1.75rem; margin-top:3rem; padding-top:1.75rem}
+      .mnf-stat{flex:0 0 auto}
+      .mnf-stat-n{font-size:1.3rem}
+      .mnf-stat-l{font-size:0.6rem; letter-spacing:0.18em}
       h2{font-size:clamp(2.1rem,7.5vw,2.7rem); line-height:1.08;}
       .offer-headline{font-size:clamp(2rem,7.5vw,2.5rem); margin-bottom:1rem;}
       .plan-sub{font-size:1rem; line-height:1.6;}
@@ -881,9 +900,24 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- MANIFESTO -->
 <section id="manifesto">
   <div class="mnf">
+    <div class="mnf-eye rv">Why Palate</div>
     <p class="mnf-line rv">You built this place to feed people. To host them. To give them a night they'd remember.</p>
-    <p class="mnf-line rv d1 dim">We become the voice behind it. The story, the photos, the words that put your name in front of the people who'd love you if they knew you existed.</p>
+    <p class="mnf-line rv d1 dim">We become the voice behind it. <em>The story, the photos, the words</em> that put your name in front of the people who'd love you if they knew you existed.</p>
     <p class="mnf-line rv d2 closer">You perfect the plate. We carry the word.</p>
+    <div class="mnf-strip rv d3">
+      <div class="mnf-stat">
+        <span class="mnf-stat-n">4<span>+</span></span>
+        <span class="mnf-stat-l">Years in restaurant marketing</span>
+      </div>
+      <div class="mnf-stat">
+        <span class="mnf-stat-n">100<span>%</span></span>
+        <span class="mnf-stat-l">Done-for-you delivery</span>
+      </div>
+      <div class="mnf-stat">
+        <span class="mnf-stat-n">Millions</span>
+        <span class="mnf-stat-l">Of views generated</span>
+      </div>
+    </div>
   </div>
 </section>
 
