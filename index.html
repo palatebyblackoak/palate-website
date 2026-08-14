@@ -128,13 +128,11 @@
     #manifesto { background:var(--black); padding-top:10rem; padding-bottom:10rem;
       border-bottom:1px solid var(--border); }
     .mnf { max-width:960px; margin:0 auto; }
-    .mnf-open { font-family:var(--serif); font-style:italic; font-weight:400;
-      font-size:clamp(1.05rem, 1.4vw, 1.25rem); line-height:1.55; letter-spacing:0;
-      color:rgba(255,255,255,0.55); margin:0; max-width:520px; text-wrap:balance; }
     .mnf-line { font-family:var(--serif); font-style:italic; font-weight:400;
-      font-size:clamp(2.6rem, 6vw, 4.8rem); line-height:1.14; letter-spacing:-0.02em;
-      color:var(--white); margin:0; max-width:960px; text-wrap:balance; }
-    .mnf-line.closer { margin-top:9rem; }
+      font-size:clamp(1.9rem, 4.4vw, 3.2rem); line-height:1.28; letter-spacing:-0.012em;
+      color:var(--white); margin:0 0 2.2rem; max-width:840px; text-wrap:balance; }
+    .mnf-line.dim { color:rgba(255,255,255,0.62); }
+    .mnf-line.closer { color:var(--white); margin-top:5.5rem; }
 
     /* SERVICE TICKER (replaces client names) */
     .ticker-wrap { overflow:hidden; border-top:1px solid var(--border);
@@ -769,10 +767,9 @@
       section{padding:6rem 1.5rem} #hero{padding:7rem 1.5rem 5rem}
       h1{font-size:clamp(3rem,10vw,4.5rem)}
       .hero-sub{max-width:100%; font-size:1.05rem;}
-      #manifesto{padding-top:7rem; padding-bottom:7rem}
-      .mnf-open{font-size:1rem; line-height:1.55}
-      .mnf-line{font-size:clamp(2rem, 7vw, 3.2rem); line-height:1.18}
-      .mnf-line.closer{margin-top:6rem}
+      #manifesto{padding-top:6rem; padding-bottom:6rem}
+      .mnf-line{font-size:clamp(1.55rem, 5.5vw, 2.2rem); line-height:1.32; margin-bottom:1.75rem}
+      .mnf-line.closer{margin-top:4rem}
       #problem,#about{grid-template-columns:1fr; gap:3rem}
       .roi-grid{grid-template-columns:1fr !important}
       .res-grid,.proc-grid{grid-template-columns:1fr}
@@ -801,9 +798,8 @@
       .hero-sub{font-size:1.05rem; line-height:1.65; margin-bottom:2.4rem;}
       .hero-actions{gap:1.4rem;}
       .hero-link{font-size:0.95rem;}
-      #manifesto{padding-top:6rem; padding-bottom:6rem}
-      .mnf-open{font-size:0.95rem; line-height:1.55}
-      .mnf-line.closer{margin-top:4.5rem}
+      #manifesto{padding-top:5rem; padding-bottom:5rem}
+      .mnf-line.closer{margin-top:3rem}
       h2{font-size:clamp(2.1rem,7.5vw,2.7rem); line-height:1.08;}
       .offer-headline{font-size:clamp(2rem,7.5vw,2.5rem); margin-bottom:1rem;}
       .plan-sub{font-size:1rem; line-height:1.6;}
@@ -885,8 +881,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- MANIFESTO -->
 <section id="manifesto">
   <div class="mnf">
-    <p class="mnf-open rv">You built this place to feed people. To host them. To give them a night they'd remember.</p>
-    <p class="mnf-line rv d1 closer">You perfect the plate. We carry the word.</p>
+    <p class="mnf-line rv">You built this place to feed people. To host them. To give them a night they'd remember.</p>
+    <p class="mnf-line rv d1 dim">We become the voice behind it. The story, the photos, the words that put your name in front of the people who'd love you if they knew you existed.</p>
+    <p class="mnf-line rv d2 closer">You perfect the plate. We carry the word.</p>
   </div>
 </section>
 
