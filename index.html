@@ -689,6 +689,90 @@
       color:var(--muted); font-weight:500; }
 
     .cse-num.is-ready { opacity:1; }
+
+    /* CASE No. 01 — logo + growth chart per platform */
+    .cse-title-row { display:flex; align-items:center; gap:1.6rem;
+      margin-bottom:1.4rem; flex-wrap:wrap; }
+    .cse-logo { height:clamp(3rem, 5vw, 4.2rem); width:auto;
+      display:block; flex-shrink:0; }
+    .cse-title-row .cse-title { margin:0; }
+
+    .cse-platform { padding:5.5rem 0 5rem;
+      border-top:1px solid var(--border); }
+    .cse-platform:last-child { border-bottom:1px solid var(--border); }
+
+    .cse-chart { margin-bottom:3.5rem; }
+    .cse-chart-header { display:flex; align-items:baseline;
+      gap:1rem 1.4rem; flex-wrap:wrap; margin-bottom:2.4rem; }
+    .cse-chart-plat { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--red); font-weight:700; padding-top:1rem; position:relative; }
+    .cse-chart-plat::before { content:''; position:absolute; top:0; left:0;
+      width:22px; height:1px; background:var(--red); }
+    .cse-chart-hero { font-size:clamp(2.8rem, 6.5vw, 4.6rem); font-weight:800;
+      letter-spacing:-0.045em; line-height:1; color:var(--white);
+      font-variant-numeric:tabular-nums; margin-left:auto; white-space:nowrap;
+      display:inline-flex; align-items:baseline; }
+    .cse-chart-plus { color:var(--red); font-weight:700;
+      margin-right:0.02em; font-size:0.75em; }
+    .cse-chart-pct { color:rgba(255,255,255,0.55); font-weight:600;
+      font-size:0.5em; margin-left:0.03em; }
+    .cse-chart-hero-lbl { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; width:100%; padding-top:0.4rem; }
+
+    .cse-chart-svg { width:100%; height:clamp(180px, 25vw, 260px);
+      display:block; margin-bottom:0.9rem; }
+    .cse-chart-line { fill:none; stroke:var(--red); stroke-width:2.5;
+      stroke-linecap:round; stroke-linejoin:round;
+      stroke-dasharray:1; stroke-dashoffset:1;
+      transition:stroke-dashoffset 1900ms cubic-bezier(0.22,0.61,0.36,1) 200ms; }
+    .cse-chart-fill { opacity:0; transition:opacity 900ms ease 1400ms; }
+    .cse-chart-end { fill:var(--red); r:0;
+      transition:r 500ms cubic-bezier(0.34,1.56,0.64,1) 1900ms; }
+    .cse-platform.is-live .cse-chart-line { stroke-dashoffset:0; }
+    .cse-platform.is-live .cse-chart-fill { opacity:1; }
+    .cse-platform.is-live .cse-chart-end { r:6; }
+
+    .cse-chart-axis { display:flex; justify-content:space-between;
+      font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase;
+      color:var(--muted); font-weight:600;
+      padding-top:0.6rem; border-top:1px solid var(--border); }
+
+    .cse-stats { display:grid; grid-template-columns:repeat(4, 1fr);
+      gap:2rem 1.5rem; }
+    .cse-stat { position:relative; padding-top:1rem;
+      opacity:0; transform:translateY(10px);
+      transition:opacity 700ms ease, transform 700ms ease; }
+    .cse-stat::before { content:''; position:absolute; top:0; left:0;
+      width:22px; height:1px; background:var(--red); opacity:0.55; }
+    .cse-platform.is-live .cse-stat { opacity:1; transform:translateY(0); }
+    .cse-platform.is-live .cse-stat:nth-child(1) { transition-delay:2000ms; }
+    .cse-platform.is-live .cse-stat:nth-child(2) { transition-delay:2100ms; }
+    .cse-platform.is-live .cse-stat:nth-child(3) { transition-delay:2200ms; }
+    .cse-platform.is-live .cse-stat:nth-child(4) { transition-delay:2300ms; }
+    .cse-stat-val { font-size:1.85rem; font-weight:800; letter-spacing:-0.025em;
+      color:var(--white); font-variant-numeric:tabular-nums;
+      margin-bottom:0.4rem; line-height:1; }
+    .cse-stat-lbl { font-size:0.82rem; color:rgba(255,255,255,0.75);
+      font-weight:600; line-height:1.4; }
+
+    @media(max-width:520px){
+      .cse-title-row { gap:0.9rem; }
+      .cse-logo { height:2.4rem; }
+      .cse-chart-header { gap:0.8rem 1rem; }
+      .cse-chart-hero { margin-left:0; }
+      .cse-chart-hero-lbl { padding-top:0.2rem; }
+      .cse-stat-val { font-size:1.3rem; }
+      .cse-stat-lbl { font-size:0.75rem; }
+    }
+    @media(prefers-reduced-motion: reduce){
+      .cse-chart-line, .cse-chart-fill, .cse-chart-end,
+      .cse-stat { transition:none; }
+      .cse-platform.is-live .cse-chart-line { stroke-dashoffset:0; }
+      .cse-platform.is-live .cse-chart-fill { opacity:1; }
+      .cse-platform.is-live .cse-chart-end { r:6; }
+      .cse-stat { opacity:1; transform:none; }
+    }
+
     @media(max-width:900px){
       [id^="case-study"] { padding-top:6rem; padding-bottom:6rem; }
       .cse-lede { margin-bottom:3.5rem; }
@@ -697,6 +781,13 @@
       .cse-hero.twin .cse-hero-item + .cse-hero-item {
         border-top:1px solid var(--border); padding-top:2.5rem; margin-top:0.5rem; }
       .cse-strip { grid-template-columns:repeat(2, 1fr); gap:2rem 1.5rem; }
+      .cse-title-row { gap:1.2rem; margin-bottom:1.2rem; }
+      .cse-logo { height:clamp(2.4rem, 8vw, 3.2rem); }
+      .cse-platform { padding:3.5rem 0 3rem; }
+      .cse-chart-hero { font-size:clamp(2.2rem, 9vw, 3.4rem); }
+      .cse-chart { margin-bottom:2.5rem; }
+      .cse-stats { grid-template-columns:repeat(2, 1fr); gap:1.8rem 1.2rem; }
+      .cse-stat-val { font-size:1.5rem; }
     }
     @media(max-width:520px){
       .cse-num { font-size:clamp(3.4rem, 17vw, 5.4rem); letter-spacing:-0.04em;
@@ -1053,60 +1144,95 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <section id="case-study">
   <div class="cse">
     <div class="cse-eye rv"><span>Case No. 01</span><span class="sep">·</span><span>December 2025</span></div>
-    <h2 class="cse-title rv">El Taco<br><em>Mañanero</em></h2>
+    <div class="cse-title-row rv">
+      <img class="cse-logo" src="media/etm-logo.png" alt="El Taco Mañanero" loading="lazy">
+      <h2 class="cse-title">El Taco<br><em>Mañanero</em></h2>
+    </div>
     <p class="cse-lede rv">One month of full-service social media across Facebook and Instagram. From zero brand momentum to eight-figure impressions.</p>
 
-    <div class="cse-hero twin rv">
-      <div class="cse-hero-item">
-        <div class="cse-plat">Facebook</div>
-        <div class="cse-num"><span class="cse-n" data-target="7.9" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
-        <div class="cse-num-lbl">Views</div>
-        <div class="cse-num-sub">+17,100% growth</div>
+    <div class="cse-platform" data-cse-platform>
+      <div class="cse-chart">
+        <div class="cse-chart-header">
+          <span class="cse-chart-plat">Facebook</span>
+          <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="17100" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
+          <span class="cse-chart-hero-lbl">Growth in thirty days</span>
+        </div>
+        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="fbFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="cse-chart-fill" fill="url(#fbFill)" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20 L 800,240 L 0,240 Z"/>
+          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20"/>
+          <circle class="cse-chart-end" cx="800" cy="20"/>
+        </svg>
+        <div class="cse-chart-axis">
+          <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+        </div>
       </div>
-      <div class="cse-hero-item">
-        <div class="cse-plat">Instagram</div>
-        <div class="cse-num"><span class="cse-n" data-target="1.1" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
-        <div class="cse-num-lbl">Views</div>
-        <div class="cse-num-sub">+3,700% growth</div>
+
+      <div class="cse-stats">
+        <div class="cse-stat">
+          <div class="cse-stat-val">7.9M</div>
+          <div class="cse-stat-lbl">Total Views</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">6.0M</div>
+          <div class="cse-stat-lbl">Unique Viewers</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">48.9K</div>
+          <div class="cse-stat-lbl">Profile Visits</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">6,200</div>
+          <div class="cse-stat-lbl">New Followers</div>
+        </div>
       </div>
     </div>
 
-    <div class="cse-strip rv">
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Facebook</div>
-        <div class="cse-strip-val">6.0<span>M</span></div>
-        <div class="cse-strip-lbl">Viewers</div>
-        <div class="cse-strip-note">+56,100%</div>
+    <div class="cse-platform" data-cse-platform>
+      <div class="cse-chart">
+        <div class="cse-chart-header">
+          <span class="cse-chart-plat">Instagram</span>
+          <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="3700" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
+          <span class="cse-chart-hero-lbl">Growth in thirty days</span>
+        </div>
+        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="igFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="cse-chart-fill" fill="url(#igFill)" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40 L 800,240 L 0,240 Z"/>
+          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40"/>
+          <circle class="cse-chart-end" cx="800" cy="40"/>
+        </svg>
+        <div class="cse-chart-axis">
+          <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+        </div>
       </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Facebook</div>
-        <div class="cse-strip-val">48.9<span>K</span></div>
-        <div class="cse-strip-lbl">Profile Visits</div>
-        <div class="cse-strip-note">+990%</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Facebook</div>
-        <div class="cse-strip-val">6.2<span>K</span></div>
-        <div class="cse-strip-lbl">New Followers</div>
-        <div class="cse-strip-note">+14,200%</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Instagram</div>
-        <div class="cse-strip-val">871.8<span>K</span></div>
-        <div class="cse-strip-lbl">Reach</div>
-        <div class="cse-strip-note">+43,200%</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Instagram</div>
-        <div class="cse-strip-val">2.5<span>K</span></div>
-        <div class="cse-strip-lbl">Profile Visits</div>
-        <div class="cse-strip-note">+484.4%</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Instagram</div>
-        <div class="cse-strip-val">286</div>
-        <div class="cse-strip-lbl">New Followers</div>
-        <div class="cse-strip-note">+766.7%</div>
+
+      <div class="cse-stats">
+        <div class="cse-stat">
+          <div class="cse-stat-val">1.1M</div>
+          <div class="cse-stat-lbl">Total Views</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">871.8K</div>
+          <div class="cse-stat-lbl">Reach</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">2,500</div>
+          <div class="cse-stat-lbl">Profile Visits</div>
+        </div>
+        <div class="cse-stat">
+          <div class="cse-stat-val">286</div>
+          <div class="cse-stat-lbl">New Followers</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1560,6 +1686,16 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       });
     }, { threshold: 0.35 });
     nums.forEach(n => numObs.observe(n));
+
+    const pls = document.querySelectorAll('[data-cse-platform]');
+    if (pls.length) {
+      const plIo = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-live'); plIo.unobserve(e.target); }
+        });
+      }, { threshold: 0.25 });
+      pls.forEach(p => plIo.observe(p));
+    }
   })();
 
   /* TESTIMONIALS — editorial crossfade */
