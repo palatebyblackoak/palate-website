@@ -690,6 +690,34 @@
 
     .cse-num.is-ready { opacity:1; }
 
+    /* CASE STUDY — hero photograph per case */
+    .cse-hero-photo { position:relative; width:100%; aspect-ratio:21/9;
+      margin:0 0 5rem; overflow:hidden; background:var(--black-2); }
+    .cse-hero-photo img { position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; display:block; transition:transform 1.6s var(--ease); }
+    .cse-hero-photo:hover img { transform:scale(1.02); }
+    .cse-hero-photo::after { content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%);
+      pointer-events:none; z-index:1; }
+    .cse-hero-photo-cap { position:absolute; bottom:2rem; left:2.5rem; z-index:2;
+      font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase;
+      color:rgba(255,255,255,0.92); font-weight:700; margin:0; }
+    .cse-hero-photo-cap::before { content:''; display:inline-block; width:22px; height:1px;
+      background:var(--red); vertical-align:middle; margin-right:0.75rem; }
+    .cse-hero-photo.is-placeholder::before { content:''; position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, transparent 45%, rgba(255,255,255,0.025) 50%, transparent 55%),
+        linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.025) 50%, transparent 55%);
+      background-size:36px 36px; }
+    @media(max-width:900px){
+      .cse-hero-photo { aspect-ratio:16/10; margin-bottom:3.5rem; }
+      .cse-hero-photo-cap { bottom:1.2rem; left:1.4rem; font-size:0.64rem; letter-spacing:0.2em; }
+    }
+    @media(max-width:520px){
+      .cse-hero-photo { aspect-ratio:4/5; margin-bottom:2.5rem; }
+      .cse-hero-photo-cap { bottom:1rem; left:1rem; font-size:0.58rem; }
+    }
+
     /* CASE STUDY — chapters (Case No. 01) */
     .cse-chapters { display:flex; flex-direction:column; margin:0 0 3.5rem; }
     .cse-chapter { padding:4.5rem 0; border-top:1px solid var(--border);
@@ -704,6 +732,10 @@
       font-variant-numeric:tabular-nums; display:flex; align-items:baseline; }
     .cse-ch-x { font-weight:300; color:rgba(255,255,255,0.42);
       font-size:0.5em; margin-right:0.02em; letter-spacing:-0.02em; }
+    .cse-ch-suffix { font-weight:600; color:rgba(255,255,255,0.55);
+      font-size:0.5em; margin-left:0.04em; letter-spacing:-0.02em; }
+    .cse-ch-prefix { font-weight:300; color:rgba(255,255,255,0.55);
+      font-size:0.55em; margin-right:0.02em; letter-spacing:-0.02em; }
 
     .cse-ch-mult-lbl { font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase;
       color:var(--muted); font-weight:700; margin-top:1.4rem; }
@@ -1115,6 +1147,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="cse-title rv">El Taco<br><em>Mañanero</em></h2>
     <p class="cse-lede rv">One month of full-service social media across Facebook and Instagram. From zero brand momentum to eight-figure impressions.</p>
 
+    <figure class="cse-hero-photo rv">
+      <img src="media/photo-1.png" alt="El Taco Mañanero Lochecitos" loading="lazy">
+      <figcaption class="cse-hero-photo-cap">El Taco Mañanero</figcaption>
+    </figure>
+
     <div class="cse-chapters">
       <article class="cse-chapter" data-cse-chapter>
         <div class="cse-ch-plat">Facebook</div>
@@ -1150,31 +1187,23 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="cse-title rv">Howling Rabbits<br><em>Beerworks</em></h2>
     <p class="cse-lede rv">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
 
-    <div class="cse-hero rv">
-      <div class="cse-hero-item">
-        <div class="cse-plat">Total Reach</div>
-        <div class="cse-num"><span class="cse-n" data-target="200" data-decimals="0">0</span><span class="cse-num-suffix">K+</span></div>
-        <div class="cse-num-lbl">Views</div>
-        <div class="cse-num-sub">1 collab · 4 posts · organic</div>
-      </div>
-    </div>
+    <figure class="cse-hero-photo rv">
+      <img src="media/photo-9.jpg" alt="Howling Rabbits Bartender" loading="lazy">
+      <figcaption class="cse-hero-photo-cap">Howling Rabbits</figcaption>
+    </figure>
 
-    <div class="cse-strip rv">
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">20<span>×</span></div>
-        <div class="cse-strip-lbl">More Engagement</div>
-        <div class="cse-strip-note">vs. standard posts</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">60<span>%+</span></div>
-        <div class="cse-strip-lbl">New Audience</div>
-        <div class="cse-strip-note">Never seen brand before</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">50.5<span>K</span></div>
-        <div class="cse-strip-lbl">Top Post Reach</div>
-        <div class="cse-strip-note">Organic · no paid</div>
-      </div>
+    <div class="cse-chapters">
+      <article class="cse-chapter" data-cse-chapter>
+        <div class="cse-ch-plat">Organic Collab</div>
+        <div class="cse-ch-mult"><span class="cse-ch-x">×</span><span class="cse-n" data-target="20" data-decimals="0">0</span></div>
+        <div class="cse-ch-mult-lbl">More engagement than standard posts</div>
+        <div class="cse-ch-rule"></div>
+        <div class="cse-ch-total">
+          <span class="cse-ch-total-val"><span class="cse-n" data-target="200" data-decimals="0">0</span><span class="cse-ch-total-suffix">K+</span></span>
+          <span class="cse-ch-total-lbl">Total Reach</span>
+        </div>
+        <p class="cse-ch-story">60%+ of viewers new to the brand. 50.5K reach on the top post. Four posts, zero paid.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1186,46 +1215,34 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="cse-title rv">LUMA<br><em>Cocktail Lounge</em></h2>
     <p class="cse-lede rv">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window, shown side by side.</p>
 
-    <div class="cse-hero twin rv">
-      <div class="cse-hero-item">
-        <div class="cse-plat">Paid Ads</div>
-        <div class="cse-num"><span class="cse-n" data-target="1.7" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
-        <div class="cse-num-lbl">Total Impressions</div>
-        <div class="cse-num-sub">May '25 to Mar '26</div>
-      </div>
-      <div class="cse-hero-item">
-        <div class="cse-plat">Organic</div>
-        <div class="cse-num"><span class="cse-n" data-target="824" data-decimals="0">0</span><span class="cse-num-suffix">K</span></div>
-        <div class="cse-num-lbl">Views</div>
-        <div class="cse-num-sub">+46.4% growth</div>
-      </div>
-    </div>
+    <figure class="cse-hero-photo is-placeholder rv">
+      <figcaption class="cse-hero-photo-cap">LUMA</figcaption>
+    </figure>
 
-    <div class="cse-strip rv">
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Paid</div>
-        <div class="cse-strip-val">379<span>K+</span></div>
-        <div class="cse-strip-lbl">Unique People Reached</div>
-        <div class="cse-strip-note">Across FB + IG</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Paid</div>
-        <div class="cse-strip-val">10<span>&nbsp;mo</span></div>
-        <div class="cse-strip-lbl">Campaign Duration</div>
-        <div class="cse-strip-note">Full management</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Organic</div>
-        <div class="cse-strip-val">7.2<span>K</span></div>
-        <div class="cse-strip-lbl">Followers Built</div>
-        <div class="cse-strip-note">4.6K IG · 2.6K FB</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-plat">Organic</div>
-        <div class="cse-strip-val">90<span>&nbsp;days</span></div>
-        <div class="cse-strip-lbl">Content Window</div>
-        <div class="cse-strip-note">Content only</div>
-      </div>
+    <div class="cse-chapters">
+      <article class="cse-chapter" data-cse-chapter>
+        <div class="cse-ch-plat">Paid Ads</div>
+        <div class="cse-ch-mult"><span class="cse-n" data-target="1.7" data-decimals="1">0.0</span><span class="cse-ch-suffix">M</span></div>
+        <div class="cse-ch-mult-lbl">Total impressions across FB + IG</div>
+        <div class="cse-ch-rule"></div>
+        <div class="cse-ch-total">
+          <span class="cse-ch-total-val"><span class="cse-n" data-target="379" data-decimals="0">0</span><span class="cse-ch-total-suffix">K+</span></span>
+          <span class="cse-ch-total-lbl">Unique People Reached</span>
+        </div>
+        <p class="cse-ch-story">Full paid program from opening day. May 2025 through March 2026. Ten months, continuous.</p>
+      </article>
+
+      <article class="cse-chapter" data-cse-chapter>
+        <div class="cse-ch-plat">Organic</div>
+        <div class="cse-ch-mult"><span class="cse-n" data-target="824" data-decimals="0">0</span><span class="cse-ch-suffix">K</span></div>
+        <div class="cse-ch-mult-lbl">Views in ninety days</div>
+        <div class="cse-ch-rule"></div>
+        <div class="cse-ch-total">
+          <span class="cse-ch-total-val"><span class="cse-n" data-target="7.2" data-decimals="1">0.0</span><span class="cse-ch-total-suffix">K</span></span>
+          <span class="cse-ch-total-lbl">New Followers Built</span>
+        </div>
+        <p class="cse-ch-story">4.6K new on Instagram. 2.6K on Facebook. +46.4% follower growth.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1237,31 +1254,23 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="cse-title rv">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
     <p class="cse-lede rv">Build a following fast without blowing the budget. Five hundred dollars, thirty days, a dime per follower.</p>
 
-    <div class="cse-hero rv">
-      <div class="cse-hero-item">
-        <div class="cse-plat">Paid Campaign</div>
-        <div class="cse-num"><span class="cse-n" data-target="5100" data-decimals="0" data-comma="1">0</span><span class="cse-num-suffix">+</span></div>
-        <div class="cse-num-lbl">New Followers</div>
-        <div class="cse-num-sub">30 days · $500 budget · $0.10 per follower</div>
-      </div>
-    </div>
+    <figure class="cse-hero-photo rv">
+      <img src="media/photo-11.jpg" alt="Smokin' Moon BBQ Spread" loading="lazy">
+      <figcaption class="cse-hero-photo-cap">Smokin' Moon</figcaption>
+    </figure>
 
-    <div class="cse-strip rv">
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">$500</div>
-        <div class="cse-strip-lbl">Total Ad Budget</div>
-        <div class="cse-strip-note">Full campaign</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">$0.10</div>
-        <div class="cse-strip-lbl">Cost Per Follower</div>
-        <div class="cse-strip-note">Blended paid CPA</div>
-      </div>
-      <div class="cse-strip-item">
-        <div class="cse-strip-val">30<span>&nbsp;days</span></div>
-        <div class="cse-strip-lbl">Campaign Duration</div>
-        <div class="cse-strip-note">Zero to results</div>
-      </div>
+    <div class="cse-chapters">
+      <article class="cse-chapter" data-cse-chapter>
+        <div class="cse-ch-plat">Paid Campaign</div>
+        <div class="cse-ch-mult"><span class="cse-n" data-target="5100" data-decimals="0" data-comma="1">0</span><span class="cse-ch-suffix">+</span></div>
+        <div class="cse-ch-mult-lbl">New followers in thirty days</div>
+        <div class="cse-ch-rule"></div>
+        <div class="cse-ch-total">
+          <span class="cse-ch-total-val"><span class="cse-ch-prefix">$</span><span class="cse-n" data-target="500" data-decimals="0">0</span></span>
+          <span class="cse-ch-total-lbl">Total Ad Budget</span>
+        </div>
+        <p class="cse-ch-story">$0.10 blended cost per follower. Zero to results in thirty days.</p>
+      </article>
     </div>
   </div>
 </section>
