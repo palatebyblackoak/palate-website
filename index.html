@@ -689,65 +689,6 @@
       color:var(--muted); font-weight:500; }
 
     .cse-num.is-ready { opacity:1; }
-
-    /* CASE STUDY — chapters (Case No. 01) */
-    .cse-chapters { display:flex; flex-direction:column; margin:0 0 3.5rem; }
-    .cse-chapter { padding:4.5rem 0; border-top:1px solid var(--border);
-      position:relative; }
-    .cse-chapter:last-child { border-bottom:1px solid var(--border); }
-
-    .cse-ch-plat { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
-      color:var(--red); font-weight:700; margin-bottom:2.4rem; }
-
-    .cse-ch-mult { font-size:clamp(5.5rem, 17vw, 14rem); font-weight:800;
-      letter-spacing:-0.06em; line-height:0.82; color:var(--white);
-      font-variant-numeric:tabular-nums; display:flex; align-items:baseline; }
-    .cse-ch-x { font-weight:300; color:rgba(255,255,255,0.42);
-      font-size:0.5em; margin-right:0.02em; letter-spacing:-0.02em; }
-
-    .cse-ch-mult-lbl { font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; margin-top:1.4rem; }
-
-    .cse-ch-rule { width:0; height:1px; background:var(--red); opacity:0.65;
-      margin:2.6rem 0 2.2rem;
-      transition:width 1000ms cubic-bezier(0.22,0.61,0.36,1) 700ms; }
-    .cse-chapter.is-live .cse-ch-rule { width:min(420px, 60%); }
-
-    .cse-ch-total { display:flex; align-items:baseline; gap:1rem;
-      flex-wrap:wrap; margin-bottom:1.8rem; }
-    .cse-ch-total-val { font-size:2.2rem; font-weight:800; letter-spacing:-0.03em;
-      line-height:1; color:var(--white); font-variant-numeric:tabular-nums;
-      display:inline-flex; align-items:baseline; }
-    .cse-ch-total-suffix { font-size:0.55em; color:rgba(255,255,255,0.6);
-      font-weight:600; margin-left:0.05em; }
-    .cse-ch-total-lbl { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; padding-left:1rem;
-      border-left:1px solid var(--border); }
-
-    .cse-ch-story { font-size:0.98rem; color:rgba(255,255,255,0.72); line-height:1.75;
-      max-width:520px; margin:0; font-weight:400;
-      opacity:0; transform:translateY(8px);
-      transition:opacity 800ms ease 1500ms, transform 800ms ease 1500ms; }
-    .cse-chapter.is-live .cse-ch-story { opacity:1; transform:translateY(0); }
-
-    @media(max-width:900px){
-      .cse-chapter { padding:3rem 0; }
-      .cse-ch-mult { font-size:clamp(4.5rem, 20vw, 8rem); }
-      .cse-ch-rule { margin:2.2rem 0 1.8rem; }
-      .cse-ch-total-val { font-size:1.85rem; }
-      .cse-ch-total-lbl { padding-left:0; border-left:none; }
-    }
-    @media(max-width:520px){
-      .cse-ch-mult { font-size:clamp(4rem, 24vw, 7rem); }
-      .cse-ch-plat { margin-bottom:1.8rem; }
-    }
-    @media(prefers-reduced-motion: reduce){
-      .cse-chapter .cse-ch-rule,
-      .cse-chapter .cse-ch-story { transition:none; }
-      .cse-chapter.is-live .cse-ch-rule { width:min(420px, 60%); }
-      .cse-chapter .cse-ch-story { opacity:1; transform:none; }
-    }
-
     @media(max-width:900px){
       [id^="case-study"] { padding-top:6rem; padding-bottom:6rem; }
       .cse-lede { margin-bottom:3.5rem; }
@@ -1115,30 +1056,58 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="cse-title rv">El Taco<br><em>Mañanero</em></h2>
     <p class="cse-lede rv">One month of full-service social media across Facebook and Instagram. From zero brand momentum to eight-figure impressions.</p>
 
-    <div class="cse-chapters">
-      <article class="cse-chapter" data-cse-chapter>
-        <div class="cse-ch-plat">Facebook</div>
-        <div class="cse-ch-mult"><span class="cse-ch-x">×</span><span class="cse-n" data-target="172" data-decimals="0">0</span></div>
-        <div class="cse-ch-mult-lbl">Growth in thirty days</div>
-        <div class="cse-ch-rule"></div>
-        <div class="cse-ch-total">
-          <span class="cse-ch-total-val"><span class="cse-n" data-target="7.9" data-decimals="1">0.0</span><span class="cse-ch-total-suffix">M</span></span>
-          <span class="cse-ch-total-lbl">Total Views</span>
-        </div>
-        <p class="cse-ch-story">6.0M unique viewers. 48.9K profile visits. 6,200 new followers.</p>
-      </article>
+    <div class="cse-hero twin rv">
+      <div class="cse-hero-item">
+        <div class="cse-plat">Facebook</div>
+        <div class="cse-num"><span class="cse-n" data-target="7.9" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">+17,100% growth</div>
+      </div>
+      <div class="cse-hero-item">
+        <div class="cse-plat">Instagram</div>
+        <div class="cse-num"><span class="cse-n" data-target="1.1" data-decimals="1">0.0</span><span class="cse-num-suffix">M</span></div>
+        <div class="cse-num-lbl">Views</div>
+        <div class="cse-num-sub">+3,700% growth</div>
+      </div>
+    </div>
 
-      <article class="cse-chapter" data-cse-chapter>
-        <div class="cse-ch-plat">Instagram</div>
-        <div class="cse-ch-mult"><span class="cse-ch-x">×</span><span class="cse-n" data-target="38" data-decimals="0">0</span></div>
-        <div class="cse-ch-mult-lbl">Growth in thirty days</div>
-        <div class="cse-ch-rule"></div>
-        <div class="cse-ch-total">
-          <span class="cse-ch-total-val"><span class="cse-n" data-target="1.1" data-decimals="1">0.0</span><span class="cse-ch-total-suffix">M</span></span>
-          <span class="cse-ch-total-lbl">Total Views</span>
-        </div>
-        <p class="cse-ch-story">871.8K reach. 2,500 profile visits. 286 new followers.</p>
-      </article>
+    <div class="cse-strip rv">
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">6.0<span>M</span></div>
+        <div class="cse-strip-lbl">Viewers</div>
+        <div class="cse-strip-note">+56,100%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">48.9<span>K</span></div>
+        <div class="cse-strip-lbl">Profile Visits</div>
+        <div class="cse-strip-note">+990%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Facebook</div>
+        <div class="cse-strip-val">6.2<span>K</span></div>
+        <div class="cse-strip-lbl">New Followers</div>
+        <div class="cse-strip-note">+14,200%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">871.8<span>K</span></div>
+        <div class="cse-strip-lbl">Reach</div>
+        <div class="cse-strip-note">+43,200%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">2.5<span>K</span></div>
+        <div class="cse-strip-lbl">Profile Visits</div>
+        <div class="cse-strip-note">+484.4%</div>
+      </div>
+      <div class="cse-strip-item">
+        <div class="cse-strip-plat">Instagram</div>
+        <div class="cse-strip-val">286</div>
+        <div class="cse-strip-lbl">New Followers</div>
+        <div class="cse-strip-note">+766.7%</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1591,16 +1560,6 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       });
     }, { threshold: 0.35 });
     nums.forEach(n => numObs.observe(n));
-
-    const chs = document.querySelectorAll('[data-cse-chapter]');
-    if (chs.length) {
-      const chIo = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('is-live'); chIo.unobserve(e.target); }
-        });
-      }, { threshold: 0.3 });
-      chs.forEach(c => chIo.observe(c));
-    }
   })();
 
   /* TESTIMONIALS — editorial crossfade */
