@@ -556,20 +556,35 @@
     #cta .cta-fine { margin-top:1.2rem; font-size:0.78rem; color:rgba(255,255,255,0.5);
       letter-spacing:0.08em; text-transform:uppercase; }
 
-    /* MEDIA — one piece at a time */
-    #media { background:var(--black); padding:12rem 0 14rem; overflow:hidden; }
-    .ive-piece { max-width:1240px; margin:0 auto; padding:0 4rem 12rem; }
-    .ive-piece:last-child { padding-bottom:0; }
-    .ive-frame { width:100%; margin-bottom:1.8rem; overflow:hidden; background:var(--black-2); }
-    .ive-frame img { display:block; width:100%; height:auto; }
-    .ive-cap { font-size:0.82rem; color:rgba(255,255,255,0.5); letter-spacing:0.01em;
-      font-weight:400; margin:0; }
+    /* MEDIA — three horizontal decks */
+    #media { background:var(--black); padding:9rem 0 10rem; overflow:hidden; }
+    .deck-hd { max-width:1240px; margin:0 auto 4rem; padding:0 4rem; }
+    .deck-hd h2 { font-size:clamp(1.2rem,2.4vw,1.6rem); font-weight:400;
+      color:rgba(255,255,255,0.6); letter-spacing:-0.01em; margin:0; }
+    .deck-row { margin-bottom:4.5rem; }
+    .deck-row:last-child { margin-bottom:0; }
+    .deck-label { max-width:1240px; margin:0 auto 1.2rem; padding:0 4rem;
+      font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:rgba(255,255,255,0.45); font-weight:600; }
+    .deck { display:flex; gap:1.25rem; padding:0 4rem 1rem;
+      overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .deck::-webkit-scrollbar { display:none; }
+    .deck-item { flex:0 0 auto; height:52vh; max-height:520px; min-height:340px;
+      background:var(--black-2); overflow:hidden;
+      scroll-snap-align:center; position:relative; }
+    .deck-item img { display:block; height:100%; width:auto; }
+    .deck-video-item { aspect-ratio:9/16; }
+    .deck-video-item video { width:100%; height:100%; object-fit:cover;
+      display:block; background:#000; }
 
     @media(max-width:960px){
-      #media { padding:7rem 0 8rem; }
-      .ive-piece { padding:0 1.5rem 7rem; }
-      .ive-frame { margin-bottom:1.3rem; }
-      .ive-cap { font-size:0.78rem; }
+      #media { padding:6rem 0 6rem; }
+      .deck-hd { padding:0 1.5rem; margin-bottom:2.5rem; }
+      .deck-row { margin-bottom:3.5rem; }
+      .deck-label { padding:0 1.5rem; margin-bottom:0.9rem; }
+      .deck { padding:0 1.5rem 0.75rem; gap:0.85rem; }
+      .deck-item { height:44vh; max-height:440px; min-height:280px; }
     }
 
     /* CASE STUDY — editorial */
@@ -986,40 +1001,45 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- MEDIA -->
 <section id="media">
-  <figure class="ive-piece rv">
-    <div class="ive-frame">
-      <img src="media/photo-11.jpg" alt="Smokin' Moon BBQ spread" loading="lazy">
-    </div>
-    <figcaption class="ive-cap">Smokin' Moon. BBQ &amp; Beer Garden.</figcaption>
-  </figure>
+  <div class="deck-hd rv">
+    <h2>Our work.</h2>
+  </div>
 
-  <figure class="ive-piece rv">
-    <div class="ive-frame">
-      <img src="media/graphic-15.png" alt="LUMA La Mundanza cocktail" loading="lazy">
+  <div class="deck-row rv">
+    <div class="deck-label">Photography</div>
+    <div class="deck">
+      <figure class="deck-item"><img src="media/photo-11.jpg" alt="Smokin' Moon BBQ spread" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/photo-9.jpg" alt="Howling Rabbits bartender" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/photo-8.jpg" alt="Smokin' Moon BBQ and tacos" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/photo-3.png" alt="Wings Stadium ribs" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/photo-4.png" alt="Santa Fe pot pie" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/photo-1.png" alt="El Taco Mañanero lochecitos" loading="lazy"></figure>
     </div>
-    <figcaption class="ive-cap">LUMA. Cocktail Lounge.</figcaption>
-  </figure>
+  </div>
 
-  <figure class="ive-piece rv">
-    <div class="ive-frame">
-      <img src="media/photo-9.jpg" alt="Howling Rabbits bartender" loading="lazy">
+  <div class="deck-row rv">
+    <div class="deck-label">Design</div>
+    <div class="deck">
+      <figure class="deck-item"><img src="media/graphic-15.png" alt="LUMA La Mundanza" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Cupid's Love" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-11.png" alt="LUMA Long Ireland Ice Tea" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-17.png" alt="LUMA Bad Bunny Brunch" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-1.png" alt="Santa Fe Beef Filet" loading="lazy"></figure>
     </div>
-    <figcaption class="ive-cap">Howling Rabbits. Beerworks.</figcaption>
-  </figure>
+  </div>
 
-  <figure class="ive-piece rv">
-    <div class="ive-frame">
-      <img src="media/photo-1.png" alt="El Taco Mañanero lochecitos" loading="lazy">
+  <div class="deck-row rv">
+    <div class="deck-label">Video</div>
+    <div class="deck">
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-1.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-3.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-5.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-6.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-7.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-9.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video controls preload="metadata" playsinline><source src="media/reel-11.mp4" type="video/mp4"></video></figure>
     </div>
-    <figcaption class="ive-cap">El Taco Mañanero. Taquería.</figcaption>
-  </figure>
-
-  <figure class="ive-piece rv">
-    <div class="ive-frame">
-      <img src="media/photo-3.png" alt="The Wings Stadium ribs" loading="lazy">
-    </div>
-    <figcaption class="ive-cap">The Wings Stadium.</figcaption>
-  </figure>
+  </div>
 </section>
 
 <!-- CASE STUDY: EL TACO MAÑANERO -->
