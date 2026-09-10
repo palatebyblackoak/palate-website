@@ -574,6 +574,8 @@
       background:var(--black-2); overflow:hidden;
       scroll-snap-align:center; position:relative; }
     .deck-item img { display:block; height:100%; width:auto; }
+    .deck-photo-item { aspect-ratio:4/5; }
+    .deck-photo-item img { width:100%; height:100%; object-fit:cover; }
     .deck-video-item { aspect-ratio:9/16; }
     .deck-video-item video { width:100%; height:100%; object-fit:cover;
       display:block; background:#000; }
@@ -1006,29 +1008,6 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 
   <div class="deck-row rv">
-    <div class="deck-label">Photography</div>
-    <div class="deck">
-      <figure class="deck-item"><img src="media/photo-11.jpg" alt="Smokin' Moon BBQ spread" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/photo-9.jpg" alt="Howling Rabbits bartender" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/photo-8.jpg" alt="Smokin' Moon BBQ and tacos" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/photo-3.png" alt="Wings Stadium ribs" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/photo-4.png" alt="Santa Fe pot pie" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/photo-1.png" alt="El Taco Mañanero lochecitos" loading="lazy"></figure>
-    </div>
-  </div>
-
-  <div class="deck-row rv">
-    <div class="deck-label">Design</div>
-    <div class="deck">
-      <figure class="deck-item"><img src="media/graphic-15.png" alt="LUMA La Mundanza" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Cupid's Love" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-11.png" alt="LUMA Long Ireland Ice Tea" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-17.png" alt="LUMA Bad Bunny Brunch" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-1.png" alt="Santa Fe Beef Filet" loading="lazy"></figure>
-    </div>
-  </div>
-
-  <div class="deck-row rv">
     <div class="deck-label">Video</div>
     <div class="deck">
       <figure class="deck-item deck-video-item"><video autoplay muted loop playsinline preload="metadata" poster="media/reel-1-poster.jpg"><source src="media/reel-1.mp4" type="video/mp4"></video></figure>
@@ -1038,6 +1017,43 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="deck-item deck-video-item"><video autoplay muted loop playsinline preload="metadata" poster="media/reel-7-poster.jpg"><source src="media/reel-7.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video autoplay muted loop playsinline preload="metadata" poster="media/reel-9-poster.jpg"><source src="media/reel-9.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video autoplay muted loop playsinline preload="metadata" poster="media/reel-11-poster.jpg"><source src="media/reel-11.mp4" type="video/mp4"></video></figure>
+    </div>
+  </div>
+
+  <div class="deck-row rv">
+    <div class="deck-label">Design</div>
+    <div class="deck">
+      <figure class="deck-item"><img src="media/graphic-1.png" alt="Santa Fe Beef Filet" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-2.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-3.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-4.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-5.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-6.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-7.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Cupid's Love" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-9.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-10.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-11.png" alt="LUMA Long Ireland Ice Tea" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-12.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-13.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-14.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-15.png" alt="LUMA La Mundanza" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-16.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-17.png" alt="LUMA Bad Bunny Brunch" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-18.png" alt="Restaurant design" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-19.png" alt="Restaurant design" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="deck-row rv">
+    <div class="deck-label">Photography</div>
+    <div class="deck">
+      <figure class="deck-item deck-photo-item"><img src="media/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-3.png" alt="Wings Stadium loaded nachos" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-4.png" alt="Santa Fe seafood pasta" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-1.png" alt="El Taco Mañanero tacos" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-9.jpg" alt="Smokin' Moon spread on a wooden board" loading="lazy"></figure>
     </div>
   </div>
 </section>
