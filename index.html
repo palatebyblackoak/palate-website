@@ -353,10 +353,12 @@
       background:var(--red); }
     .clo-lede { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:clamp(1.75rem, 3.8vw, 2.7rem); line-height:1.3; letter-spacing:-0.012em;
-      color:var(--white); margin:0 0 2.5rem; text-wrap:balance; }
+      color:var(--white); margin:0 0 1.8rem; text-wrap:balance; }
     .clo-lede em { font-style:normal; color:var(--red); font-weight:500; }
-    .clo-meta { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
-      color:var(--muted); font-weight:600; margin:0 0 3rem; }
+    .clo-body { font-size:1.02rem; color:rgba(255,255,255,0.72); line-height:1.75;
+      max-width:560px; margin:0 auto 3rem; font-weight:400; }
+    .clo-meta { font-size:0.82rem; color:rgba(255,255,255,0.5); letter-spacing:0.01em;
+      font-weight:400; margin:1.4rem 0 0; }
     .clo-btn { display:inline-block; background:var(--white); color:#111;
       padding:1.15rem 2.5rem; border-radius:100px; text-decoration:none;
       font-weight:600; font-size:1rem; letter-spacing:-0.01em;
@@ -367,8 +369,9 @@
     @media(max-width:700px){
       #closing { padding-top:5.5rem; padding-bottom:5.5rem; }
       .clo-eye { margin-bottom:2rem; }
-      .clo-lede { font-size:clamp(1.4rem, 5.8vw, 1.95rem); margin-bottom:2rem; }
-      .clo-meta { font-size:0.62rem; letter-spacing:0.18em; margin-bottom:2.25rem; }
+      .clo-lede { font-size:clamp(1.4rem, 5.8vw, 1.95rem); margin-bottom:1.4rem; }
+      .clo-body { font-size:0.96rem; line-height:1.65; margin-bottom:2.25rem; }
+      .clo-meta { font-size:0.78rem; margin-top:1.1rem; }
     }
 
 
@@ -1492,9 +1495,10 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <section id="closing">
   <div class="clo rv">
     <div class="clo-eye">Let's talk</div>
-    <p class="clo-lede">Skip the <em>$5k hire.</em> Get one team for strategy, content, social, paid, and web. <em>From $1.5k.</em></p>
-    <p class="clo-meta">Full-service restaurants only · Limited spots per quarter</p>
-    <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="clo-btn">Book a free strategy call</a>
+    <p class="clo-lede">We know your restaurant, because we've been in one.</p>
+    <p class="clo-body">Our founder has helped open restaurants and bars from the inside. We know the pace, the fires, the quiet moments that make a room feel like home. That's why we build marketing for restaurants only.</p>
+    <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="clo-btn">Talk to us</a>
+    <p class="clo-meta">A 30-minute conversation.</p>
   </div>
 </section>
 
