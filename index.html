@@ -1751,6 +1751,23 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       if (e.key === 'ArrowLeft')  { show(i - 1); }
     });
   })();
+
+  /* MEDIA — pause off-screen videos to save bandwidth/CPU */
+  (function(){
+    const videos = document.querySelectorAll('#media .deck-video-item video');
+    if (!videos.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) {
+          if (v.paused) v.play().catch(() => {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    videos.forEach(v => io.observe(v));
+  })();
 </script>
 </body>
 </html>
