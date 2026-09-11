@@ -165,8 +165,10 @@
       align-items: center;
       gap: 5rem;
       width: max-content;
-      animation: clients-marquee 70s linear infinite;
+      animation: clients-marquee 42s linear infinite;
+      will-change: transform;
     }
+    .clients-track:hover { animation-play-state: paused; }
     @keyframes clients-marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
@@ -831,7 +833,7 @@
       .team-grid{grid-template-columns:repeat(2,1fr)}
       #clients{padding:3rem 1.5rem}
       .clients-label{font-size:0.75rem; margin-bottom:2rem}
-      .clients-track{gap:3.5rem; animation-duration:55s;}
+      .clients-track{gap:3.5rem; animation-duration:32s;}
       .client-logo-box{width:120px; height:70px}
       footer{flex-direction:column;gap:1.5rem;text-align:center}
       .pill-lg .pa{flex-shrink:0;}
@@ -858,7 +860,7 @@
       .flinks{gap:1.25rem; flex-wrap:wrap; justify-content:center;}
       #clients{padding:3rem 1.5rem;}
       .clients-label{font-size:0.7rem; letter-spacing:0.15em; line-height:1.7;}
-      .clients-track{gap:2.75rem; animation-duration:45s;}
+      .clients-track{gap:2.75rem; animation-duration:26s;}
       .client-logo-box{width:100px; height:60px;}
     }
   </style>
