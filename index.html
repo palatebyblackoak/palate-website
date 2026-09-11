@@ -589,66 +589,46 @@
       .deck-item { height:44vh; max-height:440px; min-height:280px; }
     }
 
-    /* CASE STUDY — editorial */
-    [id^="case-study"] { padding-top:10rem; padding-bottom:10rem; }
+    /* CASE STUDIES — tabbed compact */
+    #case-studies { padding-top:10rem; padding-bottom:10rem; }
     .cse { max-width:1240px; margin:0 auto; }
-    .cse-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+
+    .cs-header { margin-bottom:4rem; }
+    .cs-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
       color:var(--muted); font-weight:700; margin-bottom:2rem;
       display:flex; align-items:center; gap:0.9rem; }
-    .cse-eye::before { content:''; width:22px; height:1px; background:var(--red); flex-shrink:0; }
-    .cse-eye .sep { opacity:0.4; }
+    .cs-eye::before { content:''; width:22px; height:1px; background:var(--red); flex-shrink:0; }
+
+    .cs-tabs { display:flex; gap:2.5rem; flex-wrap:wrap;
+      border-bottom:1px solid var(--border); }
+    .cs-tab { background:none; border:none; padding:0.6rem 0 1.1rem;
+      font-family:inherit; font-size:1rem; letter-spacing:-0.01em; font-weight:500;
+      color:rgba(255,255,255,0.4); cursor:pointer;
+      position:relative; transition:color 0.3s var(--ease); }
+    .cs-tab::after { content:''; position:absolute; left:0; right:0; bottom:-1px;
+      height:2px; background:var(--red);
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 0.35s var(--ease); }
+    .cs-tab:hover { color:rgba(255,255,255,0.8); }
+    .cs-tab.is-active { color:var(--white); }
+    .cs-tab.is-active::after { transform:scaleX(1); }
+
+    .cs-stage { position:relative; }
+    .cs-slide { display:none; opacity:0;
+      transition:opacity 0.45s var(--ease); }
+    .cs-slide.is-active { display:block; opacity:1; }
+
+    .cs-meta { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; margin-bottom:1.4rem;
+      padding-left:34px; position:relative; }
+    .cs-meta::before { content:''; position:absolute; top:0.5em; left:0;
+      width:22px; height:1px; background:var(--red); }
+
     .cse-title { font-size:clamp(2.4rem, 5vw, 4rem); font-weight:800;
       letter-spacing:-0.035em; line-height:1.04; margin:0 0 1.4rem; }
     .cse-title em { font-style:normal; font-weight:300; color:rgba(255,255,255,0.72); }
     .cse-lede { font-size:1.05rem; color:rgba(255,255,255,0.7); line-height:1.75;
       max-width:560px; margin:0 0 5rem; font-weight:400; }
-
-    .cse-hero { display:grid; grid-template-columns:1fr; gap:0;
-      padding:2.5rem 0 3.5rem;
-      border-top:1px solid var(--border); border-bottom:1px solid var(--border);
-      margin-bottom:3.5rem; }
-    .cse-hero.twin { grid-template-columns:1fr 1fr; gap:2rem; }
-    .cse-hero-item { padding:0.5rem 0; }
-    .cse-plat { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
-      color:var(--red); font-weight:700; margin-bottom:1.75rem; }
-    .cse-num { display:flex; align-items:baseline; gap:0.05em;
-      font-size:clamp(4.5rem, 13vw, 11rem); font-weight:800; letter-spacing:-0.055em;
-      line-height:0.9; color:var(--white); font-variant-numeric:tabular-nums;
-      white-space:nowrap; }
-    .cse-num-suffix { font-size:0.42em; color:rgba(255,255,255,0.65); font-weight:600;
-      letter-spacing:-0.02em; margin-left:0.02em; }
-    .cse-num-prefix { color:rgba(255,255,255,0.75); font-weight:600; margin-right:0.02em; }
-    .cse-num-lbl { margin-top:1.6rem; font-size:0.72rem; letter-spacing:0.22em;
-      text-transform:uppercase; color:var(--white); font-weight:700; }
-    .cse-num-sub { margin-top:0.55rem; font-size:0.7rem; letter-spacing:0.14em;
-      text-transform:uppercase; color:var(--muted); font-weight:500; }
-
-    .cse-strip { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-      gap:2.5rem 2rem; padding-top:0.5rem; }
-    .cse-strip-item { display:flex; flex-direction:column; gap:0.45rem;
-      position:relative; padding-top:1rem; }
-    .cse-strip-item::before { content:''; position:absolute; top:0; left:0;
-      width:22px; height:1px; background:var(--red); opacity:0.55; }
-    .cse-strip-plat { font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase;
-      color:var(--red); font-weight:700; margin-bottom:0.15rem; }
-    .cse-strip-val { font-size:1.85rem; font-weight:800; letter-spacing:-0.025em;
-      line-height:1; color:var(--white); font-variant-numeric:tabular-nums;
-      display:inline-flex; align-items:baseline; gap:0.04em; }
-    .cse-strip-val span { font-size:0.62em; color:rgba(255,255,255,0.65);
-      font-weight:600; letter-spacing:-0.01em; }
-    .cse-strip-lbl { font-size:0.86rem; color:rgba(255,255,255,0.82);
-      font-weight:600; letter-spacing:-0.005em; }
-    .cse-strip-note { font-size:0.68rem; letter-spacing:0.06em;
-      color:var(--muted); font-weight:500; }
-
-    .cse-num.is-ready { opacity:1; }
-
-    /* CASE No. 01 — logo + growth chart per platform */
-    .cse-title-row { display:flex; align-items:center; gap:1.6rem;
-      margin-bottom:1.4rem; flex-wrap:wrap; }
-    .cse-logo { height:clamp(3rem, 5vw, 4.2rem); width:auto;
-      display:block; flex-shrink:0; }
-    .cse-title-row .cse-title { margin:0; }
 
     .cse-platform { padding:5.5rem 0 5rem;
       border-top:1px solid var(--border); }
@@ -708,53 +688,33 @@
     .cse-stat-lbl { font-size:0.82rem; color:rgba(255,255,255,0.75);
       font-weight:600; line-height:1.4; }
 
-    @media(max-width:520px){
-      .cse-title-row { gap:0.9rem; }
-      .cse-logo { height:2.4rem; }
-      .cse-chart-header { gap:0.8rem 1rem; }
-      .cse-chart-hero { margin-left:0; }
-      .cse-chart-hero-lbl { padding-top:0.2rem; }
-      .cse-stat-val { font-size:1.3rem; }
-      .cse-stat-lbl { font-size:0.75rem; }
-    }
-    @media(prefers-reduced-motion: reduce){
-      .cse-chart-line, .cse-chart-fill, .cse-chart-end,
-      .cse-stat { transition:none; }
-      .cse-platform.is-live .cse-chart-line { stroke-dashoffset:0; }
-      .cse-platform.is-live .cse-chart-fill { opacity:1; }
-      .cse-platform.is-live .cse-chart-end { r:6; }
-      .cse-stat { opacity:1; transform:none; }
-    }
-
     @media(max-width:900px){
-      [id^="case-study"] { padding-top:6rem; padding-bottom:6rem; }
+      #case-studies { padding-top:6rem; padding-bottom:6rem; }
+      .cs-header { margin-bottom:3rem; }
+      .cs-tabs { gap:1.4rem; }
+      .cs-tab { font-size:0.9rem; padding-bottom:0.9rem; }
       .cse-lede { margin-bottom:3.5rem; }
-      .cse-hero { padding:2rem 0 2.5rem; }
-      .cse-hero.twin { grid-template-columns:1fr; gap:0; }
-      .cse-hero.twin .cse-hero-item + .cse-hero-item {
-        border-top:1px solid var(--border); padding-top:2.5rem; margin-top:0.5rem; }
-      .cse-strip { grid-template-columns:repeat(2, 1fr); gap:2rem 1.5rem; }
-      .cse-title-row { gap:1.2rem; margin-bottom:1.2rem; }
-      .cse-logo { height:clamp(2.4rem, 8vw, 3.2rem); }
       .cse-platform { padding:3.5rem 0 3rem; }
-      .cse-chart-hero { font-size:clamp(2.2rem, 9vw, 3.4rem); }
+      .cse-chart-hero { font-size:clamp(2.2rem, 9vw, 3.4rem); margin-left:0; }
+      .cse-chart-hero-lbl { padding-top:0.2rem; }
       .cse-chart { margin-bottom:2.5rem; }
       .cse-stats { grid-template-columns:repeat(2, 1fr); gap:1.8rem 1.2rem; }
       .cse-stat-val { font-size:1.5rem; }
     }
     @media(max-width:520px){
-      .cse-num { font-size:clamp(3.4rem, 17vw, 5.4rem); letter-spacing:-0.04em;
-        line-height:0.95; flex-wrap:wrap; white-space:normal; }
-      .cse-num-suffix { font-size:0.4em; }
-      .cse-num-lbl { margin-top:1.1rem; font-size:0.66rem; }
-      .cse-strip { grid-template-columns:repeat(2, 1fr); gap:1.75rem 1rem; }
-      .cse-strip-val { font-size:1.5rem; }
-      .cse-strip-lbl { font-size:0.82rem; }
       .cse-title { font-size:clamp(2rem, 8vw, 2.6rem); }
       .cse-lede { font-size:0.98rem; line-height:1.65; margin-bottom:3rem; }
+      .cse-chart-header { gap:0.8rem 1rem; }
+      .cse-stat-val { font-size:1.3rem; }
+      .cse-stat-lbl { font-size:0.75rem; }
     }
     @media(prefers-reduced-motion: reduce){
-      .cse-num .cse-n { animation:none !important; }
+      .cse-chart-line, .cse-chart-fill, .cse-chart-end,
+      .cse-stat, .cs-slide { transition:none; }
+      .cse-platform.is-live .cse-chart-line { stroke-dashoffset:0; }
+      .cse-platform.is-live .cse-chart-fill { opacity:1; }
+      .cse-platform.is-live .cse-chart-end { r:6; }
+      .cse-stat { opacity:1; transform:none; }
     }
 
     /* VSL SECTION */
@@ -906,7 +866,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <img class="nav-logo-img" src="media/palate-logo.png" alt="Palate by BlackOak">
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#case-study">Work</a></li>
+    <li><a href="#case-studies">Work</a></li>
     <li><a href="#packages">Packages</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="https://calendly.com/blackoakagency/discovery-call" target="_blank">Contact</a></li>
@@ -1058,294 +1018,225 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- CASE STUDY: EL TACO MAÑANERO -->
-<section id="case-study">
+<!-- CASE STUDIES -->
+<section id="case-studies">
   <div class="cse">
-    <div class="cse-eye rv"><span>Case No. 01</span><span class="sep">·</span><span>December 2025</span></div>
-    <h2 class="cse-title rv">El Taco<br><em>Mañanero</em></h2>
-    <p class="cse-lede rv">One month of full-service social media across Facebook and Instagram. From zero brand momentum to eight-figure impressions.</p>
-
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Facebook</span>
-          <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="17100" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
-          <span class="cse-chart-hero-lbl">Growth in thirty days</span>
-        </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="fbFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#fbFill)" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20"/>
-          <circle class="cse-chart-end" cx="800" cy="20"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>Day 1</span><span>Day 15</span><span>Day 30</span>
-        </div>
-      </div>
-
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">7.9M</div>
-          <div class="cse-stat-lbl">Total Views</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">6.0M</div>
-          <div class="cse-stat-lbl">Unique Viewers</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">48.9K</div>
-          <div class="cse-stat-lbl">Profile Visits</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">6,200</div>
-          <div class="cse-stat-lbl">New Followers</div>
-        </div>
+    <div class="cs-header rv">
+      <div class="cs-eye">Case studies</div>
+      <div class="cs-tabs" role="tablist">
+        <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">El Taco Mañanero</button>
+        <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">Howling Rabbits</button>
+        <button class="cs-tab" type="button" data-case="3" role="tab" aria-selected="false">LUMA</button>
+        <button class="cs-tab" type="button" data-case="4" role="tab" aria-selected="false">Smokin' Moon</button>
       </div>
     </div>
 
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Instagram</span>
-          <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="3700" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
-          <span class="cse-chart-hero-lbl">Growth in thirty days</span>
+    <div class="cs-stage rv">
+      <!-- CASE 1: EL TACO MAÑANERO -->
+      <div class="cs-slide is-active" data-slide="1" role="tabpanel">
+        <div class="cs-meta">December 2025</div>
+        <h2 class="cse-title">El Taco<br><em>Mañanero</em></h2>
+        <p class="cse-lede">One month of full-service social media across Facebook and Instagram. From zero brand momentum to millions of impressions.</p>
+
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Facebook</span>
+              <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="17100" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
+              <span class="cse-chart-hero-lbl">Growth in thirty days</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="fbFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#fbFill)" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 260,220 440,215 560,190 C 660,160 730,50 800,20"/>
+              <circle class="cse-chart-end" cx="800" cy="20"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">7.9M</div><div class="cse-stat-lbl">Total Views</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">6.0M</div><div class="cse-stat-lbl">Unique Viewers</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">48.9K</div><div class="cse-stat-lbl">Profile Visits</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">6,200</div><div class="cse-stat-lbl">New Followers</div></div>
+          </div>
         </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="igFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#igFill)" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40"/>
-          <circle class="cse-chart-end" cx="800" cy="40"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Instagram</span>
+              <span class="cse-chart-hero"><span class="cse-chart-plus">+</span><span class="cse-n" data-target="3700" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">%</span></span>
+              <span class="cse-chart-hero-lbl">Growth in thirty days</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="igFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#igFill)" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 240,220 400,210 540,180 C 660,140 740,80 800,40"/>
+              <circle class="cse-chart-end" cx="800" cy="40"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">1.1M</div><div class="cse-stat-lbl">Total Views</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">871.8K</div><div class="cse-stat-lbl">Reach</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">2,500</div><div class="cse-stat-lbl">Profile Visits</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">286</div><div class="cse-stat-lbl">New Followers</div></div>
+          </div>
         </div>
       </div>
 
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">1.1M</div>
-          <div class="cse-stat-lbl">Total Views</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">871.8K</div>
-          <div class="cse-stat-lbl">Reach</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">2,500</div>
-          <div class="cse-stat-lbl">Profile Visits</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">286</div>
-          <div class="cse-stat-lbl">New Followers</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- CASE 2: HOWLING RABBITS -->
+      <div class="cs-slide" data-slide="2" role="tabpanel">
+        <div class="cs-meta">Influencer Collab</div>
+        <h2 class="cse-title">Howling Rabbits<br><em>Beerworks</em></h2>
+        <p class="cse-lede">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
 
-<!-- CASE STUDY: HOWLING RABBITS -->
-<section id="case-study-2" style="background:var(--black-2);">
-  <div class="cse">
-    <div class="cse-eye rv"><span>Case No. 02</span><span class="sep">·</span><span>Influencer Collab</span></div>
-    <h2 class="cse-title rv">Howling Rabbits<br><em>Beerworks</em></h2>
-    <p class="cse-lede rv">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
-
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Freddsters Collab</span>
-          <span class="cse-chart-hero"><span class="cse-n" data-target="20" data-decimals="0">0</span><span class="cse-chart-pct">×</span></span>
-          <span class="cse-chart-hero-lbl">Engagement vs. standard posts</span>
-        </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="hrFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#hrFill)" d="M 0,220 C 200,220 340,205 480,170 C 620,130 720,70 800,35 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 200,220 340,205 480,170 C 620,130 720,70 800,35"/>
-          <circle class="cse-chart-end" cx="800" cy="35"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>Post 1</span><span>Post 2</span><span>Post 3</span><span>Post 4</span>
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Freddsters Collab</span>
+              <span class="cse-chart-hero"><span class="cse-n" data-target="20" data-decimals="0">0</span><span class="cse-chart-pct">×</span></span>
+              <span class="cse-chart-hero-lbl">Engagement vs. standard posts</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="hrFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#hrFill)" d="M 0,220 C 200,220 340,205 480,170 C 620,130 720,70 800,35 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 200,220 340,205 480,170 C 620,130 720,70 800,35"/>
+              <circle class="cse-chart-end" cx="800" cy="35"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Post 1</span><span>Post 2</span><span>Post 3</span><span>Post 4</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">200K+</div><div class="cse-stat-lbl">Total Reach</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">50.5K</div><div class="cse-stat-lbl">Top Post Reach</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">60%+</div><div class="cse-stat-lbl">New Audience</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">$0</div><div class="cse-stat-lbl">Ad Spend</div></div>
+          </div>
         </div>
       </div>
 
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">200K+</div>
-          <div class="cse-stat-lbl">Total Reach</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">50.5K</div>
-          <div class="cse-stat-lbl">Top Post Reach</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">60%+</div>
-          <div class="cse-stat-lbl">New Audience</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">$0</div>
-          <div class="cse-stat-lbl">Ad Spend</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- CASE 3: LUMA -->
+      <div class="cs-slide" data-slide="3" role="tabpanel">
+        <div class="cs-meta">May 2025 to March 2026</div>
+        <h2 class="cse-title">LUMA<br><em>Cocktail Lounge</em></h2>
+        <p class="cse-lede">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window.</p>
 
-<!-- CASE STUDY: LUMA -->
-<section id="case-study-3">
-  <div class="cse">
-    <div class="cse-eye rv"><span>Case No. 03</span><span class="sep">·</span><span>May 2025 to March 2026</span></div>
-    <h2 class="cse-title rv">LUMA<br><em>Cocktail Lounge</em></h2>
-    <p class="cse-lede rv">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window, shown side by side.</p>
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Paid Ads</span>
+              <span class="cse-chart-hero"><span class="cse-n" data-target="1.7" data-decimals="1">0.0</span><span class="cse-chart-pct">M</span></span>
+              <span class="cse-chart-hero-lbl">Total impressions in ten months</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="lumaPaidFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#lumaPaidFill)" d="M 0,220 C 120,215 260,195 400,160 C 550,120 680,70 800,30 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 120,215 260,195 400,160 C 550,120 680,70 800,30"/>
+              <circle class="cse-chart-end" cx="800" cy="30"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>May '25</span><span>Oct '25</span><span>Mar '26</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">1.7M</div><div class="cse-stat-lbl">Impressions</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">379K+</div><div class="cse-stat-lbl">Unique Reach</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">10 mo</div><div class="cse-stat-lbl">Campaign Duration</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">FB + IG</div><div class="cse-stat-lbl">Platforms</div></div>
+          </div>
+        </div>
 
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Paid Ads</span>
-          <span class="cse-chart-hero"><span class="cse-n" data-target="1.7" data-decimals="1">0.0</span><span class="cse-chart-pct">M</span></span>
-          <span class="cse-chart-hero-lbl">Total impressions in ten months</span>
-        </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="lumaPaidFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#lumaPaidFill)" d="M 0,220 C 120,215 260,195 400,160 C 550,120 680,70 800,30 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 120,215 260,195 400,160 C 550,120 680,70 800,30"/>
-          <circle class="cse-chart-end" cx="800" cy="30"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>May '25</span><span>Oct '25</span><span>Mar '26</span>
-        </div>
-      </div>
-
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">1.7M</div>
-          <div class="cse-stat-lbl">Impressions</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">379K+</div>
-          <div class="cse-stat-lbl">Unique Reach</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">10 mo</div>
-          <div class="cse-stat-lbl">Campaign Duration</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">FB + IG</div>
-          <div class="cse-stat-lbl">Platforms</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Organic</span>
-          <span class="cse-chart-hero"><span class="cse-n" data-target="824" data-decimals="0">0</span><span class="cse-chart-pct">K</span></span>
-          <span class="cse-chart-hero-lbl">Views in ninety days</span>
-        </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="lumaOrgFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#lumaOrgFill)" d="M 0,220 C 180,215 340,200 480,170 C 620,130 720,80 800,45 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 180,215 340,200 480,170 C 620,130 720,80 800,45"/>
-          <circle class="cse-chart-end" cx="800" cy="45"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>Day 1</span><span>Day 45</span><span>Day 90</span>
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Organic</span>
+              <span class="cse-chart-hero"><span class="cse-n" data-target="824" data-decimals="0">0</span><span class="cse-chart-pct">K</span></span>
+              <span class="cse-chart-hero-lbl">Views in ninety days</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="lumaOrgFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#lumaOrgFill)" d="M 0,220 C 180,215 340,200 480,170 C 620,130 720,80 800,45 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 180,215 340,200 480,170 C 620,130 720,80 800,45"/>
+              <circle class="cse-chart-end" cx="800" cy="45"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Day 1</span><span>Day 45</span><span>Day 90</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">824K</div><div class="cse-stat-lbl">Total Views</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">7.2K</div><div class="cse-stat-lbl">New Followers</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">+46.4%</div><div class="cse-stat-lbl">Follower Growth</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">4.6K / 2.6K</div><div class="cse-stat-lbl">IG / FB Split</div></div>
+          </div>
         </div>
       </div>
 
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">824K</div>
-          <div class="cse-stat-lbl">Total Views</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">7.2K</div>
-          <div class="cse-stat-lbl">New Followers</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">+46.4%</div>
-          <div class="cse-stat-lbl">Follower Growth</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">4.6K / 2.6K</div>
-          <div class="cse-stat-lbl">IG / FB Split</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- CASE 4: SMOKIN' MOON -->
+      <div class="cs-slide" data-slide="4" role="tabpanel">
+        <div class="cs-meta">30-Day Paid Sprint</div>
+        <h2 class="cse-title">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
+        <p class="cse-lede">Five hundred dollars. Thirty days. A dime per follower.</p>
 
-<!-- CASE STUDY: SMOKIN' MOON -->
-<section id="case-study-4" style="background:var(--black-2);">
-  <div class="cse">
-    <div class="cse-eye rv"><span>Case No. 04</span><span class="sep">·</span><span>Efficient Growth</span></div>
-    <h2 class="cse-title rv">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
-    <p class="cse-lede rv">Build a following fast without blowing the budget. Five hundred dollars, thirty days, a dime per follower.</p>
-
-    <div class="cse-platform" data-cse-platform>
-      <div class="cse-chart">
-        <div class="cse-chart-header">
-          <span class="cse-chart-plat">Paid Campaign</span>
-          <span class="cse-chart-hero"><span class="cse-n" data-target="5100" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">+</span></span>
-          <span class="cse-chart-hero-lbl">New followers in thirty days</span>
-        </div>
-        <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="smFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
-              <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path class="cse-chart-fill" fill="url(#smFill)" d="M 0,220 C 200,218 360,200 500,170 C 640,130 730,80 800,45 L 800,240 L 0,240 Z"/>
-          <path class="cse-chart-line" pathLength="1" d="M 0,220 C 200,218 360,200 500,170 C 640,130 730,80 800,45"/>
-          <circle class="cse-chart-end" cx="800" cy="45"/>
-        </svg>
-        <div class="cse-chart-axis">
-          <span>Day 1</span><span>Day 15</span><span>Day 30</span>
-        </div>
-      </div>
-
-      <div class="cse-stats">
-        <div class="cse-stat">
-          <div class="cse-stat-val">5,100+</div>
-          <div class="cse-stat-lbl">New Followers</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">$500</div>
-          <div class="cse-stat-lbl">Total Ad Budget</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">$0.10</div>
-          <div class="cse-stat-lbl">Cost Per Follower</div>
-        </div>
-        <div class="cse-stat">
-          <div class="cse-stat-val">30 days</div>
-          <div class="cse-stat-lbl">Campaign Duration</div>
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Paid Campaign</span>
+              <span class="cse-chart-hero"><span class="cse-n" data-target="5100" data-decimals="0" data-comma="1">0</span><span class="cse-chart-pct">+</span></span>
+              <span class="cse-chart-hero-lbl">New followers in thirty days</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="smFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#smFill)" d="M 0,220 C 200,218 360,200 500,170 C 640,130 730,80 800,45 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,220 C 200,218 360,200 500,170 C 640,130 730,80 800,45"/>
+              <circle class="cse-chart-end" cx="800" cy="45"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Day 1</span><span>Day 15</span><span>Day 30</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">5,100+</div><div class="cse-stat-lbl">New Followers</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">$500</div><div class="cse-stat-lbl">Total Ad Budget</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">$0.10</div><div class="cse-stat-lbl">Cost Per Follower</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">30 days</div><div class="cse-stat-lbl">Campaign Duration</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1574,7 +1465,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="fs">Based in Texas</div>
   </div>
   <ul class="flinks">
-    <li><a href="#case-study">Results</a></li>
+    <li><a href="#case-studies">Results</a></li>
     <li><a href="#packages">Work With Us</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
@@ -1646,21 +1537,24 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     }, 4800);
   }
 
-  /* CASE STUDY — animated counters */
+  /* CASE STUDIES — tabbed switcher with animation replay */
   (function(){
-    const nums = document.querySelectorAll('.cse-n');
-    if (!nums.length) return;
+    const wrapper = document.getElementById('case-studies');
+    if (!wrapper) return;
+    const tabs = wrapper.querySelectorAll('.cs-tab');
+    const slides = wrapper.querySelectorAll('.cs-slide');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function format(v, decimals, comma) {
       if (comma) return Math.round(v).toLocaleString('en-US');
       return decimals ? v.toFixed(decimals) : String(Math.round(v));
     }
-    function animate(el) {
+    function animateNumber(el) {
       const target = parseFloat(el.dataset.target) || 0;
       const decimals = parseInt(el.dataset.decimals || '0', 10);
       const comma = el.dataset.comma === '1';
       if (reduce) { el.textContent = format(target, decimals, comma); return; }
+      el.textContent = format(0, decimals, comma);
       const start = performance.now();
       const dur = 1400;
       (function tick(t){
@@ -1671,22 +1565,38 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         else el.textContent = format(target, decimals, comma);
       })(start);
     }
-    const numObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { animate(e.target); numObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.35 });
-    nums.forEach(n => numObs.observe(n));
-
-    const pls = document.querySelectorAll('[data-cse-platform]');
-    if (pls.length) {
-      const plIo = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('is-live'); plIo.unobserve(e.target); }
-        });
-      }, { threshold: 0.25 });
-      pls.forEach(p => plIo.observe(p));
+    function playSlide(slide) {
+      const platforms = slide.querySelectorAll('[data-cse-platform]');
+      platforms.forEach(p => p.classList.remove('is-live'));
+      void slide.offsetWidth;
+      platforms.forEach(p => p.classList.add('is-live'));
+      slide.querySelectorAll('.cse-n[data-target]').forEach(animateNumber);
     }
+    function activate(id) {
+      tabs.forEach(t => {
+        const on = t.dataset.case === id;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      let activeSlide = null;
+      slides.forEach(s => {
+        const on = s.dataset.slide === id;
+        s.classList.toggle('is-active', on);
+        if (on) activeSlide = s;
+      });
+      if (activeSlide) playSlide(activeSlide);
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.case)));
+
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        const active = wrapper.querySelector('.cs-slide.is-active');
+        if (active) playSlide(active);
+        io.unobserve(wrapper);
+      }
+    }, { threshold: 0.2 });
+    io.observe(wrapper);
   })();
 
   /* TESTIMONIALS — editorial crossfade */
