@@ -370,7 +370,8 @@
       #closing { padding-top:5.5rem; padding-bottom:5.5rem; }
       .clo-eye { margin-bottom:2rem; }
       .clo-lede { font-size:clamp(1.4rem, 5.8vw, 1.95rem); margin-bottom:1.4rem; }
-      .clo-body { font-size:0.96rem; line-height:1.65; margin-bottom:2.25rem; }
+      .clo-body { font-size:0.96rem; line-height:1.65; margin-bottom:2.25rem;
+        text-align:left; }
       .clo-meta { font-size:0.78rem; margin-top:1.1rem; }
     }
 
@@ -546,8 +547,10 @@
     @media(max-width:520px){
       .abt-media { aspect-ratio:4/5; max-height:56vh; }
       .abt-lede { font-size:0.98rem; margin-bottom:2.25rem; }
-      .abt-pillar { gap:1rem; padding:0.95rem 0; }
+      .abt-pillar { gap:0.9rem; padding:1.1rem 0; }
+      .abt-pillar-body { gap:0.28rem; }
       .abt-pillar-t { font-size:0.94rem; }
+      .abt-pillar-d { font-size:0.8rem; line-height:1.5; }
       .abt-closer { font-size:clamp(1.05rem, 4.4vw, 1.3rem); line-height:1.45; }
     }
 
@@ -592,7 +595,13 @@
       .deck-row { margin-bottom:3.5rem; }
       .deck-label { padding:0 1.5rem; margin-bottom:0.9rem; }
       .deck { padding:0 1.5rem 0.75rem; gap:0.85rem; }
-      .deck-item { height:44vh; max-height:440px; min-height:280px; }
+      .deck-item { height:44vh; max-height:440px; min-height:280px;
+        scroll-snap-align:start; }
+    }
+    @media(max-width:640px){
+      #media { padding:4.5rem 0 5rem; }
+      .deck-row { margin-bottom:2.75rem; }
+      .deck-item { height:40vh; max-height:380px; min-height:240px; }
     }
 
     /* CASE STUDIES — tabbed compact */
@@ -706,6 +715,14 @@
       .cse-chart { margin-bottom:2.5rem; }
       .cse-stats { grid-template-columns:repeat(2, 1fr); gap:1.8rem 1.2rem; }
       .cse-stat-val { font-size:1.5rem; }
+    }
+    @media(max-width:640px){
+      .cs-tabs { flex-wrap:nowrap; overflow-x:auto; gap:1.6rem;
+        -webkit-overflow-scrolling:touch; scrollbar-width:none;
+        margin-left:-1.5rem; margin-right:-1.5rem;
+        padding-left:1.5rem; padding-right:1.5rem; }
+      .cs-tabs::-webkit-scrollbar { display:none; }
+      .cs-tab { white-space:nowrap; flex-shrink:0; }
     }
     @media(max-width:520px){
       .cse-title { font-size:clamp(2rem, 8vw, 2.6rem); }
