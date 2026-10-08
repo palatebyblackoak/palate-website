@@ -337,6 +337,7 @@
       color:rgba(255,255,255,0.42); font-weight:700; text-indent:0.42em; }
 
     /* each item sits on the ring and points back at the room */
+    .ring-items { display:contents; }
     .ring-slot { position:absolute; left:50%; top:50%;
       transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))); }
     /* --gap: centre of the pill to its outline along the arrow, set by script */
@@ -368,23 +369,37 @@
 
     /* The ring needs real width: its radii are fixed, so below this it unrolls. */
     @media(max-width:1080px){
-      /* the ring unrolls into a list; arrows and orbits have nothing to point along */
+      /* the ring unrolls into a column: every group runs down one spine
+         and the spine's arrow feeds the room at the bottom */
       .pkg-map { padding:3rem 0 0; }
       .map-ring { width:100%; aspect-ratio:auto; display:flex; flex-direction:column;
-        align-items:stretch; gap:0.6rem; }
+        align-items:stretch; }
       .ring-orbit { display:none; }
-      .map-hub { position:static; transform:none; align-items:flex-start;
-        margin-bottom:1.75rem; }
-      .map-hub::before { width:210px; height:210px; left:105px; }
-      .map-hub-inner { align-items:flex-start; text-align:left; }
-      .map-house { width:76px; }
-      .map-cadence { position:static; transform:none; margin-top:0.85rem; }
+      .ring-items { --spine:24px; position:relative; display:flex; flex-wrap:wrap;
+        align-items:flex-start; gap:0.5rem; padding:0 0 1.9rem 3rem; }
+      .ring-items::before { content:''; position:absolute; left:var(--spine);
+        top:0.35rem; bottom:4px; width:1px; transform:translateX(-50%);
+        background:linear-gradient(rgba(240,69,67,0.25), rgba(240,69,67,0.8)); }
+      .ring-items::after { content:''; position:absolute; left:var(--spine);
+        bottom:4px; width:7px; height:7px; transform:translateX(-50%) rotate(45deg);
+        border-right:1px solid var(--red); border-bottom:1px solid var(--red); }
+      .ring-label { position:relative; left:auto; top:auto; transform:none; flex-basis:100%;
+        margin:1.5rem 0 0.15rem; }
+      .ring-label:first-child { margin-top:0; }
+      /* each group's heading is a stop on the spine */
+      .ring-label::before { content:''; position:absolute; top:50%;
+        left:calc(var(--spine) - 3rem); width:7px; height:7px; border-radius:50%;
+        transform:translate(-50%,-50%); background:var(--red); }
+      .ring-label > span { transform:none; }
       .ring-slot { position:static; transform:none; }
       .ring-slot::before, .ring-slot::after { display:none; }
-      .ring-node { transform:none; white-space:normal;
-        border-radius:var(--r); padding:0.7rem 0.95rem; font-size:0.9rem; }
-      .ring-label { position:static; transform:none; margin:1.6rem 0 0.4rem; }
-      .ring-label > span { transform:none; }
+      .ring-node { transform:none; white-space:nowrap; border-radius:999px;
+        padding:0.5rem 0.85rem; font-size:0.84rem; }
+      .map-hub { position:relative; left:auto; top:auto; transform:none; align-items:flex-start; }
+      .map-hub::before { width:200px; height:200px; left:38px; top:30px; }
+      .map-hub-inner { align-items:flex-start; text-align:left; }
+      .map-house { width:76px; margin-top:-12px; }
+      .map-cadence { position:static; transform:none; margin-top:0.85rem; }
       .map-note { text-align:left; margin:2.25rem 0 0; }
     }
 
@@ -1663,6 +1678,25 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         <span class="ring-orbit ring-orbit-a" aria-hidden="true"></span>
         <span class="ring-orbit ring-orbit-b" aria-hidden="true"></span>
         <span class="ring-orbit ring-orbit-c" aria-hidden="true"></span>
+        <div class="ring-items">
+          <span class="ring-label" style="--a:0deg;--r:400px"><span>Content</span></span>
+          <div class="ring-slot" style="--a:337.2deg;--r:250px;--arrow:85px"><div class="ring-node">Content strategy &amp; calendar</div></div>
+          <div class="ring-slot" style="--a:0.0deg;--r:332px;--arrow:167px"><div class="ring-node">Up to 30 posts per month</div></div>
+          <div class="ring-slot" style="--a:22.8deg;--r:250px;--arrow:85px"><div class="ring-node">Captions + publishing</div></div>
+          <span class="ring-label" style="--a:90deg;--r:400px"><span>Reach</span></span>
+          <div class="ring-slot" style="--a:67.2deg;--r:332px;--arrow:167px"><div class="ring-node">Meta + Google Ads</div></div>
+          <div class="ring-slot" style="--a:90.0deg;--r:250px;--arrow:85px"><div class="ring-node">Community management</div></div>
+          <div class="ring-slot" style="--a:112.8deg;--r:332px;--arrow:167px"><div class="ring-node">Website + maintenance</div></div>
+          <span class="ring-label" style="--a:180deg;--r:400px"><span>Consulting</span></span>
+          <div class="ring-slot" style="--a:157.2deg;--r:250px;--arrow:85px"><div class="ring-node">Up-to-date tactics</div></div>
+          <div class="ring-slot" style="--a:180.0deg;--r:332px;--arrow:167px"><div class="ring-node">Monthly strategy call</div></div>
+          <div class="ring-slot" style="--a:202.8deg;--r:250px;--arrow:85px"><div class="ring-node">Monthly performance report</div></div>
+          <span class="ring-label" style="--a:270deg;--r:400px"><span>Creative</span></span>
+          <div class="ring-slot" style="--a:235.8deg;--r:250px;--arrow:85px"><div class="ring-node">Graphic design</div></div>
+          <div class="ring-slot" style="--a:258.6deg;--r:332px;--arrow:167px"><div class="ring-node">Photography</div></div>
+          <div class="ring-slot" style="--a:281.4deg;--r:250px;--arrow:85px"><div class="ring-node">Short-form video editing</div></div>
+          <div class="ring-slot" style="--a:304.2deg;--r:332px;--arrow:167px"><div class="ring-node">Production</div></div>
+        </div>
         <div class="map-hub">
           <div class="map-hub-inner">
             <svg class="map-house" viewBox="0 0 132 104" fill="none" aria-hidden="true" focusable="false">
@@ -1679,23 +1713,6 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
           <div class="map-cadence">Every month</div>
         </div>
-        <span class="ring-label" style="--a:0deg;--r:400px"><span>Content</span></span>
-        <div class="ring-slot" style="--a:337.2deg;--r:250px;--arrow:85px"><div class="ring-node">Content strategy &amp; calendar</div></div>
-        <div class="ring-slot" style="--a:0.0deg;--r:332px;--arrow:167px"><div class="ring-node">Up to 30 posts per month</div></div>
-        <div class="ring-slot" style="--a:22.8deg;--r:250px;--arrow:85px"><div class="ring-node">Captions + publishing</div></div>
-        <span class="ring-label" style="--a:90deg;--r:400px"><span>Reach</span></span>
-        <div class="ring-slot" style="--a:67.2deg;--r:332px;--arrow:167px"><div class="ring-node">Meta + Google Ads</div></div>
-        <div class="ring-slot" style="--a:90.0deg;--r:250px;--arrow:85px"><div class="ring-node">Community management</div></div>
-        <div class="ring-slot" style="--a:112.8deg;--r:332px;--arrow:167px"><div class="ring-node">Website + maintenance</div></div>
-        <span class="ring-label" style="--a:180deg;--r:400px"><span>Consulting</span></span>
-        <div class="ring-slot" style="--a:157.2deg;--r:250px;--arrow:85px"><div class="ring-node">Up-to-date tactics</div></div>
-        <div class="ring-slot" style="--a:180.0deg;--r:332px;--arrow:167px"><div class="ring-node">Monthly strategy call</div></div>
-        <div class="ring-slot" style="--a:202.8deg;--r:250px;--arrow:85px"><div class="ring-node">Monthly performance report</div></div>
-        <span class="ring-label" style="--a:270deg;--r:400px"><span>Creative</span></span>
-        <div class="ring-slot" style="--a:235.8deg;--r:250px;--arrow:85px"><div class="ring-node">Graphic design</div></div>
-        <div class="ring-slot" style="--a:258.6deg;--r:332px;--arrow:167px"><div class="ring-node">Photography</div></div>
-        <div class="ring-slot" style="--a:281.4deg;--r:250px;--arrow:85px"><div class="ring-node">Short-form video editing</div></div>
-        <div class="ring-slot" style="--a:304.2deg;--r:332px;--arrow:167px"><div class="ring-node">Production</div></div>
       </div>
       <p class="map-note">Everything on this map is part of the Full House Program, applied to every client, consistently, month to month.</p>
     </div>
