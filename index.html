@@ -312,8 +312,12 @@
     .map-node { position:relative; z-index:1; }
     .map-node-tl { grid-column:1; grid-row:1; text-align:right; }
     .map-node-bl { grid-column:1; grid-row:2; text-align:right; }
-    .map-hub     { grid-column:2; grid-row:1 / span 2; z-index:1;
+    .map-hub     { grid-column:2; grid-row:1 / span 2; z-index:1; position:relative;
       display:flex; align-items:center; justify-content:center; }
+    .map-cadence { position:absolute; left:50%; top:calc(50% + 112px);
+      transform:translateX(-50%); white-space:nowrap;
+      font-size:0.57rem; letter-spacing:0.42em; text-transform:uppercase;
+      color:rgba(255,255,255,0.42); font-weight:700; text-indent:0.42em; }
     .map-node-tr { grid-column:3; grid-row:1; }
     .map-node-br { grid-column:3; grid-row:2; }
 
@@ -1634,7 +1638,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <div class="pkg-eye">One core offer</div>
       <h2 class="pkg-title">The Full House Program.</h2>
       <p class="pkg-tagline">Your whole story, everywhere.</p>
-      <p class="pkg-lede">One program, done for you. Built for the operator ready to put their food, their drinks, and their story in front of everyone in their city who should know about it.</p>
+      <p class="pkg-lede">One program, done for you, built for the operator who is done being their city’s best-kept secret.</p>
     </div>
 
     <div class="pkg-map rv">
@@ -1694,6 +1698,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
             <span class="map-hub-lbl">Your</span>
             <span class="map-hub-name">Restaurant</span>
           </div>
+          <div class="map-cadence">Every month</div>
         </div>
 
         <div class="map-node map-node-tr">
