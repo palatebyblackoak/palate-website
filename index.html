@@ -705,6 +705,21 @@
     .cse-stat-lbl { font-size:0.82rem; color:rgba(255,255,255,0.75);
       font-weight:600; line-height:1.4; }
 
+    .cse-play { padding:5rem 0; border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border); }
+    .cse-play-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--muted); font-weight:600; position:relative; padding-top:0.9rem;
+      margin-bottom:3rem; }
+    .cse-play-eye::before { content:''; position:absolute; top:0; left:0;
+      width:22px; height:2px; background:var(--red); }
+    .cse-play-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:2.5rem 2rem; }
+    .cse-step-n { font-size:0.7rem; letter-spacing:0.18em; font-weight:700;
+      color:var(--red); font-variant-numeric:tabular-nums; margin-bottom:0.9rem; }
+    .cse-step-h { font-size:1.05rem; font-weight:800; color:var(--white);
+      letter-spacing:-0.015em; line-height:1.3; margin-bottom:0.55rem; }
+    .cse-step-b { font-size:0.88rem; color:rgba(255,255,255,0.7);
+      font-weight:500; line-height:1.6; }
+
     @media(max-width:900px){
       #case-studies { padding-top:6rem; padding-bottom:6rem; }
       .cs-header { margin-bottom:3rem; }
@@ -712,6 +727,9 @@
       .cs-tab { font-size:0.9rem; padding-bottom:0.9rem; }
       .cse-lede { margin-bottom:3.5rem; }
       .cse-platform { padding:3.5rem 0 3rem; }
+      .cse-play { padding:3.5rem 0; }
+      .cse-play-eye { margin-bottom:2.2rem; }
+      .cse-play-grid { grid-template-columns:repeat(2, 1fr); gap:2.2rem 1.4rem; }
       .cse-chart-hero { font-size:clamp(2.2rem, 9vw, 3.4rem); margin-left:0; }
       .cse-chart-hero-lbl { padding-top:0.2rem; }
       .cse-chart { margin-bottom:2.5rem; }
@@ -728,6 +746,7 @@
     }
     @media(max-width:520px){
       .cse-title { font-size:clamp(2rem, 8vw, 2.6rem); }
+      .cse-play-grid { grid-template-columns:1fr; gap:2rem; }
       .cse-lede { font-size:0.98rem; line-height:1.65; margin-bottom:3rem; }
       .cse-chart-header { gap:0.8rem 1rem; }
       .cse-stat-val { font-size:1.3rem; }
@@ -1049,16 +1068,80 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="cs-header rv">
       <div class="cs-eye">Case studies</div>
       <div class="cs-tabs" role="tablist">
-        <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">El Taco Mañanero</button>
-        <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">Howling Rabbits</button>
-        <button class="cs-tab" type="button" data-case="3" role="tab" aria-selected="false">LUMA</button>
-        <button class="cs-tab" type="button" data-case="4" role="tab" aria-selected="false">Smokin' Moon</button>
+        <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">Sip n' Tell</button>
+        <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">El Taco Mañanero</button>
+        <button class="cs-tab" type="button" data-case="3" role="tab" aria-selected="false">Howling Rabbits</button>
+        <button class="cs-tab" type="button" data-case="4" role="tab" aria-selected="false">LUMA</button>
+        <button class="cs-tab" type="button" data-case="5" role="tab" aria-selected="false">Smokin' Moon</button>
       </div>
     </div>
 
     <div class="cs-stage rv">
-      <!-- CASE 1: EL TACO MAÑANERO -->
+      <!-- CASE 1: SIP N' TELL -->
       <div class="cs-slide is-active" data-slide="1" role="tabpanel">
+        <div class="cs-meta">Taco Tuesday Turnaround</div>
+        <h2 class="cse-title">Sip n' Tell<br><em>Taco Tuesday</em></h2>
+        <p class="cse-lede">Thirteen hundred dollar Tuesdays. One upgraded offer. Forty-eight hours later, the same night did forty-five hundred.</p>
+
+        <div class="cse-platform" data-cse-platform>
+          <div class="cse-chart">
+            <div class="cse-chart-header">
+              <span class="cse-chart-plat">Tuesday Revenue</span>
+              <span class="cse-chart-hero"><span class="cse-n" data-target="3.4" data-decimals="1">0.0</span><span class="cse-chart-pct">&#215;</span></span>
+              <span class="cse-chart-hero-lbl">Revenue on a single night</span>
+            </div>
+            <svg class="cse-chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="sipFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f04543" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#f04543" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="cse-chart-fill" fill="url(#sipFill)" d="M 0,206 C 170,206 350,203 520,197 C 640,189 720,88 800,22 L 800,240 L 0,240 Z"/>
+              <path class="cse-chart-line" pathLength="1" d="M 0,206 C 170,206 350,203 520,197 C 640,189 720,88 800,22"/>
+              <circle class="cse-chart-end" cx="800" cy="22"/>
+            </svg>
+            <div class="cse-chart-axis">
+              <span>Baseline</span><span>Push Live</span><span>Tuesday Night</span>
+            </div>
+          </div>
+          <div class="cse-stats">
+            <div class="cse-stat"><div class="cse-stat-val">$1,300</div><div class="cse-stat-lbl">Previous Tuesday Average</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">$4,500</div><div class="cse-stat-lbl">Revenue That Tuesday</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">+246%</div><div class="cse-stat-lbl">Revenue Lift</div></div>
+            <div class="cse-stat"><div class="cse-stat-val">48 hrs</div><div class="cse-stat-lbl">Launch To Result</div></div>
+          </div>
+        </div>
+
+        <div class="cse-play">
+          <div class="cse-play-eye">The play</div>
+          <div class="cse-play-grid">
+            <div class="cse-step">
+              <div class="cse-step-n">01</div>
+              <h3 class="cse-step-h">Upgrade the offer</h3>
+              <p class="cse-step-b">They already owned Taco Tuesday. We rebuilt it into a combo their city could not ignore, stacked with drink specials.</p>
+            </div>
+            <div class="cse-step">
+              <div class="cse-step-n">02</div>
+              <h3 class="cse-step-h">Build the creative</h3>
+              <p class="cse-step-b">A fresh set of on-brand assets made for the offer itself, not retrofitted from last week's posts.</p>
+            </div>
+            <div class="cse-step">
+              <div class="cse-step-n">03</div>
+              <h3 class="cse-step-h">Put it in front of the city</h3>
+              <p class="cse-step-b">Targeted paid media across their market, all of it pointed at one night.</p>
+            </div>
+            <div class="cse-step">
+              <div class="cse-step-n">04</div>
+              <h3 class="cse-step-h">Time the push</h3>
+              <p class="cse-step-b">Stories and reshares landing 24 to 36 hours before doors opened Tuesday.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 2: EL TACO MAÑANERO -->
+      <div class="cs-slide" data-slide="2" role="tabpanel">
         <div class="cs-meta">December 2025</div>
         <h2 class="cse-title">El Taco<br><em>Mañanero</em></h2>
         <p class="cse-lede">One month of full-service social media across Facebook and Instagram. From zero brand momentum to millions of impressions.</p>
@@ -1124,8 +1207,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 2: HOWLING RABBITS -->
-      <div class="cs-slide" data-slide="2" role="tabpanel">
+      <!-- CASE 3: HOWLING RABBITS -->
+      <div class="cs-slide" data-slide="3" role="tabpanel">
         <div class="cs-meta">Influencer Collab</div>
         <h2 class="cse-title">Howling Rabbits<br><em>Beerworks</em></h2>
         <p class="cse-lede">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
@@ -1161,8 +1244,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 3: LUMA -->
-      <div class="cs-slide" data-slide="3" role="tabpanel">
+      <!-- CASE 4: LUMA -->
+      <div class="cs-slide" data-slide="4" role="tabpanel">
         <div class="cs-meta">May 2025 to March 2026</div>
         <h2 class="cse-title">LUMA<br><em>Cocktail Lounge</em></h2>
         <p class="cse-lede">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window.</p>
@@ -1228,8 +1311,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 4: SMOKIN' MOON -->
-      <div class="cs-slide" data-slide="4" role="tabpanel">
+      <!-- CASE 5: SMOKIN' MOON -->
+      <div class="cs-slide" data-slide="5" role="tabpanel">
         <div class="cs-meta">30-Day Paid Sprint</div>
         <h2 class="cse-title">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
         <p class="cse-lede">Five hundred dollars. Thirty days. A dime per follower.</p>
