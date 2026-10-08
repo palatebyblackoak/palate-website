@@ -631,6 +631,10 @@
     .cs-tab.is-active::after { transform:scaleX(1); }
 
     .cs-stage { position:relative; }
+    /* revenue group runs on green; every accent below resolves var(--red) */
+    .cs-group-rev { --red:#22C77D; }
+    .cse-chart-svg linearGradient stop { stop-color:var(--red); }
+
     .cs-group + .cs-group { margin-top:8rem; padding-top:8rem;
       border-top:1px solid var(--border); }
     .cs-slide { display:none; opacity:0;
@@ -1118,7 +1122,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- CASE STUDIES -->
 <section id="case-studies">
-  <div class="cse cs-group" data-cs-group>
+  <div class="cse cs-group cs-group-rev" data-cs-group>
     <div class="cs-header rv">
       <div class="cs-eye">Revenue case studies</div>
       <div class="cs-tabs" role="tablist">
