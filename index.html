@@ -650,6 +650,47 @@
     .deck-video-item { aspect-ratio:9/16; }
     .deck-video-item video { width:100%; height:100%; object-fit:cover;
       display:block; background:#000; }
+    .deck-sub, .deck-item figcaption { display:none; }
+
+    /* Desktop: each category becomes a featured piece beside a grid, all in view */
+    @media(min-width:961px){
+      .deck-row { max-width:1320px; margin:0 auto 7rem; padding:0 4rem; }
+      .deck-label { max-width:none; padding:0; margin:0 0 1.75rem;
+        display:flex; align-items:baseline; gap:1.25rem; }
+      .deck-cat { color:var(--red); font-weight:800; letter-spacing:0.3em; font-size:0.68rem; }
+      .deck-sub { display:block; font-family:var(--serif); font-style:italic;
+        font-size:clamp(1.4rem, 2.2vw, 1.9rem); letter-spacing:-0.012em;
+        text-transform:none; color:var(--white); font-weight:400; line-height:1.1; }
+
+      .deck { display:grid; grid-template-columns:repeat(var(--cols), 1fr);
+        grid-auto-flow:dense; gap:1rem; padding:0; overflow:visible;
+        scroll-snap-type:none; }
+      .deck-v { --cols:5; }
+      .deck-d { --cols:7; }
+      .deck-p { --cols:5; }
+      .deck-item { height:auto; min-height:0; max-height:none; border-radius:4px;
+        aspect-ratio:4/5; transition:opacity .35s ease; }
+      .deck-video-item { aspect-ratio:9/16; }
+      .deck-item img { width:100%; height:100%; object-fit:cover;
+        transition:transform .7s cubic-bezier(.2,.7,.2,1); }
+      .deck-item video { transition:transform .7s cubic-bezier(.2,.7,.2,1); }
+
+      /* featured pieces take a 2x2 block; the rest of the grid packs around them */
+      .deck-hero { grid-column:span 2; grid-row:span 2; aspect-ratio:auto; }
+      .deck-hero-b { grid-column:6 / span 2; grid-row:1 / span 2; }
+      .deck-hero-c { grid-column:3 / span 2; grid-row:3 / span 2; }
+      .deck-tall { grid-row:span 2; aspect-ratio:auto; }
+
+      /* hover: the piece under the cursor comes forward, the rest step back */
+      .deck:hover .deck-item:not(:hover) { opacity:0.45; }
+      .deck-item:hover img, .deck-item:hover video { transform:scale(1.04); }
+      .deck-item figcaption { display:block; position:absolute; left:0; right:0; bottom:0;
+        padding:2.5rem 1rem 0.9rem; font-size:0.78rem; line-height:1.3;
+        color:var(--white); background:linear-gradient(transparent, rgba(0,0,0,0.78));
+        opacity:0; transform:translateY(6px); transition:opacity .3s, transform .3s; }
+      .deck-item:hover figcaption { opacity:1; transform:none; }
+      .deck-hero figcaption { font-size:0.9rem; padding:3rem 1.25rem 1.1rem; }
+    }
 
     @media(max-width:960px){
       #media { padding:6rem 0 6rem; }
@@ -1126,9 +1167,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 
   <div class="deck-row rv">
-    <div class="deck-label">Video</div>
-    <div class="deck">
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/reel-1-poster.jpg"><source src="media/reel-1.mp4" type="video/mp4"></video></figure>
+    <div class="deck-label"><span class="deck-cat">Video</span><span class="deck-sub">Short-form that fills tables.</span></div>
+    <div class="deck deck-v">
+      <figure class="deck-item deck-hero deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/reel-1-poster.jpg"><source src="media/reel-1.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/reel-3-poster.jpg"><source src="media/reel-3.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/reel-5-poster.jpg"><source src="media/reel-5.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/reel-6-poster.jpg"><source src="media/reel-6.mp4" type="video/mp4"></video></figure>
@@ -1139,39 +1180,39 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 
   <div class="deck-row rv">
-    <div class="deck-label">Design</div>
-    <div class="deck">
-      <figure class="deck-item"><img src="media/graphic-15.jpg" alt="LUMA La Mundanza" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-10.jpg" alt="LUMA Chipotle Shrimp Tostadas" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-2.jpg" alt="Santa Fe Chapala Sandia" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-11.jpg" alt="LUMA Cupid's Love" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-1.jpg" alt="Santa Fe Beef Filet" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-17.jpg" alt="LUMA Bad Bunny Brunch" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-12.jpg" alt="El Taco Mañanero Botana" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Long Ireland Ice Tea" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-3.jpg" alt="Santa Fe Tonala Sour" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-14.jpg" alt="LUMA Flan de Elote" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-4.jpg" alt="Santa Fe Coctel de Olla" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-19.jpg" alt="LUMA Champagne Papi" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-6.jpg" alt="Santa Fe Seafood Cioppino" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-18.jpg" alt="LUMA Brunch Is Here" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-13.jpg" alt="Santa Fe La Valentina Martini" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-16.jpg" alt="LUMA Chicharrón de Ribeye" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-5.jpg" alt="Santa Fe Zopapan Siesta" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/graphic-9.jpg" alt="LUMA Yummy" loading="lazy"></figure>
+    <div class="deck-label"><span class="deck-cat">Design</span><span class="deck-sub">Specials, drops and menus, on brand.</span></div>
+    <div class="deck deck-d">
+      <figure class="deck-item deck-hero"><img src="media/graphic-15.jpg" alt="LUMA La Mundanza" loading="lazy"><figcaption>LUMA La Mundanza</figcaption></figure>
+      <figure class="deck-item deck-hero deck-hero-b"><img src="media/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"><figcaption>Santa Fe Wagyu New York Strip</figcaption></figure>
+      <figure class="deck-item deck-hero deck-hero-c"><img src="media/graphic-10.jpg" alt="LUMA Chipotle Shrimp Tostadas" loading="lazy"><figcaption>LUMA Chipotle Shrimp Tostadas</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-2.jpg" alt="Santa Fe Chapala Sandia" loading="lazy"><figcaption>Santa Fe Chapala Sandia</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-11.jpg" alt="LUMA Cupid's Love" loading="lazy"><figcaption>LUMA Cupid's Love</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-1.jpg" alt="Santa Fe Beef Filet" loading="lazy"><figcaption>Santa Fe Beef Filet</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-17.jpg" alt="LUMA Bad Bunny Brunch" loading="lazy"><figcaption>LUMA Bad Bunny Brunch</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-12.jpg" alt="El Taco Mañanero Botana" loading="lazy"><figcaption>El Taco Mañanero Botana</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Long Ireland Ice Tea" loading="lazy"><figcaption>LUMA Long Ireland Ice Tea</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-3.jpg" alt="Santa Fe Tonala Sour" loading="lazy"><figcaption>Santa Fe Tonala Sour</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-14.jpg" alt="LUMA Flan de Elote" loading="lazy"><figcaption>LUMA Flan de Elote</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-4.jpg" alt="Santa Fe Coctel de Olla" loading="lazy"><figcaption>Santa Fe Coctel de Olla</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-19.jpg" alt="LUMA Champagne Papi" loading="lazy"><figcaption>LUMA Champagne Papi</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-6.jpg" alt="Santa Fe Seafood Cioppino" loading="lazy"><figcaption>Santa Fe Seafood Cioppino</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-18.jpg" alt="LUMA Brunch Is Here" loading="lazy"><figcaption>LUMA Brunch Is Here</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-13.jpg" alt="Santa Fe La Valentina Martini" loading="lazy"><figcaption>Santa Fe La Valentina Martini</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-16.jpg" alt="LUMA Chicharrón de Ribeye" loading="lazy"><figcaption>LUMA Chicharrón de Ribeye</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-5.jpg" alt="Santa Fe Zopapan Siesta" loading="lazy"><figcaption>Santa Fe Zopapan Siesta</figcaption></figure>
+      <figure class="deck-item"><img src="media/graphic-9.jpg" alt="LUMA Yummy" loading="lazy"><figcaption>LUMA Yummy</figcaption></figure>
     </div>
   </div>
 
   <div class="deck-row rv">
-    <div class="deck-label">Photography</div>
-    <div class="deck">
-      <figure class="deck-item deck-photo-item"><img src="media/photo-3.jpg" alt="Wings Stadium loaded nachos" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-4.jpg" alt="Santa Fe seafood pasta" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-9.jpg" alt="Smokin' Moon spread on a wooden board" loading="lazy"></figure>
+    <div class="deck-label"><span class="deck-cat">Photography</span><span class="deck-sub">Plates and rooms worth the trip.</span></div>
+    <div class="deck deck-p">
+      <figure class="deck-item deck-hero deck-photo-item"><img src="media/photo-3.jpg" alt="Wings Stadium loaded nachos" loading="lazy"><figcaption>Wings Stadium loaded nachos</figcaption></figure>
+      <figure class="deck-item deck-tall deck-photo-item"><img src="media/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"><figcaption>Smokin' Moon guest smiling at the table</figcaption></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-4.jpg" alt="Santa Fe seafood pasta" loading="lazy"><figcaption>Santa Fe seafood pasta</figcaption></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"><figcaption>El Taco Mañanero tacos</figcaption></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"><figcaption>Howling Rabbits bartender pouring a beer</figcaption></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-9.jpg" alt="Smokin' Moon spread on a wooden board" loading="lazy"><figcaption>Smokin' Moon spread on a wooden board</figcaption></figure>
     </div>
   </div>
 </section>
@@ -1679,23 +1720,23 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         <span class="ring-orbit ring-orbit-b" aria-hidden="true"></span>
         <span class="ring-orbit ring-orbit-c" aria-hidden="true"></span>
         <div class="ring-items">
-          <span class="ring-label" style="--a:0deg;--r:400px"><span>Content</span></span>
-          <div class="ring-slot" style="--a:337.2deg;--r:250px;--arrow:85px"><div class="ring-node">Content strategy &amp; calendar</div></div>
-          <div class="ring-slot" style="--a:0.0deg;--r:332px;--arrow:167px"><div class="ring-node">Up to 30 posts per month</div></div>
-          <div class="ring-slot" style="--a:22.8deg;--r:250px;--arrow:85px"><div class="ring-node">Captions + publishing</div></div>
-          <span class="ring-label" style="--a:90deg;--r:400px"><span>Reach</span></span>
-          <div class="ring-slot" style="--a:67.2deg;--r:332px;--arrow:167px"><div class="ring-node">Meta + Google Ads</div></div>
-          <div class="ring-slot" style="--a:90.0deg;--r:250px;--arrow:85px"><div class="ring-node">Community management</div></div>
-          <div class="ring-slot" style="--a:112.8deg;--r:332px;--arrow:167px"><div class="ring-node">Website + maintenance</div></div>
           <span class="ring-label" style="--a:180deg;--r:400px"><span>Consulting</span></span>
           <div class="ring-slot" style="--a:157.2deg;--r:250px;--arrow:85px"><div class="ring-node">Up-to-date tactics</div></div>
           <div class="ring-slot" style="--a:180.0deg;--r:332px;--arrow:167px"><div class="ring-node">Monthly strategy call</div></div>
           <div class="ring-slot" style="--a:202.8deg;--r:250px;--arrow:85px"><div class="ring-node">Monthly performance report</div></div>
+          <span class="ring-label" style="--a:0deg;--r:400px"><span>Content</span></span>
+          <div class="ring-slot" style="--a:337.2deg;--r:250px;--arrow:85px"><div class="ring-node">Content strategy &amp; calendar</div></div>
+          <div class="ring-slot" style="--a:0.0deg;--r:332px;--arrow:167px"><div class="ring-node">Up to 30 posts per month</div></div>
+          <div class="ring-slot" style="--a:22.8deg;--r:250px;--arrow:85px"><div class="ring-node">Captions + publishing</div></div>
           <span class="ring-label" style="--a:270deg;--r:400px"><span>Creative</span></span>
           <div class="ring-slot" style="--a:235.8deg;--r:250px;--arrow:85px"><div class="ring-node">Graphic design</div></div>
           <div class="ring-slot" style="--a:258.6deg;--r:332px;--arrow:167px"><div class="ring-node">Photography</div></div>
-          <div class="ring-slot" style="--a:281.4deg;--r:250px;--arrow:85px"><div class="ring-node">Short-form video editing</div></div>
+          <div class="ring-slot" style="--a:281.4deg;--r:300px;--arrow:70px"><div class="ring-node">Short-form video editing</div></div>
           <div class="ring-slot" style="--a:304.2deg;--r:332px;--arrow:167px"><div class="ring-node">Production</div></div>
+          <span class="ring-label" style="--a:90deg;--r:400px"><span>Reach</span></span>
+          <div class="ring-slot" style="--a:57deg;--r:332px;--arrow:141px"><div class="ring-node">Meta + Google Ads</div></div>
+          <div class="ring-slot" style="--a:78.6deg;--r:300px;--arrow:60px"><div class="ring-node">Community management</div></div>
+          <div class="ring-slot" style="--a:112.8deg;--r:332px;--arrow:167px"><div class="ring-node">Website + maintenance</div></div>
         </div>
         <div class="map-hub">
           <div class="map-hub-inner">
