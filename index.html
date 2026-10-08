@@ -631,8 +631,9 @@
     .cs-tab.is-active::after { transform:scaleX(1); }
 
     .cs-stage { position:relative; }
-    /* revenue group runs on green; every accent below resolves var(--red) */
+    /* case study groups each run their own accent; everything below resolves var(--red) */
     .cs-group-rev { --red:#22C77D; }
+    .cs-group-eng { --red:#38BDF8; }
     .cse-chart-svg linearGradient stop { stop-color:var(--red); }
 
     .cs-group + .cs-group { margin-top:8rem; padding-top:8rem;
@@ -687,11 +688,6 @@
     .cse-platform.is-live .cse-chart-line { stroke-dashoffset:0; }
     .cse-platform.is-live .cse-chart-fill { opacity:1; }
     .cse-platform.is-live .cse-chart-end { r:6; }
-
-    /* engagement charts read lighter than revenue, same accent */
-    .cs-group-soft .cse-chart-line { stroke-width:1.6; }
-    .cs-group-soft .cse-chart-fill { fill-opacity:0.42; }
-    .cs-group-soft .cse-platform.is-live .cse-chart-end { r:4.5; }
 
     .cse-chart-axis { display:flex; justify-content:space-between;
       font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase;
@@ -1325,7 +1321,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="cse cs-group cs-group-soft" data-cs-group>
+  <div class="cse cs-group cs-group-eng" data-cs-group>
     <div class="cs-header rv">
       <div class="cs-eye">Engagement case studies</div>
       <div class="cs-tabs" role="tablist">
