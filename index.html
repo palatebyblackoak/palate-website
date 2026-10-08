@@ -339,11 +339,13 @@
     /* each item sits on the ring and points back at the room */
     .ring-slot { position:absolute; left:50%; top:50%;
       transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r))); }
-    .ring-slot::after { content:''; position:absolute; left:50%; top:100%;
+    /* --gap: centre of the pill to its outline along the arrow, set by script */
+    .ring-slot::after { content:''; position:absolute; left:50%;
+      top:calc(50% + var(--gap, 50%));
       transform:translateX(-50%); width:1px; height:var(--arrow);
       background:linear-gradient(rgba(240,69,67,0.75), rgba(240,69,67,0.18)); }
     .ring-slot::before { content:''; position:absolute; left:50%;
-      top:calc(100% + var(--arrow) - 3px); width:5px; height:5px;
+      top:calc(50% + var(--gap, 50%) + var(--arrow) - 3px); width:5px; height:5px;
       transform:translateX(-50%) rotate(45deg);
       border-right:1px solid var(--red); border-bottom:1px solid var(--red);
       opacity:0.75; }
@@ -358,6 +360,11 @@
     .ring-label > span { display:block; transform:rotate(calc(-1 * var(--a)));
       font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase;
       color:var(--red); font-weight:800; white-space:nowrap; }
+
+    .map-note { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:clamp(1.1rem, 2vw, 1.35rem); color:rgba(255,255,255,0.78);
+      line-height:1.45; letter-spacing:-0.005em; text-align:center;
+      max-width:560px; margin:1.5rem auto 0; }
 
     /* The ring needs real width: its radii are fixed, so below this it unrolls. */
     @media(max-width:1080px){
@@ -378,6 +385,7 @@
         border-radius:var(--r); padding:0.7rem 0.95rem; font-size:0.9rem; }
       .ring-label { position:static; transform:none; margin:1.6rem 0 0.4rem; }
       .ring-label > span { transform:none; }
+      .map-note { text-align:left; margin:2.25rem 0 0; }
     }
 
     .pkg-cta { text-align:center; padding:5rem 0 0; }
@@ -1689,6 +1697,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         <div class="ring-slot" style="--a:281.4deg;--r:250px;--arrow:85px"><div class="ring-node">Short-form video editing</div></div>
         <div class="ring-slot" style="--a:304.2deg;--r:332px;--arrow:167px"><div class="ring-node">Production</div></div>
       </div>
+      <p class="map-note">Everything on this map is part of the Full House Program, applied to every client, consistently, month to month.</p>
     </div>
 
     <div class="pkg-cta rv">
@@ -2020,6 +2029,31 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       });
     }, { threshold: 0.25 });
     videos.forEach(v => io.observe(v));
+  })();
+
+  /* FULL HOUSE MAP — start each arrow on its pill's outline, end on the inner orbit */
+  (function(){
+    const slots = document.querySelectorAll('.ring-slot');
+    if (!slots.length) return;
+    const TIP = 148; // radius of .ring-orbit-c, where every arrowhead lands
+    function fit(){
+      slots.forEach(slot => {
+        const node = slot.querySelector('.ring-node');
+        const a = parseFloat(slot.style.getPropertyValue('--a')) * Math.PI / 180;
+        const r = parseFloat(slot.style.getPropertyValue('--r'));
+        const R = node.offsetHeight / 2;               // radius of the pill's round ends
+        const L = Math.max(0, node.offsetWidth / 2 - R); // half its straight run
+        const dx = Math.abs(Math.sin(a)), dy = Math.abs(Math.cos(a));
+        // distance from the pill's centre to its outline along the arrow
+        let gap = dy ? R / dy : Infinity;
+        if (gap * dx > L) gap = L * dx + Math.sqrt(Math.max(0, R * R - L * L * dy * dy));
+        slot.style.setProperty('--gap', gap.toFixed(1) + 'px');
+        slot.style.setProperty('--arrow', Math.max(0, r - gap - TIP).toFixed(1) + 'px');
+      });
+    }
+    fit();
+    addEventListener('resize', fit);
+    if (document.fonts) document.fonts.ready.then(fit);
   })();
 </script>
 </body>
