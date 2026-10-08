@@ -328,9 +328,9 @@
     .pkg-tier-solo .pkg-tier-desc { max-width:560px; }
 
     /* FULL HOUSE MAP — the room at the centre, the work orbiting it */
-    .pkg-map { padding:4.5rem 0 1rem; }
+    .pkg-map { padding:6rem 0 2.5rem; }
     .map-grid { position:relative; display:grid; grid-template-columns:1fr auto 1fr;
-      grid-template-rows:auto auto; gap:4rem 5rem; align-items:center; }
+      grid-template-rows:auto auto; gap:5.5rem 5.5rem; align-items:center; }
     .map-node { position:relative; z-index:1; }
     .map-node-tl { grid-column:1; grid-row:1; text-align:right; }
     .map-node-bl { grid-column:1; grid-row:2; text-align:right; }
@@ -340,9 +340,9 @@
     .map-node-br { grid-column:3; grid-row:2; }
 
     .map-armature { position:absolute; left:50%; top:50%;
-      transform:translate(-50%,-50%); width:min(1020px, 112%);
+      transform:translate(-50%,-50%); width:min(960px, 102%);
       aspect-ratio:900/620; pointer-events:none; overflow:visible; }
-    .map-rings  { stroke-width:1; opacity:0.26; }
+    .map-rings  { stroke-width:1; opacity:0.19; }
     .map-spokes { stroke-width:1; opacity:0.5; }
     .map-pins   { opacity:0.65; }
 
@@ -357,11 +357,12 @@
     .map-hub-name { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:1.75rem; color:var(--white); line-height:1; letter-spacing:-0.012em; }
 
-    .map-node-eye { font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase;
-      color:var(--red); font-weight:800; margin-bottom:1.05rem; }
-    .map-node-list { list-style:none; margin:0; padding:0;
-      display:flex; flex-direction:column; gap:0.65rem; }
-    .map-node-list li { font-size:0.92rem; color:rgba(255,255,255,0.84); line-height:1.45; }
+    .map-node-eye { font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase;
+      color:var(--red); font-weight:800; margin-bottom:1.4rem; }
+    .map-node-list { list-style:none; margin:0; padding:0; max-width:345px;
+      display:flex; flex-direction:column; gap:0.95rem; }
+    .map-node-tl .map-node-list, .map-node-bl .map-node-list { margin-left:auto; }
+    .map-node-list li { font-size:0.95rem; color:rgba(255,255,255,0.88); line-height:1.5; }
 
     @media(max-width:900px){
       .pkg-map { padding:3rem 0 0; }
@@ -1696,15 +1697,15 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
             <li>Graphic design</li>
             <li>Photography</li>
             <li>Short-form video editing</li>
-            <li>1 production day per month (photo + video)</li>
+            <li>1 production day per month</li>
           </ul>
         </div>
         <div class="map-node map-node-bl">
           <div class="map-node-eye">Content</div>
           <ul class="map-node-list">
-            <li>Monthly content strategy &amp; calendar</li>
+            <li>Content strategy &amp; calendar</li>
             <li>Up to 30 posts per month</li>
-            <li>Captions + publishing across platforms</li>
+            <li>Captions + publishing</li>
           </ul>
         </div>
 
@@ -1719,7 +1720,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           <div class="map-node-eye">Reach</div>
           <ul class="map-node-list">
             <li>Meta + Google Ads management</li>
-            <li>Community management (stories + comments)</li>
+            <li>Community management</li>
             <li>Website design + maintenance</li>
           </ul>
         </div>
