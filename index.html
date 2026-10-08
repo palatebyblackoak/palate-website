@@ -631,6 +631,8 @@
     .cs-tab.is-active::after { transform:scaleX(1); }
 
     .cs-stage { position:relative; }
+    .cs-group + .cs-group { margin-top:8rem; padding-top:8rem;
+      border-top:1px solid var(--border); }
     .cs-slide { display:none; opacity:0;
       transition:opacity 0.45s var(--ease); }
     .cs-slide.is-active { display:block; opacity:1; }
@@ -723,6 +725,7 @@
     @media(max-width:900px){
       #case-studies { padding-top:6rem; padding-bottom:6rem; }
       .cs-header { margin-bottom:3rem; }
+      .cs-group + .cs-group { margin-top:4.5rem; padding-top:4.5rem; }
       .cs-tabs { gap:1.4rem; }
       .cs-tab { font-size:0.9rem; padding-bottom:0.9rem; }
       .cse-lede { margin-bottom:3.5rem; }
@@ -1064,16 +1067,12 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- CASE STUDIES -->
 <section id="case-studies">
-  <div class="cse">
+  <div class="cse cs-group" data-cs-group>
     <div class="cs-header rv">
-      <div class="cs-eye">Case studies</div>
+      <div class="cs-eye">Revenue case studies</div>
       <div class="cs-tabs" role="tablist">
         <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">Sip n' Tell</button>
         <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">LUMA Brunch</button>
-        <button class="cs-tab" type="button" data-case="3" role="tab" aria-selected="false">El Taco Mañanero</button>
-        <button class="cs-tab" type="button" data-case="4" role="tab" aria-selected="false">Howling Rabbits</button>
-        <button class="cs-tab" type="button" data-case="5" role="tab" aria-selected="false">LUMA</button>
-        <button class="cs-tab" type="button" data-case="6" role="tab" aria-selected="false">Smokin' Moon</button>
       </div>
     </div>
 
@@ -1204,8 +1203,23 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 3: EL TACO MAÑANERO -->
-      <div class="cs-slide" data-slide="3" role="tabpanel">
+    </div>
+  </div>
+
+  <div class="cse cs-group" data-cs-group>
+    <div class="cs-header rv">
+      <div class="cs-eye">Engagement case studies</div>
+      <div class="cs-tabs" role="tablist">
+        <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">El Taco Mañanero</button>
+        <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">Howling Rabbits</button>
+        <button class="cs-tab" type="button" data-case="3" role="tab" aria-selected="false">LUMA</button>
+        <button class="cs-tab" type="button" data-case="4" role="tab" aria-selected="false">Smokin' Moon</button>
+      </div>
+    </div>
+
+    <div class="cs-stage rv">
+      <!-- CASE 1: EL TACO MAÑANERO -->
+      <div class="cs-slide is-active" data-slide="1" role="tabpanel">
         <div class="cs-meta">December 2025</div>
         <h2 class="cse-title">El Taco<br><em>Mañanero</em></h2>
         <p class="cse-lede">One month of full-service social media across Facebook and Instagram. From zero brand momentum to millions of impressions.</p>
@@ -1271,8 +1285,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 4: HOWLING RABBITS -->
-      <div class="cs-slide" data-slide="4" role="tabpanel">
+      <!-- CASE 2: HOWLING RABBITS -->
+      <div class="cs-slide" data-slide="2" role="tabpanel">
         <div class="cs-meta">Influencer Collab</div>
         <h2 class="cse-title">Howling Rabbits<br><em>Beerworks</em></h2>
         <p class="cse-lede">One collaboration with Freddsters. Four posts. Zero ad spend. Proof that the right voice beats the right budget.</p>
@@ -1308,8 +1322,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 5: LUMA -->
-      <div class="cs-slide" data-slide="5" role="tabpanel">
+      <!-- CASE 3: LUMA -->
+      <div class="cs-slide" data-slide="3" role="tabpanel">
         <div class="cs-meta">May 2025 to March 2026</div>
         <h2 class="cse-title">LUMA<br><em>Cocktail Lounge</em></h2>
         <p class="cse-lede">Full marketing system from opening day. Ten months of paid ads, plus a 90-day organic content window.</p>
@@ -1375,8 +1389,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- CASE 6: SMOKIN' MOON -->
-      <div class="cs-slide" data-slide="6" role="tabpanel">
+      <!-- CASE 4: SMOKIN' MOON -->
+      <div class="cs-slide" data-slide="4" role="tabpanel">
         <div class="cs-meta">30-Day Paid Sprint</div>
         <h2 class="cse-title">Smokin' Moon<br><em>BBQ &amp; Beer Garden</em></h2>
         <p class="cse-lede">Five hundred dollars. Thirty days. A dime per follower.</p>
@@ -1731,9 +1745,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   }
 
   /* CASE STUDIES — tabbed switcher with animation replay */
-  (function(){
-    const wrapper = document.getElementById('case-studies');
-    if (!wrapper) return;
+  document.querySelectorAll('[data-cs-group]').forEach(function(wrapper){
     const tabs = wrapper.querySelectorAll('.cs-tab');
     const slides = wrapper.querySelectorAll('.cs-slide');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1790,7 +1802,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       }
     }, { threshold: 0.2 });
     io.observe(wrapper);
-  })();
+  });
 
   /* TESTIMONIALS — editorial crossfade */
   (function(){
