@@ -324,6 +324,56 @@
       padding-left:0; margin-bottom:0.4rem; }
     .pkg-tier-features li.pkg-include::before { content:none; }
 
+    .pkg-tier-solo { grid-template-columns:1fr; }
+    .pkg-tier-solo .pkg-tier-desc { max-width:560px; }
+
+    /* FULL HOUSE MAP — the room at the centre, the work orbiting it */
+    .pkg-map { padding:4.5rem 0 1rem; }
+    .map-grid { display:grid; grid-template-columns:1fr auto 1fr;
+      grid-template-rows:auto auto; gap:4rem 5rem; align-items:center; }
+    .map-node { position:relative; }
+    .map-node-tl { grid-column:1; grid-row:1; text-align:right; }
+    .map-node-bl { grid-column:1; grid-row:2; text-align:right; }
+    .map-hub     { grid-column:2; grid-row:1 / span 2;
+      display:flex; align-items:center; justify-content:center; }
+    .map-node-tr { grid-column:3; grid-row:1; }
+    .map-node-br { grid-column:3; grid-row:2; }
+
+    .map-node-tl::after, .map-node-bl::after,
+    .map-node-tr::before, .map-node-br::before {
+      content:''; position:absolute; top:0.45rem;
+      width:3rem; height:1px; background:var(--red); opacity:0.45; }
+    .map-node-tl::after, .map-node-bl::after { right:-4rem; }
+    .map-node-tr::before, .map-node-br::before { left:-4rem; }
+
+    .map-hub-inner { width:210px; height:210px; border-radius:50%;
+      border:1px solid rgba(240,69,67,0.4);
+      background:radial-gradient(circle at 50% 45%, rgba(240,69,67,0.15), rgba(240,69,67,0.02) 68%);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:0.45rem; text-align:center; }
+    .map-hub-lbl { font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase;
+      color:var(--muted); font-weight:700; }
+    .map-hub-name { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:1.75rem; color:var(--white); line-height:1; letter-spacing:-0.012em; }
+
+    .map-node-eye { font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--red); font-weight:800; margin-bottom:1.05rem; }
+    .map-node-list { list-style:none; margin:0; padding:0;
+      display:flex; flex-direction:column; gap:0.65rem; }
+    .map-node-list li { font-size:0.92rem; color:rgba(255,255,255,0.84); line-height:1.45; }
+
+    @media(max-width:900px){
+      .pkg-map { padding:3rem 0 0; }
+      .map-grid { grid-template-columns:1fr; gap:2.75rem; }
+      .map-node-tl, .map-node-bl { grid-column:1; grid-row:auto; text-align:left; }
+      .map-node-tr, .map-node-br { grid-column:1; grid-row:auto; }
+      .map-hub { grid-column:1; grid-row:auto; order:-1; justify-content:flex-start; }
+      .map-node-tl::after, .map-node-bl::after,
+      .map-node-tr::before, .map-node-br::before { display:none; }
+      .map-hub-inner { width:160px; height:160px; }
+      .map-hub-name { font-size:1.45rem; }
+    }
+
     .pkg-cta { text-align:center; padding:5rem 0 0; }
     .pkg-btn { display:inline-block; background:var(--white); color:#111;
       padding:1.1rem 2.4rem; border-radius:100px; text-decoration:none;
@@ -1596,27 +1646,59 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <p class="pkg-lede">One program, done for you. Built for the operator ready to put their food, their drinks, and their story in front of everyone in their city who should know about it.</p>
     </div>
 
-    <article class="pkg-tier rv">
+    <article class="pkg-tier pkg-tier-solo rv">
       <header class="pkg-tier-head">
         <div class="pkg-tier-name">Full House</div>
         <p class="pkg-tier-tag">Your whole story, everywhere.</p>
         <p class="pkg-tier-desc">Brand, content, ads, and web under one roof. Every touchpoint aligned, every month, pointed at the same goal.</p>
       </header>
-      <ul class="pkg-tier-features">
-        <li>Monthly content strategy &amp; calendar</li>
-        <li>Graphic design</li>
-        <li>Photography</li>
-        <li>Short-form video editing</li>
-        <li>1 production day per month (photo + video)</li>
-        <li>Up to 30 posts per month</li>
-        <li>Captions + publishing across platforms</li>
-        <li>Community management (stories + comments)</li>
-        <li>Meta + Google Ads management</li>
-        <li>Website design + maintenance</li>
-        <li>Monthly performance report</li>
-        <li>Monthly strategy call</li>
-      </ul>
     </article>
+
+    <div class="pkg-map rv">
+      <div class="map-grid">
+        <div class="map-node map-node-tl">
+          <div class="map-node-eye">Creative</div>
+          <ul class="map-node-list">
+            <li>Graphic design</li>
+            <li>Photography</li>
+            <li>Short-form video editing</li>
+            <li>1 production day per month (photo + video)</li>
+          </ul>
+        </div>
+        <div class="map-node map-node-bl">
+          <div class="map-node-eye">Content</div>
+          <ul class="map-node-list">
+            <li>Monthly content strategy &amp; calendar</li>
+            <li>Up to 30 posts per month</li>
+            <li>Captions + publishing across platforms</li>
+          </ul>
+        </div>
+
+        <div class="map-hub">
+          <div class="map-hub-inner">
+            <span class="map-hub-lbl">Your</span>
+            <span class="map-hub-name">Restaurant</span>
+          </div>
+        </div>
+
+        <div class="map-node map-node-tr">
+          <div class="map-node-eye">Reach</div>
+          <ul class="map-node-list">
+            <li>Meta + Google Ads management</li>
+            <li>Community management (stories + comments)</li>
+            <li>Website design + maintenance</li>
+          </ul>
+        </div>
+        <div class="map-node map-node-br">
+          <div class="map-node-eye">Counsel</div>
+          <ul class="map-node-list">
+            <li>Consulting</li>
+            <li>Monthly strategy call</li>
+            <li>Monthly performance report</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <div class="pkg-cta rv">
       <a href="https://calendly.com/blackoakagency/discovery-call" target="_blank" class="pkg-btn">Book a strategy call</a>
