@@ -329,30 +329,31 @@
 
     /* FULL HOUSE MAP — the room at the centre, the work orbiting it */
     .pkg-map { padding:4.5rem 0 1rem; }
-    .map-grid { display:grid; grid-template-columns:1fr auto 1fr;
+    .map-grid { position:relative; display:grid; grid-template-columns:1fr auto 1fr;
       grid-template-rows:auto auto; gap:4rem 5rem; align-items:center; }
-    .map-node { position:relative; }
+    .map-node { position:relative; z-index:1; }
     .map-node-tl { grid-column:1; grid-row:1; text-align:right; }
     .map-node-bl { grid-column:1; grid-row:2; text-align:right; }
-    .map-hub     { grid-column:2; grid-row:1 / span 2;
+    .map-hub     { grid-column:2; grid-row:1 / span 2; z-index:1;
       display:flex; align-items:center; justify-content:center; }
     .map-node-tr { grid-column:3; grid-row:1; }
     .map-node-br { grid-column:3; grid-row:2; }
 
-    .map-node-tl::after, .map-node-bl::after,
-    .map-node-tr::before, .map-node-br::before {
-      content:''; position:absolute; top:0.45rem;
-      width:3rem; height:1px; background:var(--red); opacity:0.45; }
-    .map-node-tl::after, .map-node-bl::after { right:-4rem; }
-    .map-node-tr::before, .map-node-br::before { left:-4rem; }
+    .map-armature { position:absolute; left:50%; top:50%;
+      transform:translate(-50%,-50%); width:min(1020px, 112%);
+      aspect-ratio:900/620; pointer-events:none; overflow:visible; }
+    .map-rings  { stroke-width:1; opacity:0.26; }
+    .map-spokes { stroke-width:1; opacity:0.5; }
+    .map-pins   { opacity:0.65; }
 
     .map-hub-inner { width:210px; height:210px; border-radius:50%;
-      border:1px solid rgba(240,69,67,0.4);
-      background:radial-gradient(circle at 50% 45%, rgba(240,69,67,0.15), rgba(240,69,67,0.02) 68%);
+      border:1px solid rgba(240,69,67,0.55);
+      box-shadow:0 0 0 1px rgba(240,69,67,0.08), 0 0 70px -18px rgba(240,69,67,0.5);
+      background:radial-gradient(circle at 50% 45%, rgba(240,69,67,0.16), rgba(240,69,67,0.015) 70%);
       display:flex; flex-direction:column; align-items:center; justify-content:center;
       gap:0.45rem; text-align:center; }
-    .map-hub-lbl { font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; }
+    .map-hub-lbl { font-size:0.58rem; letter-spacing:0.42em; text-transform:uppercase;
+      color:rgba(255,255,255,0.6); font-weight:700; text-indent:0.42em; }
     .map-hub-name { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:1.75rem; color:var(--white); line-height:1; letter-spacing:-0.012em; }
 
@@ -370,6 +371,7 @@
       .map-hub { grid-column:1; grid-row:auto; order:-1; justify-content:flex-start; }
       .map-node-tl::after, .map-node-bl::after,
       .map-node-tr::before, .map-node-br::before { display:none; }
+      .map-armature { display:none; }
       .map-hub-inner { width:160px; height:160px; }
       .map-hub-name { font-size:1.45rem; }
     }
@@ -1656,6 +1658,38 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
     <div class="pkg-map rv">
       <div class="map-grid">
+        <svg class="map-armature" viewBox="0 0 900 620" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="mapFade" gradientUnits="userSpaceOnUse" cx="450" cy="310" r="430">
+              <stop offset="0.14" stop-color="#fff" stop-opacity="0.95"/>
+              <stop offset="0.42" stop-color="#fff" stop-opacity="0.3"/>
+              <stop offset="0.78" stop-color="#fff" stop-opacity="0"/>
+            </radialGradient>
+            <mask id="mapFadeMask">
+              <rect width="900" height="620" fill="url(#mapFade)"/>
+            </mask>
+          </defs>
+          <g mask="url(#mapFadeMask)" fill="none" stroke="var(--red)">
+            <g class="map-rings">
+              <circle cx="450" cy="310" r="150"/>
+              <circle cx="450" cy="310" r="215"/>
+              <circle cx="450" cy="310" r="290"/>
+              <circle cx="450" cy="310" r="370"/>
+            </g>
+            <g class="map-spokes">
+              <line x1="547" y1="254" x2="831" y2="90"/>
+              <line x1="547" y1="366" x2="831" y2="530"/>
+              <line x1="353" y1="254" x2="69"  y2="90"/>
+              <line x1="353" y1="366" x2="69"  y2="530"/>
+            </g>
+            <g class="map-pins" stroke="none" fill="var(--red)">
+              <circle cx="580" cy="235" r="2.5"/>
+              <circle cx="580" cy="385" r="2.5"/>
+              <circle cx="320" cy="235" r="2.5"/>
+              <circle cx="320" cy="385" r="2.5"/>
+            </g>
+          </g>
+        </svg>
         <div class="map-node map-node-tl">
           <div class="map-node-eye">Creative</div>
           <ul class="map-node-list">
