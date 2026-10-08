@@ -361,16 +361,24 @@
 
     @media(max-width:900px){
       .pkg-map { padding:3rem 0 0; }
-      .map-grid { grid-template-columns:1fr; gap:2.75rem; }
-      .map-node { width:100%; }
+      .map-grid { grid-template-columns:1fr; grid-template-rows:auto; gap:2.25rem; }
+      .map-node { width:100%; padding:1.25rem 1.2rem 1.3rem; }
       .map-node-tl, .map-node-bl { grid-column:1; grid-row:auto; text-align:left; justify-self:stretch; }
       .map-node-tr, .map-node-br { grid-column:1; grid-row:auto; justify-self:stretch; }
-      .map-hub { grid-column:1; grid-row:auto; order:-1; justify-content:flex-start; }
-      .map-node-tl::after, .map-node-bl::after,
-      .map-node-tr::before, .map-node-br::before { display:none; }
+      .map-hub { grid-column:1; grid-row:auto; order:-1;
+        justify-content:center; padding-bottom:2.4rem; }
+      /* every tick reads left-to-right once the figure stacks */
+      .map-node-tl .map-node-list li, .map-node-bl .map-node-list li {
+        padding-right:0; padding-left:1.5rem; }
+      .map-node-tl .map-node-list li::after,
+      .map-node-bl .map-node-list li::after { right:auto; left:0; }
+      .map-node-tr .map-node-list li, .map-node-br .map-node-list li { padding-left:1.5rem; }
+      .map-node-eye { margin-bottom:1rem; }
+      .map-node-list { gap:0.7rem; }
       .map-armature { display:none; }
-      .map-hub-inner { width:160px; height:160px; }
-      .map-hub-name { font-size:1.45rem; }
+      .map-hub-inner { width:150px; height:150px; }
+      .map-hub-name { font-size:1.4rem; }
+      .map-cadence { top:auto; bottom:0; }
     }
 
     .pkg-cta { text-align:center; padding:5rem 0 0; }
