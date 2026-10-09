@@ -45,8 +45,6 @@
       --border:rgba(var(--fg-rgb),0.22);
       --accent:var(--cream); --accent-rgb:245,242,234; --accent-text:var(--cream);
       background:var(--bg); color:var(--fg); }
-    /* the logo stays white on ink; on cream it reads as ink */
-    .logo-ink { filter:brightness(0) invert(0.07); }
     html { scroll-behavior: smooth; overflow-x:hidden; }
     body { background:var(--bg); color:var(--fg); font-family:var(--sans);
       font-weight:400; line-height:1.6; overflow-x:hidden;
@@ -61,9 +59,12 @@
     nav.scrolled { background:rgba(245,242,234,0.92); backdrop-filter:blur(24px);
       border-bottom:1px solid rgba(18,18,18,0.08); padding:0.75rem 4rem; }
     nav.scrolled, nav.is-open { --fg:var(--ink); --fg-rgb:18,18,18; }
-    nav.scrolled .nav-logo-img, nav.is-open .nav-logo-img { filter:brightness(0) invert(0.07); }
+    /* cream wordmark over the hero, ink once the bar turns cream */
+    .nav-logo .nav-logo-ink { display:none; }
+    nav.scrolled .nav-logo .nav-logo-cream, nav.is-open .nav-logo .nav-logo-cream { display:none; }
+    nav.scrolled .nav-logo .nav-logo-ink, nav.is-open .nav-logo .nav-logo-ink { display:block; }
     .nav-logo { text-decoration:none; display:flex; align-items:center; }
-    .nav-logo-img { height:28px; width:auto; display:block; transition:height 0.4s var(--ease), filter 0.4s var(--ease); }
+    .nav-logo-img { height:28px; width:auto; display:block; transition:height 0.4s var(--ease); }
     nav.scrolled .nav-logo-img { height:22px; }
     .nav-links { display:flex; align-items:center; gap:2.5rem; list-style:none; }
     .nav-links a { font-size:0.82rem; letter-spacing:-0.005em;
@@ -1012,8 +1013,8 @@
       .client-logo-box{width:100px; height:60px;}
     }
   </style>
-    <link rel="icon" type="image/png" href="media/inline-acaf1e7b.png">
-    <link rel="apple-touch-icon" href="media/inline-e2fd6c97.png">
+    <link rel="icon" type="image/png" href="media/favicon.png">
+    <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -1036,7 +1037,8 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img class="nav-logo-img" src="media/palate-logo.png" alt="Palate by BlackOak">
+    <img class="nav-logo-img nav-logo-cream" src="media/palate-wordmark-cream.png" alt="Palate">
+    <img class="nav-logo-img nav-logo-ink" src="media/palate-wordmark-ink.png" alt="" aria-hidden="true">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#case-studies">Work</a></li>
@@ -1856,7 +1858,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- FOOTER -->
 <footer>
   <div class="fl">
-    <img class="footer-logo-img logo-ink" src="media/palate-logo.png" alt="Palate by BlackOak">
+    <img class="footer-logo-img" src="media/palate-wordmark-ink.png" alt="Palate">
     <div class="fs">Based in Texas</div>
   </div>
   <ul class="flinks">
