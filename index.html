@@ -650,7 +650,7 @@
     .deck-video-item { aspect-ratio:9/16; }
     .deck-video-item video { width:100%; height:100%; object-fit:cover;
       display:block; background:#000; }
-    .deck-sub, .deck-item figcaption { display:none; }
+    .deck-sub { display:none; }
 
     /* Desktop: each category becomes a featured piece beside a grid, all in view */
     @media(min-width:961px){
@@ -684,12 +684,6 @@
       /* hover: the piece under the cursor comes forward, the rest step back */
       .deck:hover .deck-item:not(:hover) { opacity:0.45; }
       .deck-item:hover img, .deck-item:hover video { transform:scale(1.04); }
-      .deck-item figcaption { display:block; position:absolute; left:0; right:0; bottom:0;
-        padding:2.5rem 1rem 0.9rem; font-size:0.78rem; line-height:1.3;
-        color:var(--white); background:linear-gradient(transparent, rgba(0,0,0,0.78));
-        opacity:0; transform:translateY(6px); transition:opacity .3s, transform .3s; }
-      .deck-item:hover figcaption { opacity:1; transform:none; }
-      .deck-hero figcaption { font-size:0.9rem; padding:3rem 1.25rem 1.1rem; }
     }
 
     @media(max-width:960px){
@@ -1182,37 +1176,37 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <div class="deck-row rv">
     <div class="deck-label"><span class="deck-cat">Design</span><span class="deck-sub">Specials, drops and menus, on brand.</span></div>
     <div class="deck deck-d">
-      <figure class="deck-item deck-hero"><img src="media/graphic-15.jpg" alt="LUMA La Mundanza" loading="lazy"><figcaption>LUMA La Mundanza</figcaption></figure>
-      <figure class="deck-item deck-hero deck-hero-b"><img src="media/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"><figcaption>Santa Fe Wagyu New York Strip</figcaption></figure>
-      <figure class="deck-item deck-hero deck-hero-c"><img src="media/graphic-10.jpg" alt="LUMA Chipotle Shrimp Tostadas" loading="lazy"><figcaption>LUMA Chipotle Shrimp Tostadas</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-2.jpg" alt="Santa Fe Chapala Sandia" loading="lazy"><figcaption>Santa Fe Chapala Sandia</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-11.jpg" alt="LUMA Cupid's Love" loading="lazy"><figcaption>LUMA Cupid's Love</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-1.jpg" alt="Santa Fe Beef Filet" loading="lazy"><figcaption>Santa Fe Beef Filet</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-17.jpg" alt="LUMA Bad Bunny Brunch" loading="lazy"><figcaption>LUMA Bad Bunny Brunch</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-12.jpg" alt="El Taco Mañanero Botana" loading="lazy"><figcaption>El Taco Mañanero Botana</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Long Ireland Ice Tea" loading="lazy"><figcaption>LUMA Long Ireland Ice Tea</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-3.jpg" alt="Santa Fe Tonala Sour" loading="lazy"><figcaption>Santa Fe Tonala Sour</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-14.jpg" alt="LUMA Flan de Elote" loading="lazy"><figcaption>LUMA Flan de Elote</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-4.jpg" alt="Santa Fe Coctel de Olla" loading="lazy"><figcaption>Santa Fe Coctel de Olla</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-19.jpg" alt="LUMA Champagne Papi" loading="lazy"><figcaption>LUMA Champagne Papi</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-6.jpg" alt="Santa Fe Seafood Cioppino" loading="lazy"><figcaption>Santa Fe Seafood Cioppino</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-18.jpg" alt="LUMA Brunch Is Here" loading="lazy"><figcaption>LUMA Brunch Is Here</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-13.jpg" alt="Santa Fe La Valentina Martini" loading="lazy"><figcaption>Santa Fe La Valentina Martini</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-16.jpg" alt="LUMA Chicharrón de Ribeye" loading="lazy"><figcaption>LUMA Chicharrón de Ribeye</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-5.jpg" alt="Santa Fe Zopapan Siesta" loading="lazy"><figcaption>Santa Fe Zopapan Siesta</figcaption></figure>
-      <figure class="deck-item"><img src="media/graphic-9.jpg" alt="LUMA Yummy" loading="lazy"><figcaption>LUMA Yummy</figcaption></figure>
+      <figure class="deck-item deck-hero"><img src="media/graphic-15.jpg" alt="LUMA La Mundanza" loading="lazy"></figure>
+      <figure class="deck-item deck-hero deck-hero-b"><img src="media/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"></figure>
+      <figure class="deck-item deck-hero deck-hero-c"><img src="media/graphic-10.jpg" alt="LUMA Chipotle Shrimp Tostadas" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-2.jpg" alt="Santa Fe Chapala Sandia" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-11.jpg" alt="LUMA Cupid's Love" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-1.jpg" alt="Santa Fe Beef Filet" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-17.jpg" alt="LUMA Bad Bunny Brunch" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-12.jpg" alt="El Taco Mañanero Botana" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-8.jpg" alt="LUMA Long Ireland Ice Tea" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-3.jpg" alt="Santa Fe Tonala Sour" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-14.jpg" alt="LUMA Flan de Elote" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-4.jpg" alt="Santa Fe Coctel de Olla" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-19.jpg" alt="LUMA Champagne Papi" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-6.jpg" alt="Santa Fe Seafood Cioppino" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-18.jpg" alt="LUMA Brunch Is Here" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-13.jpg" alt="Santa Fe La Valentina Martini" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-16.jpg" alt="LUMA Chicharrón de Ribeye" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-5.jpg" alt="Santa Fe Zopapan Siesta" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/graphic-9.jpg" alt="LUMA Yummy" loading="lazy"></figure>
     </div>
   </div>
 
   <div class="deck-row rv">
     <div class="deck-label"><span class="deck-cat">Photography</span><span class="deck-sub">Plates and rooms worth the trip.</span></div>
     <div class="deck deck-p">
-      <figure class="deck-item deck-hero deck-photo-item"><img src="media/photo-3.jpg" alt="Wings Stadium loaded nachos" loading="lazy"><figcaption>Wings Stadium loaded nachos</figcaption></figure>
-      <figure class="deck-item deck-tall deck-photo-item"><img src="media/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"><figcaption>Smokin' Moon guest smiling at the table</figcaption></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-4.jpg" alt="Santa Fe seafood pasta" loading="lazy"><figcaption>Santa Fe seafood pasta</figcaption></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"><figcaption>El Taco Mañanero tacos</figcaption></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"><figcaption>Howling Rabbits bartender pouring a beer</figcaption></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/photo-9.jpg" alt="Smokin' Moon spread on a wooden board" loading="lazy"><figcaption>Smokin' Moon spread on a wooden board</figcaption></figure>
+      <figure class="deck-item deck-hero deck-photo-item"><img src="media/photo-3.jpg" alt="Wings Stadium loaded nachos" loading="lazy"></figure>
+      <figure class="deck-item deck-tall deck-photo-item"><img src="media/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-4.jpg" alt="Santa Fe seafood pasta" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/photo-9.jpg" alt="Smokin' Moon spread on a wooden board" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -1221,7 +1215,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <section id="case-studies">
   <div class="cse cs-group cs-group-rev" data-cs-group>
     <div class="cs-header rv">
-      <div class="cs-eye">Revenue case studies</div>
+      <div class="cs-eye">Revenue-based case studies</div>
       <div class="cs-tabs" role="tablist">
         <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">Sip n' Tell &middot; Taco Tuesday</button>
         <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">LUMA &middot; Brunch</button>
@@ -1424,7 +1418,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
   <div class="cse cs-group cs-group-eng" data-cs-group>
     <div class="cs-header rv">
-      <div class="cs-eye">Engagement case studies</div>
+      <div class="cs-eye">Engagement-based case studies</div>
       <div class="cs-tabs" role="tablist">
         <button class="cs-tab is-active" type="button" data-case="1" role="tab" aria-selected="true">El Taco Mañanero &middot; Organic Reach</button>
         <button class="cs-tab" type="button" data-case="2" role="tab" aria-selected="false">Howling Rabbits &middot; Influencer Collaboration</button>
