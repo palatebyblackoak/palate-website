@@ -680,10 +680,31 @@
     /* MEDIA — three horizontal decks */
     #media { background:var(--bg); padding:9rem 0 10rem; overflow:hidden; }
     .deck-hd { max-width:1240px; margin:0 auto 4rem; padding:0 4rem; }
-    .deck-hd h2 { font-size:clamp(1.2rem,2.4vw,1.6rem); font-weight:400;
-      color:rgba(var(--fg-rgb),0.6); letter-spacing:-0.01em; margin:0; }
-    .deck-row { margin-bottom:4.5rem; }
-    .deck-row:last-child { margin-bottom:0; }
+    .deck-hd { display:flex; align-items:flex-end; justify-content:space-between;
+      gap:1.5rem 2rem; flex-wrap:wrap; }
+    .deck-hd h2 { font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:800;
+      color:var(--fg); letter-spacing:-0.03em; line-height:1.08; margin:0; }
+
+    /* one segmented control, one discipline on screen at a time */
+    .deck-tabs { position:relative; display:inline-flex; padding:4px;
+      border:1px solid var(--border); border-radius:999px; background:var(--bg); }
+    .deck-tabs-pill { position:absolute; top:4px; bottom:4px; left:0; width:0;
+      border-radius:999px; background:var(--fg);
+      transition:transform 0.55s var(--ease), width 0.55s var(--ease); }
+    .deck-tab { position:relative; z-index:1; background:none; border:0; cursor:pointer;
+      font:inherit; font-size:0.84rem; font-weight:600; letter-spacing:-0.005em;
+      padding:0.62rem 1.25rem; border-radius:999px; color:rgba(var(--fg-rgb),0.6);
+      transition:color 0.35s var(--ease); -webkit-tap-highlight-color:transparent; }
+    .deck-tab:hover { color:var(--fg); }
+    .deck-tab.is-active { color:var(--bg); }
+    .deck-tab:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+    .deck-row:not(.is-active) { display:none; }
+    .deck-row.is-active.is-entering { animation:deckIn 0.7s var(--ease) both; }
+    @keyframes deckIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+    .deck-progress { display:none; }
+    .deck-row { margin-bottom:0; }
     .deck-label { max-width:1240px; margin:0 auto 1.2rem; padding:0 4rem;
       font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
       color:rgba(var(--fg-rgb),0.45); font-weight:600; }
@@ -700,17 +721,18 @@
     .deck-video-item { aspect-ratio:9/16; }
     .deck-video-item video { width:100%; height:100%; object-fit:cover;
       display:block; background:#000; }
-    .deck-sub { display:none; }
+    .deck-cat { display:none; }
+    .deck-sub { font-family:var(--serif); font-style:italic; font-weight:400;
+      text-transform:none; letter-spacing:-0.01em; color:rgba(var(--fg-rgb),0.78);
+      font-size:1.2rem; line-height:1.2; }
 
     /* Desktop: each category becomes a featured piece beside a grid, all in view */
     @media(min-width:961px){
-      .deck-row { max-width:1320px; margin:0 auto 7rem; padding:0 4rem; }
+      .deck-hd { max-width:1320px; margin-bottom:2.6rem; }
+      .deck-row { max-width:1320px; margin:0 auto; padding:0 4rem; }
       .deck-label { max-width:none; padding:0; margin:0 0 1.75rem;
         display:flex; align-items:baseline; gap:1.25rem; }
-      .deck-cat { color:var(--accent-text); font-weight:800; letter-spacing:0.3em; font-size:0.68rem; }
-      .deck-sub { display:block; font-family:var(--serif); font-style:italic;
-        font-size:clamp(1.4rem, 2.2vw, 1.9rem); letter-spacing:-0.012em;
-        text-transform:none; color:var(--fg); font-weight:400; line-height:1.1; }
+      .deck-sub { font-size:clamp(1.25rem, 1.8vw, 1.5rem); }
 
       .deck { display:grid; grid-template-columns:repeat(var(--cols), 1fr);
         grid-auto-flow:dense; gap:1rem; padding:0; overflow:visible;
@@ -736,19 +758,33 @@
       .deck-item:hover img, .deck-item:hover video { transform:scale(1.04); }
     }
 
+    /* Phone and tablet: the chosen discipline is one swipeable row.
+       The next piece peeks in from the edge; a hairline tracks your place. */
     @media(max-width:960px){
       #media { padding:6rem 0 6rem; }
-      .deck-hd { padding:0 1.5rem; margin-bottom:2.5rem; }
-      .deck-row { margin-bottom:3.5rem; }
-      .deck-label { padding:0 1.5rem; margin-bottom:0.9rem; }
-      .deck { padding:0 1.5rem 0.75rem; gap:0.85rem; }
-      .deck-item { height:44vh; max-height:440px; min-height:280px;
-        scroll-snap-align:start; }
+      .deck-hd { padding:0 1.5rem; margin-bottom:2rem; }
+      .deck-label { padding:0 1.5rem; margin-bottom:1rem; }
+      .deck { padding:0 1.5rem 0.25rem; gap:0.75rem; scroll-padding-inline:1.5rem; }
+      .deck-item { height:auto; min-height:0; max-height:none; border-radius:4px;
+        scroll-snap-align:start; scroll-snap-stop:always; }
+      .deck-video-item { width:min(62vw, 340px); aspect-ratio:9/16; }
+      .deck-d .deck-item { width:min(78vw, 440px); }
+      .deck-d .deck-item img { width:100%; height:auto; }
+      .deck-photo-item { width:min(78vw, 440px); aspect-ratio:4/5; }
+      .deck-progress { display:block; position:relative; height:1px; margin:1.4rem 1.5rem 0;
+        background:var(--border); overflow:hidden; }
+      .deck-progress span { position:absolute; inset:0; background:var(--fg);
+        transform-origin:left; transform:scaleX(var(--p, 0.1)); transition:transform 0.2s linear; }
     }
     @media(max-width:640px){
       #media { padding:4.5rem 0 5rem; }
-      .deck-row { margin-bottom:2.75rem; }
-      .deck-item { height:40vh; max-height:380px; min-height:240px; }
+      .deck-hd { flex-direction:column; align-items:flex-start; }
+      .deck-tabs { width:100%; }
+      .deck-tab { flex:1; padding:0.62rem 0.5rem; text-align:center; }
+    }
+    @media(prefers-reduced-motion: reduce){
+      .deck-tabs-pill, .deck-progress span { transition:none; }
+      .deck-row.is-active.is-entering { animation:none; }
     }
 
     /* CASE STUDIES — accordion */
@@ -1756,9 +1792,15 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <section id="media">
   <div class="deck-hd rv">
     <h2>The details that fill the room.</h2>
+    <div class="deck-tabs" role="tablist" aria-label="Work by discipline">
+      <span class="deck-tabs-pill" aria-hidden="true"></span>
+      <button class="deck-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="deck-video" data-deck="video">Video</button>
+      <button class="deck-tab" type="button" role="tab" aria-selected="false" aria-controls="deck-design" data-deck="design">Design</button>
+      <button class="deck-tab" type="button" role="tab" aria-selected="false" aria-controls="deck-photo" data-deck="photo">Photography</button>
+    </div>
   </div>
 
-  <div class="deck-row rv">
+  <div class="deck-row rv is-active" id="deck-video" role="tabpanel" data-deck-panel="video">
     <div class="deck-label"><span class="deck-cat">Video</span><span class="deck-sub">Short-form that fills tables.</span></div>
     <div class="deck deck-v">
       <figure class="deck-item deck-hero deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-1-poster.jpg"><source src="media/Videos/reel-1.mp4" type="video/mp4"></video></figure>
@@ -1769,9 +1811,10 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-12-poster.jpg"><source src="media/Videos/reel-12.mp4" type="video/mp4"></video></figure>
       <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-13-poster.jpg"><source src="media/Videos/reel-13.mp4" type="video/mp4"></video></figure>
     </div>
+    <div class="deck-progress" aria-hidden="true"><span></span></div>
   </div>
 
-  <div class="deck-row rv">
+  <div class="deck-row rv" id="deck-design" role="tabpanel" data-deck-panel="design">
     <div class="deck-label"><span class="deck-cat">Design</span><span class="deck-sub">Specials, drops and menus, on brand.</span></div>
     <div class="deck deck-d">
       <figure class="deck-item deck-hero"><img src="media/Graphics/graphic-20.jpg" alt="LUMA bottle service" loading="lazy"></figure>
@@ -1786,9 +1829,10 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="deck-item"><img src="media/Graphics/graphic-30.jpg" alt="Santa Fe KitKat Tres Leches chocolate cake" loading="lazy"></figure>
       <figure class="deck-item"><img src="media/Graphics/graphic-28.jpg" alt="University Draft House Sailors Pumpkin Patch" loading="lazy"></figure>
     </div>
+    <div class="deck-progress" aria-hidden="true"><span></span></div>
   </div>
 
-  <div class="deck-row rv">
+  <div class="deck-row rv" id="deck-photo" role="tabpanel" data-deck-panel="photo">
     <div class="deck-label"><span class="deck-cat">Photography</span><span class="deck-sub">Plates and rooms worth the trip.</span></div>
     <div class="deck deck-p">
       <figure class="deck-item deck-hero deck-photo-item"><img src="media/Photos/photo-15.jpg" alt="Santa Fe steak board, wine and desserts spread across the table" loading="lazy"></figure>
@@ -1801,6 +1845,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
       <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-13.jpg" alt="Santa Fe whiskey sour" loading="lazy"></figure>
     </div>
+    <div class="deck-progress" aria-hidden="true"><span></span></div>
   </div>
 </section>
 
@@ -2226,6 +2271,55 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       if (e.key === 'ArrowRight') { show(i + 1); }
       if (e.key === 'ArrowLeft')  { show(i - 1); }
     });
+  })();
+
+  /* MEDIA — segmented control picks one discipline; rows track swipe progress */
+  (function(){
+    const tabs = Array.from(document.querySelectorAll('.deck-tab'));
+    const pill = document.querySelector('.deck-tabs-pill');
+    const panels = document.querySelectorAll('[data-deck-panel]');
+    if (!tabs.length) return;
+    function placePill(){
+      const t = tabs.find(x => x.classList.contains('is-active'));
+      if (!t || !pill) return;
+      pill.style.width = t.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + t.offsetLeft + 'px)';
+    }
+    function track(deck){
+      const bar = deck.parentElement.querySelector('.deck-progress');
+      if (!bar || !deck.scrollWidth) return;
+      const seen = (deck.scrollLeft + deck.clientWidth) / deck.scrollWidth;
+      bar.style.setProperty('--p', Math.min(1, seen).toFixed(3));
+    }
+    function select(key){
+      tabs.forEach(t => {
+        const on = t.dataset.deck === key;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(p => {
+        const on = p.dataset.deckPanel === key;
+        p.classList.toggle('is-active', on);
+        p.classList.remove('is-entering');
+        if (on) {
+          p.querySelectorAll('img[loading="lazy"]').forEach(i => { i.loading = 'eager'; });
+          p.classList.add('on');
+          void p.offsetWidth; p.classList.add('is-entering');
+          const deck = p.querySelector('.deck');
+          if (deck) { deck.scrollLeft = 0; track(deck); }
+        }
+      });
+      placePill();
+    }
+    tabs.forEach(t => t.addEventListener('click', () => select(t.dataset.deck)));
+    document.querySelectorAll('#media .deck').forEach(deck => {
+      deck.addEventListener('scroll', () => track(deck), { passive: true });
+      track(deck);
+    });
+    placePill();
+    addEventListener('resize', () => { placePill(); document.querySelectorAll('#media .deck').forEach(track); });
+    addEventListener('load', () => document.querySelectorAll('#media .deck').forEach(track));
+    if (document.fonts) document.fonts.ready.then(placePill);
   })();
 
   /* MEDIA — pause off-screen videos to save bandwidth/CPU */
