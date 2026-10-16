@@ -1069,6 +1069,13 @@
       .clients-track{gap:2.75rem; animation-duration:26s;}
       .client-logo-box{width:100px; height:60px;}
     }
+    /* CHAPTER — the manifesto and the practice read as one "why" */
+    section#manifesto { border-bottom:0; padding-bottom:4rem; }
+    #manifesto + #about { padding-top:3rem; }
+    @media(max-width:900px){
+      section#manifesto { padding-bottom:3rem; }
+      #manifesto + #about { padding-top:1.5rem; }
+    }
   </style>
     <link rel="icon" type="image/png" href="media/Brand/favicon.png">
     <link rel="apple-touch-icon" href="media/Brand/apple-touch-icon.png">
@@ -1100,7 +1107,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <ul class="nav-links" id="navLinks">
     <li><a href="#case-studies">Work</a></li>
     <li><a href="#packages">Program</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#manifesto">About</a></li>
     <li><a href="https://calendly.com/palatemarketing/discovery-call" target="_blank">Contact</a></li>
   </ul>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
@@ -1130,21 +1137,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     </div>
     <p class="hero-trust">A 30-minute conversation.</p>
   </div>
-  <a href="#stats" class="hero-scroll" aria-label="Scroll down">
+  <a href="#clients" class="hero-scroll" aria-label="Scroll down">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
   </a>
-</section>
-
-<!-- MANIFESTO -->
-<section id="manifesto">
-  <div class="mnf">
-    <div class="mnf-eye rv">Why we exist</div>
-    <p class="mnf-line rv">You built this place to feed people. To host them. To give them a night they'd remember.</p>
-    <p class="mnf-line rv d1 dim">We become the voice behind it. <em>The story, the photos, the words</em> that reach the people who'd love you if they knew you existed.</p>
-    <p class="mnf-line rv d2 closer">You perfect the plate. We carry the word.</p>
-  </div>
 </section>
 
 <!-- CLIENTS -->
@@ -1177,117 +1174,72 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   })();
 </script>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="tst-wrap rv">
-    <h2 class="tst-title">What our clients say.</h2>
-    <div class="tst-stage" role="region" aria-live="polite" aria-label="Client testimonials" id="tstStage">
-      <blockquote class="tst-slide is-active">
-        <p class="tst-quote">They got what we were building and helped us say it out loud. The reach has been real.</p>
-        <div class="tst-attr">
-          <span class="tst-rule" aria-hidden="true"></span>
-          <span class="tst-name">Steven Schwoerer</span>
-          <span class="tst-loc">Howling Rabbits Beerworks</span>
-        </div>
-      </blockquote>
-      <blockquote class="tst-slide">
-        <p class="tst-quote">In our first month at LUMA, we gained over 2,000 followers across Facebook and Instagram. Their influencer program helped us reach 250,000 local accounts. The momentum is unreal.</p>
-        <div class="tst-attr">
-          <span class="tst-rule" aria-hidden="true"></span>
-          <span class="tst-name">Joseph Salinas</span>
-          <span class="tst-loc">LUMA Cocktail Lounge</span>
-        </div>
-      </blockquote>
-      <blockquote class="tst-slide">
-        <p class="tst-quote">They built our brand from day one, and it grew faster than we planned.</p>
-        <div class="tst-attr">
-          <span class="tst-rule" aria-hidden="true"></span>
-          <span class="tst-name">Jorge Santana</span>
-          <span class="tst-loc">Santana Nutrition</span>
-        </div>
-      </blockquote>
-      <blockquote class="tst-slide">
-        <p class="tst-quote">Creative, innovative, and detail-obsessed. They've made a real difference for Smokin' Moon.</p>
-        <div class="tst-attr">
-          <span class="tst-rule" aria-hidden="true"></span>
-          <span class="tst-name">Joseph Salinas</span>
-          <span class="tst-loc">Smokin' Moon Barbecue &amp; Beer Garden</span>
-        </div>
-      </blockquote>
-    </div>
-    <div class="tst-controls">
-      <button class="tst-btn tst-prev" type="button" aria-label="Previous testimonial">‹</button>
-      <div class="tst-progress" aria-hidden="true"><div class="tst-fill"></div></div>
-      <button class="tst-btn tst-next" type="button" aria-label="Next testimonial">›</button>
-    </div>
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="mnf">
+    <div class="mnf-eye rv">Why we exist</div>
+    <p class="mnf-line rv">You built this place to feed people. To host them. To give them a night they'd remember.</p>
+    <p class="mnf-line rv d1 dim">We become the voice behind it. <em>The story, the photos, the words</em> that reach the people who'd love you if they knew you existed.</p>
+    <p class="mnf-line rv d2 closer">You perfect the plate. We carry the word.</p>
   </div>
 </section>
 
-<!-- VSL -->
-<section id="vsl">
-  <div class="vsl-inner">
-    <h2 class="vsl-headline rv">2025, <em>in review.</em></h2>
-    <p class="vsl-sub rv">What a year of restaurant marketing looks like.</p>
-    <div class="vsl-embed rv">
-      <video controls playsinline preload="none" poster="media/Photos/vsl-thumbnail.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/Videos/vsl.mp4" type="video/mp4"></video>
-    </div>
-    <p class="vsl-caption rv">Ready to be in the 2026 reel?</p>
-    <a href="https://calendly.com/palatemarketing/discovery-call" target="_blank" class="pill pill-lg rv">
-      <span class="pt">Book a strategy call</span>
-      <span class="pa">→</span>
-    </a>
-  </div>
-</section>
+<!-- ABOUT -->
+<section id="about">
+  <figure class="abt-media rv">
+    <img src="media/Brand/about-photo.jpg" alt="Palate by BlackOak restaurant social media results">
+  </figure>
+  <div class="abt-content rv d1">
+    <div class="abt-eye">Our practice</div>
+    <h2 class="abt-title">One obsession.<br><em>Restaurants.</em></h2>
+    <p class="abt-lede">Every restaurant we work with was built for a reason. A history, a concept, a way of serving people that deserves to be known. Our job is to carry that story across every medium your guests will see. We work exclusively with <strong>independent, full-service restaurants</strong>.</p>
 
-<!-- MEDIA -->
-<section id="media">
-  <div class="deck-hd rv">
-    <h2>The details that fill the room.</h2>
-  </div>
+    <ol class="abt-pillars">
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">01</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Brand story and concept</div>
+          <div class="abt-pillar-d">Understanding what you built, and why.</div>
+        </div>
+      </li>
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">02</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Strategy for your market</div>
+          <div class="abt-pillar-d">A plan to reach the locals who'd love you if they knew.</div>
+        </div>
+      </li>
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">03</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Photo, video, and design, in-house</div>
+          <div class="abt-pillar-d">Monthly media days at your restaurant. A full social team behind it.</div>
+        </div>
+      </li>
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">04</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Paid ads</div>
+          <div class="abt-pillar-d">Meta, Google, and TikTok, tuned to your goals and budget.</div>
+        </div>
+      </li>
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">05</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Operator-side consulting</div>
+          <div class="abt-pillar-d">Guidance from someone who's stood behind the bar and run the room.</div>
+        </div>
+      </li>
+      <li class="abt-pillar">
+        <span class="abt-pillar-n">06</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">Systems that ship every month</div>
+          <div class="abt-pillar-d">Events, specials, happy hour, hiring, all told consistently.</div>
+        </div>
+      </li>
+    </ol>
 
-  <div class="deck-row rv">
-    <div class="deck-label"><span class="deck-cat">Video</span><span class="deck-sub">Short-form that fills tables.</span></div>
-    <div class="deck deck-v">
-      <figure class="deck-item deck-hero deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-1-poster.jpg"><source src="media/Videos/reel-1.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-15-poster.jpg"><source src="media/Videos/reel-15.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-5-poster.jpg"><source src="media/Videos/reel-5.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-6-poster.jpg"><source src="media/Videos/reel-6.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-14-poster.jpg"><source src="media/Videos/reel-14.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-12-poster.jpg"><source src="media/Videos/reel-12.mp4" type="video/mp4"></video></figure>
-      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-13-poster.jpg"><source src="media/Videos/reel-13.mp4" type="video/mp4"></video></figure>
-    </div>
-  </div>
-
-  <div class="deck-row rv">
-    <div class="deck-label"><span class="deck-cat">Design</span><span class="deck-sub">Specials, drops and menus, on brand.</span></div>
-    <div class="deck deck-d">
-      <figure class="deck-item deck-hero"><img src="media/Graphics/graphic-20.jpg" alt="LUMA bottle service" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-25.jpg" alt="The Quarter Taco Tuesday" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-27.jpg" alt="The Wings Stadium Mix &amp; Match lunch specials menu" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-21.jpg" alt="LUMA El Ocho Taco Tuesday special" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-26.jpg" alt="El Taco Mañanero tacos with Barrilitos sodas" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-29.jpg" alt="University Draft House UTRGV game day promo" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-31.jpg" alt="LUMA BOGO cocktails and Girl Dinner special" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-24.jpg" alt="Kiss &amp; Fly x The Fifth Wingman Wednesday" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-30.jpg" alt="Santa Fe KitKat Tres Leches chocolate cake" loading="lazy"></figure>
-      <figure class="deck-item"><img src="media/Graphics/graphic-28.jpg" alt="University Draft House Sailors Pumpkin Patch" loading="lazy"></figure>
-    </div>
-  </div>
-
-  <div class="deck-row rv">
-    <div class="deck-label"><span class="deck-cat">Photography</span><span class="deck-sub">Plates and rooms worth the trip.</span></div>
-    <div class="deck deck-p">
-      <figure class="deck-item deck-hero deck-photo-item"><img src="media/Photos/photo-15.jpg" alt="Santa Fe steak board, wine and desserts spread across the table" loading="lazy"></figure>
-      <figure class="deck-item deck-hero deck-hero-p deck-photo-item"><img src="media/Photos/photo-14.jpg" alt="Sip n' Tell server with a board of tacos" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/hero-slide-7.jpg" alt="Howling Rabbits pizza sliced at the table" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-16.jpg" alt="Santa Fe caramel bread pudding with cinnamon" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/hero-slide-12.jpg" alt="Smokin' Moon tacos and brisket on a board" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
-      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-13.jpg" alt="Santa Fe whiskey sour" loading="lazy"></figure>
-    </div>
+    <p class="abt-closer">When someone walks in, the room should feel like the story that brought them there.</p>
   </div>
 </section>
 
@@ -1784,62 +1736,71 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <figure class="abt-media rv">
-    <img src="media/Brand/about-photo.jpg" alt="Palate by BlackOak restaurant social media results">
-  </figure>
-  <div class="abt-content rv d1">
-    <div class="abt-eye">Our practice</div>
-    <h2 class="abt-title">One obsession.<br><em>Restaurants.</em></h2>
-    <p class="abt-lede">Every restaurant we work with was built for a reason. A history, a concept, a way of serving people that deserves to be known. Our job is to carry that story across every medium your guests will see. We work exclusively with <strong>independent, full-service restaurants</strong>.</p>
+<!-- VSL -->
+<section id="vsl">
+  <div class="vsl-inner">
+    <h2 class="vsl-headline rv">2025, <em>in review.</em></h2>
+    <p class="vsl-sub rv">What a year of restaurant marketing looks like.</p>
+    <div class="vsl-embed rv">
+      <video controls playsinline preload="none" poster="media/Photos/vsl-thumbnail.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/Videos/vsl.mp4" type="video/mp4"></video>
+    </div>
+    <p class="vsl-caption rv">Ready to be in the 2026 reel?</p>
+    <a href="https://calendly.com/palatemarketing/discovery-call" target="_blank" class="pill pill-lg rv">
+      <span class="pt">Book a strategy call</span>
+      <span class="pa">→</span>
+    </a>
+  </div>
+</section>
 
-    <ol class="abt-pillars">
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">01</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Brand story and concept</div>
-          <div class="abt-pillar-d">Understanding what you built, and why.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">02</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Strategy for your market</div>
-          <div class="abt-pillar-d">A plan to reach the locals who'd love you if they knew.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">03</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Photo, video, and design, in-house</div>
-          <div class="abt-pillar-d">Monthly media days at your restaurant. A full social team behind it.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">04</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Paid ads</div>
-          <div class="abt-pillar-d">Meta, Google, and TikTok, tuned to your goals and budget.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">05</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Operator-side consulting</div>
-          <div class="abt-pillar-d">Guidance from someone who's stood behind the bar and run the room.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">06</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Systems that ship every month</div>
-          <div class="abt-pillar-d">Events, specials, happy hour, hiring, all told consistently.</div>
-        </div>
-      </li>
-    </ol>
+<!-- MEDIA -->
+<section id="media">
+  <div class="deck-hd rv">
+    <h2>The details that fill the room.</h2>
+  </div>
 
-    <p class="abt-closer">When someone walks in, the room should feel like the story that brought them there.</p>
+  <div class="deck-row rv">
+    <div class="deck-label"><span class="deck-cat">Video</span><span class="deck-sub">Short-form that fills tables.</span></div>
+    <div class="deck deck-v">
+      <figure class="deck-item deck-hero deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-1-poster.jpg"><source src="media/Videos/reel-1.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-15-poster.jpg"><source src="media/Videos/reel-15.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-5-poster.jpg"><source src="media/Videos/reel-5.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-6-poster.jpg"><source src="media/Videos/reel-6.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-14-poster.jpg"><source src="media/Videos/reel-14.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-12-poster.jpg"><source src="media/Videos/reel-12.mp4" type="video/mp4"></video></figure>
+      <figure class="deck-item deck-video-item"><video muted loop playsinline preload="none" data-reel poster="media/Videos/reel-13-poster.jpg"><source src="media/Videos/reel-13.mp4" type="video/mp4"></video></figure>
+    </div>
+  </div>
+
+  <div class="deck-row rv">
+    <div class="deck-label"><span class="deck-cat">Design</span><span class="deck-sub">Specials, drops and menus, on brand.</span></div>
+    <div class="deck deck-d">
+      <figure class="deck-item deck-hero"><img src="media/Graphics/graphic-20.jpg" alt="LUMA bottle service" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-7.jpg" alt="Santa Fe Wagyu New York Strip" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-25.jpg" alt="The Quarter Taco Tuesday" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-27.jpg" alt="The Wings Stadium Mix &amp; Match lunch specials menu" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-21.jpg" alt="LUMA El Ocho Taco Tuesday special" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-26.jpg" alt="El Taco Mañanero tacos with Barrilitos sodas" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-29.jpg" alt="University Draft House UTRGV game day promo" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-31.jpg" alt="LUMA BOGO cocktails and Girl Dinner special" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-24.jpg" alt="Kiss &amp; Fly x The Fifth Wingman Wednesday" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-30.jpg" alt="Santa Fe KitKat Tres Leches chocolate cake" loading="lazy"></figure>
+      <figure class="deck-item"><img src="media/Graphics/graphic-28.jpg" alt="University Draft House Sailors Pumpkin Patch" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="deck-row rv">
+    <div class="deck-label"><span class="deck-cat">Photography</span><span class="deck-sub">Plates and rooms worth the trip.</span></div>
+    <div class="deck deck-p">
+      <figure class="deck-item deck-hero deck-photo-item"><img src="media/Photos/photo-15.jpg" alt="Santa Fe steak board, wine and desserts spread across the table" loading="lazy"></figure>
+      <figure class="deck-item deck-hero deck-hero-p deck-photo-item"><img src="media/Photos/photo-14.jpg" alt="Sip n' Tell server with a board of tacos" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/hero-slide-7.jpg" alt="Howling Rabbits pizza sliced at the table" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-11.jpg" alt="Smokin' Moon guest smiling at the table" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-16.jpg" alt="Santa Fe caramel bread pudding with cinnamon" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/hero-slide-12.jpg" alt="Smokin' Moon tacos and brisket on a board" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-1.jpg" alt="El Taco Mañanero tacos" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-8.jpg" alt="Howling Rabbits bartender pouring a beer" loading="lazy"></figure>
+      <figure class="deck-item deck-photo-item"><img src="media/Photos/photo-13.jpg" alt="Santa Fe whiskey sour" loading="lazy"></figure>
+    </div>
   </div>
 </section>
 
@@ -1900,6 +1861,52 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="pkg-cta rv">
       <a href="https://calendly.com/palatemarketing/discovery-call" target="_blank" class="pkg-btn">Book a strategy call</a>
       <p class="pkg-cta-note">30-min call. We'll map the program to your room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="tst-wrap rv">
+    <h2 class="tst-title">What our clients say.</h2>
+    <div class="tst-stage" role="region" aria-live="polite" aria-label="Client testimonials" id="tstStage">
+      <blockquote class="tst-slide is-active">
+        <p class="tst-quote">They got what we were building and helped us say it out loud. The reach has been real.</p>
+        <div class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Steven Schwoerer</span>
+          <span class="tst-loc">Howling Rabbits Beerworks</span>
+        </div>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">In our first month at LUMA, we gained over 2,000 followers across Facebook and Instagram. Their influencer program helped us reach 250,000 local accounts. The momentum is unreal.</p>
+        <div class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Joseph Salinas</span>
+          <span class="tst-loc">LUMA Cocktail Lounge</span>
+        </div>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">They built our brand from day one, and it grew faster than we planned.</p>
+        <div class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Jorge Santana</span>
+          <span class="tst-loc">Santana Nutrition</span>
+        </div>
+      </blockquote>
+      <blockquote class="tst-slide">
+        <p class="tst-quote">Creative, innovative, and detail-obsessed. They've made a real difference for Smokin' Moon.</p>
+        <div class="tst-attr">
+          <span class="tst-rule" aria-hidden="true"></span>
+          <span class="tst-name">Joseph Salinas</span>
+          <span class="tst-loc">Smokin' Moon Barbecue &amp; Beer Garden</span>
+        </div>
+      </blockquote>
+    </div>
+    <div class="tst-controls">
+      <button class="tst-btn tst-prev" type="button" aria-label="Previous testimonial">‹</button>
+      <div class="tst-progress" aria-hidden="true"><div class="tst-fill"></div></div>
+      <button class="tst-btn tst-next" type="button" aria-label="Next testimonial">›</button>
     </div>
   </div>
 </section>
