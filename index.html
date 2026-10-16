@@ -625,7 +625,7 @@
       display:flex; align-items:center; gap:0.9rem; }
     .abt-eye::before { content:''; width:22px; height:1px; background:var(--accent); }
     .abt-title { font-size:clamp(2.4rem, 5vw, 3.6rem); font-weight:800;
-      letter-spacing:-0.03em; line-height:1.05; margin:0 0 1.6rem; }
+      letter-spacing:-0.03em; line-height:1.05; margin:0 0 2.6rem; }
     .abt-title em { font-style:normal; font-weight:300; color:rgba(var(--fg-rgb),0.68); }
     .abt-lede { font-size:1.02rem; color:rgba(var(--fg-rgb),0.72); line-height:1.75;
       margin:0 0 2.75rem; }
@@ -645,6 +645,13 @@
       font-size:clamp(1.2rem, 2.2vw, 1.55rem); color:var(--fg);
       line-height:1.4; letter-spacing:-0.005em; margin:0; }
 
+    /* desktop: the photo and the text share one frame, top edge to bottom edge */
+    @media(min-width:961px){
+      #about { align-items:stretch; }
+      .abt-media { aspect-ratio:auto; min-height:560px; }
+      .abt-content { display:flex; flex-direction:column; }
+      .abt-closer { margin-top:auto; }
+    }
     @media(max-width:960px){
       .abt-media { max-height:62vh; }
       .abt-media img { object-position:center; }
@@ -1208,49 +1215,26 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <div class="abt-content rv d1">
     <div class="abt-eye">Our practice</div>
     <h2 class="abt-title">One obsession.<br><em>Restaurants.</em></h2>
-    <p class="abt-lede">Every restaurant we work with was built for a reason. A history, a concept, a way of serving people that deserves to be known. Our job is to carry that story across every medium your guests will see. We work exclusively with <strong>independent, full-service restaurants</strong>.</p>
-
     <ol class="abt-pillars">
       <li class="abt-pillar">
         <span class="abt-pillar-n">01</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Brand story and concept</div>
-          <div class="abt-pillar-d">Understanding what you built, and why.</div>
+          <div class="abt-pillar-t">Only restaurants</div>
+          <div class="abt-pillar-d">We work exclusively with independent, full-service restaurants.</div>
         </div>
       </li>
       <li class="abt-pillar">
         <span class="abt-pillar-n">02</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Strategy for your market</div>
-          <div class="abt-pillar-d">A plan to reach the locals who'd love you if they knew.</div>
+          <div class="abt-pillar-t">In your room, every month</div>
+          <div class="abt-pillar-d">Monthly media days at your restaurant. Your plates, your people, your room.</div>
         </div>
       </li>
       <li class="abt-pillar">
         <span class="abt-pillar-n">03</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Photo, video, and design, in-house</div>
-          <div class="abt-pillar-d">Monthly media days at your restaurant. A full social team behind it.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">04</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Paid ads</div>
-          <div class="abt-pillar-d">Meta, Google, and TikTok, tuned to your goals and budget.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">05</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Operator-side consulting</div>
+          <div class="abt-pillar-t">Operators, not just marketers</div>
           <div class="abt-pillar-d">Guidance from someone who's stood behind the bar and run the room.</div>
-        </div>
-      </li>
-      <li class="abt-pillar">
-        <span class="abt-pillar-n">06</span>
-        <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Systems that ship every month</div>
-          <div class="abt-pillar-d">Events, specials, happy hour, hiring, all told consistently.</div>
         </div>
       </li>
     </ol>
