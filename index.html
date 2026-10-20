@@ -545,19 +545,26 @@
     .tc-role { font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
       color:var(--accent-text); font-weight:600; }
     .tc-bio { font-size:0.78rem; color:var(--muted); line-height:1.55; margin-top:0.5rem; }
-    .join { display:flex; align-items:center; justify-content:space-between; gap:2rem;
-      margin-top:5rem; padding-top:2.5rem; border-top:1px solid var(--border);
+    #team { padding-bottom:7rem; }
+    .join { display:grid; grid-template-columns:5fr 7fr; gap:1.5rem 4rem; align-items:end;
+      margin-top:6rem; padding-top:3.5rem; border-top:1px solid var(--border);
       scroll-margin-top:6rem; }
-    .join-title { font-size:clamp(1.6rem,2.8vw,2.2rem); font-weight:800;
-      line-height:1.1; letter-spacing:-0.03em; }
+    .join-title { font-size:clamp(2.2rem,4vw,3.2rem); font-weight:800;
+      line-height:1.04; letter-spacing:-0.035em; }
     .join-title em { font-style:normal; font-weight:300; color:rgba(var(--fg-rgb),0.72); }
-    .join-body { font-size:0.92rem; color:var(--muted); margin-top:0.5rem; max-width:520px; }
-    .join-link { flex-shrink:0; font-size:0.92rem; font-weight:600; color:var(--accent-text);
-      text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:2px;
-      transition:opacity 0.3s var(--ease); }
-    .join-link:hover { opacity:0.7; }
+    .join-body { font-size:1.05rem; color:var(--muted); line-height:1.6; max-width:520px; text-wrap:balance; }
+    .join-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1rem 1.5rem; margin-top:1.75rem; }
+    .join-btn { display:inline-flex; align-items:center; padding:0.95rem 1.9rem;
+      background:var(--ink); color:var(--cream); font-size:0.98rem; font-weight:600;
+      letter-spacing:-0.01em; text-decoration:none;
+      transition:transform 0.25s var(--ease), opacity 0.25s; }
+    .join-btn:hover { transform:translateY(-1px); opacity:0.88; }
+    .join-mail { font-size:0.9rem; color:var(--muted); text-decoration:none;
+      border-bottom:1px solid var(--border); padding-bottom:1px; transition:color 0.25s; }
+    .join-mail:hover { color:var(--fg); }
     @media(max-width:700px){
-      .join { flex-direction:column; align-items:flex-start; gap:1.5rem; margin-top:3.5rem; }
+      #team { padding-bottom:5rem; }
+      .join { grid-template-columns:1fr; margin-top:4rem; padding-top:2.5rem; }
     }
 
     /* TESTIMONIALS — editorial */
@@ -2038,11 +2045,14 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     </div>
   </div>
   <div class="join rv" id="join">
+    <h3 class="join-title">Join<br><em>our team.</em></h3>
     <div>
-      <h3 class="join-title">Join <em>our team.</em></h3>
       <p class="join-body">Want to make marketing for restaurants? Send us a note and your work.</p>
+      <div class="join-actions">
+        <a href="mailto:info@blackoakagency.co?subject=Join%20the%20Palate%20team" class="join-btn">Apply by email</a>
+        <a href="mailto:info@blackoakagency.co?subject=Join%20the%20Palate%20team" class="join-mail">info@blackoakagency.co</a>
+      </div>
     </div>
-    <a href="mailto:info@blackoakagency.co?subject=Join%20the%20Palate%20team" class="join-link">Apply by email</a>
   </div>
 </section>
 
