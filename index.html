@@ -545,6 +545,20 @@
     .tc-role { font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
       color:var(--accent-text); font-weight:600; }
     .tc-bio { font-size:0.78rem; color:var(--muted); line-height:1.55; margin-top:0.5rem; }
+    .join { display:flex; align-items:center; justify-content:space-between; gap:2rem;
+      margin-top:5rem; padding-top:2.5rem; border-top:1px solid var(--border);
+      scroll-margin-top:6rem; }
+    .join-title { font-size:clamp(1.6rem,2.8vw,2.2rem); font-weight:800;
+      line-height:1.1; letter-spacing:-0.03em; }
+    .join-title em { font-style:normal; font-weight:300; color:rgba(var(--fg-rgb),0.72); }
+    .join-body { font-size:0.92rem; color:var(--muted); margin-top:0.5rem; max-width:520px; }
+    .join-link { flex-shrink:0; font-size:0.92rem; font-weight:600; color:var(--accent-text);
+      text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:2px;
+      transition:opacity 0.3s var(--ease); }
+    .join-link:hover { opacity:0.7; }
+    @media(max-width:700px){
+      .join { flex-direction:column; align-items:flex-start; gap:1.5rem; margin-top:3.5rem; }
+    }
 
     /* TESTIMONIALS — editorial */
     #testimonials { background:var(--bg); padding-top:7rem; padding-bottom:5.5rem; }
@@ -1169,6 +1183,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <li><a href="#case-studies">Work</a></li>
     <li><a href="#packages">Program</a></li>
     <li><a href="#manifesto">About</a></li>
+    <li><a href="#join">Join our team</a></li>
     <li><a href="https://calendly.com/palatemarketing/discovery-call" target="_blank">Contact</a></li>
   </ul>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
@@ -1242,7 +1257,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="vsl-headline rv">Your Tuesdays look nothing like <em>your Saturdays?</em></h2>
     <p class="vsl-sub rv">A three-minute watch.</p>
     <div class="vsl-embed rv">
-      <video controls playsinline preload="none" poster="media/Photos/vsl-sales-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/Videos/vsl-sales.mp4" type="video/mp4"></video>
+      <video controls playsinline preload="none" poster="media/Photos/vsl-sales-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="media/Videos/vsl-sales.mp4?v=2" type="video/mp4"></video>
     </div>
     <a href="https://calendly.com/palatemarketing/discovery-call" target="_blank" class="pill pill-lg rv">
       <span class="pt">Book a strategy call</span>
@@ -2022,6 +2037,13 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <div class="tc-bio">Refines every short-form cut until it is publish-ready.</div>
     </div>
   </div>
+  <div class="join rv" id="join">
+    <div>
+      <h3 class="join-title">Join <em>our team.</em></h3>
+      <p class="join-body">Want to make marketing for restaurants? Send us a note and your work.</p>
+    </div>
+    <a href="mailto:info@blackoakagency.co?subject=Join%20the%20Palate%20team" class="join-link">Apply by email</a>
+  </div>
 </section>
 
 <!-- CLOSING -->
@@ -2045,6 +2067,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <li><a href="#case-studies">Results</a></li>
     <li><a href="#packages">Work With Us</a></li>
     <li><a href="#team">Team</a></li>
+    <li><a href="#join">Join our team</a></li>
   </ul>
   <div class="social-icons">
     <a href="https://www.facebook.com/palatemarketing" target="_blank" aria-label="Facebook">
