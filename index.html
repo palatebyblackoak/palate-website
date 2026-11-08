@@ -158,17 +158,41 @@
     /* MANIFESTO */
     #manifesto { background:var(--bg); padding-top:10rem; padding-bottom:10rem;
       border-bottom:1px solid var(--border); }
-    .mnf { max-width:960px; margin:0 auto; }
+    .mnf { max-width:1120px; margin:0 auto; display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(0,7fr); column-gap:6rem; }
+    .mnf-head { align-self:start; position:sticky; top:8rem; }
     .mnf-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
-      color:var(--muted); font-weight:700; margin-bottom:3.5rem;
+      color:var(--muted); font-weight:700; margin-bottom:2rem;
       display:flex; align-items:center; gap:0.9rem; }
     .mnf-eye::before { content:''; width:22px; height:1px; background:var(--accent); }
-    .mnf-line { font-family:var(--serif); font-style:italic; font-weight:400;
-      font-size:clamp(1.9rem, 4.4vw, 3.2rem); line-height:1.28; letter-spacing:-0.012em;
-      color:var(--fg); margin:0 0 2.2rem; max-width:840px; text-wrap:balance; }
-    .mnf-line em { font-style:normal; color:var(--fg); }
-    .mnf-line.dim { color:rgba(var(--fg-rgb),0.62); }
-    .mnf-line.closer { color:var(--fg); }
+    .mnf-title { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:clamp(2.4rem, 4.6vw, 3.9rem); line-height:1.06; letter-spacing:-0.02em;
+      color:var(--fg); margin:0; text-wrap:balance; }
+    .mnf-sub { margin:1.75rem 0 0; max-width:22rem; font-size:0.98rem; line-height:1.65;
+      color:var(--muted); }
+    .mnf-beats { list-style:none; margin:0; padding:0 0 0 3rem; position:relative; }
+    .mnf-beats::before { content:''; position:absolute; left:5px; top:0.55rem; bottom:3.4rem;
+      width:1px; background:linear-gradient(to bottom, var(--accent), var(--border) 70%); }
+    .mnf-beat { position:relative; font-family:var(--serif); font-size:clamp(1.3rem, 1.75vw, 1.6rem);
+      line-height:1.5; color:rgba(var(--fg-rgb),0.6); margin:0; padding:0 0 3.6rem;
+      text-wrap:pretty; }
+    .mnf-beat::before { content:''; position:absolute; left:calc(-3rem + 0.5px); top:0.4rem;
+      width:11px; height:11px; border-radius:50%; box-sizing:border-box;
+      background:var(--bg); border:1px solid var(--accent); }
+    .mnf-beat:first-child::before { background:var(--accent); }
+    .mnf-beat:last-child { padding-bottom:0; }
+    .mnf-k { display:block; margin-bottom:0.9rem;
+      font-family:var(--sans); font-size:0.66rem; letter-spacing:0.28em;
+      text-transform:uppercase; font-weight:700; color:var(--accent-text); }
+    .mnf-beat em { display:block; margin-top:0.8rem; font-style:italic; color:var(--fg);
+      font-size:1.12em; line-height:1.35; letter-spacing:-0.01em; }
+    .mnf-closer { grid-column:1 / -1; margin:6.5rem auto 0; padding-top:0; max-width:900px;
+      position:relative; text-align:center;
+      font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:clamp(2rem, 4vw, 3.4rem); line-height:1.15; letter-spacing:-0.015em;
+      color:var(--fg); text-wrap:balance; }
+    .mnf-closer::before { content:''; display:block; width:44px; height:1px;
+      margin:0 auto 2.6rem; background:var(--accent); }
     /* SERVICE TICKER (replaces client names) */
     .ticker-wrap { overflow:hidden; border-top:1px solid var(--border);
       border-bottom:1px solid var(--border); padding:0.9rem 0; background:var(--bg-2); }
@@ -658,7 +682,7 @@
     .abt-media { position:relative; aspect-ratio:1/1; overflow:hidden;
       background:var(--bg-2); margin:0; }
     .abt-media img { width:100%; height:100%; object-fit:cover; display:block; }
-    .abt-content { max-width:520px; }
+    .abt-content { max-width:540px; }
     .abt-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
       color:var(--muted); font-weight:700; margin-bottom:1.6rem;
       display:flex; align-items:center; gap:0.9rem; }
@@ -671,14 +695,14 @@
     .abt-lede strong { color:var(--fg); font-weight:600; }
     .abt-pillars { list-style:none; padding:0; margin:0 0 2.5rem;
       border-top:1px solid var(--border); }
-    .abt-pillar { display:grid; grid-template-columns:auto 1fr; gap:1.25rem;
-      padding:1.35rem 0; border-bottom:1px solid var(--border); align-items:baseline; }
-    .abt-pillar-n { font-size:0.7rem; letter-spacing:0.24em;
+    .abt-pillar { display:grid; grid-template-columns:2rem 1fr; gap:1rem;
+      padding:1.7rem 0; border-bottom:1px solid var(--border); align-items:baseline; }
+    .abt-pillar-n { font-size:0.78rem; letter-spacing:0.02em;
       color:var(--accent-text); font-weight:800; font-variant-numeric:tabular-nums; }
     .abt-pillar-body { display:flex; flex-direction:column; gap:0.35rem; }
-    .abt-pillar-t { font-size:0.98rem; color:rgba(var(--fg-rgb),0.94);
+    .abt-pillar-t { font-size:1.18rem; letter-spacing:-0.01em; color:rgba(var(--fg-rgb),0.94);
       font-weight:600; line-height:1.4; }
-    .abt-pillar-d { font-size:0.86rem; color:rgba(var(--fg-rgb),0.55);
+    .abt-pillar-d { font-size:0.98rem; color:rgba(var(--fg-rgb),0.58);
       font-weight:400; line-height:1.55; }
     .abt-closer { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:clamp(1.2rem, 2.2vw, 1.55rem); color:var(--fg);
@@ -698,10 +722,10 @@
     @media(max-width:520px){
       .abt-media { aspect-ratio:4/5; max-height:56vh; }
       .abt-lede { font-size:0.98rem; margin-bottom:2.25rem; }
-      .abt-pillar { gap:0.9rem; padding:1.1rem 0; }
+      .abt-pillar { grid-template-columns:1.75rem 1fr; gap:0.75rem; padding:1.3rem 0; }
       .abt-pillar-body { gap:0.28rem; }
-      .abt-pillar-t { font-size:0.94rem; }
-      .abt-pillar-d { font-size:0.8rem; line-height:1.5; }
+      .abt-pillar-t { font-size:1.06rem; }
+      .abt-pillar-d { font-size:0.9rem; line-height:1.5; }
       .abt-closer { font-size:clamp(1.05rem, 4.4vw, 1.3rem); line-height:1.45; }
     }
 
@@ -1142,15 +1166,21 @@
         gap:2.4rem; padding:0;
         opacity:0; visibility:hidden; transition:opacity 0.32s var(--ease), visibility 0.32s;}
       nav.is-open .nav-links{opacity:1; visibility:visible;}
-      .nav-links a{font-size:1.6rem; font-weight:600; letter-spacing:-0.015em;
+      .nav-links a{font-size:1.35rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
         color:var(--fg);}
       body.nav-open{overflow:hidden;}
       section{padding:6rem 1.5rem} #hero{padding:7rem 1.5rem 5rem}
       h1{font-size:clamp(3rem,10vw,4.5rem)}
       .hero-sub{max-width:100%; font-size:1.05rem;}
       #manifesto{padding-top:6rem; padding-bottom:6rem}
-      .mnf-eye{margin-bottom:2.5rem}
-      .mnf-line{font-size:clamp(1.55rem, 5.5vw, 2.2rem); line-height:1.32; margin-bottom:1.75rem}
+      .mnf{grid-template-columns:1fr}
+      .mnf-head{position:static; margin-bottom:2.5rem}
+      .mnf-beats{max-width:680px}
+      .mnf-beats{padding-left:2.1rem}
+      .mnf-beat{font-size:1.2rem; padding-bottom:2.6rem}
+      .mnf-beat::before{left:calc(-2.1rem + 0.5px)}
+      .mnf-closer{margin-top:4rem; font-size:clamp(1.8rem,7vw,2.4rem)}
+      .mnf-closer::before{margin-bottom:2rem}
       #problem,#about{grid-template-columns:1fr; gap:3rem}
       .roi-grid{grid-template-columns:1fr !important}
       .res-grid,.proc-grid{grid-template-columns:1fr}
@@ -1396,13 +1426,18 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <!-- MANIFESTO -->
 <section id="manifesto">
   <div class="mnf">
-    <div class="mnf-eye rv">Why we exist</div>
-    <p class="mnf-line rv">It started with one theme night.</p>
-    <p class="mnf-line rv d1 dim">A restaurant was throwing a holiday party, and we built the campaign to carry it online. <em>That night, the house was full.</em></p>
-    <p class="mnf-line rv d1 dim">That&#39;s when it clicked. Every owner has the food, the room, the story. <em>Marketing is the missing ingredient.</em></p>
-    <p class="mnf-line rv d1 dim">We&#39;d worked across many industries, but restaurants were the most rewarding. That&#39;s where our work made the biggest difference, and there&#39;s always a season, an event, a story to tell. <em>So we built Palate for restaurants.</em></p>
-    <p class="mnf-line rv d2 dim">Since then, we&#39;ve recreated that full house for different concepts, restaurants, and nights, <em>telling your story to everyone who should hear it.</em></p>
-    <p class="mnf-line rv d2 closer">You perfect the plate. We carry the word.</p>
+    <div class="mnf-head rv">
+      <div class="mnf-eye">Why we exist</div>
+      <h2 class="mnf-title">It started with one theme night.</h2>
+      <p class="mnf-sub">A short story about a full house, and the restaurants we&#39;ve filled since.</p>
+    </div>
+    <ol class="mnf-beats">
+      <li class="mnf-beat rv d1"><span class="mnf-k">The night</span>A restaurant was throwing a holiday party, and we built the campaign to carry it online. <em>That night, the house was full.</em></li>
+      <li class="mnf-beat rv d2"><span class="mnf-k">The idea</span>That&#39;s when it clicked. Every owner has the food, the room, the story. <em>Marketing is the missing ingredient.</em></li>
+      <li class="mnf-beat rv d3"><span class="mnf-k">The choice</span>We&#39;d worked across many industries, but restaurants were the most rewarding. That&#39;s where our work made the biggest difference, and there&#39;s always a season, an event, a story to tell. <em>So we built Palate for restaurants.</em></li>
+      <li class="mnf-beat rv d4"><span class="mnf-k">Today</span>Since then, we&#39;ve recreated that full house for different concepts, restaurants, and nights. <em>Telling your story to everyone who should hear it.</em></li>
+    </ol>
+    <p class="mnf-closer rv d1">You perfect the plate. We carry the word.</p>
   </div>
 </section>
 
@@ -1418,22 +1453,22 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <li class="abt-pillar">
         <span class="abt-pillar-n">01</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Only restaurants</div>
-          <div class="abt-pillar-d">We work exclusively with independent, full-service restaurants.</div>
+          <div class="abt-pillar-t">Restaurants feel like home</div>
+          <div class="abt-pillar-d">We built Palate for independent, full-service restaurants. Yours has a story. We&#39;d love to help you tell it.</div>
         </div>
       </li>
       <li class="abt-pillar">
         <span class="abt-pillar-n">02</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">In your room, every month</div>
-          <div class="abt-pillar-d">Monthly media days at your restaurant. Your plates, your people, your room.</div>
+          <div class="abt-pillar-t">Every night, worth coming in for</div>
+          <div class="abt-pillar-d">Got a slow Tuesday? We&#39;ve been there. We&#39;ll give it a theme, dress the room, and give your guests a reason to come in. Then we&#39;ll watch it fill, together.</div>
         </div>
       </li>
       <li class="abt-pillar">
         <span class="abt-pillar-n">03</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Operators, not just marketers</div>
-          <div class="abt-pillar-d">Guidance from someone who's stood behind the bar and run the room.</div>
+          <div class="abt-pillar-t">We come to you</div>
+          <div class="abt-pillar-d">Once a month, we show up at your restaurant for a media day. Then we sit down with you, walk through the numbers, and plan what&#39;s next. Like any good regular, we keep coming back.</div>
         </div>
       </li>
     </ol>
