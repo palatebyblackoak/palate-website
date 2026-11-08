@@ -571,6 +571,21 @@
     /* TESTIMONIALS — editorial */
     #testimonials { background:var(--bg); padding-top:7rem; padding-bottom:5.5rem; }
     .tst-wrap { max-width:960px; margin:0 auto; text-align:center; position:relative; }
+    #faq { background:var(--bg); padding-top:7rem; padding-bottom:8rem; }
+    .faq-wrap { max-width:760px; margin:0 auto; }
+    .faq-title { margin-bottom:3.5rem; }
+    .faq-list { border-top:1px solid var(--border); }
+    .faq-item { border-bottom:1px solid var(--border); }
+    .faq-item summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1.5rem;
+      padding:1.6rem 0; font-size:clamp(1.05rem,1.6vw,1.2rem); font-weight:600; letter-spacing:-0.01em; }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .faq-mark { position:relative; flex:0 0 14px; height:14px; }
+    .faq-mark::before, .faq-mark::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; margin-top:-0.75px; background:currentColor; transition:transform .4s var(--ease); }
+    .faq-mark::after { transform:rotate(90deg); }
+    .faq-item[open] .faq-mark::after { transform:rotate(0); }
+    .faq-item p { margin:0; padding:0 2.5rem 1.8rem 0; color:var(--muted); line-height:1.7; max-width:620px; }
+    @media(max-width:960px){ #faq { padding-top:4.5rem; padding-bottom:5rem; } .faq-title { margin-bottom:2.5rem; } .faq-item summary { padding:1.3rem 0; } .faq-item p { padding-right:0; } }
     .tst-title { font-size:clamp(1.25rem, 2.4vw, 1.6rem); font-weight:500;
       letter-spacing:-0.015em; color:rgba(var(--fg-rgb),0.55);
       margin:0 0 6rem; text-align:center; line-height:1.3; }
@@ -1270,7 +1285,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="client-logo-box"><img class="client-logo-img" src="media/Clients/inline-170bf308.png" alt="El Taco Mañanero" /></div>
     <div class="client-logo-box" style="width:260px;height:115px;"><img class="client-logo-img" src="media/Clients/inline-6bd69e5c.png" alt="LUMA Cocktail Lounge" /></div>
     <div class="client-logo-box" style="width:210px;height:110px;"><img class="client-logo-img" src="media/Clients/inline-fa478623.png" alt="Howling Rabbits Beerworks" /></div>
-    <div class="client-logo-box" style="width:210px;height:110px;"><img class="client-logo-img" src="media/Clients/smokin-moon-logo.png" alt="Smokin Moon BBQ &amp; Beer Garden" /></div>
+    <div class="client-logo-box" style="width:210px;height:110px;"><img class="client-logo-img" src="media/Clients/smokin-moon-logo.png" alt="Smokin' Moon BBQ &amp; Beer Garden" /></div>
     <div class="client-logo-box"><img class="client-logo-img" src="media/Clients/inline-39d686ce.png" alt="The Fifth Cocktail Lounge" /></div>
     <div class="client-logo-box"><img class="client-logo-img" src="media/Clients/inline-6708c21a.png" alt="The Quarter New Orleans &amp; Kitchen" /></div>
     <div class="client-logo-box"><img class="client-logo-img" src="media/Clients/inline-9764c4a7.png" alt="Kiss &amp; Fly" /></div>
@@ -2103,6 +2118,40 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 </section>
 
 <!-- CLOSING -->
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-wrap rv">
+    <h2 class="tst-title faq-title">Questions, answered.</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Who do you work with?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>Independent, full-service restaurants. Right now we serve the Rio Grande Valley. If you&#39;re outside the Valley, talk to us anyway.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What&#39;s included?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>The whole Full House Program, every month: strategy, up to 30 posts, graphic design, photography, short-form video, Meta and Google ads, community management, and your website. You don&#39;t pick from a menu. You get all of it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How fast do we get started?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>Your onboarding call happens within 24 to 48 hours of saying yes. Your first content and ads can be live in as little as seven days.</p>
+      </details>
+      <details class="faq-item">
+        <summary>When does billing start?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>When your first post and your first ad go live. Not before.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a contract?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>Three months to start, then month to month. Some of our clients have been with us for four years.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much does it cost?<span class="faq-mark" aria-hidden="true"></span></summary>
+        <p>One monthly price for the whole program. We&#39;ll walk you through it on a 30-minute strategy call, once we know your room.</p>
+      </details>
+    </div>
+  </div>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who do you work with?", "acceptedAnswer": {"@type": "Answer", "text": "Independent, full-service restaurants. Right now we serve the Rio Grande Valley. If you're outside the Valley, talk to us anyway."}}, {"@type": "Question", "name": "What's included?", "acceptedAnswer": {"@type": "Answer", "text": "The whole Full House Program, every month: strategy, up to 30 posts, graphic design, photography, short-form video, Meta and Google ads, community management, and your website. You don't pick from a menu. You get all of it."}}, {"@type": "Question", "name": "How fast do we get started?", "acceptedAnswer": {"@type": "Answer", "text": "Your onboarding call happens within 24 to 48 hours of saying yes. Your first content and ads can be live in as little as seven days."}}, {"@type": "Question", "name": "When does billing start?", "acceptedAnswer": {"@type": "Answer", "text": "When your first post and your first ad go live. Not before."}}, {"@type": "Question", "name": "Is there a contract?", "acceptedAnswer": {"@type": "Answer", "text": "Three months to start, then month to month. Some of our clients have been with us for four years."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "One monthly price for the whole program. We'll walk you through it on a 30-minute strategy call, once we know your room."}}]}</script>
+</section>
+
 <section id="closing" class="on-blue">
   <div class="clo rv">
     <div class="clo-eye">Let's talk</div>
