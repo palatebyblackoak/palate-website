@@ -616,14 +616,12 @@
     .tst-title { font-family:var(--serif); font-weight:400; font-style:italic;
       font-size:clamp(2.4rem, 5.4vw, 4.4rem); line-height:1.02; letter-spacing:-0.02em;
       margin:0; color:var(--fg); }
-    .tst-viewport { overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
-      cursor:grab; overscroll-behavior-x:contain; outline:none;
+    .tst-viewport { overflow:hidden; touch-action:pan-y; cursor:grab; outline:none;
       -webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
               mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
-    .tst-viewport::-webkit-scrollbar { display:none; }
     .tst-viewport.is-dragging { cursor:grabbing; user-select:none; }
     .tst-viewport img { -webkit-user-drag:none; user-select:none; pointer-events:none; }
-    .tst-track { display:flex; gap:1.5rem; width:max-content; padding:0.5rem 0; align-items:stretch; }
+    .tst-track { display:flex; gap:1.5rem; width:max-content; padding:0.5rem 0; align-items:stretch; will-change:transform; }
     .tst-card { flex:0 0 auto; width:400px; margin:0; display:flex; flex-direction:column;
       background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r);
       padding:2.4rem 2.4rem 2.2rem; transition:border-color 0.4s var(--ease), transform 0.5s var(--ease); }
@@ -1381,7 +1379,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <p class="tst-kicker">In their words</p>
     <h2 class="tst-title">What our clients say.</h2>
   </div>
-  <div class="tst-viewport" id="tstViewport" tabindex="0" aria-label="Client reviews. Scrolls on its own; hover, touch or focus to pause.">
+  <div class="tst-viewport" id="tstViewport" tabindex="0" aria-label="Client reviews. Scrolls on its own; drag, swipe or use arrow keys to move.">
     <div class="tst-track" id="tstTrack">
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/inline-6708c21a.png" alt="The Quarter" class="sm" loading="lazy"><img src="media/Clients/inline-9764c4a7.png" alt="Kiss &amp; Fly" class="sm" loading="lazy"><img src="media/Clients/inline-39d686ce.png" alt="The Fifth" class="sm" loading="lazy"></div>
@@ -2414,11 +2412,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     });
   })();
 
-  /* TESTIMONIALS — auto-scrolling, looping, draggable card wall */
+  /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
   (function(){
     const vp = document.getElementById('tstViewport');
     const track = document.getElementById('tstTrack');
-    if (!vp || !track) return;
+    if (!vp || !track || !track.animate) return;
     const section = document.getElementById('testimonials');
     const originals = Array.from(track.children);
     // two extra copies so the loop never runs dry, even on very wide screens
@@ -2428,64 +2426,81 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       track.appendChild(d);
     });
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SPEED = 38;            // px per second
-    let setW = 0, pos = 0, last = 0, inView = true;   // observer below pauses it off-screen
-    let hold = 0;                // >0 while hovering / touching / dragging / focused
-    let resumeAt = 0;            // short pause after a manual move
-    const measure = () => { setW = track.children[originals.length].offsetLeft - originals[0].offsetLeft; };
-    const wrap = () => { if (setW > 0) { while (pos >= setW) pos -= setW; while (pos < 0) pos += setW; } };
-    const apply = () => { vp.scrollLeft = pos; };
-    const pauseFor = ms => { resumeAt = performance.now() + ms; };
-    const release = () => { hold = Math.max(0, hold - 1); };
+    const SPEED = 42;          // px per second
+    const HOVER_RATE = 0.25;   // slows (never stops) while a card is hovered
+    let setW = 1, dur = 1, anim = null;
 
-    function tick(t) {
-      const dt = last ? Math.min(t - last, 64) : 0; last = t;
-      if (inView && !hold && !reduce && t >= resumeAt) { pos += SPEED * dt / 1000; wrap(); apply(); }
-      requestAnimationFrame(tick);
+    const measure = () => {
+      setW = Math.max(1, track.children[originals.length].offsetLeft - originals[0].offsetLeft);
+      dur = setW / SPEED * 1000;
+    };
+    const getPx = () => anim ? ((anim.currentTime || 0) % dur) / dur * setW : 0;
+    const setPx = px => { px = ((px % setW) + setW) % setW; anim.currentTime = px / setW * dur; };
+
+    function build() {
+      const keep = anim ? getPx() / setW : 0;
+      measure();
+      if (anim) anim.cancel();
+      anim = track.animate(
+        [{ transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(' + (-setW) + 'px,0,0)' }],
+        { duration: dur, iterations: Infinity, easing: 'linear' });
+      anim.currentTime = keep * dur;
+      anim.playbackRate = rate;
+      if (reduce || dragging) anim.pause();
     }
-    // follow the visitor when they scroll / swipe it themselves
-    vp.addEventListener('scroll', () => {
-      if (Math.abs(vp.scrollLeft - pos) > 1) {
-        pos = vp.scrollLeft;
-        const before = pos; wrap(); if (pos !== before) apply();
-      }
-    }, { passive: true });
 
-    vp.addEventListener('mouseenter', () => hold++);
-    vp.addEventListener('mouseleave', release);
-    vp.addEventListener('focusin', () => hold++);
-    vp.addEventListener('focusout', release);
-    vp.addEventListener('touchstart', () => hold++, { passive: true });
-    vp.addEventListener('touchend', () => { release(); pauseFor(2500); }, { passive: true });
-    vp.addEventListener('touchcancel', () => { release(); pauseFor(2500); }, { passive: true });
+    // ease the speed between full and hover rate
+    let rate = 1, target = 1;
+    function ease() {
+      if (anim && Math.abs(target - rate) > 0.005) { rate += (target - rate) * 0.08; anim.playbackRate = rate; }
+      requestAnimationFrame(ease);
+    }
+    track.addEventListener('mouseover', e => { if (e.target.closest('.tst-card')) target = HOVER_RATE; });
+    track.addEventListener('mouseleave', () => { target = 1; });
 
-    // drag with the mouse
-    let dragX = null, dragPos = 0, moved = false;
+    // drag (mouse) and horizontal swipe (touch); vertical page scrolling still works
+    let dragging = false, startX = 0, startPx = 0, moved = false;
     vp.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse' || e.button !== 0) return;
-      dragX = e.clientX; dragPos = pos; moved = false; hold++;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true; moved = false; startX = e.clientX; startPx = getPx();
+      anim.pause();
     });
-    addEventListener('pointermove', e => {
-      if (dragX === null) return;
-      const dx = e.clientX - dragX;
-      if (Math.abs(dx) > 3) { moved = true; vp.classList.add('is-dragging'); }
-      pos = dragPos - dx; wrap(); apply();
+    vp.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true; vp.classList.add('is-dragging');
+        try { vp.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      if (moved) setPx(startPx - dx);
     });
-    addEventListener('pointerup', () => {
-      if (dragX === null) return;
-      dragX = null; release(); vp.classList.remove('is-dragging'); pauseFor(1500);
-    });
+    const end = () => {
+      if (!dragging) return;
+      dragging = false; vp.classList.remove('is-dragging');
+      if (!reduce) anim.play();
+    };
+    vp.addEventListener('pointerup', end);
+    vp.addEventListener('pointercancel', end);
+    vp.addEventListener('lostpointercapture', end);
     vp.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
 
-    // arrows / keys: glide to the next or previous card
+    // arrows / keys: glide to the next or previous card, then keep moving
+    let gliding = 0;
     function step(dir) {
       const base = originals[0].offsetLeft;
-      const lefts = Array.from(track.children).map(c => c.offsetLeft - base);
-      let target = dir > 0 ? lefts.find(x => x > pos + 8) : lefts.slice().reverse().find(x => x < pos - 8);
-      if (target === undefined) target = pos + dir * 420;
-      if (target < 0) { pos += setW; apply(); target += setW; }
-      pauseFor(4000);
-      vp.scrollTo({ left: target, behavior: reduce ? 'auto' : 'smooth' });
+      const lefts = originals.map(c => c.offsetLeft - base);
+      const from = getPx();
+      let to = dir > 0 ? lefts.find(x => x > from + 8) : lefts.slice().reverse().find(x => x < from - 8);
+      if (to === undefined) to = dir > 0 ? setW : lefts[lefts.length - 1] - setW;
+      const id = ++gliding, t0 = performance.now(), T = reduce ? 0 : 650;
+      anim.pause();
+      (function frame(now) {
+        if (id !== gliding) return;
+        const k = T ? Math.min(1, (now - t0) / T) : 1;
+        const e = 1 - Math.pow(1 - k, 3);
+        setPx(from + (to - from) * e);
+        if (k < 1) requestAnimationFrame(frame); else if (!reduce && !dragging) anim.play();
+      })(t0);
     }
     const nextBtn = section && section.querySelector('.tst-next');
     const prevBtn = section && section.querySelector('.tst-prev');
@@ -2496,11 +2511,12 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       if (e.key === 'ArrowLeft')  { e.preventDefault(); step(-1); }
     });
 
-    new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.15 }).observe(vp);
-    addEventListener('resize', () => { measure(); wrap(); apply(); });
-    addEventListener('load', measure);
-    measure();
-    requestAnimationFrame(tick);
+    let rt;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 150); });
+    addEventListener('load', build);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    build();
+    requestAnimationFrame(ease);
   })();
 
   /* MEDIA — segmented control picks one discipline; rows track swipe progress */
