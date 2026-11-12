@@ -613,9 +613,8 @@
     .tst-title { font-size:clamp(1.25rem, 2.4vw, 1.6rem); font-weight:500;
       letter-spacing:-0.015em; color:rgba(var(--fg-rgb),0.55);
       margin:0 0 6rem; text-align:center; line-height:1.3; }
-    .tst-stage { position:relative; min-height:22rem;
-      display:flex; align-items:center; justify-content:center; }
-    .tst-slide { position:absolute; inset:0; opacity:0;
+    .tst-stage { position:relative; min-height:22rem; display:grid; }
+    .tst-slide { grid-area:1 / 1; opacity:0;
       transform:translateY(10px); pointer-events:none;
       transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);
       display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -624,6 +623,7 @@
     .tst-quote { font-family:var(--serif); font-style:italic; font-weight:400;
       font-size:clamp(1.75rem, 4vw, 2.9rem); line-height:1.28; letter-spacing:-0.012em;
       color:var(--fg); max-width:820px; margin:0 auto; text-wrap:balance; }
+    .tst-quote.tst-long { font-size:clamp(1.2rem, 2vw, 1.6rem); line-height:1.5; letter-spacing:-0.005em; text-wrap:pretty; }
     .tst-quote::before { content:'\201C'; color:var(--accent-text); margin-right:0.04em; }
     .tst-quote::after  { content:'\201D'; color:var(--accent-text); margin-left:0.04em; }
     .tst-attr { display:flex; flex-direction:column; align-items:center; gap:0.9rem; }
@@ -652,6 +652,7 @@
       #testimonials { padding-top:4.5rem; padding-bottom:4rem; }
       .tst-title { margin-bottom:3.5rem; }
       .tst-quote { font-size:clamp(1.35rem, 5.6vw, 1.85rem); line-height:1.32; }
+      .tst-quote.tst-long { font-size:clamp(1rem, 4.2vw, 1.15rem); line-height:1.55; }
       .tst-stage { min-height:26rem; }
       .tst-slide { gap:2.2rem; padding:0 0.25rem; }
       .tst-btn { opacity:1; }
@@ -1377,7 +1378,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <h2 class="tst-title">What our clients say.</h2>
     <div class="tst-stage" role="region" aria-live="polite" aria-label="Client testimonials" id="tstStage">
       <blockquote class="tst-slide is-active">
-        <p class="tst-quote">I've loved working with my marketing team on the Crafted With Love brand. They understood my vision and helped bring it to life in a way that feels true to me and the brand. I'm grateful for the creativity and care they put into their work.</p>
+        <p class="tst-quote tst-long">I've loved working with my marketing team on the Crafted With Love brand. They understood my vision and helped bring it to life in a way that feels true to me and the brand. I'm grateful for the creativity and care they put into their work.</p>
         <div class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Liza Salinas</span>
@@ -1385,7 +1386,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </blockquote>
       <blockquote class="tst-slide">
-        <p class="tst-quote">They got what we were building and helped us say it out loud. The reach has been real.</p>
+        <p class="tst-quote tst-long">Partnering with Black Oak has been an absolute game-changer for our business. Their strategic approach to digital marketing is unparalleled, and they've consistently delivered outstanding results. From designing captivating campaigns to optimizing our online presence, their expertise has significantly boosted our brand visibility and customer engagement. The team at Black Oak is not only highly skilled but also incredibly responsive and dedicated. It's been a pleasure working with them, and we're excited to continue leveraging their innovative solutions to drive our business forward. If you're looking for a marketing agency that delivers real impact, look no further than Black Oak Media!</p>
         <div class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Steven Schwoerer</span>
@@ -1401,7 +1402,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         </div>
       </blockquote>
       <blockquote class="tst-slide">
-        <p class="tst-quote">They built our brand from day one, and it grew faster than we planned.</p>
+        <p class="tst-quote tst-long">Black Oak Agency played a pivotal role in the success of our emerging meal prep venture, impressing us with their unwavering commitment to quality, professionalism, enthusiasm, and creativity. Their marketing expertise not only helped us establish our brand but also propelled our growth beyond expectations. We are immensely grateful for their invaluable contributions and highly recommend their services to anyone seeking exceptional marketing solutions.</p>
         <div class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Jorge Santana</span>
@@ -2415,6 +2416,14 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const DUR = 9000;
 
+    // longer reviews stay up longer: ~250ms per word, never under DUR
+    const durs = slides.map(s => {
+      const q = s.querySelector('.tst-quote');
+      const words = q ? q.textContent.trim().split(/\s+/).length : 0;
+      return Math.max(DUR, words * 250);
+    });
+    const durOf = n => durs[n] || DUR;
+
     let i = 0;
     let timer = null;
     let inView = false;
@@ -2433,10 +2442,10 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       }
       if (reduce || !inView || hovering) return;
       if (fill) {
-        fill.style.setProperty('--tst-dur', DUR + 'ms');
+        fill.style.setProperty('--tst-dur', durOf(i) + 'ms');
         fill.classList.add('is-running');
       }
-      timer = setTimeout(() => show(i + 1), DUR);
+      timer = setTimeout(() => show(i + 1), durOf(i));
     }
     function pause() {
       clearTimeout(timer);
