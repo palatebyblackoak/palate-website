@@ -1449,8 +1449,10 @@
     .ft-bottom { width:100%; max-width:1120px; display:flex; justify-content:space-between; align-items:center;
       gap:1rem; padding:1.4rem 0; border-top:1px solid var(--border); position:relative; z-index:1; }
     .ft-bottom small { font-size:0.72rem; color:var(--muted); }
-    .ft-credit { display:inline-flex; align-items:center; gap:0.45rem; font-size:0.72rem; color:var(--muted); text-decoration:none; }
-    .ft-credit img { height:14px; width:auto; display:block; opacity:0.85; transition:opacity .3s; }
+    .ft-credit { display:inline-flex; align-items:center; gap:0.55rem; text-decoration:none; color:var(--muted);
+      font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; }
+    /* the wordmark PNG has ~11% transparent padding; negative margins trim it so the logo sits on the text line */
+    .ft-credit img { height:22px; width:auto; display:block; margin:-2.5px -2.5px -2.5px -2.5px; opacity:0.9; transition:opacity .3s; }
     .ft-credit:hover img { opacity:1; }
     .ft-top { font-size:0.72rem; color:var(--muted); text-decoration:none; transition:color .3s; }
     .ft-top:hover { color:var(--accent-text); }
@@ -1468,7 +1470,8 @@
       .ft-links .ft-br::before, .ft-links .ft-br + li::before { display:none; }
       .ft-links a { font-size:0.64rem; letter-spacing:0.16em; }
       footer.ft .social-icons { margin-bottom:2.4rem; }
-      .ft-bottom { flex-direction:column; gap:0.5rem; padding:1.2rem 0; }
+      .ft-bottom { flex-direction:column; gap:0.85rem; padding:1.4rem 0 1.2rem; }
+      .ft-bottom small { font-size:0.7rem; }
     }
     /* MENU BUTTON: two-line icon in a glass circle, morphs into an X */
     .nav-toggle { width:44px !important; height:44px !important; margin-right:-0.3rem; border-radius:50%;
