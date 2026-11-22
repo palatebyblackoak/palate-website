@@ -778,6 +778,58 @@
       font-size:clamp(1.2rem, 2.2vw, 1.55rem); color:var(--fg);
       line-height:1.4; letter-spacing:-0.005em; margin:0; }
 
+    /* about: living photo + floating proof cards */
+    .abt-media img { animation:abtDrift 24s ease-in-out infinite alternate; transform-origin:60% 40%; }
+    @keyframes abtDrift { from { transform:scale(1.02) translate(0,0); } to { transform:scale(1.12) translate(-2%,-1.5%); } }
+    .abt-media::after { content:''; position:absolute; inset:0; pointer-events:none;
+      background:linear-gradient(180deg, rgba(18,18,18,0) 55%, rgba(18,18,18,0.28) 100%); }
+    .abt-card { position:absolute; z-index:2; display:grid; grid-template-columns:auto 1fr; column-gap:0.8rem;
+      align-items:center; padding:0.85rem 1.1rem 0.85rem 1rem; border-radius:12px;
+      background:rgba(255,255,255,0.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      box-shadow:0 18px 40px -18px rgba(18,18,18,0.45), 0 0 0 1px rgba(18,18,18,0.06);
+      color:var(--ink); opacity:0; transform:translateY(18px) scale(0.96); }
+    .abt-card b { grid-row:span 2; font-size:1.7rem; font-weight:800; letter-spacing:-0.035em; color:var(--blue); line-height:1; }
+    .abt-card span { font-size:0.8rem; font-weight:600; line-height:1.25; }
+    .abt-card small { font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(18,18,18,0.55); font-weight:600; }
+    .abt-card-1 { top:9%; left:7%; }
+    .abt-card-2 { top:44%; right:6%; }
+    .abt-card-3 { bottom:9%; left:12%; }
+    .abt-media.on .abt-card { animation:abtCardIn .8s var(--ease) forwards, abtFloat 6s ease-in-out infinite; }
+    .abt-media.on .abt-card-1 { animation-delay:.35s, 1.15s; }
+    .abt-media.on .abt-card-2 { animation-delay:.75s, 1.55s; }
+    .abt-media.on .abt-card-3 { animation-delay:1.15s, 1.95s; }
+    @keyframes abtCardIn { to { opacity:1; transform:none; } }
+    @keyframes abtFloat { 0%,100% { opacity:1; transform:translateY(0); } 50% { opacity:1; transform:translateY(-6px); } }
+
+    .abt-pillar { transition:padding-left .45s var(--ease); position:relative; }
+    .abt-pillar::before { content:''; position:absolute; left:0; top:-1px; height:1px; width:0; background:var(--accent);
+      transition:width .6s var(--ease); }
+    .abt-pillar:hover::before { width:100%; }
+    .abt-pillar:hover .abt-pillar-n { color:var(--fg); }
+    .abt-proof { margin-top:0.35rem; font-size:0.86rem; font-weight:600; color:var(--accent-text); }
+    .abt-proof span { display:inline-block; margin-right:0.2rem; }
+    .abt-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.7rem; }
+    .abt-tags span { font-size:0.64rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:600;
+      padding:0.38rem 0.7rem; border-radius:999px; border:1px solid var(--border); color:rgba(var(--fg-rgb),0.7);
+      background:rgba(255,255,255,0.45); transition:border-color .3s, color .3s, background .3s; }
+    .abt-pillar:hover .abt-tags span { border-color:rgba(var(--accent-rgb),0.35); color:var(--fg); background:#fff; }
+    .abt-pillars { margin-bottom:2rem; }
+    .abt-pillar { padding:1.4rem 0; }
+    .abt-title { margin-bottom:2rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .abt-media img, .abt-media.on .abt-card { animation:none; }
+      .abt-card { opacity:1; transform:none; }
+    }
+    @media(max-width:520px){
+      .abt-card { padding:0.6rem 0.8rem; column-gap:0.6rem; border-radius:10px; }
+      .abt-card b { font-size:1.3rem; }
+      .abt-card span { font-size:0.7rem; }
+      .abt-card small { font-size:0.54rem; }
+      .abt-card-1 { top:6%; left:5%; } .abt-card-2 { top:40%; right:4%; } .abt-card-3 { bottom:6%; left:7%; }
+      .abt-tags span { font-size:0.58rem; padding:0.32rem 0.6rem; }
+      .abt-proof { font-size:0.8rem; }
+    }
+
     /* desktop: the photo and the text share one frame, top edge to bottom edge */
     @media(min-width:961px){
       #about { align-items:stretch; }
@@ -1570,35 +1622,51 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 <section id="about">
   <figure class="abt-media rv">
     <img src="media/Brand/about-photo.jpg" alt="Palate by BlackOak restaurant social media results">
+    <div class="abt-card abt-card-1"><b>3.4×</b><span>Tuesday revenue</span><small>Sip n&#39; Tell</small></div>
+    <div class="abt-card abt-card-2"><b>$15</b><span>Per reservation from ads</span><small>LUMA Cocktail Lounge</small></div>
+    <div class="abt-card abt-card-3"><b>7.9M</b><span>Views in 30 days</span><small>El Taco Mañanero</small></div>
   </figure>
-  <div class="abt-content rv d1">
-    <div class="abt-eye">Our practice</div>
-    <h2 class="abt-title">One obsession.<br><em>Restaurants.</em></h2>
+  <div class="abt-content">
+    <div class="abt-eye rv">Our practice</div>
+    <h2 class="abt-title rv">One obsession.<br><em>Restaurants.</em></h2>
     <ol class="abt-pillars">
-      <li class="abt-pillar">
+      <li class="abt-pillar rv d1">
         <span class="abt-pillar-n">01</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Restaurants feel like home</div>
-          <div class="abt-pillar-d">We built Palate for independent, full-service restaurants. Yours has a story. We&#39;d love to help you tell it.</div>
+          <div class="abt-pillar-t">Built only for restaurants</div>
+          <div class="abt-pillar-d">Independent, full-service restaurants, bars and lounges. Every play we run comes from a real dining room, not a template for dentists.</div>
+          <div class="abt-tags"><span>Restaurants</span><span>Bars &amp; lounges</span><span>Rio Grande Valley</span></div>
         </div>
       </li>
-      <li class="abt-pillar">
+      <li class="abt-pillar rv d2">
         <span class="abt-pillar-n">02</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">Every night, worth coming in for</div>
-          <div class="abt-pillar-d">Got a slow Tuesday? We&#39;ve been there. We&#39;ll give it a theme, dress the room, and give your guests a reason to come in. Then we&#39;ll watch it fill, together.</div>
+          <div class="abt-pillar-t">We fill your slow nights</div>
+          <div class="abt-pillar-d">Got a slow Tuesday? We give it a theme, dress the room and put the right ads behind it. Then we watch it fill, together.</div>
+          <div class="abt-proof"><span aria-hidden="true">↗</span> Sip n&#39; Tell: a $1,300 Tuesday became $4,500.</div>
+          <div class="abt-tags"><span>Theme nights</span><span>Event campaigns</span><span>Paid push</span></div>
         </div>
       </li>
-      <li class="abt-pillar">
+      <li class="abt-pillar rv d3">
         <span class="abt-pillar-n">03</span>
         <div class="abt-pillar-body">
-          <div class="abt-pillar-t">We come to you</div>
-          <div class="abt-pillar-d">Once a month, we show up at your restaurant for a media day. Then we sit down with you, walk through the numbers, and plan what&#39;s next. Like any good regular, we keep coming back.</div>
+          <div class="abt-pillar-t">We come to you, every month</div>
+          <div class="abt-pillar-d">A media day at your restaurant, then a sit-down to walk through the numbers and plan what&#39;s next. Like any good regular, we keep coming back.</div>
+          <div class="abt-proof"><span aria-hidden="true">↗</span> Some clients have been with us for four years.</div>
+          <div class="abt-tags"><span>Media day</span><span>Strategy call</span><span>Performance report</span></div>
+        </div>
+      </li>
+      <li class="abt-pillar rv d3">
+        <span class="abt-pillar-n">04</span>
+        <div class="abt-pillar-body">
+          <div class="abt-pillar-t">You keep the playbook</div>
+          <div class="abt-pillar-d">The SOPs, scripts and templates we use, ready to hand to your staff. Your team gets sharper every month, not just your feed.</div>
+          <div class="abt-tags"><span>SOPs</span><span>Scripts</span><span>Templates</span></div>
         </div>
       </li>
     </ol>
 
-    <p class="abt-closer">When someone walks in, the room should feel like the story that brought them there.</p>
+    <p class="abt-closer rv">When someone walks in, the room should feel like the story that brought them there.</p>
   </div>
 </section>
 
