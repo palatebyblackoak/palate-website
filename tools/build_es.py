@@ -1,4 +1,5 @@
-"""Build the Spanish homepage (es/index.html) from index.html + tools/es.json.
+"""Build step: stamps assets/site.css + site.js versions into index.html, then builds the
+Spanish homepage (es/index.html) from index.html + tools/es.json.
 
 Run after any change to index.html:   python3 tools/build_es.py
 Strings with no translation stay in English and are listed at the end, so new copy
@@ -8,6 +9,15 @@ import html, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.palatemarketing.com/"
+# 0. stamp shared assets with a content hash so browsers fetch new versions right away
+import hashlib
+_ix = os.path.join(ROOT, "index.html")
+_h = open(_ix, encoding="utf-8").read()
+for _f in ("assets/site.css", "assets/site.js"):
+    _v = hashlib.md5(open(os.path.join(ROOT, _f), "rb").read()).hexdigest()[:8]
+    _h = re.sub(r'(["\'])' + re.escape(_f) + r'(\?v=[0-9a-f]+)?(["\'])', r'\g<1>' + _f + "?v=" + _v + r'\g<3>', _h)
+open(_ix, "w", encoding="utf-8").write(_h)
+
 src = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 es = json.load(open(os.path.join(ROOT, "tools", "es.json"), encoding="utf-8"))
 missing = []
@@ -67,25 +77,13 @@ s = "".join(out)
 s_quotes = set(norm(q) for q in re.findall(r'<blockquote class="tst-quote[^"]*">(.*?)</blockquote>', src, re.S))
 missing = [m for m in missing if m not in s_quotes]
 
-# 3. strings that live inside JavaScript
-JS = [
-    ('isRev ? "Revenue" : "Engagement"', 'isRev ? "Ventas" : "Interacción"'),
-    ('See how we did it <i>', 'Mira cómo lo hicimos <i>'),
-    ('". Open case study"', '". Abrir caso de éxito"'),
-    ("'Close <span aria-hidden=\"true\">×</span>'", "'Cerrar <span aria-hidden=\"true\">×</span>'"),
-    ('const names = ["Consulting", "Content", "Creative", "Reach"];', 'const names = ["Consultoría", "Contenido", "Creativo", "Alcance"];'),
-    ('fn.innerHTML = "Full House ✓";', 'fn.innerHTML = "Full House ✓";'),
-]
-for a, b in JS:
-    if a not in s:
-        print("warning: JS string not found:", a)
-    s = s.replace(a, b)
+# 3. strings inside assets/site.js are picked by <html lang> (see the T table there)
 
 # 4. language, URLs, paths
 s = s.replace('<html lang="en">', '<html lang="es">', 1)
 s = s.replace(f'<link rel="canonical" href="{SITE}" />', f'<link rel="canonical" href="{SITE}es/" />', 1)
 s = s.replace(f'<meta property="og:url" content="{SITE}" />', f'<meta property="og:url" content="{SITE}es/" />\n  <meta property="og:locale" content="es_US" />', 1)
-s = re.sub(r'\b(src|href|poster|data-img|data-src)="media/', r'\1="../media/', s)
+s = re.sub(r'\b(src|href|poster|data-img|data-src)="(media|assets)/', r'\1="../\2/', s)
 s = re.sub(r"url\((['\"]?)media/", r"url(\1../media/", s)
 s = s.replace('href="#hero"', 'href="#hero"')
 # language switch: ES is the current page
