@@ -1776,13 +1776,19 @@
       .pkg-map { padding-top:0 !important; border-top:0 !important; }
       .inc-head { padding:0.9rem 0 0.8rem;
         display:flex; flex-direction:column; gap:0.6rem; }
-      .inc-count { display:flex; align-items:baseline; gap:0.5rem; }
-      .inc-count b { font-size:2rem; font-weight:800; letter-spacing:-0.04em; color:var(--blue); line-height:1;
-        font-variant-numeric:tabular-nums; }
-      .inc-count span { font-size:0.66rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; color:var(--muted); }
-      .inc-bar { height:4px; border-radius:99px; background:rgba(31,46,255,0.1); overflow:hidden; }
-      .inc-bar i { display:block; height:100%; width:100%; background:var(--blue); border-radius:99px;
-        transform-origin:0 50%; transition:transform .6s cubic-bezier(.19,1,.22,1); }
+      .inc-eye { font-size:0.64rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:800; color:var(--blue); margin:0; }
+      .inc-lead { font-size:1.35rem; font-weight:800; letter-spacing:-0.025em; line-height:1.2; color:var(--fg); margin:0; }
+      .inc-lead em { display:block; margin-top:0.5rem; font-family:var(--serif); font-weight:400; font-size:1.08rem; letter-spacing:0; line-height:1.4; color:rgba(var(--fg-rgb),0.7); }
+      .inc-pillars { display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.5rem; align-items:center; }
+      .inc-pillars span { font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; padding:0.42rem 0.55rem;
+        border-radius:999px; border:1px solid var(--border); color:var(--muted); background:transparent;
+        transition:background .45s, color .45s, border-color .45s, transform .5s cubic-bezier(.34,1.56,.64,1); }
+      .inc-pillars span.on { background:var(--blue); border-color:var(--blue); color:#fff; transform:scale(1.04); }
+      .inc-full { font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:800; padding:0.45rem 0.75rem;
+        border-radius:999px; background:var(--ink); color:#fff; opacity:0; transform:scale(0.6); transition:opacity .4s, transform .6s cubic-bezier(.34,1.56,.64,1); }
+      .inc-full i { font-style:normal; color:#7CF0B0; }
+      .inc-done .inc-full, .inc:not(.inc-anim) .inc-full { opacity:1; transform:none; }
+      .inc:not(.inc-anim) .inc-pillars span { background:var(--blue); border-color:var(--blue); color:#fff; }
       .inc-list { list-style:none; margin:0; padding:0; }
       .inc-group { display:flex; flex-direction:column; gap:0.15rem; padding:1.8rem 0 0.6rem; }
       .inc-gname { font-size:0.64rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:800; color:var(--blue); }
@@ -1805,20 +1811,17 @@
       .inc-anim .inc-item.on .inc-txt { transform:none; }
       .inc-anim .inc-item.on .inc-check circle { stroke:var(--blue); stroke-dashoffset:0; fill:var(--blue); }
       .inc-anim .inc-item.on .inc-check path { stroke-dashoffset:0; }
-      .inc-done .inc-count b { animation:incPop .6s cubic-bezier(.34,1.56,.64,1); }
-      @keyframes incPop { 50% { transform:scale(1.18); } }
     }
     .inc-float { position:fixed; left:50%; bottom:16px; z-index:90; display:flex; align-items:center; gap:0.7rem;
       padding:0.6rem 1rem 0.6rem 0.7rem; border-radius:999px; background:rgba(18,18,18,0.92); color:#fff;
       backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 14px 34px -14px rgba(0,0,0,0.55);
       transform:translate(-50%, 140%); transition:transform .5s cubic-bezier(.19,1,.22,1); pointer-events:none; }
     .inc-float.show { transform:translate(-50%, 0); }
-    .inc-float svg { width:22px; height:22px; display:block; }
-    .inc-float svg circle.bg { fill:none; stroke:rgba(255,255,255,0.18); stroke-width:3; }
-    .inc-float svg circle.fg { fill:none; stroke:#7C86FF; stroke-width:3; stroke-linecap:round; stroke-dasharray:56.5; stroke-dashoffset:56.5;
-      transform:rotate(-90deg); transform-origin:50% 50%; transition:stroke-dashoffset .6s cubic-bezier(.19,1,.22,1); }
-    .inc-float b { font-size:0.95rem; font-weight:800; font-variant-numeric:tabular-nums; }
-    .inc-float span { font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.7); }
+    .incf-dots { display:flex; gap:4px; }
+    .incf-dots i { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.22); transition:background .4s, transform .4s; }
+    .incf-dots i.on { background:#7C86FF; transform:scale(1.15); }
+    .inc-float b { font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; }
+    .inc-float.full b { color:#7CF0B0; }
     @media (min-width:1081px){ .inc-float { display:none; } }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
@@ -2732,8 +2735,12 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
     <div class="inc" id="pkgInc">
       <div class="inc-head">
-        <div class="inc-count"><b id="incN">13</b><span>of 13 included</span></div>
-        <div class="inc-bar"><i id="incBar"></i></div>
+        <p class="inc-eye">What’s in the stack</p>
+        <p class="inc-lead">Everything it takes to fill your room. <em>Built from what’s already filled our clients’ rooms: 3.4× Tuesdays, sold-out brunches, 80+ booked tables.</em></p>
+        <div class="inc-pillars" id="incPillars">
+          <span data-g="0">Consulting</span><span data-g="1">Content</span><span data-g="2">Creative</span><span data-g="3">Reach</span>
+          <b class="inc-full">Full House <i aria-hidden="true">✓</i></b>
+        </div>
       </div>
       <ol class="inc-list">
       <li class="inc-group"><span class="inc-gname">Consulting</span><span class="inc-gsub">Strategy that steers it all</span></li>
@@ -2756,7 +2763,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       </ol>
       <p class="inc-note">You don’t pick from this list. You get all of it, every month.</p>
     </div>
-    <div class="inc-float" id="incFloat" aria-hidden="true"><svg viewBox="0 0 22 22"><circle class="bg" cx="11" cy="11" r="9"/><circle class="fg" cx="11" cy="11" r="9"/></svg><b id="incFN">0/13</b><span>Included</span></div>
+    <div class="inc-float" id="incFloat" aria-hidden="true"><span class="incf-dots"><i></i><i></i><i></i><i></i></span><b id="incFN">Consulting</b></div>
     <div class="pkg-map rv" id="pkgMap">
       <div class="map-ring">
         <span class="ring-orbit ring-orbit-a" aria-hidden="true"></span>
@@ -3399,25 +3406,28 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   })();
 
 
-  /* PROGRAM CHECKLIST: each service checks itself off as it scrolls in; the counter climbs */
+  /* PROGRAM CHECKLIST: services check off as they scroll in; each pillar lights up when its group is done */
   (function(){
     const box = document.getElementById("pkgInc");
     if (!box || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const items = Array.from(box.querySelectorAll(".inc-item")), n = document.getElementById("incN"), bar = document.getElementById("incBar");
-    const total = items.length; let done = 0;
-    box.classList.add("inc-anim"); n.textContent = "0"; bar.style.transform = "scaleX(0)";
-    const fl = document.getElementById("incFloat"), fn = document.getElementById("incFN"), fg = fl.querySelector("circle.fg");
-    fn.textContent = "0/" + total;
-    new IntersectionObserver(es => es.forEach(e => fl.classList.toggle("show", e.isIntersecting)), { threshold: 0 })
-      .observe(box.querySelector(".inc-list"));
+    const names = ["Consulting", "Content", "Creative", "Reach"];
+    const list = box.querySelector(".inc-list"), groupOf = new Map(), left = [0, 0, 0, 0];
+    let g = -1;
+    list.querySelectorAll("li").forEach(li => { if (li.classList.contains("inc-group")) g++; else { groupOf.set(li, g); left[g]++; } });
+    const chips = box.querySelectorAll(".inc-pillars span[data-g]");
+    const fl = document.getElementById("incFloat"), fn = document.getElementById("incFN"), dots = fl.querySelectorAll(".incf-dots i");
+    let remaining = groupOf.size;
+    box.classList.add("inc-anim");
+    new IntersectionObserver(es => es.forEach(e => fl.classList.toggle("show", e.isIntersecting)), { threshold: 0 }).observe(list);
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return; io.unobserve(e.target);
-      e.target.classList.add("on"); done++;
-      n.textContent = done; bar.style.transform = "scaleX(" + (done / total) + ")";
-      fn.textContent = done + "/" + total; fg.style.strokeDashoffset = 56.5 * (1 - done / total);
-      if (done === total) box.classList.add("inc-done");
+      const gi = groupOf.get(e.target);
+      e.target.classList.add("on"); remaining--; left[gi]--;
+      fn.textContent = names[gi];
+      if (left[gi] === 0) { chips[gi].classList.add("on"); dots[gi].classList.add("on"); }
+      if (remaining === 0) { box.classList.add("inc-done"); fl.classList.add("full"); fn.innerHTML = "Full House ✓"; }
     }), { rootMargin: "0px 0px -30% 0px", threshold: 0.6 });
-    items.forEach(it => io.observe(it));
+    groupOf.forEach((_, li) => io.observe(li));
   })();
 
   /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
