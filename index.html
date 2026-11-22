@@ -146,6 +146,29 @@
     .hero-sub { font-size:1.12rem; color:var(--muted); max-width:580px;
       line-height:1.75; margin:0 auto 3rem; font-weight:300; }
     .hero-sub strong { color:rgba(var(--fg-rgb),0.85); font-weight:600; }
+    .hero-svcs { list-style:none; display:flex; flex-wrap:wrap; justify-content:center;
+      align-items:center; gap:0.5rem 0; margin:0 auto 1.1rem; padding:0;
+      font-size:0.78rem; font-weight:600; letter-spacing:0.24em; text-transform:uppercase;
+      color:rgba(var(--fg-rgb),0.88); }
+    .hero-svcs li { display:flex; align-items:center; }
+    .hero-svcs li + li::before { content:""; width:4px; height:4px; border-radius:50%;
+      background:rgba(var(--fg-rgb),0.4); margin:0 1.1rem 0 calc(1.1rem - 0.24em); }
+    .hero-content .hero-sub { font-family:var(--serif); font-style:italic; font-weight:400;
+      font-size:1.6rem; line-height:1.3; letter-spacing:-0.005em;
+      color:rgba(var(--fg-rgb),0.78); margin:0 auto 1.6rem; }
+    .hero-bonus { display:inline-flex; align-items:center; gap:0.75rem; flex-wrap:wrap;
+      justify-content:center; margin:0 auto 2.6rem; padding:0.55rem 1.1rem;
+      border:1px solid rgba(var(--fg-rgb),0.22); border-radius:999px;
+      background:rgba(var(--fg-rgb),0.05); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      font-size:0.88rem; color:rgba(var(--fg-rgb),0.72); }
+    .hero-bonus-tag { font-weight:700; font-size:0.7rem; letter-spacing:0.18em;
+      text-transform:uppercase; color:var(--fg); }
+    @media (max-width:640px){
+      .hero-svcs { font-size:0.68rem; letter-spacing:0.18em; gap:0.6rem 0; max-width:22rem; }
+      .hero-svcs li + li::before { margin:0 0.7rem 0 calc(0.7rem - 0.18em); }
+      .hero-content .hero-sub { font-size:1.35rem; }
+      .hero-bonus { border-radius:14px; flex-direction:column; gap:0.25rem; padding:0.7rem 1.1rem; }
+    }
     .hero-actions { display:flex; align-items:center; justify-content:center;
       gap:2rem; flex-wrap:wrap; }
     .hero-link { color:var(--fg); font-size:0.95rem; font-weight:500;
@@ -1305,9 +1328,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <div class="hero-scrim"></div>
   <div class="hero-content">
     <h1>Marketing for restaurants, <em>done for you.</em></h1>
-    <p class="hero-sub">
-      Strategy. Content. Social. Ads. Web. Consulting.<br>Handled by one team that’s worked the floor.<br><strong>And you keep the playbook:</strong> our SOPs, scripts and templates, ready for your staff.
-    </p>
+    <ul class="hero-svcs" aria-label="What we do">
+      <li>Strategy</li><li>Content</li><li>Social</li><li>Ads</li><li>Web</li><li>Consulting</li>
+    </ul>
+    <p class="hero-sub">One team that’s worked the floor.</p>
+    <p class="hero-bonus"><span class="hero-bonus-tag">+ The playbook</span><span class="hero-bonus-txt">SOPs, scripts and templates for your staff</span></p>
     <div class="hero-actions">
       <a href="https://calendly.com/palatemarketing/strategy-session" target="_blank" class="hero-btn">Talk to us</a>
       <a href="#packages" class="hero-link">See the program&nbsp;<span aria-hidden="true">›</span></a>
