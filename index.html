@@ -1494,6 +1494,30 @@
       footer.ft .social-icons { margin-bottom:2.4rem; }
       .ft-bottom { flex-direction:column; gap:0.5rem; padding:1.2rem 0; }
     }
+    /* MENU BUTTON: two-line icon in a glass circle, morphs into an X */
+    .nav-toggle { width:44px !important; height:44px !important; margin-right:-0.3rem; border-radius:50%;
+      border:1px solid rgba(var(--fg-rgb),0.22); background:rgba(var(--fg-rgb),0.06);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      transition:background .3s, border-color .3s, transform .4s var(--ease); }
+    .nav-toggle:active { transform:scale(0.94); }
+    .nav-toggle, nav .nav-logo { position:relative; z-index:101; }
+    .nav-toggle-icon { width:18px; height:0; background:none !important; }
+    .nav-toggle-icon::before, .nav-toggle-icon::after { height:1.6px; border-radius:2px;
+      transition:transform .45s cubic-bezier(.19,1,.22,1), width .45s cubic-bezier(.19,1,.22,1), top .45s cubic-bezier(.19,1,.22,1); }
+    .nav-toggle-icon::before { top:-3.5px; }
+    .nav-toggle-icon::after { top:3.5px; left:auto; width:12px; }
+    nav.is-open .nav-toggle { background:rgba(var(--fg-rgb),0.04); border-color:rgba(var(--fg-rgb),0.18); }
+    nav.is-open .nav-toggle-icon::before { top:0; transform:rotate(45deg); }
+    nav.is-open .nav-toggle-icon::after { top:0; width:18px; transform:rotate(-45deg); }
+    @media (max-width:960px){
+      .nav-links li { opacity:0; transform:translateY(14px); transition:opacity .4s ease, transform .6s cubic-bezier(.19,1,.22,1); }
+      nav.is-open .nav-links li { opacity:1; transform:none; }
+      nav.is-open .nav-links li:nth-child(1) { transition-delay:.06s; }
+      nav.is-open .nav-links li:nth-child(2) { transition-delay:.11s; }
+      nav.is-open .nav-links li:nth-child(3) { transition-delay:.16s; }
+      nav.is-open .nav-links li:nth-child(4) { transition-delay:.21s; }
+      nav.is-open .nav-links li:nth-child(5) { transition-delay:.26s; }
+    }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
