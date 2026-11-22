@@ -1518,6 +1518,62 @@
       nav.is-open .nav-links li:nth-child(4) { transition-delay:.21s; }
       nav.is-open .nav-links li:nth-child(5) { transition-delay:.26s; }
     }
+    /* CASE STUDIES: intro, count-up stats, living rows, hover preview */
+    .csx-intro { max-width:1120px; margin:0 auto 6rem; text-align:center; }
+    .csx-eye { font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:700;
+      color:var(--muted); margin-bottom:1.4rem; }
+    .csx-title { font-size:clamp(2.6rem, 6vw, 4.6rem); font-weight:800; letter-spacing:-0.04em; line-height:1; margin:0 0 1.4rem; }
+    .csx-title em { font-style:normal; font-weight:300; color:rgba(var(--fg-rgb),0.6); }
+    .csx-sub { max-width:34rem; margin:0 auto 3.6rem; font-size:1.05rem; line-height:1.6; color:var(--muted); }
+    .csx-stats { display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .csx-stat { padding:2.2rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
+    .csx-stat + .csx-stat { border-left:1px solid var(--border); }
+    .csx-stat b { font-size:clamp(2.4rem, 4.6vw, 3.6rem); font-weight:800; letter-spacing:-0.045em; line-height:1;
+      color:var(--fg); font-variant-numeric:tabular-nums; }
+    .csx-stat:nth-child(-n+2) b { color:#128A52; }
+    .csx-stat:nth-child(n+3) b { color:var(--blue); }
+    .csx-stat span { font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+      color:var(--muted); max-width:13rem; line-height:1.5; }
+
+    .csx-row { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .9s cubic-bezier(.19,1,.22,1); }
+    .csx-row.in { opacity:1; transform:none; }
+    .cs-row { position:relative; isolation:isolate; }
+    .cs-row::before { content:''; position:absolute; inset:0 -1.2rem; z-index:-1; border-radius:10px;
+      background:rgba(var(--accent-rgb),0.06); transform:scaleX(0); transform-origin:0 50%;
+      transition:transform .6s cubic-bezier(.19,1,.22,1); }
+    @media (hover:hover){ .cs-row:hover::before { transform:scaleX(1); } }
+    .cs-item.is-open .cs-row::before { transform:scaleX(1); background:rgba(var(--accent-rgb),0.05); }
+    .cs-row-icon { transition:transform .5s cubic-bezier(.19,1,.22,1), background .3s, border-color .3s; }
+    @media (hover:hover){ .cs-row:hover .cs-row-icon { transform:rotate(90deg); } }
+
+    .csx-hover { position:fixed; left:0; top:0; z-index:60; width:230px; aspect-ratio:4/5; border-radius:12px; overflow:hidden;
+      pointer-events:none; opacity:0; transform:translate3d(-50%,-50%,0) scale(0.6);
+      box-shadow:0 30px 60px -20px rgba(18,18,18,0.45); transition:opacity .35s ease; will-change:transform; }
+    .csx-hover img { width:100%; height:100%; object-fit:cover; display:block; }
+    .csx-hover.on { opacity:1; }
+
+    @media (max-width:960px){
+      .csx-intro { margin-bottom:4rem; }
+      .csx-stats { grid-template-columns:1fr 1fr; }
+      .csx-stat:nth-child(3) { border-left:0; }
+      .csx-stat:nth-child(n+3) { border-top:1px solid var(--border); }
+      .csx-hover { display:none; }
+    }
+    @media (max-width:640px){
+      .csx-title { font-size:clamp(2.3rem, 10.5vw, 3rem); }
+      .csx-sub { font-size:0.98rem; margin-bottom:2.6rem; }
+      .csx-stat { padding:1.6rem 0.6rem; }
+      .csx-stat b { font-size:2.2rem; }
+      .csx-stat span { font-size:0.56rem; letter-spacing:0.14em; }
+      .cs-row { grid-template-columns:3rem minmax(0,1fr) 2.2rem !important; }
+      .cs-row-n { width:2.7rem; height:2.7rem; border-radius:8px; padding:0 !important; align-self:start;
+        background:var(--thumb) center/cover no-repeat, var(--bg-2); color:transparent !important; font-size:0 !important; }
+      .cs-row::before { inset:0 -0.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .csx-row { opacity:1; transform:none; transition:none; }
+      .csx-hover { display:none; }
+    }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -1750,14 +1806,26 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 
 <!-- CASE STUDIES -->
 <section id="case-studies">
+  <div class="csx-hover" aria-hidden="true"><img alt=""></div>
+  <div class="csx-intro">
+    <p class="csx-eye rv">The results</p>
+    <h2 class="csx-title">Real nights. <em>Real numbers.</em></h2>
+    <p class="csx-sub rv">Seven campaigns, from slow Tuesdays to sold-out brunches. Tap any one to see exactly how we did it.</p>
+    <div class="csx-stats">
+      <div class="csx-stat rv d1"><b data-count="3.4" data-dec="1" data-suf="×">3.4×</b><span>Revenue on a slow Tuesday</span></div>
+      <div class="csx-stat rv d2"><b data-count="80" data-suf="+">80+</b><span>Reservations from ads in one month</span></div>
+      <div class="csx-stat rv d3"><b data-count="7.9" data-dec="1" data-suf="M">7.9M</b><span>Views in 30 days</span></div>
+      <div class="csx-stat rv d3"><b data-count="20" data-suf="×">20×</b><span>Engagement from one collab</span></div>
+    </div>
+  </div>
   <div class="cse cs-group cs-group-rev" data-cs-group>
     <div class="cs-header rv">
       <h2 class="cs-eye">Revenue-based case studies</h2>
     </div>
     <div class="cs-list rv">
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-rev-1-btn" aria-expanded="false" aria-controls="cs-rev-1">
+          <button class="cs-row" type="button" id="cs-rev-1-btn" data-img="media/Photos/photo-14.jpg" style="--thumb:url('media/Photos/photo-14.jpg')" aria-expanded="false" aria-controls="cs-rev-1">
             <span class="cs-row-n">01</span>
             <span class="cs-row-main"><span class="cs-row-brand">Sip n' Tell</span> <span class="cs-row-sub">Taco Tuesday</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">3.4&#215;</span><span class="cs-row-kpi-l">Revenue on a single night</span></span>
@@ -1829,9 +1897,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
         </div>
       </article>
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-rev-2-btn" aria-expanded="false" aria-controls="cs-rev-2">
+          <button class="cs-row" type="button" id="cs-rev-2-btn" data-img="media/Graphics/graphic-20.jpg" style="--thumb:url('media/Graphics/graphic-20.jpg')" aria-expanded="false" aria-controls="cs-rev-2">
             <span class="cs-row-n">02</span>
             <span class="cs-row-main"><span class="cs-row-brand">LUMA</span> <span class="cs-row-sub">Brunch</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">4.5&#215;</span><span class="cs-row-kpi-l">Revenue per themed brunch</span></span>
@@ -1903,9 +1971,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
         </div>
       </article>
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-rev-3-btn" aria-expanded="false" aria-controls="cs-rev-3">
+          <button class="cs-row" type="button" id="cs-rev-3-btn" data-img="media/Graphics/graphic-31.jpg" style="--thumb:url('media/Graphics/graphic-31.jpg')" aria-expanded="false" aria-controls="cs-rev-3">
             <span class="cs-row-n">03</span>
             <span class="cs-row-main"><span class="cs-row-brand">LUMA</span> <span class="cs-row-sub">Reservations</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">80+</span><span class="cs-row-kpi-l">Booked directly from the campaign</span></span>
@@ -1985,9 +2053,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <h2 class="cs-eye">Engagement-based case studies</h2>
     </div>
     <div class="cs-list rv">
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-eng-1-btn" aria-expanded="false" aria-controls="cs-eng-1">
+          <button class="cs-row" type="button" id="cs-eng-1-btn" data-img="media/Photos/photo-1.jpg" style="--thumb:url('media/Photos/photo-1.jpg')" aria-expanded="false" aria-controls="cs-eng-1">
             <span class="cs-row-n">01</span>
             <span class="cs-row-main"><span class="cs-row-brand">El Taco Mañanero</span> <span class="cs-row-sub">Organic Reach</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">+17,100%</span><span class="cs-row-kpi-l">Growth in thirty days</span></span>
@@ -2063,9 +2131,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
         </div>
       </article>
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-eng-2-btn" aria-expanded="false" aria-controls="cs-eng-2">
+          <button class="cs-row" type="button" id="cs-eng-2-btn" data-img="media/Photos/photo-8.jpg" style="--thumb:url('media/Photos/photo-8.jpg')" aria-expanded="false" aria-controls="cs-eng-2">
             <span class="cs-row-n">02</span>
             <span class="cs-row-main"><span class="cs-row-brand">Howling Rabbits</span> <span class="cs-row-sub">Influencer Collaboration</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">20×</span><span class="cs-row-kpi-l">Engagement vs. standard posts</span></span>
@@ -2111,9 +2179,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
         </div>
       </article>
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-eng-3-btn" aria-expanded="false" aria-controls="cs-eng-3">
+          <button class="cs-row" type="button" id="cs-eng-3-btn" data-img="media/Graphics/graphic-21.jpg" style="--thumb:url('media/Graphics/graphic-21.jpg')" aria-expanded="false" aria-controls="cs-eng-3">
             <span class="cs-row-n">03</span>
             <span class="cs-row-main"><span class="cs-row-brand">LUMA</span> <span class="cs-row-sub">Launch</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">1.7M</span><span class="cs-row-kpi-l">Total impressions in ten months</span></span>
@@ -2189,9 +2257,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           </div>
         </div>
       </article>
-      <article class="cs-item" data-cs-item>
+      <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
-          <button class="cs-row" type="button" id="cs-eng-4-btn" aria-expanded="false" aria-controls="cs-eng-4">
+          <button class="cs-row" type="button" id="cs-eng-4-btn" data-img="media/Photos/photo-11.jpg" style="--thumb:url('media/Photos/photo-11.jpg')" aria-expanded="false" aria-controls="cs-eng-4">
             <span class="cs-row-n">04</span>
             <span class="cs-row-main"><span class="cs-row-brand">Smokin' Moon</span> <span class="cs-row-sub">Awareness Campaign</span></span>
             <span class="cs-row-kpi"><span class="cs-row-kpi-v">5,100+</span><span class="cs-row-kpi-l">New followers in thirty days</span></span>
@@ -2817,6 +2885,69 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     });
   })();
 
+
+  /* CASE STUDIES: count-ups, row cascade, hover preview */
+  (function(){
+    const sec = document.getElementById("case-studies");
+    if (!sec) return;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fmt = (v, dec, comma) => comma ? Math.round(v).toLocaleString("en-US") : (dec ? v.toFixed(dec) : String(Math.round(v)));
+    function countUp(el, target, dec, pre, suf, comma){
+      if (reduce) return;
+      const T = 1600; let t0 = null;
+      requestAnimationFrame(function f(t){ if (t0 === null) t0 = t;
+        const k = Math.min(1, Math.max(0, (t - t0) / T)), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = pre + fmt(target * e, dec, comma) + suf; if (k < 1) requestAnimationFrame(f); });
+    }
+    // stats strip
+    if (!reduce) sec.querySelectorAll(".csx-stat b[data-count]").forEach(b => { b.textContent = fmt(0, +(b.dataset.dec || 0), false) + (b.dataset.suf || ""); });
+    // row KPIs: parse "+17,100%", "3.4×", "1.7M", "5,100+"
+    sec.querySelectorAll(".cs-row-kpi-v").forEach(v => {
+      const m = v.textContent.trim().match(/^([+]?)([\d,]+(?:\.\d+)?)(.*)$/);
+      if (!m) return;
+      v.dataset.pre = m[1]; v.dataset.num = m[2].replace(/,/g, ""); v.dataset.suf = m[3];
+      v.dataset.dec = (m[2].split(".")[1] || "").length; v.dataset.comma = m[2].includes(",") ? "1" : "";
+      if (!reduce) v.textContent = m[1] + fmt(0, +v.dataset.dec, v.dataset.comma) + m[3];
+    });
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target; io.unobserve(el);
+      if (el.classList.contains("csx-row")) {
+        el.classList.add("in");
+        const v = el.querySelector(".cs-row-kpi-v");
+        if (v && v.dataset.num) setTimeout(() => countUp(v, +v.dataset.num, +v.dataset.dec, v.dataset.pre, v.dataset.suf, v.dataset.comma), 200);
+      } else {
+        countUp(el, +el.dataset.count, +(el.dataset.dec || 0), "", el.dataset.suf || "", false);
+      }
+    }), { threshold: 0.35 });
+    sec.querySelectorAll(".csx-stat b[data-count]").forEach(b => io.observe(b));
+    sec.querySelectorAll(".cs-list").forEach(list => list.querySelectorAll(".csx-row").forEach((r, i) => {
+      r.style.transitionDelay = (i * 90) + "ms"; io.observe(r);
+    }));
+    // hover preview that trails the cursor
+    const hov = sec.querySelector(".csx-hover");
+    if (!hov || reduce || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const img = hov.querySelector("img");
+    let x = 0, y = 0, cx = 0, cy = 0, s = 0.6, ts = 0.6, raf = 0, live = false;
+    function loop(){
+      cx += (x - cx) * 0.16; cy += (y - cy) * 0.16; s += (ts - s) * 0.16;
+      const tilt = Math.max(-8, Math.min(8, (x - cx) * 0.12));
+      hov.style.transform = "translate3d(" + (cx + 40) + "px," + (cy - 150) + "px,0) scale(" + s.toFixed(3) + ") rotate(" + tilt.toFixed(2) + "deg)";
+      if (live || Math.abs(ts - s) > 0.01) raf = requestAnimationFrame(loop); else raf = 0;
+    }
+    sec.querySelectorAll(".cs-row[data-img]").forEach(row => {
+      row.addEventListener("mouseenter", e => {
+        if (row.closest(".cs-item").classList.contains("is-open")) return;
+        if (img.getAttribute("src") !== row.dataset.img) img.src = row.dataset.img;
+        if (!live) { cx = x = e.clientX; cy = y = e.clientY; }
+        live = true; ts = 1; hov.classList.add("on"); if (!raf) raf = requestAnimationFrame(loop);
+      });
+      row.addEventListener("mousemove", e => { x = e.clientX; y = e.clientY; });
+      row.addEventListener("mouseleave", () => { live = false; ts = 0.6; hov.classList.remove("on"); });
+      row.addEventListener("click", () => { live = false; ts = 0.6; hov.classList.remove("on"); });
+    });
+  })();
+
   /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
   (function(){
     const vp = document.getElementById('tstViewport');
@@ -3070,7 +3201,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   setTimeout(() => { hero.classList.add("ready"); const h = hero.querySelector("h1"); if (h) h.classList.add("words-in"); }, 2500);
 
   /* 1. Split headlines into words */
-  const heads = document.querySelectorAll("#hero h1, #clients h2, .vsl-headline, #testimonials .tst-title, .mnf-title, .abt-title, #media h2, .pkg-title, #team h2, .faq-title, .clo-lede, .mnf-closer");
+  const heads = document.querySelectorAll("#hero h1, #clients h2, .csx-title, .vsl-headline, #testimonials .tst-title, .mnf-title, .abt-title, #media h2, .pkg-title, #team h2, .faq-title, .clo-lede, .mnf-closer");
   heads.forEach(el => {
     let i = 0;
     (function walk(node){
