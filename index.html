@@ -1657,6 +1657,33 @@
       .pkg-anim *, .pkg-anim *::before, .pkg-anim *::after { transition:none !important; animation:none !important; }
       .pkg-bonus::after { animation:none; }
     }
+    /* PROGRAM MAP: ambient life after it assembles (desktop) */
+    @media (min-width:1081px){
+      .pkg-anim.go .ring-slot::after {
+        background-image:linear-gradient(to bottom, transparent 0%, rgba(var(--accent-rgb),1) 50%, transparent 100%),
+                         linear-gradient(rgba(var(--accent-rgb),0.6), rgba(var(--accent-rgb),0.15));
+        background-size:100% 45%, 100% 100%; background-repeat:no-repeat;
+        animation:pkgFlow 3.2s cubic-bezier(.45,0,.55,1) infinite; animation-delay:calc(2.2s + var(--i) * 0.24s); }
+      @keyframes pkgFlow { from { background-position:0 -80%, 0 0; } to { background-position:0 180%, 0 0; } }
+      .ring-slot.lit::after { width:2px; }
+      .ring-slot.lit .ring-node { background:var(--blue); color:#fff; border-color:var(--blue); scale:1.06 !important;
+        box-shadow:0 10px 24px -10px rgba(31,46,255,0.6); transition-delay:0s !important; }
+
+      .pkg-anim .ring-orbit-a::after, .pkg-anim .ring-orbit-b::after, .pkg-anim .ring-orbit-c::after {
+        content:''; position:absolute; border-radius:50%; background:var(--blue); opacity:0; transition:opacity 1s ease 1.8s; }
+      .pkg-anim .ring-orbit-b::after { width:7px; height:7px; top:-4px; left:calc(50% - 3.5px); box-shadow:0 0 0 5px rgba(31,46,255,0.12); }
+      .pkg-anim .ring-orbit-a::after { width:5px; height:5px; bottom:-3px; left:calc(50% - 2.5px); }
+      .pkg-anim .ring-orbit-c::after { width:5px; height:5px; top:calc(50% - 2.5px); right:-3px; }
+      .pkg-anim.go .ring-orbit-a::after, .pkg-anim.go .ring-orbit-b::after, .pkg-anim.go .ring-orbit-c::after { opacity:1; }
+      .pkg-anim.go .ring-orbit-a { animation:pkgSpinR 60s linear infinite; }
+      .pkg-anim.go .ring-orbit-c { animation:pkgSpin 24s linear infinite; }
+      @keyframes pkgSpinR { to { transform:translate(-50%,-50%) rotate(-360deg); } }
+      .pkg-anim.go .map-house { animation:pkgFloat 5s ease-in-out 2.2s infinite; }
+      @keyframes pkgFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+      .pkg-anim.go .map-hub::before { animation:pkgGlow 5s ease-in-out 2.2s infinite; }
+      @keyframes pkgGlow { 0%,100% { opacity:1; } 50% { opacity:0.55; } }
+    }
+    @media (prefers-reduced-motion: reduce){ .ring-slot.lit .ring-node { scale:1 !important; } }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -3078,6 +3105,32 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
         if (k < 1) requestAnimationFrame(f); });
     }), { threshold: 0.6 });
     sec.querySelectorAll(".pkg-fact b[data-pc]").forEach(b => fio.observe(b));
+  })();
+
+
+  /* PROGRAM MAP: a spotlight walks around the ring, one service at a time */
+  (function(){
+    const map = document.getElementById("pkgMap");
+    if (!map || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+    const wide = matchMedia("(min-width:1081px)");
+    const slots = Array.from(map.querySelectorAll(".ring-slot"));
+    // walk clockwise by angle
+    slots.sort((a, b) => (parseFloat(a.style.getPropertyValue("--a")) - parseFloat(b.style.getPropertyValue("--a"))));
+    let idx = -1, timer = null, visible = false, hovering = false;
+    function step(){
+      if (idx >= 0) slots[idx].classList.remove("lit");
+      idx = (idx + 1) % slots.length;
+      slots[idx].classList.add("lit");
+    }
+    function sync(){
+      const run = visible && !hovering && wide.matches && map.classList.contains("go");
+      if (run && !timer) { timer = setInterval(step, 1300); }
+      if (!run && timer) { clearInterval(timer); timer = null; if (idx >= 0) slots[idx].classList.remove("lit"); }
+    }
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; setTimeout(sync, visible ? 2600 : 0); }), { threshold: 0.3 }).observe(map);
+    map.addEventListener("mouseenter", () => { hovering = true; sync(); });
+    map.addEventListener("mouseleave", () => { hovering = false; sync(); });
+    wide.addEventListener("change", sync);
   })();
 
   /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
