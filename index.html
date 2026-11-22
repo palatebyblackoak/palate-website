@@ -6,6 +6,9 @@
   <title>Restaurant Marketing Agency in McAllen &amp; the RGV, TX | Palate</title>
   <meta name="description" content="Done-for-you restaurant marketing in McAllen, Edinburg, Mission, Pharr and Weslaco, TX. Strategy, content, social media, ads, web design and consulting that fill tables." />
   <link rel="canonical" href="https://www.palatemarketing.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.palatemarketing.com/" />
+  <link rel="alternate" hreflang="es" href="https://www.palatemarketing.com/es/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.palatemarketing.com/" />
   <meta name="theme-color" content="#121212" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Palate" />
@@ -1823,6 +1826,20 @@
     .inc-float b { font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; }
     .inc-float.full b { color:#7CF0B0; }
     @media (min-width:1081px){ .inc-float { display:none; } }
+    /* LANGUAGE SWITCH */
+    @media (max-width:640px){ html[lang="es"] .hero-svcs { max-width:none !important; font-size:0.54rem !important; letter-spacing:0.15em !important; } }
+    .lang-sw { display:flex; align-items:center; gap:2px; margin-left:1.6rem; padding:3px; border-radius:999px;
+      border:1px solid rgba(var(--fg-rgb),0.22); position:relative; z-index:101; }
+    .lang-sw a { font-size:0.62rem; letter-spacing:0.14em; font-weight:700; text-decoration:none; padding:0.38rem 0.6rem;
+      border-radius:999px; color:rgba(var(--fg-rgb),0.7); transition:background .3s, color .3s; }
+    .lang-sw a:hover { color:var(--fg); }
+    .lang-sw a.on { background:var(--fg); color:var(--bg, #121212); }
+    nav:not(.scrolled):not(.is-open) .lang-sw a.on { background:#fff; color:#121212; }
+    nav.scrolled .lang-sw a.on, nav.is-open .lang-sw a.on { background:#121212; color:#fff; }
+    @media (max-width:960px){
+      .lang-sw { margin-left:auto; margin-right:0.6rem; }
+      .lang-sw a { padding:0.42rem 0.6rem; }
+    }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -1913,6 +1930,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <li><a href="#join">Join our team</a></li>
     <li><a href="https://calendly.com/palatemarketing/strategy-session" target="_blank">Contact</a></li>
   </ul>
+  <div class="lang-sw" aria-label="Language"><a class="lang-en on" href="/" hreflang="en" lang="en">EN</a><a class="lang-es" href="/es/" hreflang="es" lang="es">ES</a></div>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
     <span class="nav-toggle-icon" aria-hidden="true"></span>
   </button>
