@@ -387,39 +387,49 @@ if (heroSlides.length > 1) {
 
 
 
-/* PROGRAM, PHONE + TABLET: the included services glide right in a loop; pause on touch, swipe to scrub */
+/* PROGRAM, PHONE + TABLET: step through what's included, card by card, to the Full House finale */
 (function(){
   const loop = document.getElementById("svcLoop");
-  if (!loop || REDUCE) return;
-  const track = loop.querySelector(".svc-track");
-  const originals = Array.from(track.children);
-  const PX = 30; // px per second
-  let anim = null, w = 1;
-  const setW = () => originals[originals.length - 1].offsetLeft + originals[originals.length - 1].offsetWidth - originals[0].offsetLeft + 14.4;
-  function fill(){
-    while (track.scrollWidth < innerWidth * 2 + setW()) originals.forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); track.appendChild(d); });
-  }
-  const speed = speedEaser(() => anim);
-  function build(){
-    if (getComputedStyle(loop).display === "none") { if (anim) anim.cancel(); anim = null; return; }
-    fill(); w = setW();
-    if (anim) anim.cancel();
-    anim = track.animate([{ transform: "translate3d(" + (-w) + "px,0,0)" }, { transform: "translate3d(0,0,0)" }],
-      { duration: w / PX * 1000, iterations: Infinity, easing: "linear" });
-    anim.playbackRate = speed.rate;
-  }
-  whileVisible(loop, () => anim && anim.play(), () => anim && anim.pause());
-  let sx = 0, st = 0, dragging = false;
-  loop.addEventListener("pointerdown", e => { if (!anim) return; dragging = true; sx = e.clientX; st = anim.currentTime || 0; speed.set(0); });
-  addEventListener("pointermove", e => {
-    if (!dragging) return; const dur = w / PX * 1000;
-    anim.currentTime = ((st + (e.clientX - sx) / PX * 1000) % dur + dur) % dur;
+  if (!loop) return;
+  const cards = Array.from(loop.querySelectorAll(".svc-card"));
+  const prev = document.querySelector(".svc-prev"), next = document.querySelector(".svc-next");
+  const now = document.getElementById("svcNow"), bars = document.getElementById("svcBars");
+  let last = null;
+  cards.forEach(c => {
+    const tag = c.querySelector(".svc-tag"), i = document.createElement("i");
+    const g = tag ? tag.textContent : T.full;
+    if (last !== null && g !== last) i.className = "gap";
+    last = g; bars.appendChild(i);
   });
-  const end = () => { if (dragging) { dragging = false; speed.set(1); } };
-  addEventListener("pointerup", end); addEventListener("pointercancel", end);
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
-  addEventListener("load", build);
-  build();
+  const segs = bars.children;
+  let cur = -1;
+  function show(i){
+    if (i === cur) return; cur = i;
+    cards.forEach((c, k) => c.classList.toggle("is-cur", k === i));
+    Array.from(segs).forEach((s, k) => s.classList.toggle("on", k <= i));
+    const tag = cards[i].querySelector(".svc-tag");
+    now.textContent = tag ? tag.textContent : T.full;
+    prev.disabled = i === 0; next.disabled = i === cards.length - 1;
+  }
+  function go(i){
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    const c = cards[i];
+    loop.scrollTo({ left: c.offsetLeft - (loop.clientWidth - c.offsetWidth) / 2, behavior: REDUCE ? "auto" : "smooth" });
+    show(i);
+  }
+  prev.addEventListener("click", () => go(cur - 1));
+  next.addEventListener("click", () => go(cur + 1));
+  let t;
+  loop.addEventListener("scroll", () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      const mid = loop.scrollLeft + loop.clientWidth / 2; let best = 0, bd = 1e9;
+      cards.forEach((c, k) => { const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = k; } });
+      show(best);
+    }, 60);
+  }, { passive: true });
+  cards.forEach((c, k) => c.addEventListener("click", e => { if (k !== cur && !e.target.closest("a")) go(k); }));
+  show(0);
 })();
 
 /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
