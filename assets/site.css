@@ -1797,6 +1797,28 @@
     @media (min-width:1081px){ .svc-loop, .svc-ctrl { display:none; } }
     @media (prefers-reduced-motion: reduce){ .svc-loop { scroll-behavior:auto; } .svc-card { transition:none; } }
 
+    /* OUR PRACTICE, PHONE: tap-to-open points (JS adds .abt-acc) */
+    .abt-pillars:not(.abt-acc) .abt-more, .abt-pillars:not(.abt-acc) .abt-more > div { display:contents; }
+    .abt-pillars:not(.abt-acc) .abt-pillar-t { order:0; }
+    .abt-pillars:not(.abt-acc) .abt-pillar-d { order:1; }
+    .abt-pillars:not(.abt-acc) .abt-proof { order:2; }
+    .abt-pillars:not(.abt-acc) .abt-tags { order:3; }
+    @media (max-width:640px){
+      .abt-acc .abt-pillar { cursor:pointer; padding:1.15rem 0; -webkit-tap-highlight-color:transparent; }
+      .abt-acc .abt-pillar-t { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+      .abt-acc .abt-pillar-t::after { content:''; flex:0 0 30px; height:30px; border-radius:50%; border:1px solid var(--border);
+        background:linear-gradient(currentColor,currentColor) center/11px 1.5px no-repeat,
+                   linear-gradient(currentColor,currentColor) center/1.5px 11px no-repeat;
+        transition:transform .45s cubic-bezier(.19,1,.22,1), background-color .3s, color .3s, border-color .3s; }
+      .abt-acc .abt-pillar.open .abt-pillar-t::after { transform:rotate(45deg); background-color:var(--fg); color:var(--bg); border-color:var(--fg); }
+      .abt-acc .abt-more { display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s cubic-bezier(.19,1,.22,1); }
+      .abt-acc .abt-pillar.open .abt-more { grid-template-rows:1fr; }
+      .abt-acc .abt-more > div { overflow:hidden; min-height:0; }
+      .abt-acc .abt-more .abt-pillar-d { padding-top:0.35rem; }
+      .abt-acc .abt-pillar-n { align-self:start; padding-top:0.45rem; }
+      .abt-acc .abt-proof { margin-top:0.3rem; }
+    }
+
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
