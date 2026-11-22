@@ -1741,6 +1741,32 @@
       .csl { margin-bottom:1.6rem; }
       .csx-ptitle { padding-right:0; margin-top:3rem; }
     }
+    /* PROGRAM, PHONE: centered intro, slim facts strip, swipeable pillar cards */
+    @media (max-width:640px){
+      .pkg-intro { text-align:center; margin-left:auto; margin-right:auto; margin-bottom:2.2rem; }
+      .pkg-eye { justify-content:center; }
+      .pkg-title { font-size:clamp(2.3rem, 10.5vw, 2.9rem); }
+      .pkg-lede { font-size:1rem; line-height:1.6; }
+      .pkg-facts { grid-template-columns:repeat(4, 1fr) !important; margin:0 0 2.4rem !important; border:0 !important;
+        background:rgba(31,46,255,0.06); border-radius:16px; padding:0.4rem; }
+      .pkg-fact { align-items:center; text-align:center; padding:0.9rem 0.2rem !important; border:0 !important; gap:0.3rem; }
+      .pkg-fact + .pkg-fact { border-left:1px solid rgba(31,46,255,0.12) !important; }
+      .pkg-fact b { font-size:1.7rem !important; }
+      .pkg-fact span { font-size:0.5rem; letter-spacing:0.12em; line-height:1.35; }
+      .map-hub { display:none !important; }
+      .pkg-map { padding-top:0 !important; }
+      .ring-items { display:flex !important; gap:0.8rem !important; overflow-x:auto; scroll-snap-type:x mandatory;
+        margin:0 -1.5rem !important; padding:0.3rem 1.5rem 0.6rem !important; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+      .ring-items::-webkit-scrollbar { display:none; }
+      .ring-group { flex:0 0 82%; scroll-snap-align:center; min-height:13.2rem;
+        background:#fff !important; box-shadow:0 18px 40px -28px rgba(18,18,18,0.35); }
+      .ring-label > span { font-size:0.62rem !important; margin-bottom:0.4rem; }
+      .pkg-swipe { display:flex; justify-content:center; align-items:center; gap:0.45rem; margin:1.1rem 0 0; }
+      .pkg-swipe i { width:6px; height:6px; border-radius:999px; background:rgba(var(--fg-rgb),0.18); transition:width .4s cubic-bezier(.19,1,.22,1), background .3s; }
+      .pkg-swipe i.on { width:20px; background:var(--blue); }
+      .map-note { font-size:1.05rem !important; margin-top:1.6rem !important; padding:0 0.5rem; }
+    }
+    @media (min-width:641px){ .pkg-swipe { display:none; } }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -2700,6 +2726,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
           <div class="map-cadence">Every month</div>
         </div>
       </div>
+      <div class="pkg-swipe" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       <p class="map-note">You don’t pick from this map. You get all of it, every month.</p>
     </div>
 
@@ -3276,6 +3303,19 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       addEventListener("pointerup", endDrag); addEventListener("pointercancel", endDrag);
       let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
     });
+  })();
+
+
+  /* PROGRAM, PHONE: progress dots follow the swipeable pillar cards */
+  (function(){
+    const row = document.querySelector("#pkgMap .ring-items"), dots = document.querySelectorAll("#pkgMap .pkg-swipe i");
+    if (!row || !dots.length) return;
+    const groups = row.querySelectorAll(".ring-group");
+    row.addEventListener("scroll", () => {
+      const mid = row.scrollLeft + row.clientWidth / 2; let best = 0, bd = 1e9;
+      groups.forEach((g, i) => { const c = g.offsetLeft + g.offsetWidth / 2, d = Math.abs(c - mid); if (d < bd) { bd = d; best = i; } });
+      dots.forEach((d, i) => d.classList.toggle("on", i === best));
+    }, { passive: true });
   })();
 
   /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
