@@ -1720,8 +1720,8 @@
       .inc-full { font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:800; padding:0.45rem 0.75rem;
         border-radius:999px; background:var(--ink); color:#fff; opacity:0; transform:scale(0.6); transition:opacity .4s, transform .6s cubic-bezier(.34,1.56,.64,1); }
       .inc-full i { font-style:normal; color:#7CF0B0; }
-      .inc-done .inc-full, .inc:not(.inc-anim) .inc-full { opacity:1; transform:none; }
-      .inc:not(.inc-anim) .inc-pillars span { background:var(--blue); border-color:var(--blue); color:#fff; }
+      .inc-full { opacity:1; transform:none; }
+      .inc-pillars span { background:var(--blue); border-color:var(--blue); color:#fff; }
       .inc-list { list-style:none; margin:0; padding:0; }
       .inc-group { display:flex; flex-direction:column; gap:0.15rem; padding:1.8rem 0 0.6rem; }
       .inc-gname { font-size:0.64rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:800; color:var(--blue); }
@@ -1734,28 +1734,7 @@
       .inc-txt { display:flex; flex-direction:column; gap:0.2rem; }
       .inc-txt b { font-size:1rem; font-weight:700; letter-spacing:-0.01em; color:var(--fg); }
       .inc-txt span { font-size:0.88rem; line-height:1.45; color:var(--muted); }
-      /* animated state (JS adds .inc-anim, then .on per row) */
-      .inc-anim .inc-item { opacity:0.35; transition:opacity .5s ease; }
-      .inc-anim .inc-item .inc-txt { transform:translateX(-6px); transition:transform .6s cubic-bezier(.19,1,.22,1); }
-      .inc-anim .inc-check circle { fill:transparent; stroke:rgba(var(--fg-rgb),0.22); stroke-dasharray:70; stroke-dashoffset:70;
-        transition:stroke-dashoffset .6s cubic-bezier(.65,0,.35,1), fill .3s ease .45s, stroke .3s; }
-      .inc-anim .inc-check path { stroke-dasharray:16; stroke-dashoffset:16; transition:stroke-dashoffset .35s ease .5s; }
-      .inc-anim .inc-item.on { opacity:1; }
-      .inc-anim .inc-item.on .inc-txt { transform:none; }
-      .inc-anim .inc-item.on .inc-check circle { stroke:var(--blue); stroke-dashoffset:0; fill:var(--blue); }
-      .inc-anim .inc-item.on .inc-check path { stroke-dashoffset:0; }
     }
-    .inc-float { position:fixed; left:50%; bottom:16px; z-index:90; display:flex; align-items:center; gap:0.7rem;
-      padding:0.6rem 1rem 0.6rem 0.7rem; border-radius:999px; background:rgba(18,18,18,0.92); color:#fff;
-      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 14px 34px -14px rgba(0,0,0,0.55);
-      transform:translate(-50%, 140%); transition:transform .5s cubic-bezier(.19,1,.22,1); pointer-events:none; }
-    .inc-float.show { transform:translate(-50%, 0); }
-    .incf-dots { display:flex; gap:4px; }
-    .incf-dots i { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.22); transition:background .4s, transform .4s; }
-    .incf-dots i.on { background:#7C86FF; transform:scale(1.15); }
-    .inc-float b { font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; }
-    .inc-float.full b { color:#7CF0B0; }
-    @media (min-width:1081px){ .inc-float { display:none; } }
     /* LANGUAGE SWITCH */
     @media (max-width:640px){ html[lang="es"] .hero-svcs { max-width:none !important; font-size:0.54rem !important; letter-spacing:0.15em !important; } }
     .lang-sw { display:flex; align-items:center; gap:2px; margin-left:1.6rem; padding:3px; border-radius:999px;
@@ -1770,6 +1749,30 @@
       .lang-sw { margin-left:auto; margin-right:0.6rem; }
       .lang-sw a { padding:0.42rem 0.6rem; }
     }
+    /* PROGRAM, PHONE + TABLET: what's included, as a looping row of photo cards */
+    @media (max-width:1080px){
+      .inc-list { display:none; }
+      .svc-loop { margin:1.6rem calc(50% - 50vw) 0; overflow:hidden; padding:0.4rem 0 1rem; touch-action:pan-y;
+        -webkit-mask-image:linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+                mask-image:linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+      .svc-track { display:flex; gap:0.9rem; width:max-content; will-change:transform; }
+      .svc-card { position:relative; flex:0 0 auto; width:240px; height:320px; margin:0; border-radius:18px; overflow:hidden;
+        background:#1a1a1a; color:#fff; isolation:isolate; box-shadow:0 20px 40px -28px rgba(18,18,18,0.6); }
+      .svc-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+      .svc-card::before { content:''; position:absolute; inset:0; z-index:-1;
+        background:linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0) 25%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.94) 100%); }
+      .svc-tag { position:absolute; top:0.85rem; left:0.85rem; font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase;
+        font-weight:800; padding:0.4rem 0.65rem; border-radius:999px; background:rgba(255,255,255,0.94); color:var(--blue); }
+      .svc-card figcaption { position:absolute; left:0; right:0; bottom:0; padding:1.1rem 1.1rem 1.15rem; display:flex; flex-direction:column; gap:0.3rem; }
+      .svc-check { width:24px; height:24px; border-radius:50%; background:var(--blue); display:grid; place-items:center; margin-bottom:0.35rem; }
+      .svc-check svg { width:14px; height:14px; fill:none; stroke:#fff; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+      .svc-card b { font-size:1.15rem; font-weight:800; letter-spacing:-0.02em; line-height:1.15; }
+      .svc-card figcaption > span:last-child { font-size:0.82rem; line-height:1.4; color:rgba(255,255,255,0.78); }
+      .inc-note { margin-top:1.2rem !important; }
+    }
+    @media (min-width:1081px){ .svc-loop { display:none; } }
+    @media (prefers-reduced-motion: reduce){ .svc-loop { overflow-x:auto; } }
+
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }

@@ -387,28 +387,39 @@ if (heroSlides.length > 1) {
 
 
 
-/* PROGRAM CHECKLIST: services check off as they scroll in; each pillar lights up when its group is done */
+/* PROGRAM, PHONE + TABLET: the included services glide right in a loop; pause on touch, swipe to scrub */
 (function(){
-  const box = document.getElementById("pkgInc");
-  if (!box || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-  const names = T.pillars;
-  const list = box.querySelector(".inc-list"), groupOf = new Map(), left = [0, 0, 0, 0];
-  let g = -1;
-  list.querySelectorAll("li").forEach(li => { if (li.classList.contains("inc-group")) g++; else { groupOf.set(li, g); left[g]++; } });
-  const chips = box.querySelectorAll(".inc-pillars span[data-g]");
-  const fl = document.getElementById("incFloat"), fn = document.getElementById("incFN"), dots = fl.querySelectorAll(".incf-dots i");
-  let remaining = groupOf.size;
-  box.classList.add("inc-anim");
-  new IntersectionObserver(es => es.forEach(e => fl.classList.toggle("show", e.isIntersecting)), { threshold: 0 }).observe(list);
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return; io.unobserve(e.target);
-    const gi = groupOf.get(e.target);
-    e.target.classList.add("on"); remaining--; left[gi]--;
-    fn.textContent = names[gi];
-    if (left[gi] === 0) { chips[gi].classList.add("on"); dots[gi].classList.add("on"); }
-    if (remaining === 0) { box.classList.add("inc-done"); fl.classList.add("full"); fn.textContent = T.full; }
-  }), { rootMargin: "0px 0px -30% 0px", threshold: 0.6 });
-  groupOf.forEach((_, li) => io.observe(li));
+  const loop = document.getElementById("svcLoop");
+  if (!loop || REDUCE) return;
+  const track = loop.querySelector(".svc-track");
+  const originals = Array.from(track.children);
+  const PX = 30; // px per second
+  let anim = null, w = 1;
+  const setW = () => originals[originals.length - 1].offsetLeft + originals[originals.length - 1].offsetWidth - originals[0].offsetLeft + 14.4;
+  function fill(){
+    while (track.scrollWidth < innerWidth * 2 + setW()) originals.forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); track.appendChild(d); });
+  }
+  const speed = speedEaser(() => anim);
+  function build(){
+    if (getComputedStyle(loop).display === "none") { if (anim) anim.cancel(); anim = null; return; }
+    fill(); w = setW();
+    if (anim) anim.cancel();
+    anim = track.animate([{ transform: "translate3d(" + (-w) + "px,0,0)" }, { transform: "translate3d(0,0,0)" }],
+      { duration: w / PX * 1000, iterations: Infinity, easing: "linear" });
+    anim.playbackRate = speed.rate;
+  }
+  whileVisible(loop, () => anim && anim.play(), () => anim && anim.pause());
+  let sx = 0, st = 0, dragging = false;
+  loop.addEventListener("pointerdown", e => { if (!anim) return; dragging = true; sx = e.clientX; st = anim.currentTime || 0; speed.set(0); });
+  addEventListener("pointermove", e => {
+    if (!dragging) return; const dur = w / PX * 1000;
+    anim.currentTime = ((st + (e.clientX - sx) / PX * 1000) % dur + dur) % dur;
+  });
+  const end = () => { if (dragging) { dragging = false; speed.set(1); } };
+  addEventListener("pointerup", end); addEventListener("pointercancel", end);
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+  addEventListener("load", build);
+  build();
 })();
 
 /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
