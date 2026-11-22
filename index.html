@@ -1767,6 +1767,59 @@
       .map-note { font-size:1.05rem !important; margin-top:1.6rem !important; padding:0 0.5rem; }
     }
     @media (min-width:641px){ .pkg-swipe { display:none; } }
+    /* PROGRAM, PHONE + TABLET: the included checklist fills itself in */
+    .inc { display:none; }
+    @media (max-width:1080px){
+      .inc { display:block; max-width:560px; margin:0 auto 1rem; }
+      #pkgMap .map-ring, #pkgMap .pkg-swipe, #pkgMap .map-note { display:none !important; }
+      .inc-note { font-family:var(--serif); font-style:italic; font-size:1.15rem; line-height:1.4; text-align:center; color:var(--fg); margin:2rem 0 0; }
+      .pkg-map { padding-top:0 !important; border-top:0 !important; }
+      .inc-head { padding:0.9rem 0 0.8rem;
+        display:flex; flex-direction:column; gap:0.6rem; }
+      .inc-count { display:flex; align-items:baseline; gap:0.5rem; }
+      .inc-count b { font-size:2rem; font-weight:800; letter-spacing:-0.04em; color:var(--blue); line-height:1;
+        font-variant-numeric:tabular-nums; }
+      .inc-count span { font-size:0.66rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; color:var(--muted); }
+      .inc-bar { height:4px; border-radius:99px; background:rgba(31,46,255,0.1); overflow:hidden; }
+      .inc-bar i { display:block; height:100%; width:100%; background:var(--blue); border-radius:99px;
+        transform-origin:0 50%; transition:transform .6s cubic-bezier(.19,1,.22,1); }
+      .inc-list { list-style:none; margin:0; padding:0; }
+      .inc-group { display:flex; flex-direction:column; gap:0.15rem; padding:1.8rem 0 0.6rem; }
+      .inc-gname { font-size:0.64rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:800; color:var(--blue); }
+      .inc-gsub { font-family:var(--serif); font-style:italic; font-size:1.3rem; line-height:1.2; color:var(--fg); }
+      .inc-item { display:flex; gap:0.9rem; align-items:flex-start; padding:0.95rem 0; border-bottom:1px solid var(--border); }
+      .inc-check { flex:0 0 26px; height:26px; margin-top:1px; }
+      .inc-check svg { width:26px; height:26px; display:block; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .inc-check circle { stroke:var(--blue); stroke-width:1.4; fill:var(--blue); }
+      .inc-check path { stroke:#fff; stroke-width:2.2; }
+      .inc-txt { display:flex; flex-direction:column; gap:0.2rem; }
+      .inc-txt b { font-size:1rem; font-weight:700; letter-spacing:-0.01em; color:var(--fg); }
+      .inc-txt span { font-size:0.88rem; line-height:1.45; color:var(--muted); }
+      /* animated state (JS adds .inc-anim, then .on per row) */
+      .inc-anim .inc-item { opacity:0.35; transition:opacity .5s ease; }
+      .inc-anim .inc-item .inc-txt { transform:translateX(-6px); transition:transform .6s cubic-bezier(.19,1,.22,1); }
+      .inc-anim .inc-check circle { fill:transparent; stroke:rgba(var(--fg-rgb),0.22); stroke-dasharray:70; stroke-dashoffset:70;
+        transition:stroke-dashoffset .6s cubic-bezier(.65,0,.35,1), fill .3s ease .45s, stroke .3s; }
+      .inc-anim .inc-check path { stroke-dasharray:16; stroke-dashoffset:16; transition:stroke-dashoffset .35s ease .5s; }
+      .inc-anim .inc-item.on { opacity:1; }
+      .inc-anim .inc-item.on .inc-txt { transform:none; }
+      .inc-anim .inc-item.on .inc-check circle { stroke:var(--blue); stroke-dashoffset:0; fill:var(--blue); }
+      .inc-anim .inc-item.on .inc-check path { stroke-dashoffset:0; }
+      .inc-done .inc-count b { animation:incPop .6s cubic-bezier(.34,1.56,.64,1); }
+      @keyframes incPop { 50% { transform:scale(1.18); } }
+    }
+    .inc-float { position:fixed; left:50%; bottom:16px; z-index:90; display:flex; align-items:center; gap:0.7rem;
+      padding:0.6rem 1rem 0.6rem 0.7rem; border-radius:999px; background:rgba(18,18,18,0.92); color:#fff;
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 14px 34px -14px rgba(0,0,0,0.55);
+      transform:translate(-50%, 140%); transition:transform .5s cubic-bezier(.19,1,.22,1); pointer-events:none; }
+    .inc-float.show { transform:translate(-50%, 0); }
+    .inc-float svg { width:22px; height:22px; display:block; }
+    .inc-float svg circle.bg { fill:none; stroke:rgba(255,255,255,0.18); stroke-width:3; }
+    .inc-float svg circle.fg { fill:none; stroke:#7C86FF; stroke-width:3; stroke-linecap:round; stroke-dasharray:56.5; stroke-dashoffset:56.5;
+      transform:rotate(-90deg); transform-origin:50% 50%; transition:stroke-dashoffset .6s cubic-bezier(.19,1,.22,1); }
+    .inc-float b { font-size:0.95rem; font-weight:800; font-variant-numeric:tabular-nums; }
+    .inc-float span { font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.7); }
+    @media (min-width:1081px){ .inc-float { display:none; } }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -2677,6 +2730,33 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <div class="pkg-fact rv d3"><b data-pc="100" data-suf="%">100%</b><span>Done for you</span></div>
     </div>
 
+    <div class="inc" id="pkgInc">
+      <div class="inc-head">
+        <div class="inc-count"><b id="incN">13</b><span>of 13 included</span></div>
+        <div class="inc-bar"><i id="incBar"></i></div>
+      </div>
+      <ol class="inc-list">
+      <li class="inc-group"><span class="inc-gname">Consulting</span><span class="inc-gsub">Strategy that steers it all</span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Monthly strategy call</b><span>We plan the month ahead around your calendar.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Monthly performance report</b><span>Clear numbers on what moved, and what&#x27;s next.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Up-to-date tactics</b><span>What&#x27;s working for restaurants right now, brought to you.</span></span></li>
+      <li class="inc-group"><span class="inc-gname">Content</span><span class="inc-gsub">A feed that never goes quiet</span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Content strategy &amp; calendar</b><span>Every post planned around your specials and events.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Up to 30 posts per month</b><span>Your page stays alive, every single week.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Captions + publishing</b><span>Written in your voice and posted for you.</span></span></li>
+      <li class="inc-group"><span class="inc-gname">Creative</span><span class="inc-gsub">Made at your restaurant</span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Production</b><span>A monthly media day, on-site at your place.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Photography</b><span>Your plates and your room, shot to make people hungry.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Short-form video editing</b><span>Reels cut to stop the scroll.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Graphic design</b><span>Menus, specials and promos, always on brand.</span></span></li>
+      <li class="inc-group"><span class="inc-gname">Reach</span><span class="inc-gsub">Getting it in front of your city</span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Meta Ads</b><span>Ads pointed at reservations and full tables.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Community management</b><span>Comments and messages answered for you.</span></span></li>
+      <li class="inc-item"><span class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg></span><span class="inc-txt"><b>Website + maintenance</b><span>Kept fresh, fast and easy to book from.</span></span></li>
+      </ol>
+      <p class="inc-note">You don’t pick from this list. You get all of it, every month.</p>
+    </div>
+    <div class="inc-float" id="incFloat" aria-hidden="true"><svg viewBox="0 0 22 22"><circle class="bg" cx="11" cy="11" r="9"/><circle class="fg" cx="11" cy="11" r="9"/></svg><b id="incFN">0/13</b><span>Included</span></div>
     <div class="pkg-map rv" id="pkgMap">
       <div class="map-ring">
         <span class="ring-orbit ring-orbit-a" aria-hidden="true"></span>
@@ -3316,6 +3396,28 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       groups.forEach((g, i) => { const c = g.offsetLeft + g.offsetWidth / 2, d = Math.abs(c - mid); if (d < bd) { bd = d; best = i; } });
       dots.forEach((d, i) => d.classList.toggle("on", i === best));
     }, { passive: true });
+  })();
+
+
+  /* PROGRAM CHECKLIST: each service checks itself off as it scrolls in; the counter climbs */
+  (function(){
+    const box = document.getElementById("pkgInc");
+    if (!box || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+    const items = Array.from(box.querySelectorAll(".inc-item")), n = document.getElementById("incN"), bar = document.getElementById("incBar");
+    const total = items.length; let done = 0;
+    box.classList.add("inc-anim"); n.textContent = "0"; bar.style.transform = "scaleX(0)";
+    const fl = document.getElementById("incFloat"), fn = document.getElementById("incFN"), fg = fl.querySelector("circle.fg");
+    fn.textContent = "0/" + total;
+    new IntersectionObserver(es => es.forEach(e => fl.classList.toggle("show", e.isIntersecting)), { threshold: 0 })
+      .observe(box.querySelector(".inc-list"));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      e.target.classList.add("on"); done++;
+      n.textContent = done; bar.style.transform = "scaleX(" + (done / total) + ")";
+      fn.textContent = done + "/" + total; fg.style.strokeDashoffset = 56.5 * (1 - done / total);
+      if (done === total) box.classList.add("inc-done");
+    }), { rootMargin: "0px 0px -30% 0px", threshold: 0.6 });
+    items.forEach(it => io.observe(it));
   })();
 
   /* TESTIMONIALS — always-moving, looping card wall (Web Animations API) */
