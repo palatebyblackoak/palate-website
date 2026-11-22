@@ -1804,11 +1804,22 @@
     @media (prefers-reduced-motion: reduce){ .svc-loop { scroll-behavior:auto; } .svc-card { transition:none; } }
 
 
-    /* ===== PHONE: Our Practice as four clear tiles ===== */
-    .abt-funnel, .abt-closer-m, .abt-tl { display:none; }
+    /* ===== Our Practice: the guest funnel (all sizes) ===== */
+    #about .abt-pillars { display:none !important; }
     @media (max-width:640px){
-      #about .abt-media, #about .abt-pillars { display:none !important; }
+      #about .abt-media { display:none !important; }
       #about { gap:0 !important; }
+    }
+    @media (min-width:641px){
+      .fn-bar { padding:1.1rem 1.5rem !important; }
+      .fn-bar b { font-size:1.35rem !important; }
+      .fn-stage { font-size:0.62rem !important; }
+      .abt-funnel p { font-size:0.95rem !important; }
+      .abt-funnel em { font-size:0.82rem !important; }
+      .abt-tl { font-size:1.6rem !important; margin:-1rem 0 1.8rem !important; }
+      #about .abt-closer.abt-closer-m { font-size:2rem !important; }
+    }
+    @media (min-width:961px){ #about .abt-content { justify-content:center; } #about .abt-closer.abt-closer-m { margin-top:0 !important; } }
       .abt-title { margin-bottom:1.6rem !important; }
       .abt-funnel { display:flex; flex-direction:column; gap:0.5rem; list-style:none; margin:0 0 2rem; padding:0; counter-reset:fn; }
       .abt-funnel li { display:flex; flex-direction:column; align-items:center; text-align:center; }
@@ -1826,8 +1837,7 @@
       .fn-anim.in li { opacity:1; transform:none; }
       .abt-tl { display:block; font-family:var(--serif); font-style:italic; font-size:1.35rem; line-height:1.25; color:var(--fg); margin:-0.6rem 0 1.4rem; }
       #about .abt-closer { display:none; }
-      #about .abt-closer.abt-closer-m { display:block; font-size:1.6rem !important; line-height:1.2; }
-    }
+      #about .abt-closer.abt-closer-m { display:block; font-size:1.6rem; line-height:1.2; }
 
     /* ===== PHONE + TABLET: Full House Program, one clear path ===== */
     @media (max-width:1080px){
