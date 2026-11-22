@@ -1411,13 +1411,16 @@
       background:none; border:0; padding:0; cursor:pointer; color:var(--fg); font:inherit; }
     .tst-more-l { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
       color:rgba(var(--fg-rgb),0.72); transition:color .3s; }
-    .tst-more-i { display:grid; place-items:center; width:28px; height:28px; border-radius:50%;
-      border:1px solid rgba(var(--fg-rgb),0.3); font-size:1rem; font-weight:300; line-height:1;
+    .tst-more-i { display:flex; align-items:center; justify-content:center; flex:0 0 auto; width:32px; height:32px;
+      border-radius:50%; border:1px solid rgba(var(--fg-rgb),0.3); line-height:0;
       transition:background .3s, color .3s, border-color .3s, transform .5s var(--ease); }
     .tst-more:hover .tst-more-l, .tst-more:focus-visible .tst-more-l { color:var(--fg); }
     .tst-more:hover .tst-more-i, .tst-more:focus-visible .tst-more-i { background:var(--cream); color:var(--ink);
       border-color:var(--cream); transform:rotate(90deg); }
     .tst-card.is-full .tst-more { visibility:hidden; }
+    .tst-more-i svg { display:block; }
+    .tst-card:not(.is-full) .tst-quote { cursor:pointer; }
+    .tst-more { padding:0.3rem 0; }
 
     .tst-modal { position:fixed; inset:0; z-index:300; display:grid; place-items:center; padding:1.5rem;
       --fg:var(--white); --fg-rgb:255,255,255; --muted:rgba(255,255,255,0.64); --border:rgba(255,255,255,0.1);
@@ -1680,7 +1683,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/inline-6708c21a.png" alt="The Quarter" class="sm" loading="lazy"><img src="media/Clients/inline-9764c4a7.png" alt="Kiss &amp; Fly" class="sm" loading="lazy"><img src="media/Clients/inline-39d686ce.png" alt="The Fifth" class="sm" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">I've loved working with my marketing team on the Crafted With Love brand. They understood my vision and helped bring it to life in a way that feels true to me and the brand. I'm grateful for the creativity and care they put into their work.</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Liza Salinas</span>
@@ -1690,7 +1693,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-170bf308.png" alt="El Taco Mañanero" class="tall" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">We've worked with Palate Marketing for years now and we love their team! They understand El Taco Mañanero, listen to our ideas, and help us share our food and our story in a way that feels true to us. They put as much care into their work as we put into our food. Thank you, Palate!</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Yoeli Muñoz</span>
@@ -1700,7 +1703,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-fa478623.png" alt="Howling Rabbits Beerworks" class="tall" loading="lazy"></div>
         <blockquote class="tst-quote tst-long">Partnering with Black Oak has been an absolute game-changer for our business. Their strategic approach to digital marketing is unparalleled, and they've consistently delivered outstanding results. From designing captivating campaigns to optimizing our online presence, their expertise has significantly boosted our brand visibility and customer engagement. The team at Black Oak is not only highly skilled but also incredibly responsive and dedicated. It's been a pleasure working with them, and we're excited to continue leveraging their innovative solutions to drive our business forward. If you're looking for a marketing agency that delivers real impact, look no further than Black Oak Media!</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Steven Schwoerer</span>
@@ -1710,7 +1713,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/inline-6bd69e5c.png" alt="LUMA Cocktail Lounge" class="pad" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">In our first month at LUMA, we gained over 2,000 followers across Facebook and Instagram. Their influencer program helped us reach 250,000 local accounts. The momentum is unreal.</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Joseph Salinas</span>
@@ -1720,7 +1723,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-b8b5ea85.png" alt="Santa Ana Nutrition" loading="lazy"></div>
         <blockquote class="tst-quote tst-long">Black Oak Agency played a pivotal role in the success of our emerging meal prep venture, impressing us with their unwavering commitment to quality, professionalism, enthusiasm, and creativity. Their marketing expertise not only helped us establish our brand but also propelled our growth beyond expectations. We are immensely grateful for their invaluable contributions and highly recommend their services to anyone seeking exceptional marketing solutions.</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Jorge Santana</span>
@@ -1730,7 +1733,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/smokin-moon-logo.png" alt="Smokin' Moon BBQ &amp; Beer Garden" loading="lazy"></div>
         <blockquote class="tst-quote">Creative, innovative, and detail-obsessed. They've made a real difference for Smokin' Moon.</blockquote>
-        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Joseph Salinas</span>
@@ -2805,7 +2808,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     });
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const SPEED = 42;          // px per second
-    const HOVER_RATE = 0.25;   // slows (never stops) while a card is hovered
+    const HOVER_RATE = 0;      // stops while a card is hovered, so the review is easy to read and tap
     let setW = 1, dur = 1, anim = null;
 
     const measure = () => {
@@ -2926,8 +2929,9 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       if (lastFocus) lastFocus.focus({ preventScroll: true });
     }
     track.addEventListener("click", e => {
-      const b = e.target.closest(".tst-more");
-      if (b) { e.preventDefault(); open(b.closest(".tst-card")); }
+      const b = e.target.closest(".tst-more, .tst-quote");
+      const card = b && b.closest(".tst-card");
+      if (card && !card.classList.contains("is-full")) { e.preventDefault(); open(card); }
     });
     modal.addEventListener("click", e => { if (e.target.closest("[data-close]")) close(); });
     addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) close(); });
