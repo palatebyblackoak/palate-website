@@ -1452,6 +1452,48 @@
       .tst-modal-q { font-size:1.28rem; }
     }
     @media (prefers-reduced-motion: reduce){ .tst-modal-bg, .tst-modal-card { animation:none; } }
+    /* FOOTER: centered, quiet, with an oversized wordmark fading off the bottom */
+    footer.ft { display:flex; flex-direction:column; align-items:center; text-align:center; gap:0;
+      position:relative; overflow:hidden; padding:5.5rem 1.5rem 0; border-top:1px solid var(--border); }
+    .ft-logo img { height:44px; width:auto; display:block; }
+    .ft-tag { margin:1.3rem 0 2.6rem; font-family:var(--serif); font-style:italic; font-size:1.45rem;
+      line-height:1.3; color:rgba(var(--fg-rgb),0.62); }
+    .ft-tag em { color:var(--fg); }
+    .ft-links { list-style:none; display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+      gap:0.4rem 0; margin:0 0 2.2rem; padding:0; }
+    .ft-links li { display:flex; align-items:center; }
+    .ft-links .ft-br { display:none; }
+    .ft-links li + li::before { content:''; width:3px; height:3px; border-radius:50%;
+      background:rgba(var(--fg-rgb),0.3); margin:0 1.1rem; }
+    .ft-links a { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+      color:rgba(var(--fg-rgb),0.7); text-decoration:none; padding:0.5rem 0; transition:color .3s; }
+    .ft-links a:hover { color:var(--accent-text); }
+    footer.ft .social-icons { gap:0.6rem; margin-bottom:3rem; }
+    footer.ft .social-icons a { width:44px; height:44px; justify-content:center; border-radius:50%;
+      border:1px solid var(--border); padding:0; transition:border-color .3s, color .3s, transform .4s var(--ease); }
+    footer.ft .social-icons a:hover { border-color:var(--accent-text); transform:translateY(-2px); }
+    footer.ft .social-icons svg { width:18px; height:18px; }
+    .ft-bottom { width:100%; max-width:1120px; display:flex; justify-content:space-between; align-items:center;
+      gap:1rem; padding:1.4rem 0; border-top:1px solid var(--border); position:relative; z-index:1; }
+    .ft-bottom small { font-size:0.72rem; color:var(--muted); }
+    .ft-top { font-size:0.72rem; color:var(--muted); text-decoration:none; transition:color .3s; }
+    .ft-top:hover { color:var(--accent-text); }
+    .ft-top span { display:inline-block; transition:transform .4s var(--ease); }
+    .ft-top:hover span { transform:translateY(-3px); }
+    .ft-mark { display:block; width:min(760px, 88%); height:auto; margin:0.5rem auto -2.5%; opacity:0.06;
+      pointer-events:none; user-select:none; }
+    @media (max-width:640px){
+      footer.ft { padding-top:4rem; }
+      .ft-logo img { height:38px; }
+      .ft-tag { font-size:1.25rem; margin:1.1rem 0 2rem; }
+      .ft-links { max-width:20rem; gap:0.2rem 0; margin-bottom:1.8rem; }
+      .ft-links li + li::before { margin:0 0.8rem; }
+      .ft-links .ft-br { display:block; flex-basis:100%; height:0; }
+      .ft-links .ft-br::before, .ft-links .ft-br + li::before { display:none; }
+      .ft-links a { font-size:0.64rem; letter-spacing:0.16em; }
+      footer.ft .social-icons { margin-bottom:2.4rem; }
+      .ft-bottom { flex-direction:column; gap:0.5rem; padding:1.2rem 0; }
+    }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -2548,17 +2590,16 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="fl">
-    <img class="footer-logo-img" src="media/Brand/palate-wordmark-ink.png" alt="Palate">
-    <div class="fs">Restaurant marketing agency · McAllen · Edinburg · Mission · Pharr · Weslaco, TX</div>
-  </div>
-  <ul class="flinks">
+<footer class="ft">
+  <a href="#hero" class="ft-logo" aria-label="Palate, back to top"><img src="media/Brand/palate-wordmark-ink.png" alt="Palate"></a>
+  <p class="ft-tag">You perfect the plate. <em>We carry the word.</em></p>
+  <ul class="ft-links">
     <li><a href="#case-studies">Results</a></li>
-    <li><a href="#packages">Work With Us</a></li>
+    <li><a href="#packages">Work with us</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#join">Join our team</a></li>
+    <li class="ft-br" aria-hidden="true"></li>
     <li><a href="/guides/">Guides</a></li>
+    <li><a href="#join">Join our team</a></li>
   </ul>
   <div class="social-icons">
     <a href="https://www.facebook.com/palatemarketing" target="_blank" aria-label="Facebook">
@@ -2587,7 +2628,11 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       </svg>
     </a>
   </div>
-  <small>© 2026 Palate by BlackOak</small>
+  <div class="ft-bottom">
+    <small>© 2026 Palate by BlackOak</small>
+    <a href="#hero" class="ft-top">Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+  <img class="ft-mark" src="media/Brand/palate-wordmark-ink.png" alt="" aria-hidden="true" loading="lazy">
 </footer>
 
 <script>
