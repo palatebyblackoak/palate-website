@@ -1401,6 +1401,61 @@
       .hero-btn{padding:1rem 2.6rem; font-size:1rem;}
       .hero-watch{margin-top:1.4rem; font-size:0.82rem; opacity:0.7;}
     }
+    /* ===================== MOTION LAYER ===================== */
+    /* smooth scroll (desktop, via Lenis) */
+    html.lenis, html.lenis body { height:auto; }
+    .lenis.lenis-smooth { scroll-behavior:auto !important; }
+    .lenis.lenis-stopped { overflow:hidden; }
+
+    /* scroll progress */
+    #scrollbar { position:fixed; top:0; left:0; right:0; height:2px; z-index:200; pointer-events:none;
+      background:var(--blue); transform-origin:0 50%; transform:scaleX(0); }
+
+    /* headlines rise in word by word */
+    .split .w { display:inline-block; overflow:hidden; vertical-align:top;
+      padding:0 0.06em 0.16em; margin:0 -0.06em -0.16em; }
+    .split .wi { display:inline-block; transform:translateY(108%) rotate(4deg); transform-origin:0 100%;
+      transition:transform 1s cubic-bezier(.19,1,.22,1); transition-delay:calc(var(--i) * 55ms + var(--d, 0ms)); }
+    .split.words-in .wi { transform:none; }
+
+    /* media unveil */
+    .clip { clip-path:inset(14% 10% 14% 10% round 18px); transition:clip-path 1.4s cubic-bezier(.19,1,.22,1);
+      transition-delay:var(--cd, 0ms); }
+    .clip > img, .clip > video { transform:scale(1.18); transition:transform 1.8s cubic-bezier(.19,1,.22,1);
+      transition-delay:var(--cd, 0ms); }
+    .clip.in { clip-path:inset(0 0 0 0 round 4px); }
+    .clip.in > img, .clip.in > video { transform:none; }
+
+    /* hero: content eases in on load */
+    #hero .hero-svcs li, #hero .hero-sub, #hero .hero-bonus, #hero .hero-actions, #hero .hero-trust, #hero .hero-watch {
+      opacity:0; transform:translateY(16px); transition:opacity .9s ease, transform 1s cubic-bezier(.19,1,.22,1); }
+    #hero.ready .hero-svcs li, #hero.ready .hero-sub, #hero.ready .hero-bonus, #hero.ready .hero-actions,
+    #hero.ready .hero-trust, #hero.ready .hero-watch { opacity:1; transform:none; }
+    #hero.ready .hero-svcs li { transition-delay:calc(450ms + var(--i) * 60ms); }
+    #hero.ready .hero-sub { transition-delay:.95s; }
+    #hero.ready .hero-bonus { transition-delay:1.05s; }
+    #hero.ready .hero-actions { transition-delay:1.15s; }
+    #hero.ready .hero-trust, #hero.ready .hero-watch { transition-delay:1.3s; }
+    #hero .hero-watch { opacity:0; }
+    #hero.ready .hero-watch { opacity:.8; }
+    @media (max-width:640px){ #hero.ready .hero-watch { opacity:.7; } }
+
+    /* buttons: shine sweep + magnetic pull (pull set in JS) */
+    .hero-btn, .clo-btn { position:relative; overflow:hidden; will-change:transform; }
+    .hero-btn::after, .clo-btn::after { content:''; position:absolute; top:0; bottom:0; left:-60%; width:45%;
+      background:linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform:skewX(-18deg); transition:left .8s cubic-bezier(.19,1,.22,1); pointer-events:none; }
+    .hero-btn:hover::after, .clo-btn:hover::after { left:120%; }
+    .magnetic { transition:transform .5s cubic-bezier(.19,1,.22,1); }
+    .deck-item.clip.in > img, .deck-item.clip.in > video { transition:transform .7s cubic-bezier(.2,.7,.2,1); }
+    @media(min-width:961px){ .deck-item.clip.in:hover > img, .deck-item.clip.in:hover > video { transform:scale(1.04); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .split .wi, .clip, .clip > img, .clip > video { transition:none !important; transform:none !important; clip-path:none !important; }
+      #hero .hero-svcs li, #hero .hero-sub, #hero .hero-bonus, #hero .hero-actions, #hero .hero-trust, #hero .hero-watch
+        { opacity:1 !important; transform:none !important; transition:none !important; }
+      #scrollbar { display:none; }
+    }
   </style>
     <link rel="icon" type="image/png" href="media/Brand/favicon.png">
     <link rel="apple-touch-icon" href="media/Brand/apple-touch-icon.png">
@@ -2824,6 +2879,109 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     addEventListener('resize', fit);
     if (document.fonts) document.fonts.ready.then(fit);
   })();
+</script>
+<div id="scrollbar" aria-hidden="true"></div>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* ===================== MOTION LAYER ===================== */
+(function(){
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(pointer: fine)").matches;
+  const hero = document.getElementById("hero");
+  hero.querySelectorAll(".hero-svcs li:not(.svc-br)").forEach((li, i) => li.style.setProperty("--i", i));
+  if (reduce) { hero.classList.add("ready"); return; }
+  setTimeout(() => { hero.classList.add("ready"); const h = hero.querySelector("h1"); if (h) h.classList.add("words-in"); }, 2500);
+
+  /* 1. Split headlines into words */
+  const heads = document.querySelectorAll("#hero h1, #clients h2, .vsl-headline, #testimonials .tst-title, .mnf-title, .abt-title, #media h2, .pkg-title, #team h2, .faq-title, .clo-lede, .mnf-closer");
+  heads.forEach(el => {
+    let i = 0;
+    (function walk(node){
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement("span"); w.className = "w";
+            const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = part;
+            wi.style.setProperty("--i", i++); w.appendChild(wi); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
+      });
+    })(el);
+    el.classList.add("split");
+  });
+
+  /* 2. Media unveil */
+  const clips = document.querySelectorAll(".abt-media, .deck-item");
+  clips.forEach(el => el.classList.add("clip"));
+  document.querySelectorAll(".deck").forEach(deck =>
+    deck.querySelectorAll(".deck-item").forEach((el, i) => el.style.setProperty("--cd", (i % 8) * 70 + "ms")));
+
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add(e.target.classList.contains("split") ? "words-in" : "in");
+    io.unobserve(e.target);
+  }), { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
+  heads.forEach(el => { if (!el.closest("#hero")) io.observe(el); });
+  clips.forEach(el => io.observe(el));
+  /* deck tabs reveal hidden panels later: unveil them when they open */
+  document.querySelectorAll("[data-deck-panel]").forEach(panel => new MutationObserver(() => {
+    if (panel.classList.contains("is-active")) panel.querySelectorAll(".clip").forEach(c => requestAnimationFrame(() => c.classList.add("in")));
+  }).observe(panel, { attributes: true, attributeFilter: ["class"] }));
+
+  /* 3. Hero entrance */
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    hero.querySelector("h1").classList.add("words-in");
+    hero.classList.add("ready");
+  }));
+
+  /* 4. Scroll: progress bar + hero drifts away */
+  const bar = document.getElementById("scrollbar");
+  const heroContent = hero.querySelector(".hero-content");
+  let ticking = false;
+  function onScroll(){
+    ticking = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
+    const y = scrollY, h = hero.offsetHeight;
+    if (y < h) {
+      heroContent.style.transform = "translateY(" + (y * 0.28) + "px)";
+      heroContent.style.opacity = Math.max(0, 1 - y / (h * 0.75));
+    }
+  }
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  if (!fine) return;
+
+  /* 5. Magnetic buttons */
+  document.querySelectorAll(".hero-btn, .clo-btn, .pill").forEach(btn => {
+    btn.classList.add("magnetic");
+    btn.addEventListener("mousemove", ev => {
+      const r = btn.getBoundingClientRect();
+      const x = (ev.clientX - r.left - r.width / 2) * 0.22, y = (ev.clientY - r.top - r.height / 2) * 0.3;
+      btn.style.transform = "translate(" + x + "px," + y + "px)";
+    });
+    btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+  });
+
+  /* 6. Smooth scrolling */
+  if (window.Lenis) {
+    const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", ev => {
+      const id = a.getAttribute("href");
+      if (id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      ev.preventDefault();
+      lenis.scrollTo(target, { offset: -70, duration: 1.4 });
+    }));
+  }
+})();
 </script>
 </body>
 </html>
