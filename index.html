@@ -1247,9 +1247,16 @@
       .mnf-beats{padding-left:2.1rem}
       .mnf-beat{padding-bottom:2.8rem}
       .mnf-beat::before{left:calc(-2.1rem + 0.5px)}
-      .mnf-beat::after{font-size:3.2rem; top:-0.3rem}
-      .mnf-t{font-size:0.98rem; padding-right:3.2rem}
-      .mnf-beat em{font-size:1.5rem}
+      .mnf-beat::after{display:none}
+      .mnf-beat::before{top:0.55rem}
+      .mnf-k{display:flex; align-items:baseline; gap:0.7rem; margin-bottom:0.55rem}
+      .mnf-k::before{content:counter(beat, decimal-leading-zero); font-family:var(--serif); font-style:italic;
+        font-weight:400; font-size:1.45rem; letter-spacing:0; line-height:1; text-transform:none;
+        color:rgba(var(--accent-rgb),0.45)}
+      .mnf-t{font-size:1rem; line-height:1.6}
+      .mnf-beat em{font-size:1.42rem; line-height:1.28}
+      .mnf-punch{margin-top:0.7rem}
+      .mnf-closer{margin-top:3.2rem}
       .mnf-closer{margin-top:4rem; font-size:clamp(1.8rem,7vw,2.4rem)}
       .mnf-closer::before{margin-bottom:2rem}
       #problem,#about{grid-template-columns:1fr; gap:3rem}
