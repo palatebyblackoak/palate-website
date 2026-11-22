@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Phone preview | Palate</title>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:#1a1a1a; color:#ddd; font-family:system-ui, sans-serif;
+      display:flex; flex-direction:column; align-items:center; padding:24px 16px 40px; gap:18px; }
+    .bar { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; align-items:center; font-size:13px; }
+    .bar button, .bar select { background:#2a2a2a; color:#eee; border:1px solid #444; border-radius:6px;
+      padding:7px 12px; font:inherit; cursor:pointer; }
+    .bar button:hover { border-color:#1F2EFF; }
+    .phone { position:relative; padding:14px; border-radius:54px; background:#000;
+      box-shadow:0 0 0 2px #333, 0 30px 80px rgba(0,0,0,.6); }
+    .phone::before { content:""; position:absolute; top:24px; left:50%; transform:translateX(-50%);
+      width:110px; height:30px; border-radius:20px; background:#000; z-index:2; }
+    iframe { display:block; border:0; border-radius:40px; background:#fff; }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <select id="page">
+      <option value="/">Homepage</option>
+      <option value="/guides/">Guides</option>
+      <option value="/how-to-increase-restaurant-sales/">Guide: Increase sales</option>
+      <option value="/restaurant-marketing-mcallen/">Guide: McAllen</option>
+      <option value="/do-facebook-instagram-ads-work-for-restaurants/">Guide: Meta ads</option>
+    </select>
+    <select id="size">
+      <option value="390x844">iPhone 15 / 14</option>
+      <option value="430x932">iPhone 15 Pro Max</option>
+      <option value="375x667">iPhone SE</option>
+      <option value="360x800">Android</option>
+    </select>
+    <button id="reload">↻ Refresh</button>
+  </div>
+  <div class="phone"><iframe id="f" title="Phone preview"></iframe></div>
+  <script>
+    const f = document.getElementById("f"), page = document.getElementById("page"), size = document.getElementById("size");
+    function load() {
+      const [w, h] = size.value.split("x").map(Number);
+      const fit = Math.min(1, (innerHeight - 120) / (h + 28));
+      f.style.width = w + "px"; f.style.height = h + "px";
+      document.querySelector(".phone").style.zoom = fit;
+      f.src = page.value + "?v=" + Date.now();
+    }
+    page.onchange = size.onchange = load;
+    document.getElementById("reload").onclick = load;
+    addEventListener("resize", load);
+    load();
+  </script>
+</body>
+</html>
