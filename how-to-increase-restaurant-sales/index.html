@@ -134,6 +134,21 @@
       .pull { font-size:1.4rem; }
       footer { padding:2rem 1.25rem; flex-direction:column; text-align:center; }
     }
+    .more { max-width:680px; margin:0 auto; padding:0 1.5rem 4.5rem; }
+    .more h2 { font-size:0.7rem; letter-spacing:0.24em; text-transform:uppercase; font-weight:700;
+      color:var(--muted); margin-bottom:1rem; }
+    .more a { display:block; padding:1.1rem 0; border-top:1px solid var(--border); text-decoration:none;
+      color:var(--fg); font-weight:700; font-size:1.1rem; letter-spacing:-0.01em; }
+    .more a:last-child { border-bottom:1px solid var(--border); }
+    .more a span { display:block; font-weight:400; font-size:0.9rem; color:var(--muted); margin-top:0.2rem; }
+    .more a:hover { color:var(--blue); }
+    .faq details { border-top:1px solid var(--border); padding:1rem 0; }
+    .faq details:last-child { border-bottom:1px solid var(--border); }
+    .faq summary { font-weight:700; cursor:pointer; list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; font-weight:400; }
+    .faq details[open] summary::after { content:"–"; }
+    .faq details p { margin:0.7rem 0 0; color:var(--muted); }
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -161,7 +176,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
 </nav>
 
 <header class="hd">
-  <p class="crumb"><a href="/">Palate</a> &nbsp;/&nbsp; Guides</p>
+  <p class="crumb"><a href="/">Palate</a> &nbsp;/&nbsp; <a href="/guides/">Guides</a></p>
   <h1>How to increase restaurant sales <em>on slow nights.</em></h1>
   <p class="dek">Seven plays we've run for restaurants in McAllen and the Rio Grande Valley, with the real numbers behind each one.</p>
   <p class="byline">By <strong>Luis Alonso Robles</strong>, founder of Palate · Updated November 2026 · 7-min read</p>
@@ -275,6 +290,13 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   <p><a href="/#case-studies">See the full case studies →</a></p>
 
 </article>
+
+<section class="more">
+  <h2>More guides</h2>
+  <a href="/restaurant-marketing-mcallen/">Restaurant marketing in McAllen and the Rio Grande Valley<span>What works for restaurants in the RGV, and how to pick the right team.</span></a>
+  <a href="/do-facebook-instagram-ads-work-for-restaurants/">Do Facebook and Instagram ads work for restaurants?<span>Yes, with four rules. Real spend, real reservations.</span></a>
+  <a href="/guides/">All guides<span>Everything we've written for restaurant owners.</span></a>
+</section>
 
 <section class="cta">
   <h2>Let's fill your slowest night.</h2>
