@@ -425,30 +425,20 @@ if (heroSlides.length > 1) {
   const now = document.getElementById("svcNow"), bars = document.getElementById("svcBars");
   let last = null;
   cards.forEach(c => {
-    const tag = c.querySelector(".svc-eye"), i = document.createElement("i");
-    const g = tag ? tag.textContent.trim() : T.full;
+    const tag = c.querySelector(".svc-tag"), i = document.createElement("i");
+    const g = tag ? tag.textContent : T.full;
     if (last !== null && g !== last) i.className = "gap";
     last = g; bars.appendChild(i);
   });
   const segs = bars.children;
-  // which pillar each card belongs to (the finale belongs to none)
-  const chips = Array.from(document.querySelectorAll("#incPillars button"));
-  const groupOf = [], firstOf = []; let gi = -1, prevTag = null;
-  cards.forEach((c, k) => {
-    const tag = c.querySelector(".svc-eye"); const t = tag ? tag.textContent.trim() : null;
-    if (t && t !== prevTag) { gi++; firstOf[gi] = k; prevTag = t; }
-    groupOf[k] = t ? gi : -1;
-  });
-  chips.forEach((ch, k) => ch.addEventListener("click", () => go(firstOf[k])));
   let cur = -1;
   function show(i){
     if (i === cur) return; cur = i;
     cards.forEach((c, k) => c.classList.toggle("is-cur", k === i));
     Array.from(segs).forEach((s, k) => s.classList.toggle("on", k <= i));
-    const tag = cards[i].querySelector(".svc-eye");
-    now.textContent = tag ? tag.textContent.trim() : T.full;
+    const tag = cards[i].querySelector(".svc-tag");
+    now.textContent = tag ? tag.textContent : T.full;
     prev.disabled = i === 0; next.disabled = i === cards.length - 1;
-    chips.forEach((ch, k) => { const on = k === groupOf[i]; ch.classList.toggle("on", on); ch.setAttribute("aria-selected", on); });
   }
   function go(i){
     i = Math.max(0, Math.min(cards.length - 1, i));
