@@ -1326,30 +1326,20 @@
       .social-icons{gap:0.5rem;}
       .social-icons a{padding:0.65rem;}
     }
-    /* MOBILE HERO: tighter rhythm, full-width call to action */
+    /* MOBILE HERO: minimal. Headline, what we do, one button, the video. */
     @media (max-width:640px){
-      #hero{padding:6.2rem 1.4rem 3.6rem; justify-content:center;}
-      .hero-scrim{background:linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 30%,
-        rgba(10,10,10,0.7) 70%, rgba(10,10,10,0.96) 100%);}
+      #hero{padding:6rem 1.5rem 3.5rem; justify-content:center;}
+      .hero-scrim{background:linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.45) 35%,
+        rgba(10,10,10,0.75) 75%, rgba(10,10,10,0.95) 100%);}
       .hero-content{width:100%; max-width:24rem;}
-      .hero-content h1{font-size:clamp(2.3rem, 10.6vw, 3rem); line-height:1.0; letter-spacing:-0.035em; margin-bottom:1.5rem;}
-      .hero-svcs{max-width:none; gap:0.55rem 1.05rem; padding:0.85rem 0.2rem; margin:0 auto 1.3rem;
-        border-top:1px solid rgba(var(--fg-rgb),0.16); border-bottom:1px solid rgba(var(--fg-rgb),0.16);
-        font-size:0.62rem; letter-spacing:0.22em; color:rgba(var(--fg-rgb),0.8);}
-      .hero-content .hero-sub{font-size:1.5rem; margin-bottom:1.3rem;}
-      .hero-bonus{flex-direction:row; flex-wrap:nowrap; gap:0.6rem; border-radius:999px;
-        padding:0.5rem 1rem; margin-bottom:2rem; font-size:0.8rem;}
-      .hero-bonus-tag{font-size:0.6rem; letter-spacing:0.16em; white-space:nowrap;}
-      .hero-bonus-txt{white-space:nowrap;}
-      .hb-x{display:none;}
+      .hero-content h1{font-size:clamp(2.4rem, 11vw, 3.1rem); line-height:1.0; letter-spacing:-0.035em; margin-bottom:1.6rem;}
+      .hero-svcs{max-width:19rem; gap:0.35rem 1.1rem; line-height:1.5; padding:0; margin:0 auto 2.6rem; border:0;
+        font-size:0.6rem; letter-spacing:0.24em; color:rgba(var(--fg-rgb),0.62);}
       .hero-svcs .svc-br{display:block; flex-basis:100%; height:0; margin:0;}
-      .hero-actions{flex-direction:column; gap:0.9rem;}
-      .hero-btn{width:100%; justify-content:center; padding:1.05rem 1.5rem; font-size:1rem;}
-      .hero-link{font-size:0.92rem;}
-      .hero-trust{margin-top:1.1rem; font-size:0.74rem;}
-      .hero-watch{margin-top:0.6rem; font-size:0.82rem; border:1px solid rgba(var(--fg-rgb),0.22);
-        border-radius:999px; padding:0.55rem 1rem;}
-      .hero-scroll{display:none;}
+      .hero-content .hero-sub, .hero-bonus, .hero-link, .hero-trust, .hero-scroll{display:none;}
+      .hero-actions{flex-direction:column; gap:0;}
+      .hero-btn{padding:1rem 2.6rem; font-size:1rem;}
+      .hero-watch{margin-top:1.4rem; font-size:0.82rem; opacity:0.7;}
     }
   </style>
     <link rel="icon" type="image/png" href="media/Brand/favicon.png">
