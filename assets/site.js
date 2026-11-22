@@ -388,6 +388,16 @@ if (heroSlides.length > 1) {
 
 
 
+/* OUR PRACTICE, PHONE: the funnel stages drop in, top to bottom */
+(function(){
+  const f = document.querySelector(".abt-funnel");
+  if (!f || REDUCE || !("IntersectionObserver" in window)) return;
+  f.querySelectorAll("li").forEach((li, i) => li.style.setProperty("--i", i));
+  f.classList.add("fn-anim");
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { f.classList.add("in"); io.disconnect(); } }), { threshold: 0.25 });
+  io.observe(f);
+})();
+
 /* PROGRAM, PHONE + TABLET: step through what's included, card by card, to the Full House finale */
 (function(){
   const loop = document.getElementById("svcLoop");
