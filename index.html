@@ -1401,6 +1401,57 @@
       .hero-btn{padding:1rem 2.6rem; font-size:1rem;}
       .hero-watch{margin-top:1.4rem; font-size:0.82rem; opacity:0.7;}
     }
+    /* REVIEWS: equal cards, quote preview, full review in a pop-up */
+    .tst-card, .tst-card.tst-wide { width:440px; height:430px; position:relative; }
+    .tst-logos { height:56px; margin-bottom:1.6rem; }
+    .tst-quote, .tst-quote.tst-mid, .tst-quote.tst-long { font-size:1.36rem; line-height:1.45; letter-spacing:-0.006em;
+      display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:5; overflow:hidden; flex-shrink:0; }
+    .tst-attr { padding-top:1.4rem; padding-right:3.5rem; }
+    .tst-more { position:absolute; right:1.6rem; bottom:1.7rem; z-index:2; display:flex; align-items:center; gap:0.6rem;
+      background:none; border:0; padding:0; cursor:pointer; color:var(--fg); font:inherit; }
+    .tst-more-l { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+      color:rgba(var(--fg-rgb),0.6); max-width:0; overflow:hidden; white-space:nowrap; opacity:0;
+      transition:max-width .5s var(--ease), opacity .4s; }
+    .tst-more-i { display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
+      border:1px solid rgba(var(--fg-rgb),0.28); font-size:1.25rem; font-weight:300; line-height:1;
+      transition:background .3s, color .3s, border-color .3s, transform .5s var(--ease); }
+    .tst-card:hover .tst-more-l, .tst-more:focus-visible .tst-more-l { max-width:9rem; opacity:1; }
+    .tst-more:hover .tst-more-i, .tst-more:focus-visible .tst-more-i { background:var(--cream); color:var(--ink);
+      border-color:var(--cream); transform:rotate(90deg); }
+    .tst-card.is-full .tst-more { display:none; }
+    .tst-card.is-full .tst-attr { padding-right:0; }
+
+    .tst-modal { position:fixed; inset:0; z-index:300; display:grid; place-items:center; padding:1.5rem;
+      --fg:var(--white); --fg-rgb:255,255,255; --muted:rgba(255,255,255,0.64); --border:rgba(255,255,255,0.1);
+      --accent-text:var(--cream); --bg-2:#1a1a1a; }
+    .tst-modal[hidden] { display:none; }
+    .tst-modal-bg { position:absolute; inset:0; background:rgba(8,8,8,0.72);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); animation:tstFade .35s ease both; }
+    .tst-modal-card { position:relative; width:min(640px, 100%); max-height:86vh; overflow:auto; margin:0;
+      background:var(--bg-2); color:var(--fg); border:1px solid var(--border); border-radius:14px;
+      padding:2.8rem 2.6rem 2.4rem; animation:tstPop .55s cubic-bezier(.19,1,.22,1) both;
+      box-shadow:0 40px 100px -30px rgba(0,0,0,0.8); }
+    .tst-modal-q { font-family:var(--serif); font-style:italic; font-size:1.55rem; line-height:1.45; margin:0; }
+    .tst-modal-q::before { content:'\201C'; color:var(--accent-text); }
+    .tst-modal-q::after { content:'\201D'; color:var(--accent-text); }
+    .tst-modal .tst-attr { padding-right:0; }
+    .tst-modal-x { position:absolute; top:1rem; right:1rem; width:40px; height:40px; border-radius:50%;
+      border:1px solid var(--border); background:none; color:var(--fg); font-size:1.4rem; line-height:1; cursor:pointer;
+      transition:background .3s; }
+    .tst-modal-x:hover { background:rgba(255,255,255,0.08); }
+    @keyframes tstFade { from { opacity:0; } }
+    @keyframes tstPop { from { opacity:0; transform:translateY(24px) scale(0.97); } }
+    @media (max-width:640px){
+      .tst-card, .tst-card.tst-wide { width:min(84vw, 340px); height:400px; padding:1.8rem 1.5rem 1.6rem; }
+      .tst-quote, .tst-quote.tst-mid, .tst-quote.tst-long { font-size:1.14rem; -webkit-line-clamp:6; }
+      .tst-logos { height:48px; margin-bottom:1.3rem; }
+      .tst-more { right:1.2rem; bottom:1.3rem; }
+      .tst-more-l { max-width:none; opacity:1; font-size:0.56rem; }
+      .tst-modal { align-items:end; padding:0; }
+      .tst-modal-card { width:100%; max-height:88vh; border-radius:18px 18px 0 0; padding:2.4rem 1.6rem 2rem; }
+      .tst-modal-q { font-size:1.28rem; }
+    }
+    @media (prefers-reduced-motion: reduce){ .tst-modal-bg, .tst-modal-card { animation:none; } }
     /* ===================== MOTION LAYER ===================== */
     /* smooth scroll (desktop, via Lenis) */
     html.lenis, html.lenis body { height:auto; }
@@ -1590,6 +1641,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/inline-6708c21a.png" alt="The Quarter" class="sm" loading="lazy"><img src="media/Clients/inline-9764c4a7.png" alt="Kiss &amp; Fly" class="sm" loading="lazy"><img src="media/Clients/inline-39d686ce.png" alt="The Fifth" class="sm" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">I've loved working with my marketing team on the Crafted With Love brand. They understood my vision and helped bring it to life in a way that feels true to me and the brand. I'm grateful for the creativity and care they put into their work.</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Liza Salinas</span>
@@ -1599,6 +1651,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-170bf308.png" alt="El Taco Mañanero" class="tall" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">We've worked with Palate Marketing for years now and we love their team! They understand El Taco Mañanero, listen to our ideas, and help us share our food and our story in a way that feels true to us. They put as much care into their work as we put into our food. Thank you, Palate!</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Yoeli Muñoz</span>
@@ -1608,6 +1661,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-fa478623.png" alt="Howling Rabbits Beerworks" class="tall" loading="lazy"></div>
         <blockquote class="tst-quote tst-long">Partnering with Black Oak has been an absolute game-changer for our business. Their strategic approach to digital marketing is unparalleled, and they've consistently delivered outstanding results. From designing captivating campaigns to optimizing our online presence, their expertise has significantly boosted our brand visibility and customer engagement. The team at Black Oak is not only highly skilled but also incredibly responsive and dedicated. It's been a pleasure working with them, and we're excited to continue leveraging their innovative solutions to drive our business forward. If you're looking for a marketing agency that delivers real impact, look no further than Black Oak Media!</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Steven Schwoerer</span>
@@ -1617,6 +1671,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/inline-6bd69e5c.png" alt="LUMA Cocktail Lounge" class="pad" loading="lazy"></div>
         <blockquote class="tst-quote tst-mid">In our first month at LUMA, we gained over 2,000 followers across Facebook and Instagram. Their influencer program helped us reach 250,000 local accounts. The momentum is unreal.</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Joseph Salinas</span>
@@ -1626,6 +1681,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card tst-wide">
         <div class="tst-logos"><img src="media/Clients/inline-b8b5ea85.png" alt="Santa Ana Nutrition" loading="lazy"></div>
         <blockquote class="tst-quote tst-long">Black Oak Agency played a pivotal role in the success of our emerging meal prep venture, impressing us with their unwavering commitment to quality, professionalism, enthusiasm, and creativity. Their marketing expertise not only helped us establish our brand but also propelled our growth beyond expectations. We are immensely grateful for their invaluable contributions and highly recommend their services to anyone seeking exceptional marketing solutions.</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Jorge Santana</span>
@@ -1635,6 +1691,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       <figure class="tst-card">
         <div class="tst-logos"><img src="media/Clients/smokin-moon-logo.png" alt="Smokin' Moon BBQ &amp; Beer Garden" loading="lazy"></div>
         <blockquote class="tst-quote">Creative, innovative, and detail-obsessed. They've made a real difference for Smokin' Moon.</blockquote>
+        <button class="tst-more" type="button" aria-label="Read the full review"><span class="tst-more-l">Read full review</span><span class="tst-more-i" aria-hidden="true">+</span></button>
         <figcaption class="tst-attr">
           <span class="tst-rule" aria-hidden="true"></span>
           <span class="tst-name">Joseph Salinas</span>
@@ -1654,6 +1711,15 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
       </a>
   </div>
 </section>
+<div class="tst-modal" id="tstModal" role="dialog" aria-modal="true" aria-label="Client review" hidden>
+  <div class="tst-modal-bg" data-close></div>
+  <figure class="tst-modal-card" data-lenis-prevent>
+    <button class="tst-modal-x" type="button" aria-label="Close" data-close>×</button>
+    <div class="tst-logos" id="tstModalLogos"></div>
+    <blockquote class="tst-modal-q" id="tstModalQ"></blockquote>
+    <figcaption class="tst-attr" id="tstModalAttr"></figcaption>
+  </figure>
+</div>
 
 <!-- MANIFESTO -->
 <section id="manifesto">
@@ -2789,6 +2855,47 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     requestAnimationFrame(ease);
   })();
 
+  /* REVIEWS: preview + full review pop-up (works for cloned cards too) */
+  (function(){
+    const track = document.getElementById("tstTrack"), modal = document.getElementById("tstModal");
+    if (!track || !modal) return;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function markFull(){
+      track.querySelectorAll(".tst-card").forEach(c => {
+        const q = c.querySelector(".tst-quote");
+        c.classList.toggle("is-full", q.scrollHeight <= q.clientHeight + 2);
+      });
+    }
+    let lastFocus = null;
+    function open(card){
+      lastFocus = document.activeElement;
+      document.getElementById("tstModalLogos").innerHTML = card.querySelector(".tst-logos").innerHTML;
+      document.getElementById("tstModalQ").textContent = card.querySelector(".tst-quote").textContent;
+      document.getElementById("tstModalAttr").innerHTML = card.querySelector(".tst-attr").innerHTML;
+      modal.hidden = false;
+      track.getAnimations().forEach(a => a.pause());
+      if (window.__lenis) window.__lenis.stop();
+      modal.querySelector(".tst-modal-x").focus();
+    }
+    function close(){
+      modal.hidden = true;
+      if (!reduce) track.getAnimations().forEach(a => a.play());
+      if (window.__lenis) window.__lenis.start();
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
+    track.addEventListener("click", e => {
+      const b = e.target.closest(".tst-more");
+      if (b) { e.preventDefault(); open(b.closest(".tst-card")); }
+    });
+    modal.addEventListener("click", e => { if (e.target.closest("[data-close]")) close(); });
+    addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) close(); });
+    addEventListener("load", markFull);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(markFull);
+    addEventListener("resize", markFull);
+    markFull();
+  })();
+
+
   /* MEDIA — segmented control picks one discipline; rows track swipe progress */
   (function(){
     const tabs = Array.from(document.querySelectorAll('.deck-tab'));
@@ -2971,6 +3078,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
   /* 6. Smooth scrolling */
   if (window.Lenis) {
     const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    window.__lenis = lenis;
     (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
     document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", ev => {
       const id = a.getAttribute("href");
