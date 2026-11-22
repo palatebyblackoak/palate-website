@@ -1703,8 +1703,13 @@
       font-weight:800; padding:0.42rem 0.7rem; border-radius:999px; background:rgba(255,255,255,0.92); color:var(--accent-text); }
     .csl-body { position:absolute; left:0; right:0; bottom:0; padding:1.4rem 1.4rem 1.3rem; display:flex; flex-direction:column; }
     .csl-v { font-size:3rem; font-weight:800; letter-spacing:-0.045em; line-height:1; margin-bottom:0.35rem; }
-    .csl-group-rev .csl-v, .cs-group-rev .csl-v { color:#7CF0B0; }
-    .cs-group-eng .csl-v { color:#AEB5FF; }
+    .csl-rev { --accent:#128A52; --accent-text:#128A52; }
+    .csl-eng { --accent:var(--blue); --accent-text:var(--blue); }
+    .csl-rev .csl-v { color:#7CF0B0; }
+    .csl-eng .csl-v { color:#AEB5FF; }
+    #case-studies .cs-header { display:none; }
+    #case-studies .cs-group + .cs-group { margin-top:0 !important; }
+    #csLoop { margin-top:0; }
     .csl-l { font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.72); margin-bottom:1.1rem; line-height:1.5; }
     .csl-brand { font-size:1.35rem; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
     .csl-sub { font-size:0.95rem; font-weight:300; color:rgba(255,255,255,0.8); }
@@ -1718,10 +1723,10 @@
     .csl-card.is-active .csl-more i { background:var(--accent); border-color:var(--accent); color:#fff; transform:rotate(45deg); }
     .csl-card:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
     /* the list rows are replaced by the cards; the opened study shows below the loop */
-    .csl ~ .cs-list { border-top:0; }
-    .csl ~ .cs-list .cs-row-h { display:none; }
-    .csl ~ .cs-list .cs-item { border-bottom:0; }
-    .csl ~ .cs-list .cs-item.is-open { border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; }
+    #case-studies .cs-list { border-top:0; }
+    #case-studies .cs-row-h { display:none; }
+    #case-studies .cs-item { border-bottom:0; }
+    #case-studies .cs-item.is-open { border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; }
     .csx-close { position:absolute; top:1.2rem; right:0; z-index:2; display:flex; align-items:center; gap:0.5rem; background:none; border:0;
       cursor:pointer; font:inherit; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600; color:var(--muted); }
     .csx-close span { display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; border:1px solid var(--border); font-size:1rem; color:var(--fg); }
@@ -1984,7 +1989,7 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="cs-header rv">
       <h2 class="cs-eye">Revenue-based case studies</h2>
     </div>
-    <div class="csl" data-dir="right"><div class="csl-track"></div></div>
+    <div class="csl" data-dir="left" id="csLoop"><div class="csl-track"></div></div>
     <div class="cs-list rv">
       <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
@@ -2215,7 +2220,6 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     <div class="cs-header rv">
       <h2 class="cs-eye">Engagement-based case studies</h2>
     </div>
-    <div class="csl" data-dir="left"><div class="csl-track"></div></div>
     <div class="cs-list rv">
       <article class="cs-item csx-row" data-cs-item>
         <h3 class="cs-row-h">
@@ -3193,17 +3197,20 @@ src="https://www.facebook.com/tr?id=1189198843238803&ev=PageView&noscript=1"
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const plus = '<svg viewBox="0 0 12 12" width="11" height="11"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>';
     document.querySelectorAll(".csl").forEach(loop => {
-      const group = loop.closest(".cs-group");
       const track = loop.querySelector(".csl-track");
-      const items = Array.from(group.querySelectorAll(".cs-item"));
-      const tag = group.classList.contains("cs-group-rev") ? "Revenue" : "Engagement";
+      const rev = Array.from(document.querySelectorAll(".cs-group-rev .cs-item"));
+      const eng = Array.from(document.querySelectorAll(".cs-group-eng .cs-item"));
+      const items = [];
+      for (let k = 0; k < Math.max(rev.length, eng.length); k++) { if (rev[k]) items.push(rev[k]); if (eng[k]) items.push(eng[k]); }
       const make = (item, clone) => {
         const row = item.querySelector(".cs-row");
         const brand = row.querySelector(".cs-row-brand").textContent, sub = row.querySelector(".cs-row-sub").textContent;
         const v = row.querySelector(".cs-row-kpi-v"), l = row.querySelector(".cs-row-kpi-l").textContent;
         const val = v.dataset.num ? (v.dataset.pre + (v.dataset.comma ? (+v.dataset.num).toLocaleString("en-US") : v.dataset.num) + v.dataset.suf) : v.textContent;
+        const isRev = !!item.closest(".cs-group-rev");
+        const tag = isRev ? "Revenue" : "Engagement";
         const b = document.createElement("button");
-        b.type = "button"; b.className = "csl-card";
+        b.type = "button"; b.className = "csl-card " + (isRev ? "csl-rev" : "csl-eng");
         b.setAttribute("aria-controls", row.getAttribute("aria-controls"));
         b.setAttribute("aria-label", brand + " " + sub + ": " + val + " " + l + ". Open case study");
         if (clone) { b.setAttribute("aria-hidden", "true"); b.tabIndex = -1; }
