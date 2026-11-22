@@ -1797,26 +1797,31 @@
     @media (min-width:1081px){ .svc-loop, .svc-ctrl { display:none; } }
     @media (prefers-reduced-motion: reduce){ .svc-loop { scroll-behavior:auto; } .svc-card { transition:none; } }
 
-    /* OUR PRACTICE, PHONE: tap-to-open points (JS adds .abt-acc) */
-    .abt-pillars:not(.abt-acc) .abt-more, .abt-pillars:not(.abt-acc) .abt-more > div { display:contents; }
-    .abt-pillars:not(.abt-acc) .abt-pillar-t { order:0; }
-    .abt-pillars:not(.abt-acc) .abt-pillar-d { order:1; }
-    .abt-pillars:not(.abt-acc) .abt-proof { order:2; }
-    .abt-pillars:not(.abt-acc) .abt-tags { order:3; }
+
+    /* ===== PHONE: Our Practice as four clear tiles ===== */
+    .abt-tiles { display:none; }
     @media (max-width:640px){
-      .abt-acc .abt-pillar { cursor:pointer; padding:1.15rem 0; -webkit-tap-highlight-color:transparent; }
-      .abt-acc .abt-pillar-t { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-      .abt-acc .abt-pillar-t::after { content:''; flex:0 0 30px; height:30px; border-radius:50%; border:1px solid var(--border);
-        background:linear-gradient(currentColor,currentColor) center/11px 1.5px no-repeat,
-                   linear-gradient(currentColor,currentColor) center/1.5px 11px no-repeat;
-        transition:transform .45s cubic-bezier(.19,1,.22,1), background-color .3s, color .3s, border-color .3s; }
-      .abt-acc .abt-pillar.open .abt-pillar-t::after { transform:rotate(45deg); background-color:var(--fg); color:var(--bg); border-color:var(--fg); }
-      .abt-acc .abt-more { display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s cubic-bezier(.19,1,.22,1); }
-      .abt-acc .abt-pillar.open .abt-more { grid-template-rows:1fr; }
-      .abt-acc .abt-more > div { overflow:hidden; min-height:0; }
-      .abt-acc .abt-more .abt-pillar-d { padding-top:0.35rem; }
-      .abt-acc .abt-pillar-n { align-self:start; padding-top:0.45rem; }
-      .abt-acc .abt-proof { margin-top:0.3rem; }
+      #about .abt-media, #about .abt-pillars { display:none !important; }
+      #about { gap:0 !important; }
+      .abt-title { margin-bottom:1.6rem !important; }
+      .abt-tiles { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; list-style:none; margin:0 0 2rem; padding:0; }
+      .abt-tiles li { display:flex; flex-direction:column; gap:0.35rem; padding:1.1rem 1rem 1.15rem; border-radius:16px;
+        background:#fff; border:1px solid var(--border); }
+      .abt-ico { width:38px; height:38px; border-radius:12px; background:rgba(31,46,255,0.08); display:grid; place-items:center; margin-bottom:0.45rem; }
+      .abt-ico svg { width:20px; height:20px; fill:none; stroke:var(--blue); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+      .abt-tiles b { font-size:1rem; font-weight:800; letter-spacing:-0.02em; line-height:1.2; color:var(--fg); }
+      .abt-tiles span:last-child { font-size:0.82rem; line-height:1.45; color:var(--muted); }
+      .abt-closer { font-size:1.2rem !important; }
+    }
+
+    /* ===== PHONE + TABLET: Full House Program, one clear path ===== */
+    @media (max-width:1080px){
+      .inc-eye, .inc-lead em, .inc-pillars, .inc-note { display:none !important; }
+      .inc-head { padding:0 !important; }
+      .inc-lead { font-size:1.25rem !important; text-align:center; }
+      .pkg-facts { margin-bottom:2.2rem !important; }
+      .svc-loop { margin-top:1rem !important; }
+      .pkg-bonus { margin-top:2.2rem !important; }
     }
 
     /* ===================== MOTION LAYER ===================== */

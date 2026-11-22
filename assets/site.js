@@ -387,34 +387,6 @@ if (heroSlides.length > 1) {
 
 
 
-/* OUR PRACTICE, PHONE: each point opens on tap (one at a time) so the section reads at a glance */
-(function(){
-  const list = document.querySelector(".abt-pillars");
-  if (!list) return;
-  const items = Array.from(list.querySelectorAll(".abt-pillar"));
-  // wrap the description + tags so they can fold away; the title and proof line stay visible
-  items.forEach(li => {
-    const body = li.querySelector(".abt-pillar-body");
-    const more = document.createElement("div"), inner = document.createElement("div");
-    more.className = "abt-more"; more.appendChild(inner);
-    body.querySelectorAll(".abt-pillar-d, .abt-tags").forEach(el => inner.appendChild(el));
-    const proof = body.querySelector(".abt-proof");
-    proof ? proof.after(more) : body.appendChild(more);
-  });
-  const phone = matchMedia("(max-width:640px)");
-  function setOpen(li){ items.forEach(x => { const on = x === li; x.classList.toggle("open", on); x.setAttribute("aria-expanded", on); }); }
-  function mode(){
-    list.classList.toggle("abt-acc", phone.matches);
-    items.forEach(li => { if (phone.matches) { li.setAttribute("role", "button"); li.tabIndex = 0; } else { li.removeAttribute("role"); li.removeAttribute("tabindex"); li.removeAttribute("aria-expanded"); } });
-    if (phone.matches && !items.some(li => li.classList.contains("open"))) setOpen(items[0]);
-  }
-  items.forEach(li => {
-    li.addEventListener("click", e => { if (!phone.matches || e.target.closest("a")) return; setOpen(li.classList.contains("open") ? null : li); });
-    li.addEventListener("keydown", e => { if (phone.matches && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); li.click(); } });
-  });
-  phone.addEventListener("change", mode);
-  mode();
-})();
 
 /* PROGRAM, PHONE + TABLET: step through what's included, card by card, to the Full House finale */
 (function(){
